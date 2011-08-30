@@ -7,10 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		23228AD213F3850D0001DE38 /* MIMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 23228AD113F3850D0001DE38 /* MIMColor.m */; };
+		2309CEAA140C95700038C78E /* Anchor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE70140C95700038C78E /* Anchor.m */; };
+		2309CEAB140C95700038C78E /* AnchorInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE72140C95700038C78E /* AnchorInfo.m */; };
+		2309CEAC140C95700038C78E /* CustomBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE74140C95700038C78E /* CustomBox.m */; };
+		2309CEAD140C95700038C78E /* XAxisBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE76140C95700038C78E /* XAxisBand.m */; };
+		2309CEAE140C95700038C78E /* XAxisLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE78140C95700038C78E /* XAxisLabel.m */; };
+		2309CEAF140C95700038C78E /* YAxisBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE7A140C95700038C78E /* YAxisBand.m */; };
+		2309CEB0140C95700038C78E /* BarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE7D140C95700038C78E /* BarChart.m */; };
+		2309CEB1140C95700038C78E /* BarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE7F140C95700038C78E /* BarView.m */; };
+		2309CEB2140C95700038C78E /* Cluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE82140C95700038C78E /* Cluster.m */; };
+		2309CEB3140C95700038C78E /* ClusterGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE84140C95700038C78E /* ClusterGraph.m */; };
+		2309CEB4140C95700038C78E /* MIMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE87140C95700038C78E /* MIMColor.m */; };
+		2309CEB5140C95700038C78E /* FragmentedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE8A140C95700038C78E /* FragmentedBar.m */; };
+		2309CEB6140C95700038C78E /* FragmentedBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE8C140C95700038C78E /* FragmentedBarChart.m */; };
+		2309CEB7140C95700038C78E /* 2DFragmentedDoughNut.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE8F140C95700038C78E /* 2DFragmentedDoughNut.m */; };
+		2309CEB8140C95700038C78E /* DoughtNutFragmentTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE91140C95700038C78E /* DoughtNutFragmentTitle.m */; };
+		2309CEB9140C95700038C78E /* LineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE95140C95700038C78E /* LineGraph.m */; };
+		2309CEBA140C95700038C78E /* LineInfoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE97140C95700038C78E /* LineInfoBox.m */; };
+		2309CEBB140C95700038C78E /* lines.png in Resources */ = {isa = PBXBuildFile; fileRef = 2309CE98140C95700038C78E /* lines.png */; };
+		2309CEBC140C95700038C78E /* lines1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2309CE99140C95700038C78E /* lines1.png */; };
+		2309CEBD140C95700038C78E /* MIMPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE9C140C95700038C78E /* MIMPieChart.m */; };
+		2309CEBE140C95700038C78E /* WallGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE9F140C95700038C78E /* WallGraph.m */; };
+		2309CEBF140C95700038C78E /* WallTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CEA1140C95700038C78E /* WallTestClass.m */; };
+		2309CED0140C98760038C78E /* BarTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CEC2140C98760038C78E /* BarTestClass.m */; };
+		2309CED1140C98760038C78E /* ClusterTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CEC4140C98760038C78E /* ClusterTestClass.m */; };
+		2309CED2140C98760038C78E /* FragmentedBarTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CEC6140C98760038C78E /* FragmentedBarTestClass.m */; };
+		2309CED3140C98760038C78E /* GroupBarTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CEC8140C98760038C78E /* GroupBarTestClass.m */; };
+		2309CED4140C98760038C78E /* TestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CECA140C98760038C78E /* TestClass.m */; };
+		2309CED5140C98760038C78E /* TestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2309CECB140C98760038C78E /* TestClass.xib */; };
+		2309CED6140C98760038C78E /* TestClassFragmented.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CECD140C98760038C78E /* TestClassFragmented.m */; };
+		2309CED7140C98760038C78E /* TestLineClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CECF140C98760038C78E /* TestLineClass.m */; };
 		23228ADD13F3A7660001DE38 /* myTable.csv in Resources */ = {isa = PBXBuildFile; fileRef = 23228ADC13F3A7660001DE38 /* myTable.csv */; };
 		2333A89C13F5573A00229FE1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2333A89B13F5573A00229FE1 /* QuartzCore.framework */; };
-		233A756314099531009F693C /* GroupBarTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 233A756214099531009F693C /* GroupBarTestClass.m */; };
 		236AF93613F28D30008A538D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236AF93513F28D30008A538D /* UIKit.framework */; };
 		236AF93813F28D30008A538D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236AF93713F28D30008A538D /* Foundation.framework */; };
 		236AF93A13F28D30008A538D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236AF93913F28D30008A538D /* CoreGraphics.framework */; };
@@ -18,50 +46,75 @@
 		236AF94313F28D30008A538D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 236AF94213F28D30008A538D /* main.m */; };
 		236AF94613F28D30008A538D /* MIMChartLibAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 236AF94513F28D30008A538D /* MIMChartLibAppDelegate.m */; };
 		236AF94913F28D30008A538D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 236AF94713F28D30008A538D /* MainWindow.xib */; };
-		236AF95213F28D69008A538D /* TestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 236AF95013F28D69008A538D /* TestClass.m */; };
-		236AF95313F28D69008A538D /* TestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 236AF95113F28D69008A538D /* TestClass.xib */; };
-		236AF95613F28D7D008A538D /* MIMPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 236AF95513F28D7D008A538D /* MIMPieChart.m */; };
 		238BCE13140ABD3900BF9CE6 /* myTableLinesWithIntOnly.csv in Resources */ = {isa = PBXBuildFile; fileRef = 238BCE12140ABD3900BF9CE6 /* myTableLinesWithIntOnly.csv */; };
-		238EB76913FBB13200F0A21C /* CustomBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 238EB76813FBB13200F0A21C /* CustomBox.m */; };
-		238EB76D13FBB3D900F0A21C /* ClusterGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 238EB76C13FBB3D900F0A21C /* ClusterGraph.m */; };
-		238EB77113FBB4B400F0A21C /* FragmentedBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 238EB77013FBB4B400F0A21C /* FragmentedBarChart.m */; };
 		238EB77413FBB89300F0A21C /* myTableCluster.csv in Resources */ = {isa = PBXBuildFile; fileRef = 238EB77313FBB89300F0A21C /* myTableCluster.csv */; };
-		238EB77713FBBFD400F0A21C /* Cluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 238EB77613FBBFD400F0A21C /* Cluster.m */; };
-		238EB77A13FBC05A00F0A21C /* ClusterTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 238EB77913FBC05A00F0A21C /* ClusterTestClass.m */; };
 		238EB77C13FBC78E00F0A21C /* myTableFragmentedBar.csv in Resources */ = {isa = PBXBuildFile; fileRef = 238EB77B13FBC78E00F0A21C /* myTableFragmentedBar.csv */; };
-		238EB7A113FBEAAB00F0A21C /* FragmentedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 238EB7A013FBEAAB00F0A21C /* FragmentedBar.m */; };
-		238EB7A413FBEAC100F0A21C /* FragmentedBarTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 238EB7A313FBEAC100F0A21C /* FragmentedBarTestClass.m */; };
-		23C0D9C813F59F0600F72BF4 /* 2DFragmentedDoughNut.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0D9C513F59F0600F72BF4 /* 2DFragmentedDoughNut.m */; };
-		23C0D9C913F59F0600F72BF4 /* DoughtNutFragmentTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0D9C713F59F0600F72BF4 /* DoughtNutFragmentTitle.m */; };
-		23C0D9CD13F59FD500F72BF4 /* TestClassFragmented.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0D9CC13F59FD500F72BF4 /* TestClassFragmented.m */; };
 		23C0D9DF13F5A13400F72BF4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C0D9DE13F5A13400F72BF4 /* CoreText.framework */; };
-		23C0DA0813F6CB6600F72BF4 /* Anchor.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0DA0113F6CB6500F72BF4 /* Anchor.m */; };
-		23C0DA0913F6CB6600F72BF4 /* WallGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0DA0313F6CB6600F72BF4 /* WallGraph.m */; };
-		23C0DA0A13F6CB6600F72BF4 /* XAxisBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0DA0513F6CB6600F72BF4 /* XAxisBand.m */; };
-		23C0DA0B13F6CB6600F72BF4 /* YAxisBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0DA0713F6CB6600F72BF4 /* YAxisBand.m */; };
-		23C0DA1013F6CB8200F72BF4 /* WallTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0DA0F13F6CB8200F72BF4 /* WallTestClass.m */; };
-		23C0DA1313F6CD2100F72BF4 /* AnchorInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0DA1213F6CD2100F72BF4 /* AnchorInfo.m */; };
-		23C0DA2913F7D34700F72BF4 /* lines.png in Resources */ = {isa = PBXBuildFile; fileRef = 23C0DA2813F7D34600F72BF4 /* lines.png */; };
-		23C0DA2B13F7D37F00F72BF4 /* lines1.png in Resources */ = {isa = PBXBuildFile; fileRef = 23C0DA2A13F7D37E00F72BF4 /* lines1.png */; };
-		23C0DA3613F9072900F72BF4 /* XAxisLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0DA3513F9072900F72BF4 /* XAxisLabel.m */; };
 		23C0DA3913F9101400F72BF4 /* myTable1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 23C0DA3813F9101400F72BF4 /* myTable1.csv */; };
-		23C0DA3C13F9258F00F72BF4 /* TestLineClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0DA3B13F9257900F72BF4 /* TestLineClass.m */; };
-		23C0DA4013F925C000F72BF4 /* LineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0DA3F13F925C000F72BF4 /* LineGraph.m */; };
 		23C0DA4A13F9353E00F72BF4 /* myTable2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 23C0DA4913F9353E00F72BF4 /* myTable2.csv */; };
-		23C0DA5513F96C2A00F72BF4 /* LineInfoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0DA5413F96C2900F72BF4 /* LineInfoBox.m */; };
-		23C0DA5913F99BAB00F72BF4 /* BarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0DA5813F99BAA00F72BF4 /* BarChart.m */; };
-		23C0DA5C13F99BD000F72BF4 /* BarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0DA5B13F99BD000F72BF4 /* BarView.m */; };
-		23C0DA5F13F99BEF00F72BF4 /* BarTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C0DA5E13F99BEE00F72BF4 /* BarTestClass.m */; };
 		23C0DA6113F9B79E00F72BF4 /* myTableBar.csv in Resources */ = {isa = PBXBuildFile; fileRef = 23C0DA6013F9B79E00F72BF4 /* myTableBar.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		23228AD013F3850D0001DE38 /* MIMColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMColor.h; sourceTree = "<group>"; };
-		23228AD113F3850D0001DE38 /* MIMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMColor.m; sourceTree = "<group>"; };
+		2309CE6F140C95700038C78E /* Anchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Anchor.h; sourceTree = "<group>"; };
+		2309CE70140C95700038C78E /* Anchor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Anchor.m; sourceTree = "<group>"; };
+		2309CE71140C95700038C78E /* AnchorInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnchorInfo.h; sourceTree = "<group>"; };
+		2309CE72140C95700038C78E /* AnchorInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnchorInfo.m; sourceTree = "<group>"; };
+		2309CE73140C95700038C78E /* CustomBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBox.h; sourceTree = "<group>"; };
+		2309CE74140C95700038C78E /* CustomBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBox.m; sourceTree = "<group>"; };
+		2309CE75140C95700038C78E /* XAxisBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAxisBand.h; sourceTree = "<group>"; };
+		2309CE76140C95700038C78E /* XAxisBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAxisBand.m; sourceTree = "<group>"; };
+		2309CE77140C95700038C78E /* XAxisLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAxisLabel.h; sourceTree = "<group>"; };
+		2309CE78140C95700038C78E /* XAxisLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAxisLabel.m; sourceTree = "<group>"; };
+		2309CE79140C95700038C78E /* YAxisBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAxisBand.h; sourceTree = "<group>"; };
+		2309CE7A140C95700038C78E /* YAxisBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAxisBand.m; sourceTree = "<group>"; };
+		2309CE7C140C95700038C78E /* BarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChart.h; sourceTree = "<group>"; };
+		2309CE7D140C95700038C78E /* BarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChart.m; sourceTree = "<group>"; };
+		2309CE7E140C95700038C78E /* BarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarView.h; sourceTree = "<group>"; };
+		2309CE7F140C95700038C78E /* BarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarView.m; sourceTree = "<group>"; };
+		2309CE81140C95700038C78E /* Cluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cluster.h; sourceTree = "<group>"; };
+		2309CE82140C95700038C78E /* Cluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cluster.m; sourceTree = "<group>"; };
+		2309CE83140C95700038C78E /* ClusterGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterGraph.h; sourceTree = "<group>"; };
+		2309CE84140C95700038C78E /* ClusterGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClusterGraph.m; sourceTree = "<group>"; };
+		2309CE86140C95700038C78E /* MIMColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMColor.h; sourceTree = "<group>"; };
+		2309CE87140C95700038C78E /* MIMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMColor.m; sourceTree = "<group>"; };
+		2309CE89140C95700038C78E /* FragmentedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedBar.h; sourceTree = "<group>"; };
+		2309CE8A140C95700038C78E /* FragmentedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FragmentedBar.m; sourceTree = "<group>"; };
+		2309CE8B140C95700038C78E /* FragmentedBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedBarChart.h; sourceTree = "<group>"; };
+		2309CE8C140C95700038C78E /* FragmentedBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FragmentedBarChart.m; sourceTree = "<group>"; };
+		2309CE8E140C95700038C78E /* 2DFragmentedDoughNut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 2DFragmentedDoughNut.h; sourceTree = "<group>"; };
+		2309CE8F140C95700038C78E /* 2DFragmentedDoughNut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = 2DFragmentedDoughNut.m; sourceTree = "<group>"; };
+		2309CE90140C95700038C78E /* DoughtNutFragmentTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoughtNutFragmentTitle.h; sourceTree = "<group>"; };
+		2309CE91140C95700038C78E /* DoughtNutFragmentTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoughtNutFragmentTitle.m; sourceTree = "<group>"; };
+		2309CE94140C95700038C78E /* LineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraph.h; sourceTree = "<group>"; };
+		2309CE95140C95700038C78E /* LineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineGraph.m; sourceTree = "<group>"; };
+		2309CE96140C95700038C78E /* LineInfoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineInfoBox.h; sourceTree = "<group>"; };
+		2309CE97140C95700038C78E /* LineInfoBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineInfoBox.m; sourceTree = "<group>"; };
+		2309CE98140C95700038C78E /* lines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lines.png; sourceTree = "<group>"; };
+		2309CE99140C95700038C78E /* lines1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lines1.png; sourceTree = "<group>"; };
+		2309CE9B140C95700038C78E /* MIMPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMPieChart.h; sourceTree = "<group>"; };
+		2309CE9C140C95700038C78E /* MIMPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMPieChart.m; sourceTree = "<group>"; };
+		2309CE9E140C95700038C78E /* WallGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallGraph.h; sourceTree = "<group>"; };
+		2309CE9F140C95700038C78E /* WallGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallGraph.m; sourceTree = "<group>"; };
+		2309CEA0140C95700038C78E /* WallTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallTestClass.h; sourceTree = "<group>"; };
+		2309CEA1140C95700038C78E /* WallTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallTestClass.m; sourceTree = "<group>"; };
+		2309CEC1140C98760038C78E /* BarTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarTestClass.h; sourceTree = "<group>"; };
+		2309CEC2140C98760038C78E /* BarTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarTestClass.m; sourceTree = "<group>"; };
+		2309CEC3140C98760038C78E /* ClusterTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterTestClass.h; sourceTree = "<group>"; };
+		2309CEC4140C98760038C78E /* ClusterTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClusterTestClass.m; sourceTree = "<group>"; };
+		2309CEC5140C98760038C78E /* FragmentedBarTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedBarTestClass.h; sourceTree = "<group>"; };
+		2309CEC6140C98760038C78E /* FragmentedBarTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FragmentedBarTestClass.m; sourceTree = "<group>"; };
+		2309CEC7140C98760038C78E /* GroupBarTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupBarTestClass.h; sourceTree = "<group>"; };
+		2309CEC8140C98760038C78E /* GroupBarTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupBarTestClass.m; sourceTree = "<group>"; };
+		2309CEC9140C98760038C78E /* TestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestClass.h; sourceTree = "<group>"; };
+		2309CECA140C98760038C78E /* TestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestClass.m; sourceTree = "<group>"; };
+		2309CECB140C98760038C78E /* TestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestClass.xib; sourceTree = "<group>"; };
+		2309CECC140C98760038C78E /* TestClassFragmented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestClassFragmented.h; sourceTree = "<group>"; };
+		2309CECD140C98760038C78E /* TestClassFragmented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestClassFragmented.m; sourceTree = "<group>"; };
+		2309CECE140C98760038C78E /* TestLineClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLineClass.h; sourceTree = "<group>"; };
+		2309CECF140C98760038C78E /* TestLineClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLineClass.m; sourceTree = "<group>"; };
 		23228ADC13F3A7660001DE38 /* myTable.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myTable.csv; sourceTree = "<group>"; };
 		2333A89B13F5573A00229FE1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		233A756114099530009F693C /* GroupBarTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupBarTestClass.h; sourceTree = "<group>"; };
-		233A756214099531009F693C /* GroupBarTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupBarTestClass.m; sourceTree = "<group>"; };
 		236AF93113F28D30008A538D /* MIMChartLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIMChartLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		236AF93513F28D30008A538D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		236AF93713F28D30008A538D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -73,65 +126,12 @@
 		236AF94413F28D30008A538D /* MIMChartLibAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIMChartLibAppDelegate.h; sourceTree = "<group>"; };
 		236AF94513F28D30008A538D /* MIMChartLibAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIMChartLibAppDelegate.m; sourceTree = "<group>"; };
 		236AF94813F28D30008A538D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		236AF94F13F28D69008A538D /* TestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestClass.h; sourceTree = "<group>"; };
-		236AF95013F28D69008A538D /* TestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestClass.m; sourceTree = "<group>"; };
-		236AF95113F28D69008A538D /* TestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestClass.xib; sourceTree = "<group>"; };
-		236AF95413F28D7D008A538D /* MIMPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMPieChart.h; sourceTree = "<group>"; };
-		236AF95513F28D7D008A538D /* MIMPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMPieChart.m; sourceTree = "<group>"; };
 		238BCE12140ABD3900BF9CE6 /* myTableLinesWithIntOnly.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myTableLinesWithIntOnly.csv; sourceTree = "<group>"; };
-		238EB76713FBB13200F0A21C /* CustomBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBox.h; sourceTree = "<group>"; };
-		238EB76813FBB13200F0A21C /* CustomBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBox.m; sourceTree = "<group>"; };
-		238EB76B13FBB3D900F0A21C /* ClusterGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterGraph.h; sourceTree = "<group>"; };
-		238EB76C13FBB3D900F0A21C /* ClusterGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClusterGraph.m; sourceTree = "<group>"; };
-		238EB76F13FBB4B400F0A21C /* FragmentedBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedBarChart.h; sourceTree = "<group>"; };
-		238EB77013FBB4B400F0A21C /* FragmentedBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FragmentedBarChart.m; sourceTree = "<group>"; };
 		238EB77313FBB89300F0A21C /* myTableCluster.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myTableCluster.csv; sourceTree = "<group>"; };
-		238EB77513FBBFD400F0A21C /* Cluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cluster.h; sourceTree = "<group>"; };
-		238EB77613FBBFD400F0A21C /* Cluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cluster.m; sourceTree = "<group>"; };
-		238EB77813FBC05A00F0A21C /* ClusterTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterTestClass.h; sourceTree = "<group>"; };
-		238EB77913FBC05A00F0A21C /* ClusterTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClusterTestClass.m; sourceTree = "<group>"; };
 		238EB77B13FBC78E00F0A21C /* myTableFragmentedBar.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myTableFragmentedBar.csv; sourceTree = "<group>"; };
-		238EB79F13FBEAAB00F0A21C /* FragmentedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedBar.h; sourceTree = "<group>"; };
-		238EB7A013FBEAAB00F0A21C /* FragmentedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FragmentedBar.m; sourceTree = "<group>"; };
-		238EB7A213FBEAC100F0A21C /* FragmentedBarTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedBarTestClass.h; sourceTree = "<group>"; };
-		238EB7A313FBEAC100F0A21C /* FragmentedBarTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FragmentedBarTestClass.m; sourceTree = "<group>"; };
-		23C0D9C413F59F0600F72BF4 /* 2DFragmentedDoughNut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 2DFragmentedDoughNut.h; sourceTree = "<group>"; };
-		23C0D9C513F59F0600F72BF4 /* 2DFragmentedDoughNut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = 2DFragmentedDoughNut.m; sourceTree = "<group>"; };
-		23C0D9C613F59F0600F72BF4 /* DoughtNutFragmentTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoughtNutFragmentTitle.h; sourceTree = "<group>"; };
-		23C0D9C713F59F0600F72BF4 /* DoughtNutFragmentTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoughtNutFragmentTitle.m; sourceTree = "<group>"; };
-		23C0D9CB13F59FD500F72BF4 /* TestClassFragmented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestClassFragmented.h; sourceTree = "<group>"; };
-		23C0D9CC13F59FD500F72BF4 /* TestClassFragmented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestClassFragmented.m; sourceTree = "<group>"; };
 		23C0D9DE13F5A13400F72BF4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		23C0DA0013F6CB6500F72BF4 /* Anchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Anchor.h; sourceTree = "<group>"; };
-		23C0DA0113F6CB6500F72BF4 /* Anchor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Anchor.m; sourceTree = "<group>"; };
-		23C0DA0213F6CB6500F72BF4 /* WallGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallGraph.h; sourceTree = "<group>"; };
-		23C0DA0313F6CB6600F72BF4 /* WallGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallGraph.m; sourceTree = "<group>"; };
-		23C0DA0413F6CB6600F72BF4 /* XAxisBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAxisBand.h; sourceTree = "<group>"; };
-		23C0DA0513F6CB6600F72BF4 /* XAxisBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAxisBand.m; sourceTree = "<group>"; };
-		23C0DA0613F6CB6600F72BF4 /* YAxisBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAxisBand.h; sourceTree = "<group>"; };
-		23C0DA0713F6CB6600F72BF4 /* YAxisBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAxisBand.m; sourceTree = "<group>"; };
-		23C0DA0E13F6CB8200F72BF4 /* WallTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallTestClass.h; sourceTree = "<group>"; };
-		23C0DA0F13F6CB8200F72BF4 /* WallTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallTestClass.m; sourceTree = "<group>"; };
-		23C0DA1113F6CD2100F72BF4 /* AnchorInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnchorInfo.h; sourceTree = "<group>"; };
-		23C0DA1213F6CD2100F72BF4 /* AnchorInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnchorInfo.m; sourceTree = "<group>"; };
-		23C0DA2813F7D34600F72BF4 /* lines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lines.png; sourceTree = "<group>"; };
-		23C0DA2A13F7D37E00F72BF4 /* lines1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lines1.png; sourceTree = "<group>"; };
-		23C0DA3413F9072800F72BF4 /* XAxisLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAxisLabel.h; sourceTree = "<group>"; };
-		23C0DA3513F9072900F72BF4 /* XAxisLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAxisLabel.m; sourceTree = "<group>"; };
 		23C0DA3813F9101400F72BF4 /* myTable1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myTable1.csv; sourceTree = "<group>"; };
-		23C0DA3A13F9257600F72BF4 /* TestLineClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLineClass.h; sourceTree = "<group>"; };
-		23C0DA3B13F9257900F72BF4 /* TestLineClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLineClass.m; sourceTree = "<group>"; };
-		23C0DA3E13F925C000F72BF4 /* LineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraph.h; sourceTree = "<group>"; };
-		23C0DA3F13F925C000F72BF4 /* LineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineGraph.m; sourceTree = "<group>"; };
 		23C0DA4913F9353E00F72BF4 /* myTable2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myTable2.csv; sourceTree = "<group>"; };
-		23C0DA5313F96C2900F72BF4 /* LineInfoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineInfoBox.h; sourceTree = "<group>"; };
-		23C0DA5413F96C2900F72BF4 /* LineInfoBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineInfoBox.m; sourceTree = "<group>"; };
-		23C0DA5713F99BA800F72BF4 /* BarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChart.h; sourceTree = "<group>"; };
-		23C0DA5813F99BAA00F72BF4 /* BarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChart.m; sourceTree = "<group>"; };
-		23C0DA5A13F99BD000F72BF4 /* BarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarView.h; sourceTree = "<group>"; };
-		23C0DA5B13F99BD000F72BF4 /* BarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarView.m; sourceTree = "<group>"; };
-		23C0DA5D13F99BED00F72BF4 /* BarTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarTestClass.h; sourceTree = "<group>"; };
-		23C0DA5E13F99BEE00F72BF4 /* BarTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarTestClass.m; sourceTree = "<group>"; };
 		23C0DA6013F9B79E00F72BF4 /* myTableBar.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myTableBar.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,71 +151,155 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		23336D171402855200A0D5FF /* Colors */ = {
+		2309CE6D140C95700038C78E /* Lib Files */ = {
 			isa = PBXGroup;
 			children = (
-				23228AD013F3850D0001DE38 /* MIMColor.h */,
-				23228AD113F3850D0001DE38 /* MIMColor.m */,
+				2309CE6E140C95700038C78E /* Accessories */,
+				2309CE7B140C95700038C78E /* Bar Chart */,
+				2309CE80140C95700038C78E /* ClusterGraph */,
+				2309CE85140C95700038C78E /* Colors */,
+				2309CE88140C95700038C78E /* FragmentedBarChart */,
+				2309CE8D140C95700038C78E /* FragmentedPieChart */,
+				2309CE92140C95700038C78E /* Line Graph */,
+				2309CE9A140C95700038C78E /* Pie Chart */,
+				2309CE9D140C95700038C78E /* Wall Graph */,
 			);
-			name = Colors;
+			path = "Lib Files";
 			sourceTree = "<group>";
 		};
-		23336D191402856000A0D5FF /* Lib Files */ = {
+		2309CE6E140C95700038C78E /* Accessories */ = {
 			isa = PBXGroup;
 			children = (
-				23336D1B14028BC900A0D5FF /* Accessories */,
-				23336D171402855200A0D5FF /* Colors */,
-				23C0DA3D13F9259600F72BF4 /* Line Graph */,
-				23C0DA0D13F6CB6C00F72BF4 /* WallGraph */,
-				23C0D9BA13F59EA400F72BF4 /* PieChart */,
-				23C0D9CA13F59F1600F72BF4 /* FragmentedPieChart */,
-				23C0DA6213F9B9FA00F72BF4 /* Bar Chart */,
-				238EB76A13FBB13700F0A21C /* CustomBox */,
-				238EB76E13FBB3DF00F0A21C /* ClusterGraph */,
-				238EB77213FBB4B800F0A21C /* FragmentedBarChart */,
+				2309CE6F140C95700038C78E /* Anchor.h */,
+				2309CE70140C95700038C78E /* Anchor.m */,
+				2309CE71140C95700038C78E /* AnchorInfo.h */,
+				2309CE72140C95700038C78E /* AnchorInfo.m */,
+				2309CE73140C95700038C78E /* CustomBox.h */,
+				2309CE74140C95700038C78E /* CustomBox.m */,
+				2309CE75140C95700038C78E /* XAxisBand.h */,
+				2309CE76140C95700038C78E /* XAxisBand.m */,
+				2309CE77140C95700038C78E /* XAxisLabel.h */,
+				2309CE78140C95700038C78E /* XAxisLabel.m */,
+				2309CE79140C95700038C78E /* YAxisBand.h */,
+				2309CE7A140C95700038C78E /* YAxisBand.m */,
 			);
-			name = "Lib Files";
+			path = Accessories;
 			sourceTree = "<group>";
 		};
-		23336D1A1402857B00A0D5FF /* HowToUseFiles */ = {
+		2309CE7B140C95700038C78E /* Bar Chart */ = {
 			isa = PBXGroup;
 			children = (
-				238EB7A213FBEAC100F0A21C /* FragmentedBarTestClass.h */,
-				238EB7A313FBEAC100F0A21C /* FragmentedBarTestClass.m */,
-				23C0DA5D13F99BED00F72BF4 /* BarTestClass.h */,
-				23C0DA5E13F99BEE00F72BF4 /* BarTestClass.m */,
-				233A756114099530009F693C /* GroupBarTestClass.h */,
-				233A756214099531009F693C /* GroupBarTestClass.m */,
-				23C0DA3A13F9257600F72BF4 /* TestLineClass.h */,
-				23C0DA3B13F9257900F72BF4 /* TestLineClass.m */,
-				23C0DA0E13F6CB8200F72BF4 /* WallTestClass.h */,
-				23C0DA0F13F6CB8200F72BF4 /* WallTestClass.m */,
-				238EB77813FBC05A00F0A21C /* ClusterTestClass.h */,
-				238EB77913FBC05A00F0A21C /* ClusterTestClass.m */,
-				23C0D9CB13F59FD500F72BF4 /* TestClassFragmented.h */,
-				23C0D9CC13F59FD500F72BF4 /* TestClassFragmented.m */,
-				236AF94F13F28D69008A538D /* TestClass.h */,
-				236AF95013F28D69008A538D /* TestClass.m */,
-				236AF95113F28D69008A538D /* TestClass.xib */,
+				2309CE7C140C95700038C78E /* BarChart.h */,
+				2309CE7D140C95700038C78E /* BarChart.m */,
+				2309CE7E140C95700038C78E /* BarView.h */,
+				2309CE7F140C95700038C78E /* BarView.m */,
 			);
-			name = HowToUseFiles;
+			path = "Bar Chart";
 			sourceTree = "<group>";
 		};
-		23336D1B14028BC900A0D5FF /* Accessories */ = {
+		2309CE80140C95700038C78E /* ClusterGraph */ = {
 			isa = PBXGroup;
 			children = (
-				23C0DA0413F6CB6600F72BF4 /* XAxisBand.h */,
-				23C0DA0513F6CB6600F72BF4 /* XAxisBand.m */,
-				23C0DA0613F6CB6600F72BF4 /* YAxisBand.h */,
-				23C0DA0713F6CB6600F72BF4 /* YAxisBand.m */,
-				23C0DA3413F9072800F72BF4 /* XAxisLabel.h */,
-				23C0DA3513F9072900F72BF4 /* XAxisLabel.m */,
-				23C0DA1113F6CD2100F72BF4 /* AnchorInfo.h */,
-				23C0DA1213F6CD2100F72BF4 /* AnchorInfo.m */,
-				23C0DA0013F6CB6500F72BF4 /* Anchor.h */,
-				23C0DA0113F6CB6500F72BF4 /* Anchor.m */,
+				2309CE81140C95700038C78E /* Cluster.h */,
+				2309CE82140C95700038C78E /* Cluster.m */,
+				2309CE83140C95700038C78E /* ClusterGraph.h */,
+				2309CE84140C95700038C78E /* ClusterGraph.m */,
 			);
-			name = Accessories;
+			path = ClusterGraph;
+			sourceTree = "<group>";
+		};
+		2309CE85140C95700038C78E /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				2309CE86140C95700038C78E /* MIMColor.h */,
+				2309CE87140C95700038C78E /* MIMColor.m */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		2309CE88140C95700038C78E /* FragmentedBarChart */ = {
+			isa = PBXGroup;
+			children = (
+				2309CE89140C95700038C78E /* FragmentedBar.h */,
+				2309CE8A140C95700038C78E /* FragmentedBar.m */,
+				2309CE8B140C95700038C78E /* FragmentedBarChart.h */,
+				2309CE8C140C95700038C78E /* FragmentedBarChart.m */,
+			);
+			path = FragmentedBarChart;
+			sourceTree = "<group>";
+		};
+		2309CE8D140C95700038C78E /* FragmentedPieChart */ = {
+			isa = PBXGroup;
+			children = (
+				2309CE8E140C95700038C78E /* 2DFragmentedDoughNut.h */,
+				2309CE8F140C95700038C78E /* 2DFragmentedDoughNut.m */,
+				2309CE90140C95700038C78E /* DoughtNutFragmentTitle.h */,
+				2309CE91140C95700038C78E /* DoughtNutFragmentTitle.m */,
+			);
+			path = FragmentedPieChart;
+			sourceTree = "<group>";
+		};
+		2309CE92140C95700038C78E /* Line Graph */ = {
+			isa = PBXGroup;
+			children = (
+				2309CE93140C95700038C78E /* Colors */,
+				2309CE94140C95700038C78E /* LineGraph.h */,
+				2309CE95140C95700038C78E /* LineGraph.m */,
+				2309CE96140C95700038C78E /* LineInfoBox.h */,
+				2309CE97140C95700038C78E /* LineInfoBox.m */,
+				2309CE98140C95700038C78E /* lines.png */,
+				2309CE99140C95700038C78E /* lines1.png */,
+			);
+			path = "Line Graph";
+			sourceTree = "<group>";
+		};
+		2309CE93140C95700038C78E /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		2309CE9A140C95700038C78E /* Pie Chart */ = {
+			isa = PBXGroup;
+			children = (
+				2309CE9B140C95700038C78E /* MIMPieChart.h */,
+				2309CE9C140C95700038C78E /* MIMPieChart.m */,
+			);
+			path = "Pie Chart";
+			sourceTree = "<group>";
+		};
+		2309CE9D140C95700038C78E /* Wall Graph */ = {
+			isa = PBXGroup;
+			children = (
+				2309CE9E140C95700038C78E /* WallGraph.h */,
+				2309CE9F140C95700038C78E /* WallGraph.m */,
+				2309CEA0140C95700038C78E /* WallTestClass.h */,
+				2309CEA1140C95700038C78E /* WallTestClass.m */,
+			);
+			path = "Wall Graph";
+			sourceTree = "<group>";
+		};
+		2309CEC0140C98760038C78E /* HowToUseFiles */ = {
+			isa = PBXGroup;
+			children = (
+				2309CEC1140C98760038C78E /* BarTestClass.h */,
+				2309CEC2140C98760038C78E /* BarTestClass.m */,
+				2309CEC3140C98760038C78E /* ClusterTestClass.h */,
+				2309CEC4140C98760038C78E /* ClusterTestClass.m */,
+				2309CEC5140C98760038C78E /* FragmentedBarTestClass.h */,
+				2309CEC6140C98760038C78E /* FragmentedBarTestClass.m */,
+				2309CEC7140C98760038C78E /* GroupBarTestClass.h */,
+				2309CEC8140C98760038C78E /* GroupBarTestClass.m */,
+				2309CEC9140C98760038C78E /* TestClass.h */,
+				2309CECA140C98760038C78E /* TestClass.m */,
+				2309CECB140C98760038C78E /* TestClass.xib */,
+				2309CECC140C98760038C78E /* TestClassFragmented.h */,
+				2309CECD140C98760038C78E /* TestClassFragmented.m */,
+				2309CECE140C98760038C78E /* TestLineClass.h */,
+				2309CECF140C98760038C78E /* TestLineClass.m */,
+			);
+			path = HowToUseFiles;
 			sourceTree = "<group>";
 		};
 		236AF92613F28D2F008A538D = {
@@ -250,8 +334,8 @@
 		236AF93B13F28D30008A538D /* MIMChartLib */ = {
 			isa = PBXGroup;
 			children = (
-				23336D1A1402857B00A0D5FF /* HowToUseFiles */,
-				23336D191402856000A0D5FF /* Lib Files */,
+				2309CEC0140C98760038C78E /* HowToUseFiles */,
+				2309CE6D140C95700038C78E /* Lib Files */,
 				236AF94513F28D30008A538D /* MIMChartLibAppDelegate.m */,
 				236AF94413F28D30008A538D /* MIMChartLibAppDelegate.h */,
 				236AF94713F28D30008A538D /* MainWindow.xib */,
@@ -276,90 +360,6 @@
 				236AF94213F28D30008A538D /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		238EB76A13FBB13700F0A21C /* CustomBox */ = {
-			isa = PBXGroup;
-			children = (
-				238EB76713FBB13200F0A21C /* CustomBox.h */,
-				238EB76813FBB13200F0A21C /* CustomBox.m */,
-			);
-			name = CustomBox;
-			sourceTree = "<group>";
-		};
-		238EB76E13FBB3DF00F0A21C /* ClusterGraph */ = {
-			isa = PBXGroup;
-			children = (
-				238EB76B13FBB3D900F0A21C /* ClusterGraph.h */,
-				238EB76C13FBB3D900F0A21C /* ClusterGraph.m */,
-				238EB77513FBBFD400F0A21C /* Cluster.h */,
-				238EB77613FBBFD400F0A21C /* Cluster.m */,
-			);
-			name = ClusterGraph;
-			sourceTree = "<group>";
-		};
-		238EB77213FBB4B800F0A21C /* FragmentedBarChart */ = {
-			isa = PBXGroup;
-			children = (
-				238EB76F13FBB4B400F0A21C /* FragmentedBarChart.h */,
-				238EB77013FBB4B400F0A21C /* FragmentedBarChart.m */,
-				238EB79F13FBEAAB00F0A21C /* FragmentedBar.h */,
-				238EB7A013FBEAAB00F0A21C /* FragmentedBar.m */,
-			);
-			name = FragmentedBarChart;
-			sourceTree = "<group>";
-		};
-		23C0D9BA13F59EA400F72BF4 /* PieChart */ = {
-			isa = PBXGroup;
-			children = (
-				236AF95413F28D7D008A538D /* MIMPieChart.h */,
-				236AF95513F28D7D008A538D /* MIMPieChart.m */,
-			);
-			name = PieChart;
-			sourceTree = "<group>";
-		};
-		23C0D9CA13F59F1600F72BF4 /* FragmentedPieChart */ = {
-			isa = PBXGroup;
-			children = (
-				23C0D9C413F59F0600F72BF4 /* 2DFragmentedDoughNut.h */,
-				23C0D9C513F59F0600F72BF4 /* 2DFragmentedDoughNut.m */,
-				23C0D9C613F59F0600F72BF4 /* DoughtNutFragmentTitle.h */,
-				23C0D9C713F59F0600F72BF4 /* DoughtNutFragmentTitle.m */,
-			);
-			name = FragmentedPieChart;
-			sourceTree = "<group>";
-		};
-		23C0DA0D13F6CB6C00F72BF4 /* WallGraph */ = {
-			isa = PBXGroup;
-			children = (
-				23C0DA2A13F7D37E00F72BF4 /* lines1.png */,
-				23C0DA2813F7D34600F72BF4 /* lines.png */,
-				23C0DA0213F6CB6500F72BF4 /* WallGraph.h */,
-				23C0DA0313F6CB6600F72BF4 /* WallGraph.m */,
-			);
-			name = WallGraph;
-			sourceTree = "<group>";
-		};
-		23C0DA3D13F9259600F72BF4 /* Line Graph */ = {
-			isa = PBXGroup;
-			children = (
-				23C0DA3E13F925C000F72BF4 /* LineGraph.h */,
-				23C0DA3F13F925C000F72BF4 /* LineGraph.m */,
-				23C0DA5313F96C2900F72BF4 /* LineInfoBox.h */,
-				23C0DA5413F96C2900F72BF4 /* LineInfoBox.m */,
-			);
-			name = "Line Graph";
-			sourceTree = "<group>";
-		};
-		23C0DA6213F9B9FA00F72BF4 /* Bar Chart */ = {
-			isa = PBXGroup;
-			children = (
-				23C0DA5713F99BA800F72BF4 /* BarChart.h */,
-				23C0DA5813F99BAA00F72BF4 /* BarChart.m */,
-				23C0DA5A13F99BD000F72BF4 /* BarView.h */,
-				23C0DA5B13F99BD000F72BF4 /* BarView.m */,
-			);
-			name = "Bar Chart";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,16 +411,16 @@
 			files = (
 				236AF94013F28D30008A538D /* InfoPlist.strings in Resources */,
 				236AF94913F28D30008A538D /* MainWindow.xib in Resources */,
-				236AF95313F28D69008A538D /* TestClass.xib in Resources */,
 				23228ADD13F3A7660001DE38 /* myTable.csv in Resources */,
-				23C0DA2913F7D34700F72BF4 /* lines.png in Resources */,
-				23C0DA2B13F7D37F00F72BF4 /* lines1.png in Resources */,
 				23C0DA3913F9101400F72BF4 /* myTable1.csv in Resources */,
 				23C0DA4A13F9353E00F72BF4 /* myTable2.csv in Resources */,
 				23C0DA6113F9B79E00F72BF4 /* myTableBar.csv in Resources */,
 				238EB77413FBB89300F0A21C /* myTableCluster.csv in Resources */,
 				238EB77C13FBC78E00F0A21C /* myTableFragmentedBar.csv in Resources */,
 				238BCE13140ABD3900BF9CE6 /* myTableLinesWithIntOnly.csv in Resources */,
+				2309CEBB140C95700038C78E /* lines.png in Resources */,
+				2309CEBC140C95700038C78E /* lines1.png in Resources */,
+				2309CED5140C98760038C78E /* TestClass.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,33 +433,33 @@
 			files = (
 				236AF94313F28D30008A538D /* main.m in Sources */,
 				236AF94613F28D30008A538D /* MIMChartLibAppDelegate.m in Sources */,
-				236AF95213F28D69008A538D /* TestClass.m in Sources */,
-				236AF95613F28D7D008A538D /* MIMPieChart.m in Sources */,
-				23228AD213F3850D0001DE38 /* MIMColor.m in Sources */,
-				23C0D9C813F59F0600F72BF4 /* 2DFragmentedDoughNut.m in Sources */,
-				23C0D9C913F59F0600F72BF4 /* DoughtNutFragmentTitle.m in Sources */,
-				23C0D9CD13F59FD500F72BF4 /* TestClassFragmented.m in Sources */,
-				23C0DA0813F6CB6600F72BF4 /* Anchor.m in Sources */,
-				23C0DA0913F6CB6600F72BF4 /* WallGraph.m in Sources */,
-				23C0DA0A13F6CB6600F72BF4 /* XAxisBand.m in Sources */,
-				23C0DA0B13F6CB6600F72BF4 /* YAxisBand.m in Sources */,
-				23C0DA1013F6CB8200F72BF4 /* WallTestClass.m in Sources */,
-				23C0DA1313F6CD2100F72BF4 /* AnchorInfo.m in Sources */,
-				23C0DA3613F9072900F72BF4 /* XAxisLabel.m in Sources */,
-				23C0DA3C13F9258F00F72BF4 /* TestLineClass.m in Sources */,
-				23C0DA4013F925C000F72BF4 /* LineGraph.m in Sources */,
-				23C0DA5513F96C2A00F72BF4 /* LineInfoBox.m in Sources */,
-				23C0DA5913F99BAB00F72BF4 /* BarChart.m in Sources */,
-				23C0DA5C13F99BD000F72BF4 /* BarView.m in Sources */,
-				23C0DA5F13F99BEF00F72BF4 /* BarTestClass.m in Sources */,
-				238EB76913FBB13200F0A21C /* CustomBox.m in Sources */,
-				238EB76D13FBB3D900F0A21C /* ClusterGraph.m in Sources */,
-				238EB77113FBB4B400F0A21C /* FragmentedBarChart.m in Sources */,
-				238EB77713FBBFD400F0A21C /* Cluster.m in Sources */,
-				238EB77A13FBC05A00F0A21C /* ClusterTestClass.m in Sources */,
-				238EB7A113FBEAAB00F0A21C /* FragmentedBar.m in Sources */,
-				238EB7A413FBEAC100F0A21C /* FragmentedBarTestClass.m in Sources */,
-				233A756314099531009F693C /* GroupBarTestClass.m in Sources */,
+				2309CEAA140C95700038C78E /* Anchor.m in Sources */,
+				2309CEAB140C95700038C78E /* AnchorInfo.m in Sources */,
+				2309CEAC140C95700038C78E /* CustomBox.m in Sources */,
+				2309CEAD140C95700038C78E /* XAxisBand.m in Sources */,
+				2309CEAE140C95700038C78E /* XAxisLabel.m in Sources */,
+				2309CEAF140C95700038C78E /* YAxisBand.m in Sources */,
+				2309CEB0140C95700038C78E /* BarChart.m in Sources */,
+				2309CEB1140C95700038C78E /* BarView.m in Sources */,
+				2309CEB2140C95700038C78E /* Cluster.m in Sources */,
+				2309CEB3140C95700038C78E /* ClusterGraph.m in Sources */,
+				2309CEB4140C95700038C78E /* MIMColor.m in Sources */,
+				2309CEB5140C95700038C78E /* FragmentedBar.m in Sources */,
+				2309CEB6140C95700038C78E /* FragmentedBarChart.m in Sources */,
+				2309CEB7140C95700038C78E /* 2DFragmentedDoughNut.m in Sources */,
+				2309CEB8140C95700038C78E /* DoughtNutFragmentTitle.m in Sources */,
+				2309CEB9140C95700038C78E /* LineGraph.m in Sources */,
+				2309CEBA140C95700038C78E /* LineInfoBox.m in Sources */,
+				2309CEBD140C95700038C78E /* MIMPieChart.m in Sources */,
+				2309CEBE140C95700038C78E /* WallGraph.m in Sources */,
+				2309CEBF140C95700038C78E /* WallTestClass.m in Sources */,
+				2309CED0140C98760038C78E /* BarTestClass.m in Sources */,
+				2309CED1140C98760038C78E /* ClusterTestClass.m in Sources */,
+				2309CED2140C98760038C78E /* FragmentedBarTestClass.m in Sources */,
+				2309CED3140C98760038C78E /* GroupBarTestClass.m in Sources */,
+				2309CED4140C98760038C78E /* TestClass.m in Sources */,
+				2309CED6140C98760038C78E /* TestClassFragmented.m in Sources */,
+				2309CED7140C98760038C78E /* TestLineClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,7 +22,6 @@
 //
 
 #import "MIMChartLibAppDelegate.h"
-#import "TestClass.h"
 #import "TestClassFragmented.h"
 #import "WallTestClass.h"
 #import "TestLineClass.h"
@@ -38,13 +37,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    TestClass *rootController=[[TestClass alloc]init];// Pie Chart
+    //TestClass *rootController=[[TestClass alloc]init];// Pie Chart
     //TestClassFragmented *rootController=[[TestClassFragmented alloc]init]; // Fragmented Doughnut Pie Chart
     //WallTestClass *rootController=[[WallTestClass alloc]init]; // Wall Graph
     //TestLineClass *rootController=[[TestLineClass alloc]init]; // Line Graph
     //BarTestClass *rootController=[[BarTestClass alloc]init]; // Bar Graph
     //ClusterTestClass *rootController=[[ClusterTestClass alloc]init]; //Cluster Graph   
-    //GroupBarTestClass *rootController=[[GroupBarTestClass alloc]init]; //Group Bar Graph   
+    GroupBarTestClass *rootController=[[GroupBarTestClass alloc]init]; //Group Bar Graph   
     //FragmentedBarTestClass *rootController=[[FragmentedBarTestClass alloc]init]; //FragmentedBar graph   
     
     
