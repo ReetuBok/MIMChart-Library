@@ -54,17 +54,17 @@
 
 - (void)viewDidLoad
 {
-    [MIMColor InitColors];
-
-    NSString *csvPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"myTable.csv"];
-    MIMPieChart *pieChartView=[[MIMPieChart alloc]initWithFrame:CGRectMake(40, 40, 600, 500)];
-    pieChartView.radius=200;
-    pieChartView.tint=BEIGETINT;// Available Tints: GREENTINT,REDTINT,BEIGETINT
-    [pieChartView readFromCSV:csvPath  TitleAtColumn:0  DataAtColumn:4];
-    [pieChartView drawPieChart];
-    [self.view addSubview:pieChartView];
-    
-    
+//    [MIMColor InitColors];
+//
+//    NSString *csvPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"myTable.csv"];
+//    MIMPieChart *pieChartView=[[MIMPieChart alloc]initWithFrame:CGRectMake(40, 40, 600, 500)];
+//    pieChartView.radius=200;
+//    pieChartView.tint=BEIGETINT;// Available Tints: GREENTINT,REDTINT,BEIGETINT
+//    [pieChartView readFromCSV:csvPath  TitleAtColumn:0  DataAtColumn:4];
+//    [pieChartView drawPieChart];
+//    [self.view addSubview:pieChartView];
+//    
+//    
     
     
     [super viewDidLoad];

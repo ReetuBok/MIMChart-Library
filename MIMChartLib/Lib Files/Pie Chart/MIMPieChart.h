@@ -23,47 +23,113 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-typedef enum
-{
-    REDTINT,
-    GREENTINT,
-    BEIGETINT
-    
+#import "Constant.h"
 
-}TINTCOLOR;
 
 @interface MIMPieChart : UIView {
     
-    float radius;
-
-    BOOL valuesReadFromCSV;
-    NSMutableArray *valueArray;
-    UIColor *backgroundColor;
+    float radius_;
+    
+    NSMutableArray *valueArray_;
+    NSMutableArray *angleArrays_;
+    NSMutableArray *titleArray_;
+    NSMutableArray *colorArray_;
+    
+    NSArray *gradientArray_;
+    NSArray *gradientTypeArray_;
+    
+    
+    
     BOOL enableBottomTitles;
-    NSMutableArray *titleArray;
+    BOOL glossEffect;
+    float borderWidth_;
     NSInteger tintValue;
     
-    @private
-    float _centerX;
-    float _centerY;
-    NSMutableArray *angleArrays;
+    
+    //Background Related:
+    CGGradientRef backgroundGradient;
+    UIColor *backgroundColor;
+    UIView *backgroundView;
+    
+    
+    //Double Tap always brings out the detailed section view
+    
+    
+    //Style variable
+    //style 1: titles are given to the right on a scrollview. On highlighting, it pops up and eases out , user can define
+    //position of scrollview being left or right. With each title there is a display detailed info button.
+    //style 2: whenever a section of pie is touched, pie rotates to bring the touched section on top and a popup appears 
+    //with display detailed info button on it.
+    
+    
+    
+    float centerX_;
+    float centerY_;
+    
+    
     int selectedPie;
     BOOL returnBackToOriginalLocation;
     TINTCOLOR tint;
+    int stateOfPiece; // 1 is selected 2 is unselected.
+    int previousStateOfPiece;// 1 is selected 2 is unselected.
+    
     
     
 }
-@property(nonatomic,assign)float radius;
+@property(nonatomic,assign)float radius_;
+
+@property(nonatomic,retain)NSMutableArray *valueArray_;
+@property(nonatomic,retain)NSMutableArray *angleArrays_;
+@property(nonatomic,retain)NSMutableArray *titleArray_;
+@property(nonatomic,retain)NSMutableArray *colorArray_;
+
+
+@property(nonatomic,retain)NSArray *gradientArray_;
+@property(nonatomic,retain)NSArray *gradientTypeArray_;
+
+
+
+
+
+
 @property(nonatomic,assign)NSInteger tintValue;
-@property(nonatomic,retain)UIColor *backgroundColor;
+
 @property(nonatomic,assign)BOOL enableBottomTitles;
-@property(nonatomic,retain)NSMutableArray *titleArray;
+@property(nonatomic,assign)BOOL glossEffect;
+@property(nonatomic,assign)float borderWidth_;
+
+
 @property(nonatomic,assign) TINTCOLOR tint;
 
--(void)findCenter;
+//Background Related:
+@property(nonatomic,assign)CGGradientRef backgroundGradient;
+@property(nonatomic,retain)UIColor *backgroundColor;
+@property(nonatomic,retain)UIView *backgroundView;
+
+//center Related
+@property(nonatomic,assign)float centerX_;
+@property(nonatomic,assign)float centerY_;
+
+
 -(void)readFromCSV:(NSString*)path  TitleAtColumn:(int)tcolumn  DataAtColumn:(int)dcolumn;
+
+
+/*
+ Ok here user can send the values in Array like [NSArray arraywithObjects:@"21",@"55",@"120",@"45"]
+ User can opt to send the titleArray:
+ colorsArray should be array of MIMColor class.
+ 
+ How to Add MIMColor Object:
+ 
+ 
+ */
+-(void)readFromArray:(NSArray*)valuearray  Title:(NSArray *)titlesArray  Color:(NSArray *)colorsArray;
+
+
 -(void)drawPieChart;
 -(void)drawBottomTitlesText;
--(int)findQuadrant:(CGPoint)touchPoint;
+
+-(float)returnSum:(NSArray *)array;
+
 
 @end

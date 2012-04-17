@@ -7,6 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042BD5B4153DF90F0002C94D /* BasicPieChartTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5A9153DF90F0002C94D /* BasicPieChartTestClass.m */; };
+		042BD5B5153DF90F0002C94D /* BevelPieChartTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5AB153DF90F0002C94D /* BevelPieChartTestClass.m */; };
+		042BD5B6153DF90F0002C94D /* PaddedPieChartTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5AD153DF90F0002C94D /* PaddedPieChartTestClass.m */; };
+		042BD5B7153DF90F0002C94D /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5AE153DF90F0002C94D /* facebook.png */; };
+		042BD5B8153DF90F0002C94D /* trans_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5AF153DF90F0002C94D /* trans_icon.png */; };
+		042BD5B9153DF90F0002C94D /* BiTransPieChartTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5B1153DF90F0002C94D /* BiTransPieChartTestClass.m */; };
+		042BD5BA153DF90F0002C94D /* SectionedPieChartTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5B3153DF90F0002C94D /* SectionedPieChartTestClass.m */; };
+		042BD5C0153DF9390002C94D /* MIMColorClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5BF153DF9390002C94D /* MIMColorClass.m */; };
+		042BD5D8153DF9610002C94D /* BasicPieChartSample.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5C2153DF9610002C94D /* BasicPieChartSample.png */; };
+		042BD5D9153DF9610002C94D /* BasicPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5C4153DF9610002C94D /* BasicPieChart.m */; };
+		042BD5DA153DF9610002C94D /* BevelPieChart.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5C5153DF9610002C94D /* BevelPieChart.png */; };
+		042BD5DB153DF9610002C94D /* BevelPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5C7153DF9610002C94D /* BevelPieChart.m */; };
+		042BD5DC153DF9610002C94D /* BiTransPieCHartSample.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5C8153DF9610002C94D /* BiTransPieCHartSample.png */; };
+		042BD5DD153DF9610002C94D /* BiTransPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5CA153DF9610002C94D /* BiTransPieChart.m */; };
+		042BD5DE153DF9610002C94D /* padded_pie_chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5CB153DF9610002C94D /* padded_pie_chart.png */; };
+		042BD5DF153DF9610002C94D /* PaddedPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5CD153DF9610002C94D /* PaddedPieChart.m */; };
+		042BD5E0153DF9610002C94D /* sectioned_pie_chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5CE153DF9610002C94D /* sectioned_pie_chart.png */; };
+		042BD5E1153DF9610002C94D /* SectionedPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5D0153DF9610002C94D /* SectionedPieChart.m */; };
+		042BD5E2153DF9610002C94D /* OthersPart1.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5D1153DF9610002C94D /* OthersPart1.png */; };
+		042BD5E3153DF9610002C94D /* otherspart2.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5D2153DF9610002C94D /* otherspart2.png */; };
+		042BD5E4153DF9610002C94D /* OthersPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5D4153DF9610002C94D /* OthersPieChart.m */; };
+		042BD5E5153DF9610002C94D /* layeredpiechart.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5D5153DF9610002C94D /* layeredpiechart.jpg */; };
+		042BD5E6153DF9610002C94D /* LayeredPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5D7153DF9610002C94D /* LayeredPieChart.m */; };
 		2309CEAA140C95700038C78E /* Anchor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE70140C95700038C78E /* Anchor.m */; };
 		2309CEAB140C95700038C78E /* AnchorInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE72140C95700038C78E /* AnchorInfo.m */; };
 		2309CEAC140C95700038C78E /* CustomBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE74140C95700038C78E /* CustomBox.m */; };
@@ -56,6 +79,44 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		042BD5A8153DF90F0002C94D /* BasicPieChartTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicPieChartTestClass.h; sourceTree = "<group>"; };
+		042BD5A9153DF90F0002C94D /* BasicPieChartTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicPieChartTestClass.m; sourceTree = "<group>"; };
+		042BD5AA153DF90F0002C94D /* BevelPieChartTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BevelPieChartTestClass.h; sourceTree = "<group>"; };
+		042BD5AB153DF90F0002C94D /* BevelPieChartTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BevelPieChartTestClass.m; sourceTree = "<group>"; };
+		042BD5AC153DF90F0002C94D /* PaddedPieChartTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddedPieChartTestClass.h; sourceTree = "<group>"; };
+		042BD5AD153DF90F0002C94D /* PaddedPieChartTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddedPieChartTestClass.m; sourceTree = "<group>"; };
+		042BD5AE153DF90F0002C94D /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		042BD5AF153DF90F0002C94D /* trans_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trans_icon.png; sourceTree = "<group>"; };
+		042BD5B0153DF90F0002C94D /* BiTransPieChartTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiTransPieChartTestClass.h; sourceTree = "<group>"; };
+		042BD5B1153DF90F0002C94D /* BiTransPieChartTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiTransPieChartTestClass.m; sourceTree = "<group>"; };
+		042BD5B2153DF90F0002C94D /* SectionedPieChartTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionedPieChartTestClass.h; sourceTree = "<group>"; };
+		042BD5B3153DF90F0002C94D /* SectionedPieChartTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionedPieChartTestClass.m; sourceTree = "<group>"; };
+		042BD5BD153DF92C0002C94D /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		042BD5BE153DF9390002C94D /* MIMColorClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMColorClass.h; sourceTree = "<group>"; };
+		042BD5BF153DF9390002C94D /* MIMColorClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMColorClass.m; sourceTree = "<group>"; };
+		042BD5C1153DF9610002C94D /* MIMPieChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMPieChartDelegate.h; sourceTree = "<group>"; };
+		042BD5C2153DF9610002C94D /* BasicPieChartSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BasicPieChartSample.png; sourceTree = "<group>"; };
+		042BD5C3153DF9610002C94D /* BasicPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicPieChart.h; sourceTree = "<group>"; };
+		042BD5C4153DF9610002C94D /* BasicPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicPieChart.m; sourceTree = "<group>"; };
+		042BD5C5153DF9610002C94D /* BevelPieChart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BevelPieChart.png; sourceTree = "<group>"; };
+		042BD5C6153DF9610002C94D /* BevelPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BevelPieChart.h; sourceTree = "<group>"; };
+		042BD5C7153DF9610002C94D /* BevelPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BevelPieChart.m; sourceTree = "<group>"; };
+		042BD5C8153DF9610002C94D /* BiTransPieCHartSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BiTransPieCHartSample.png; sourceTree = "<group>"; };
+		042BD5C9153DF9610002C94D /* BiTransPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiTransPieChart.h; sourceTree = "<group>"; };
+		042BD5CA153DF9610002C94D /* BiTransPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiTransPieChart.m; sourceTree = "<group>"; };
+		042BD5CB153DF9610002C94D /* padded_pie_chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = padded_pie_chart.png; sourceTree = "<group>"; };
+		042BD5CC153DF9610002C94D /* PaddedPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddedPieChart.h; sourceTree = "<group>"; };
+		042BD5CD153DF9610002C94D /* PaddedPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddedPieChart.m; sourceTree = "<group>"; };
+		042BD5CE153DF9610002C94D /* sectioned_pie_chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sectioned_pie_chart.png; sourceTree = "<group>"; };
+		042BD5CF153DF9610002C94D /* SectionedPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionedPieChart.h; sourceTree = "<group>"; };
+		042BD5D0153DF9610002C94D /* SectionedPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionedPieChart.m; sourceTree = "<group>"; };
+		042BD5D1153DF9610002C94D /* OthersPart1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OthersPart1.png; sourceTree = "<group>"; };
+		042BD5D2153DF9610002C94D /* otherspart2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otherspart2.png; sourceTree = "<group>"; };
+		042BD5D3153DF9610002C94D /* OthersPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OthersPieChart.h; sourceTree = "<group>"; };
+		042BD5D4153DF9610002C94D /* OthersPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OthersPieChart.m; sourceTree = "<group>"; };
+		042BD5D5153DF9610002C94D /* layeredpiechart.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = layeredpiechart.jpg; sourceTree = "<group>"; };
+		042BD5D6153DF9610002C94D /* LayeredPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayeredPieChart.h; sourceTree = "<group>"; };
+		042BD5D7153DF9610002C94D /* LayeredPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayeredPieChart.m; sourceTree = "<group>"; };
 		2309CE6F140C95700038C78E /* Anchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Anchor.h; sourceTree = "<group>"; };
 		2309CE70140C95700038C78E /* Anchor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Anchor.m; sourceTree = "<group>"; };
 		2309CE71140C95700038C78E /* AnchorInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnchorInfo.h; sourceTree = "<group>"; };
@@ -170,6 +231,7 @@
 		2309CE6E140C95700038C78E /* Accessories */ = {
 			isa = PBXGroup;
 			children = (
+				042BD5BD153DF92C0002C94D /* Constant.h */,
 				2309CE6F140C95700038C78E /* Anchor.h */,
 				2309CE70140C95700038C78E /* Anchor.m */,
 				2309CE71140C95700038C78E /* AnchorInfo.h */,
@@ -211,6 +273,8 @@
 		2309CE85140C95700038C78E /* Colors */ = {
 			isa = PBXGroup;
 			children = (
+				042BD5BE153DF9390002C94D /* MIMColorClass.h */,
+				042BD5BF153DF9390002C94D /* MIMColorClass.m */,
 				2309CE86140C95700038C78E /* MIMColor.h */,
 				2309CE87140C95700038C78E /* MIMColor.m */,
 			);
@@ -263,6 +327,29 @@
 		2309CE9A140C95700038C78E /* Pie Chart */ = {
 			isa = PBXGroup;
 			children = (
+				042BD5C1153DF9610002C94D /* MIMPieChartDelegate.h */,
+				042BD5C2153DF9610002C94D /* BasicPieChartSample.png */,
+				042BD5C3153DF9610002C94D /* BasicPieChart.h */,
+				042BD5C4153DF9610002C94D /* BasicPieChart.m */,
+				042BD5C5153DF9610002C94D /* BevelPieChart.png */,
+				042BD5C6153DF9610002C94D /* BevelPieChart.h */,
+				042BD5C7153DF9610002C94D /* BevelPieChart.m */,
+				042BD5C8153DF9610002C94D /* BiTransPieCHartSample.png */,
+				042BD5C9153DF9610002C94D /* BiTransPieChart.h */,
+				042BD5CA153DF9610002C94D /* BiTransPieChart.m */,
+				042BD5CB153DF9610002C94D /* padded_pie_chart.png */,
+				042BD5CC153DF9610002C94D /* PaddedPieChart.h */,
+				042BD5CD153DF9610002C94D /* PaddedPieChart.m */,
+				042BD5CE153DF9610002C94D /* sectioned_pie_chart.png */,
+				042BD5CF153DF9610002C94D /* SectionedPieChart.h */,
+				042BD5D0153DF9610002C94D /* SectionedPieChart.m */,
+				042BD5D1153DF9610002C94D /* OthersPart1.png */,
+				042BD5D2153DF9610002C94D /* otherspart2.png */,
+				042BD5D3153DF9610002C94D /* OthersPieChart.h */,
+				042BD5D4153DF9610002C94D /* OthersPieChart.m */,
+				042BD5D5153DF9610002C94D /* layeredpiechart.jpg */,
+				042BD5D6153DF9610002C94D /* LayeredPieChart.h */,
+				042BD5D7153DF9610002C94D /* LayeredPieChart.m */,
 				2309CE9B140C95700038C78E /* MIMPieChart.h */,
 				2309CE9C140C95700038C78E /* MIMPieChart.m */,
 			);
@@ -283,6 +370,18 @@
 		2309CEC0140C98760038C78E /* HowToUseFiles */ = {
 			isa = PBXGroup;
 			children = (
+				042BD5A8153DF90F0002C94D /* BasicPieChartTestClass.h */,
+				042BD5A9153DF90F0002C94D /* BasicPieChartTestClass.m */,
+				042BD5AA153DF90F0002C94D /* BevelPieChartTestClass.h */,
+				042BD5AB153DF90F0002C94D /* BevelPieChartTestClass.m */,
+				042BD5AC153DF90F0002C94D /* PaddedPieChartTestClass.h */,
+				042BD5AD153DF90F0002C94D /* PaddedPieChartTestClass.m */,
+				042BD5AE153DF90F0002C94D /* facebook.png */,
+				042BD5AF153DF90F0002C94D /* trans_icon.png */,
+				042BD5B0153DF90F0002C94D /* BiTransPieChartTestClass.h */,
+				042BD5B1153DF90F0002C94D /* BiTransPieChartTestClass.m */,
+				042BD5B2153DF90F0002C94D /* SectionedPieChartTestClass.h */,
+				042BD5B3153DF90F0002C94D /* SectionedPieChartTestClass.m */,
 				2309CEC1140C98760038C78E /* BarTestClass.h */,
 				2309CEC2140C98760038C78E /* BarTestClass.m */,
 				2309CEC3140C98760038C78E /* ClusterTestClass.h */,
@@ -421,6 +520,16 @@
 				2309CEBB140C95700038C78E /* lines.png in Resources */,
 				2309CEBC140C95700038C78E /* lines1.png in Resources */,
 				2309CED5140C98760038C78E /* TestClass.xib in Resources */,
+				042BD5B7153DF90F0002C94D /* facebook.png in Resources */,
+				042BD5B8153DF90F0002C94D /* trans_icon.png in Resources */,
+				042BD5D8153DF9610002C94D /* BasicPieChartSample.png in Resources */,
+				042BD5DA153DF9610002C94D /* BevelPieChart.png in Resources */,
+				042BD5DC153DF9610002C94D /* BiTransPieCHartSample.png in Resources */,
+				042BD5DE153DF9610002C94D /* padded_pie_chart.png in Resources */,
+				042BD5E0153DF9610002C94D /* sectioned_pie_chart.png in Resources */,
+				042BD5E2153DF9610002C94D /* OthersPart1.png in Resources */,
+				042BD5E3153DF9610002C94D /* otherspart2.png in Resources */,
+				042BD5E5153DF9610002C94D /* layeredpiechart.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,6 +569,19 @@
 				2309CED4140C98760038C78E /* TestClass.m in Sources */,
 				2309CED6140C98760038C78E /* TestClassFragmented.m in Sources */,
 				2309CED7140C98760038C78E /* TestLineClass.m in Sources */,
+				042BD5B4153DF90F0002C94D /* BasicPieChartTestClass.m in Sources */,
+				042BD5B5153DF90F0002C94D /* BevelPieChartTestClass.m in Sources */,
+				042BD5B6153DF90F0002C94D /* PaddedPieChartTestClass.m in Sources */,
+				042BD5B9153DF90F0002C94D /* BiTransPieChartTestClass.m in Sources */,
+				042BD5BA153DF90F0002C94D /* SectionedPieChartTestClass.m in Sources */,
+				042BD5C0153DF9390002C94D /* MIMColorClass.m in Sources */,
+				042BD5D9153DF9610002C94D /* BasicPieChart.m in Sources */,
+				042BD5DB153DF9610002C94D /* BevelPieChart.m in Sources */,
+				042BD5DD153DF9610002C94D /* BiTransPieChart.m in Sources */,
+				042BD5DF153DF9610002C94D /* PaddedPieChart.m in Sources */,
+				042BD5E1153DF9610002C94D /* SectionedPieChart.m in Sources */,
+				042BD5E4153DF9610002C94D /* OthersPieChart.m in Sources */,
+				042BD5E6153DF9610002C94D /* LayeredPieChart.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

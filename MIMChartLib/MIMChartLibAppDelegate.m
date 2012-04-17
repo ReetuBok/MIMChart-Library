@@ -29,7 +29,12 @@
 #import "ClusterTestClass.h"
 #import "FragmentedBarTestClass.h"
 #import "GroupBarTestClass.h"
-
+#import "TestClass.h"
+#import "BasicPieChartTestClass.h"
+#import "BevelPieChartTestClass.h"
+#import "PaddedPieChartTestClass.h"
+#import "SectionedPieChartTestClass.h"
+#import "BiTransPieChartTestClass.h"
 @implementation MIMChartLibAppDelegate
 
 
@@ -37,20 +42,37 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //TestClass *rootController=[[TestClass alloc]init];// Pie Chart
+    
+    
+    /**************************************************************************************************************/
+    //  PIECHARTS
+    /**************************************************************************************************************/
+    //TestClass *rootController=[[TestClass alloc]init];
+    //BasicPieChartTestClass *rootController=[[BasicPieChartTestClass alloc]init];
+    //BevelPieChartTestClass *rootController=[[BevelPieChartTestClass alloc]init];
+    //PaddedPieChartTestClass*rootController=[[PaddedPieChartTestClass alloc]init];
+    SectionedPieChartTestClass*rootController=[[SectionedPieChartTestClass alloc]init];
+    //BiTransPieChartTestClass*rootController=[[BiTransPieChartTestClass alloc]init];
+    
+    
+    navigation=[[UINavigationController alloc]initWithRootViewController:rootController];
+    
+    
+    
+    
     //TestClassFragmented *rootController=[[TestClassFragmented alloc]init]; // Fragmented Doughnut Pie Chart
     //WallTestClass *rootController=[[WallTestClass alloc]init]; // Wall Graph
     //TestLineClass *rootController=[[TestLineClass alloc]init]; // Line Graph
     //BarTestClass *rootController=[[BarTestClass alloc]init]; // Bar Graph
     //ClusterTestClass *rootController=[[ClusterTestClass alloc]init]; //Cluster Graph   
-    GroupBarTestClass *rootController=[[GroupBarTestClass alloc]init]; //Group Bar Graph   
+    //GroupBarTestClass *rootController=[[GroupBarTestClass alloc]init]; //Group Bar Graph   
     //FragmentedBarTestClass *rootController=[[FragmentedBarTestClass alloc]init]; //FragmentedBar graph   
     
     
     
-    [self.window addSubview:rootController.view];
+    [self.window addSubview:navigation.view];
     
-
+    
     // Override point for customization after application launch.
     [self.window makeKeyAndVisible];
     return YES;

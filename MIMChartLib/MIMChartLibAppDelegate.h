@@ -25,6 +25,8 @@
 
 @interface MIMChartLibAppDelegate : NSObject <UIApplicationDelegate> {
 
+    UINavigationController *navigation;
+
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
