@@ -1,16 +1,47 @@
 This is a project (Opensource library)of chart libraries which can used in iPhone/iPads.
 Charts available:
-1.Line Graph
-2.Wall Graph
-3.Bar Graph
-4.Fragmented Bar Graph
-5.Pie Chart
+1.Pie Chart
+2.Line Graph
+3.Wall Graph
+4.Bar Graph
+5.Fragmented Bar Graph
 6.Fragmented Pie Chart
 7.Cluster Chart
+
+--------------------------------------------------------------
+Beta Version 1.2
+--------------------------------------------------------------
+New FIVE(5) types of pieCharts have been added, so kindly refer to following post to see whats new in PieChart.
+http://soulwithmobiletechnology.blogspot.com/2012/04/mimchartlibrary-beta-12-released.html
+
+Currently, it supports taking values for graph by array as was requested, as people don't like using .csv files to store the values(As its not convenient for all purposes).
+It doesn't support labeling or interaction yet. It will be included in next version.
+
+New class of color called MIMColor has been added, so that user can create their color using values in range(0,1) as well as (0,255),
+Unlike UIColor where you have to use range(0,1),
+
+
+
 
 
 Complete GUIde can be found HERE
 http://soulwithmobiletechnology.blogspot.com/2011/08/iphoneipad-chart-librarymimchartlib.html
+Note: This post might be obsolete for PieCharts.
+
+--------------------------------------------------------------
+HOW TO RUN THE SAMPLE CODES IN THE LIBRARY.
+--------------------------------------------------------------
+1. Go to MIMChartLibAppDelegate.m in MIMChartLib folder in XCode.
+
+2. You will see various rootControllers. You can comment/uncomment one by one  and RUN the code to see what they look like. 
+You can go to those Test Classes like TestClass,TestClassFragmented etc available in HowToUseFiles folder to get more idea.
+
+--------------------------------------------------------------
+AND you can find more info on
+http://soulwithmobiletechnology.blogspot.com/2011/08/iphoneipad-chart-librarymimchartlib.html
+
+
+
 
 --------------------------------------------------------------
 HOW TO USE IT IN YOUR CODE
@@ -23,14 +54,7 @@ HOW TO USE IT IN YOUR CODE
 4. Then you can add the chart of your purpose to your view in your app.
 
 To find out more about how to stick the chart in your view please see the sample codes.
---------------------------------------------------------------
-HOW TO RUN THE SAMPLE CODES IN THE LIBRARY.
---------------------------------------------------------------
-1. Go to MIMChartLibAppDelegate.m in MIMChartLib folder in XCode.
 
-2. You will see various rootControllers. You can comment/uncomment one by one  and RUN the code to see what they look like. 
-You can go to those Test Classes like TestClass,TestClassFragmented etc available in HowToUseFiles folder to get more idea.
 
---------------------------------------------------------------
-AND you can find more info on
-http://soulwithmobiletechnology.blogspot.com/2011/08/iphoneipad-chart-librarymimchartlib.html
+
+NOTE: memory testing hasn't been done yet.
