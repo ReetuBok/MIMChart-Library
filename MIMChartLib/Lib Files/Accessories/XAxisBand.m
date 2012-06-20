@@ -1,24 +1,26 @@
 /*
- Copyright (C) 2011  Reetu Raj (reetu.raj@gmail.com)
+ Copyright (C) 2011- 2012  Reetu Raj (reetu.raj@gmail.com)
  
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
- 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+ and associated documentation files (the “Software”), to deal in the Software without 
+ restriction, including without limitation the rights to use, copy, modify, merge, publish, 
+ distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom
+ the Software is furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all copies or 
+ substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT 
+ NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *///
 //  XAxisBand.m
-//  MIM3D
+//  MIM2D Library
 //
 //  Created by Reetu Raj on 08/07/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 __MIM 2D__. All rights reserved.
 //
 
 #import "XAxisBand.h"
@@ -26,7 +28,7 @@
 
 @implementation XAxisBand
 @synthesize xElements,multipleOf,scalingFactor,style,lineChart,xIsString;
-
+@synthesize lineColor,lineWidth;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -42,79 +44,8 @@
 }
 
 
--(void)readTitleFromCSV:(NSString*)path AtColumn:(int)column
-{
-    
-    if(column==-1)
-    {
-        //Its a lines Graph
-        xElements=[[NSMutableArray alloc]init];
-        
-        NSString *fileDataString=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-        NSArray *linesArray=[fileDataString componentsSeparatedByString:@"\n"];
-        
-        int k=0;
-        for (id string in linesArray)
-            if(k<[linesArray count]-1){
-                
-                NSString *lineString=[linesArray objectAtIndex:k];
-                NSArray *columnArray=[lineString componentsSeparatedByString:@";"];
-                [xElements addObject:[columnArray objectAtIndex:0]];
-                k++;
-                
-            }
-        
-        
-        
-    }
-    else
-    {
-        xElements=[[NSMutableArray alloc]init];
-        
-        
-        NSString *fileDataString=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-        NSArray *linesArray=[fileDataString componentsSeparatedByString:@"\n"];
-        
-        
-        int k=0;
-        for (id string in linesArray)
-            if(k<[linesArray count]-1){
-                
-                NSString *lineString=[linesArray objectAtIndex:k];
-                NSArray *columnArray=[lineString componentsSeparatedByString:@";"];
-                [xElements addObject:[columnArray objectAtIndex:column]];
-                k++;
-                
-            }
-        
-        
-    }
-    
-    
-    
-    [xElements removeObjectAtIndex:0];
-    
-}
 
 
-/*This method is needed when the all the x-axis element are numbers/ints*/
--(void)readTitleFromCSV:(NSString*)path
-{
-        xElements=[[NSMutableArray alloc]init];
-        
-        
-        NSString *fileDataString=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-        NSArray *linesArray=[fileDataString componentsSeparatedByString:@"\n"];
-        
-        for (int k=1; k<[linesArray count]-1; k++) {
-            
-            NSString *lineString=[linesArray objectAtIndex:k];
-            NSArray *columnArray=[lineString componentsSeparatedByString:@";"];
-            [xElements addObject:[columnArray objectAtIndex:0]];
-        }
-        
-    
-}
 
 
 
@@ -123,8 +54,16 @@
 - (void)drawRect:(CGRect)rect
 {
 
+    if([xElements count]==0)
+        return;
+    
     // Drawing code
     CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    
+    CGContextSetAllowsAntialiasing(ctx, YES);
+    CGContextSetShouldAntialias(ctx, YES);
+
     
     CGAffineTransform flipTransform = CGAffineTransformMake( 1, 0, 0, -1, 0, self.frame.size.height);
     CGContextConcatCTM(ctx, flipTransform);
@@ -137,7 +76,9 @@
     //Draw the sticks down
     if(lineChart)
     {
-        CGContextSetLineWidth(ctx, 2.0);
+        CGContextSetBlendMode(ctx, kCGBlendModeNormal);
+        CGContextSetLineWidth(ctx, lineWidth);
+        CGContextSetStrokeColorWithColor(ctx, lineColor.CGColor);
         for (int i=0; i<[xElements count]; i++) {
             
             if(xIsString)
@@ -157,7 +98,7 @@
     }
     else
     {
-        CGContextSetLineWidth(ctx, 2.0);
+        CGContextSetLineWidth(ctx, lineWidth);
         for (int i=0; i<[xElements count]; i++) {
             
             CGContextMoveToPoint(ctx,i*scalingFactor+ (scalingFactor * 0.8)/2,self.frame.size.height);
@@ -170,8 +111,9 @@
     
     
     
-    
-    for (int i=0; i<[xElements count]; i++) {
+    //draw the labels
+    for (int i=0; i<[xElements count]; i++) 
+    {
         
         XAxisLabel *label;
         int v;
@@ -209,7 +151,7 @@
         label.text=[NSString stringWithFormat:@"%@",[xElements objectAtIndex:i]];
         label.style=self.style;
         label.width=scalingFactor;
-        [label setNeedsDisplay];
+        [label drawTitleWithColor:lineColor];
         [self addSubview:label];
         
   
@@ -221,9 +163,12 @@
 -(void)drawXAxis:(CGContextRef)ctx
 {
 
+    if(lineWidth < 1)
+        lineWidth=1.0;
+    
     CGContextBeginPath(ctx);
-    CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.8].CGColor);
-    CGContextSetLineWidth(ctx, 1.6);
+    CGContextSetStrokeColorWithColor(ctx, lineColor.CGColor);
+    CGContextSetLineWidth(ctx, lineWidth);
     CGContextMoveToPoint(ctx, 0,self.frame.size.height);
     CGContextAddLineToPoint(ctx,self.frame.size.width, self.frame.size.height);
     CGContextDrawPath(ctx, kCGPathStroke);
@@ -234,7 +179,7 @@
 
 - (void)dealloc
 {
-    [super dealloc];
+    ////[super dealloc];
 }
 
 @end

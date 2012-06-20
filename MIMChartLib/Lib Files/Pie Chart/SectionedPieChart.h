@@ -21,9 +21,12 @@
     CGGradientRef dividerGradient;
     TINTCOLOR tint;
     
+    //This lets user touch the pieChart, rotate it.    
+    BOOL userTouchAllowed;
     
     @private
     BOOL dividerInfoProvided;
+    MIMColorClass *bgColor;
     
 
 }
@@ -31,6 +34,9 @@
 @property (nonatomic,retain) MIMColorClass *dividerColor;
 @property (nonatomic,assign) CGGradientRef dividerGradient;
 @property (nonatomic,assign) TINTCOLOR tint;
+@property (nonatomic,assign)BOOL userTouchAllowed;
+
+
 -(void)drawPieChart;
 
 

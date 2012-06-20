@@ -25,6 +25,7 @@
 @synthesize centerIcon;
 @synthesize percentValue;
 @synthesize delegate;
+@synthesize userTouchAllowed;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -50,10 +51,10 @@
     
     //Draw the Transparent part
     UIColor *color=[UIColor colorWithRed:mcolor.red green:mcolor.green blue:mcolor.blue alpha:0.5];
-    percentValue=(6.28*percentValue)/100;
+    float mypercentValue=(6.28*percentValue)/100;
     CGContextSaveGState(context);
     CGContextMoveToPoint(context, pieChart.centerX_, pieChart.centerY_);
-    CGContextAddArc(context, pieChart.centerX_, pieChart.centerY_, outerRadius-1,4.71,4.71+percentValue , 0);
+    CGContextAddArc(context, pieChart.centerX_, pieChart.centerY_, outerRadius-1,4.71,4.71+mypercentValue , 0);
     CGContextClosePath(context); 
     CGContextSetFillColorWithColor(context, color.CGColor);
     CGContextFillPath(context);
@@ -115,8 +116,27 @@
 {
     
     pieChart=[[MIMPieChart alloc]init];
-    //SET BACKGROUND COLOR
-    [self setBackgroundColor:[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1.0]];
+    
+        
+    
+    if([delegate respondsToSelector:@selector(colorForBackground:)])
+    {
+        bgColor=[delegate colorForBackground:self];
+        
+        //SET BACKGROUND COLOR
+        if(bgColor==nil)
+            [self setBackgroundColor:[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1.0]];
+        else
+            [self setBackgroundColor:[UIColor colorWithRed:bgColor.red green:bgColor.green blue:bgColor.blue alpha:bgColor.alpha]];
+
+    }
+    else
+    {
+        //SET BACKGROUND COLOR
+        [self setBackgroundColor:[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1.0]];
+
+    }
+    
  
 }
 

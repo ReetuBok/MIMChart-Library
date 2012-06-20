@@ -7,470 +7,513 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		042BD5B4153DF90F0002C94D /* BasicPieChartTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5A9153DF90F0002C94D /* BasicPieChartTestClass.m */; };
-		042BD5B5153DF90F0002C94D /* BevelPieChartTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5AB153DF90F0002C94D /* BevelPieChartTestClass.m */; };
-		042BD5B6153DF90F0002C94D /* PaddedPieChartTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5AD153DF90F0002C94D /* PaddedPieChartTestClass.m */; };
-		042BD5B7153DF90F0002C94D /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5AE153DF90F0002C94D /* facebook.png */; };
-		042BD5B8153DF90F0002C94D /* trans_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5AF153DF90F0002C94D /* trans_icon.png */; };
-		042BD5B9153DF90F0002C94D /* BiTransPieChartTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5B1153DF90F0002C94D /* BiTransPieChartTestClass.m */; };
-		042BD5BA153DF90F0002C94D /* SectionedPieChartTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5B3153DF90F0002C94D /* SectionedPieChartTestClass.m */; };
-		042BD5C0153DF9390002C94D /* MIMColorClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5BF153DF9390002C94D /* MIMColorClass.m */; };
-		042BD5D8153DF9610002C94D /* BasicPieChartSample.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5C2153DF9610002C94D /* BasicPieChartSample.png */; };
-		042BD5D9153DF9610002C94D /* BasicPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5C4153DF9610002C94D /* BasicPieChart.m */; };
-		042BD5DA153DF9610002C94D /* BevelPieChart.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5C5153DF9610002C94D /* BevelPieChart.png */; };
-		042BD5DB153DF9610002C94D /* BevelPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5C7153DF9610002C94D /* BevelPieChart.m */; };
-		042BD5DC153DF9610002C94D /* BiTransPieCHartSample.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5C8153DF9610002C94D /* BiTransPieCHartSample.png */; };
-		042BD5DD153DF9610002C94D /* BiTransPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5CA153DF9610002C94D /* BiTransPieChart.m */; };
-		042BD5DE153DF9610002C94D /* padded_pie_chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5CB153DF9610002C94D /* padded_pie_chart.png */; };
-		042BD5DF153DF9610002C94D /* PaddedPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5CD153DF9610002C94D /* PaddedPieChart.m */; };
-		042BD5E0153DF9610002C94D /* sectioned_pie_chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5CE153DF9610002C94D /* sectioned_pie_chart.png */; };
-		042BD5E1153DF9610002C94D /* SectionedPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5D0153DF9610002C94D /* SectionedPieChart.m */; };
-		042BD5E2153DF9610002C94D /* OthersPart1.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5D1153DF9610002C94D /* OthersPart1.png */; };
-		042BD5E3153DF9610002C94D /* otherspart2.png in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5D2153DF9610002C94D /* otherspart2.png */; };
-		042BD5E4153DF9610002C94D /* OthersPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5D4153DF9610002C94D /* OthersPieChart.m */; };
-		042BD5E5153DF9610002C94D /* layeredpiechart.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 042BD5D5153DF9610002C94D /* layeredpiechart.jpg */; };
-		042BD5E6153DF9610002C94D /* LayeredPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 042BD5D7153DF9610002C94D /* LayeredPieChart.m */; };
-		2309CEAA140C95700038C78E /* Anchor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE70140C95700038C78E /* Anchor.m */; };
-		2309CEAB140C95700038C78E /* AnchorInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE72140C95700038C78E /* AnchorInfo.m */; };
-		2309CEAC140C95700038C78E /* CustomBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE74140C95700038C78E /* CustomBox.m */; };
-		2309CEAD140C95700038C78E /* XAxisBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE76140C95700038C78E /* XAxisBand.m */; };
-		2309CEAE140C95700038C78E /* XAxisLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE78140C95700038C78E /* XAxisLabel.m */; };
-		2309CEAF140C95700038C78E /* YAxisBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE7A140C95700038C78E /* YAxisBand.m */; };
-		2309CEB0140C95700038C78E /* BarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE7D140C95700038C78E /* BarChart.m */; };
-		2309CEB1140C95700038C78E /* BarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE7F140C95700038C78E /* BarView.m */; };
-		2309CEB2140C95700038C78E /* Cluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE82140C95700038C78E /* Cluster.m */; };
-		2309CEB3140C95700038C78E /* ClusterGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE84140C95700038C78E /* ClusterGraph.m */; };
-		2309CEB4140C95700038C78E /* MIMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE87140C95700038C78E /* MIMColor.m */; };
-		2309CEB5140C95700038C78E /* FragmentedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE8A140C95700038C78E /* FragmentedBar.m */; };
-		2309CEB6140C95700038C78E /* FragmentedBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE8C140C95700038C78E /* FragmentedBarChart.m */; };
-		2309CEB7140C95700038C78E /* 2DFragmentedDoughNut.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE8F140C95700038C78E /* 2DFragmentedDoughNut.m */; };
-		2309CEB8140C95700038C78E /* DoughtNutFragmentTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE91140C95700038C78E /* DoughtNutFragmentTitle.m */; };
-		2309CEB9140C95700038C78E /* LineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE95140C95700038C78E /* LineGraph.m */; };
-		2309CEBA140C95700038C78E /* LineInfoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE97140C95700038C78E /* LineInfoBox.m */; };
-		2309CEBB140C95700038C78E /* lines.png in Resources */ = {isa = PBXBuildFile; fileRef = 2309CE98140C95700038C78E /* lines.png */; };
-		2309CEBC140C95700038C78E /* lines1.png in Resources */ = {isa = PBXBuildFile; fileRef = 2309CE99140C95700038C78E /* lines1.png */; };
-		2309CEBD140C95700038C78E /* MIMPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE9C140C95700038C78E /* MIMPieChart.m */; };
-		2309CEBE140C95700038C78E /* WallGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CE9F140C95700038C78E /* WallGraph.m */; };
-		2309CEBF140C95700038C78E /* WallTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CEA1140C95700038C78E /* WallTestClass.m */; };
-		2309CED0140C98760038C78E /* BarTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CEC2140C98760038C78E /* BarTestClass.m */; };
-		2309CED1140C98760038C78E /* ClusterTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CEC4140C98760038C78E /* ClusterTestClass.m */; };
-		2309CED2140C98760038C78E /* FragmentedBarTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CEC6140C98760038C78E /* FragmentedBarTestClass.m */; };
-		2309CED3140C98760038C78E /* GroupBarTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CEC8140C98760038C78E /* GroupBarTestClass.m */; };
-		2309CED4140C98760038C78E /* TestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CECA140C98760038C78E /* TestClass.m */; };
-		2309CED5140C98760038C78E /* TestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2309CECB140C98760038C78E /* TestClass.xib */; };
-		2309CED6140C98760038C78E /* TestClassFragmented.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CECD140C98760038C78E /* TestClassFragmented.m */; };
-		2309CED7140C98760038C78E /* TestLineClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2309CECF140C98760038C78E /* TestLineClass.m */; };
-		23228ADD13F3A7660001DE38 /* myTable.csv in Resources */ = {isa = PBXBuildFile; fileRef = 23228ADC13F3A7660001DE38 /* myTable.csv */; };
-		2333A89C13F5573A00229FE1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2333A89B13F5573A00229FE1 /* QuartzCore.framework */; };
-		236AF93613F28D30008A538D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236AF93513F28D30008A538D /* UIKit.framework */; };
-		236AF93813F28D30008A538D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236AF93713F28D30008A538D /* Foundation.framework */; };
-		236AF93A13F28D30008A538D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 236AF93913F28D30008A538D /* CoreGraphics.framework */; };
-		236AF94013F28D30008A538D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 236AF93E13F28D30008A538D /* InfoPlist.strings */; };
-		236AF94313F28D30008A538D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 236AF94213F28D30008A538D /* main.m */; };
-		236AF94613F28D30008A538D /* MIMChartLibAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 236AF94513F28D30008A538D /* MIMChartLibAppDelegate.m */; };
-		236AF94913F28D30008A538D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 236AF94713F28D30008A538D /* MainWindow.xib */; };
-		238BCE13140ABD3900BF9CE6 /* myTableLinesWithIntOnly.csv in Resources */ = {isa = PBXBuildFile; fileRef = 238BCE12140ABD3900BF9CE6 /* myTableLinesWithIntOnly.csv */; };
-		238EB77413FBB89300F0A21C /* myTableCluster.csv in Resources */ = {isa = PBXBuildFile; fileRef = 238EB77313FBB89300F0A21C /* myTableCluster.csv */; };
-		238EB77C13FBC78E00F0A21C /* myTableFragmentedBar.csv in Resources */ = {isa = PBXBuildFile; fileRef = 238EB77B13FBC78E00F0A21C /* myTableFragmentedBar.csv */; };
-		23C0D9DF13F5A13400F72BF4 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C0D9DE13F5A13400F72BF4 /* CoreText.framework */; };
-		23C0DA3913F9101400F72BF4 /* myTable1.csv in Resources */ = {isa = PBXBuildFile; fileRef = 23C0DA3813F9101400F72BF4 /* myTable1.csv */; };
-		23C0DA4A13F9353E00F72BF4 /* myTable2.csv in Resources */ = {isa = PBXBuildFile; fileRef = 23C0DA4913F9353E00F72BF4 /* myTable2.csv */; };
-		23C0DA6113F9B79E00F72BF4 /* myTableBar.csv in Resources */ = {isa = PBXBuildFile; fileRef = 23C0DA6013F9B79E00F72BF4 /* myTableBar.csv */; };
+		23197EE1154BA3830023521F /* Anchor.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E86154BA3830023521F /* Anchor.m */; };
+		23197EE2154BA3830023521F /* AnchorInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E88154BA3830023521F /* AnchorInfo.m */; };
+		23197EE3154BA3830023521F /* CustomBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E8B154BA3830023521F /* CustomBox.m */; };
+		23197EE4154BA3830023521F /* PageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E8D154BA3830023521F /* PageControl.m */; };
+		23197EE5154BA3830023521F /* XAxisBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E8F154BA3830023521F /* XAxisBand.m */; };
+		23197EE6154BA3830023521F /* XAxisLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E91154BA3830023521F /* XAxisLabel.m */; };
+		23197EE7154BA3830023521F /* YAxisBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E93154BA3830023521F /* YAxisBand.m */; };
+		23197EE8154BA3830023521F /* BarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E96154BA3830023521F /* BarChart.m */; };
+		23197EE9154BA3830023521F /* BarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E98154BA3830023521F /* BarView.m */; };
+		23197EEA154BA3830023521F /* Cluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E9B154BA3830023521F /* Cluster.m */; };
+		23197EEB154BA3830023521F /* ClusterGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E9D154BA3830023521F /* ClusterGraph.m */; };
+		23197EEC154BA3830023521F /* MIMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EA0154BA3830023521F /* MIMColor.m */; };
+		23197EED154BA3830023521F /* MIMColorClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EA2154BA3830023521F /* MIMColorClass.m */; };
+		23197EEE154BA3830023521F /* FragmentedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EA5154BA3830023521F /* FragmentedBar.m */; };
+		23197EEF154BA3830023521F /* FragmentedBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EA7154BA3830023521F /* FragmentedBarChart.m */; };
+		23197EF0154BA3830023521F /* 2DFragmentedDoughNut.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EAA154BA3830023521F /* 2DFragmentedDoughNut.m */; };
+		23197EF1154BA3830023521F /* DoughtNutFragmentTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EAC154BA3830023521F /* DoughtNutFragmentTitle.m */; };
+		23197EF2154BA3830023521F /* SingleLineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EAF154BA3830023521F /* SingleLineGraph.m */; };
+		23197EF3154BA3830023521F /* LineInfoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EB1154BA3830023521F /* LineInfoBox.m */; };
+		23197EF4154BA3830023521F /* lines.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197EB2154BA3830023521F /* lines.png */; };
+		23197EF5154BA3830023521F /* lines1.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197EB3154BA3830023521F /* lines1.png */; };
+		23197EF6154BA3830023521F /* BasicPie.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EB6154BA3830023521F /* BasicPie.m */; };
+		23197EF7154BA3830023521F /* BasicPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EB8154BA3830023521F /* BasicPieChart.m */; };
+		23197EF8154BA3830023521F /* BasicPieChartSample.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197EB9154BA3830023521F /* BasicPieChartSample.png */; };
+		23197EF9154BA3830023521F /* BevelPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EBB154BA3830023521F /* BevelPieChart.m */; };
+		23197EFA154BA3830023521F /* BevelPieChart.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197EBC154BA3830023521F /* BevelPieChart.png */; };
+		23197EFB154BA3830023521F /* BiTransPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EBE154BA3830023521F /* BiTransPieChart.m */; };
+		23197EFC154BA3830023521F /* BiTransPieCHartSample.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197EBF154BA3830023521F /* BiTransPieCHartSample.png */; };
+		23197EFD154BA3830023521F /* DefaultPopOverForPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EC1154BA3830023521F /* DefaultPopOverForPieChart.m */; };
+		23197EFE154BA3830023521F /* DetailPopOverStyle2.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EC3154BA3830023521F /* DetailPopOverStyle2.m */; };
+		23197EFF154BA3830023521F /* layeredpiechart.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23197EC5154BA3830023521F /* layeredpiechart.jpg */; };
+		23197F00154BA3830023521F /* LayeredPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EC6154BA3830023521F /* LayeredPieChart.m */; };
+		23197F01154BA3830023521F /* LeftTriangleIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197EC7154BA3830023521F /* LeftTriangleIcon.png */; };
+		23197F02154BA3830023521F /* LeftTriangleIconBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197EC8154BA3830023521F /* LeftTriangleIconBlack.png */; };
+		23197F03154BA3830023521F /* MIMPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197ECA154BA3830023521F /* MIMPieChart.m */; };
+		23197F04154BA3830023521F /* OthersPart1.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197ECC154BA3830023521F /* OthersPart1.png */; };
+		23197F05154BA3830023521F /* otherspart2.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197ECD154BA3830023521F /* otherspart2.png */; };
+		23197F06154BA3830023521F /* OthersPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197ECF154BA3830023521F /* OthersPieChart.m */; };
+		23197F07154BA3830023521F /* padded_pie_chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197ED0154BA3830023521F /* padded_pie_chart.png */; };
+		23197F08154BA3830023521F /* PaddedPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197ED2154BA3830023521F /* PaddedPieChart.m */; };
+		23197F0A154BA3830023521F /* pie_pop_over_gradient.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 23197ED5154BA3830023521F /* pie_pop_over_gradient.jpg */; };
+		23197F0B154BA3830023521F /* RightTriangleIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197ED6154BA3830023521F /* RightTriangleIcon.png */; };
+		23197F0C154BA3830023521F /* RightTriangleIconBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197ED7154BA3830023521F /* RightTriangleIconBlack.png */; };
+		23197F0D154BA3830023521F /* sectioned_pie_chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197ED8154BA3830023521F /* sectioned_pie_chart.png */; };
+		23197F0E154BA3830023521F /* SectionedPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EDA154BA3830023521F /* SectionedPieChart.m */; };
+		23197F0F154BA3830023521F /* trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197EDB154BA3830023521F /* trophy.png */; };
+		23197F10154BA3830023521F /* WallGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EDE154BA3830023521F /* WallGraph.m */; };
+		23197F3E154DF0440023521F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23197F3D154DF0440023521F /* CoreText.framework */; };
+		23197F48154DF0880023521F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23197F47154DF0880023521F /* QuartzCore.framework */; };
+		235C23F91548BBAD00919081 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235C23F81548BBAD00919081 /* UIKit.framework */; };
+		235C23FB1548BBAD00919081 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235C23FA1548BBAD00919081 /* Foundation.framework */; };
+		235C23FD1548BBAD00919081 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235C23FC1548BBAD00919081 /* CoreGraphics.framework */; };
+		235C24031548BBAD00919081 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 235C24011548BBAD00919081 /* InfoPlist.strings */; };
+		235C24051548BBAD00919081 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 235C24041548BBAD00919081 /* main.m */; };
+		235C24091548BBAD00919081 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 235C24081548BBAD00919081 /* AppDelegate.m */; };
+		237F125B156D377D00A259FC /* MultiLineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 237F125A156D377D00A259FC /* MultiLineGraph.m */; };
+		237F125E156D37E300A259FC /* MIM_MathClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 237F125D156D37E200A259FC /* MIM_MathClass.m */; };
+		237F126B156DDE5000A259FC /* NegativeLineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 237F126A156DDE4F00A259FC /* NegativeLineGraph.m */; };
+		2384DAF41573F48700F9F126 /* WallLongGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAF31573F48700F9F126 /* WallLongGraph.m */; };
+		2384DAF71573F49C00F9F126 /* MultiWallGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAF61573F49C00F9F126 /* MultiWallGraph.m */; };
+		2384DAFA1573F4AA00F9F126 /* MultiWallLongGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAF91573F4AA00F9F126 /* MultiWallLongGraph.m */; };
+		2384DAFD1573F4BA00F9F126 /* NegativeWallGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAFC1573F4BA00F9F126 /* NegativeWallGraph.m */; };
+		23BD8E40156EE1B90098E85D /* LineScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23BD8E3F156EE1B90098E85D /* LineScrollView.m */; };
+		23BD8E45156EE7690098E85D /* SingleLineLongGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23BD8E44156EE7680098E85D /* SingleLineLongGraph.m */; };
+		23BD8E4F156FEA090098E85D /* MultiLineLongGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23BD8E4E156FEA090098E85D /* MultiLineLongGraph.m */; };
+		23CE0D15156467E80078BCC5 /* DefaultInfoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CE0D14156467E70078BCC5 /* DefaultInfoBox.m */; };
+		23CE0D19156468020078BCC5 /* InfoBoxStyle1.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CE0D18156468010078BCC5 /* InfoBoxStyle1.m */; };
+		23CE0D1C156468100078BCC5 /* InfoBoxStyle2.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CE0D1B156468100078BCC5 /* InfoBoxStyle2.m */; };
+		23F9D33D1565A6D300A6FAE0 /* PermanentScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F9D33C1565A6D300A6FAE0 /* PermanentScroller.m */; };
+		23F9D3401565B48600A6FAE0 /* ScrollViewSubClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F9D33F1565B48500A6FAE0 /* ScrollViewSubClass.m */; };
+		23F9D3471566D3C200A6FAE0 /* PieBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F9D3461566D3C100A6FAE0 /* PieBubble.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		042BD5A8153DF90F0002C94D /* BasicPieChartTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicPieChartTestClass.h; sourceTree = "<group>"; };
-		042BD5A9153DF90F0002C94D /* BasicPieChartTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicPieChartTestClass.m; sourceTree = "<group>"; };
-		042BD5AA153DF90F0002C94D /* BevelPieChartTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BevelPieChartTestClass.h; sourceTree = "<group>"; };
-		042BD5AB153DF90F0002C94D /* BevelPieChartTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BevelPieChartTestClass.m; sourceTree = "<group>"; };
-		042BD5AC153DF90F0002C94D /* PaddedPieChartTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddedPieChartTestClass.h; sourceTree = "<group>"; };
-		042BD5AD153DF90F0002C94D /* PaddedPieChartTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddedPieChartTestClass.m; sourceTree = "<group>"; };
-		042BD5AE153DF90F0002C94D /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
-		042BD5AF153DF90F0002C94D /* trans_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trans_icon.png; sourceTree = "<group>"; };
-		042BD5B0153DF90F0002C94D /* BiTransPieChartTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiTransPieChartTestClass.h; sourceTree = "<group>"; };
-		042BD5B1153DF90F0002C94D /* BiTransPieChartTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiTransPieChartTestClass.m; sourceTree = "<group>"; };
-		042BD5B2153DF90F0002C94D /* SectionedPieChartTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionedPieChartTestClass.h; sourceTree = "<group>"; };
-		042BD5B3153DF90F0002C94D /* SectionedPieChartTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionedPieChartTestClass.m; sourceTree = "<group>"; };
-		042BD5BD153DF92C0002C94D /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
-		042BD5BE153DF9390002C94D /* MIMColorClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMColorClass.h; sourceTree = "<group>"; };
-		042BD5BF153DF9390002C94D /* MIMColorClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMColorClass.m; sourceTree = "<group>"; };
-		042BD5C1153DF9610002C94D /* MIMPieChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMPieChartDelegate.h; sourceTree = "<group>"; };
-		042BD5C2153DF9610002C94D /* BasicPieChartSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BasicPieChartSample.png; sourceTree = "<group>"; };
-		042BD5C3153DF9610002C94D /* BasicPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicPieChart.h; sourceTree = "<group>"; };
-		042BD5C4153DF9610002C94D /* BasicPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicPieChart.m; sourceTree = "<group>"; };
-		042BD5C5153DF9610002C94D /* BevelPieChart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BevelPieChart.png; sourceTree = "<group>"; };
-		042BD5C6153DF9610002C94D /* BevelPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BevelPieChart.h; sourceTree = "<group>"; };
-		042BD5C7153DF9610002C94D /* BevelPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BevelPieChart.m; sourceTree = "<group>"; };
-		042BD5C8153DF9610002C94D /* BiTransPieCHartSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BiTransPieCHartSample.png; sourceTree = "<group>"; };
-		042BD5C9153DF9610002C94D /* BiTransPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiTransPieChart.h; sourceTree = "<group>"; };
-		042BD5CA153DF9610002C94D /* BiTransPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiTransPieChart.m; sourceTree = "<group>"; };
-		042BD5CB153DF9610002C94D /* padded_pie_chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = padded_pie_chart.png; sourceTree = "<group>"; };
-		042BD5CC153DF9610002C94D /* PaddedPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddedPieChart.h; sourceTree = "<group>"; };
-		042BD5CD153DF9610002C94D /* PaddedPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddedPieChart.m; sourceTree = "<group>"; };
-		042BD5CE153DF9610002C94D /* sectioned_pie_chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sectioned_pie_chart.png; sourceTree = "<group>"; };
-		042BD5CF153DF9610002C94D /* SectionedPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionedPieChart.h; sourceTree = "<group>"; };
-		042BD5D0153DF9610002C94D /* SectionedPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionedPieChart.m; sourceTree = "<group>"; };
-		042BD5D1153DF9610002C94D /* OthersPart1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OthersPart1.png; sourceTree = "<group>"; };
-		042BD5D2153DF9610002C94D /* otherspart2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otherspart2.png; sourceTree = "<group>"; };
-		042BD5D3153DF9610002C94D /* OthersPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OthersPieChart.h; sourceTree = "<group>"; };
-		042BD5D4153DF9610002C94D /* OthersPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OthersPieChart.m; sourceTree = "<group>"; };
-		042BD5D5153DF9610002C94D /* layeredpiechart.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = layeredpiechart.jpg; sourceTree = "<group>"; };
-		042BD5D6153DF9610002C94D /* LayeredPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayeredPieChart.h; sourceTree = "<group>"; };
-		042BD5D7153DF9610002C94D /* LayeredPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayeredPieChart.m; sourceTree = "<group>"; };
-		2309CE6F140C95700038C78E /* Anchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Anchor.h; sourceTree = "<group>"; };
-		2309CE70140C95700038C78E /* Anchor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Anchor.m; sourceTree = "<group>"; };
-		2309CE71140C95700038C78E /* AnchorInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnchorInfo.h; sourceTree = "<group>"; };
-		2309CE72140C95700038C78E /* AnchorInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnchorInfo.m; sourceTree = "<group>"; };
-		2309CE73140C95700038C78E /* CustomBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBox.h; sourceTree = "<group>"; };
-		2309CE74140C95700038C78E /* CustomBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBox.m; sourceTree = "<group>"; };
-		2309CE75140C95700038C78E /* XAxisBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAxisBand.h; sourceTree = "<group>"; };
-		2309CE76140C95700038C78E /* XAxisBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAxisBand.m; sourceTree = "<group>"; };
-		2309CE77140C95700038C78E /* XAxisLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAxisLabel.h; sourceTree = "<group>"; };
-		2309CE78140C95700038C78E /* XAxisLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAxisLabel.m; sourceTree = "<group>"; };
-		2309CE79140C95700038C78E /* YAxisBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAxisBand.h; sourceTree = "<group>"; };
-		2309CE7A140C95700038C78E /* YAxisBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAxisBand.m; sourceTree = "<group>"; };
-		2309CE7C140C95700038C78E /* BarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChart.h; sourceTree = "<group>"; };
-		2309CE7D140C95700038C78E /* BarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChart.m; sourceTree = "<group>"; };
-		2309CE7E140C95700038C78E /* BarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarView.h; sourceTree = "<group>"; };
-		2309CE7F140C95700038C78E /* BarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarView.m; sourceTree = "<group>"; };
-		2309CE81140C95700038C78E /* Cluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cluster.h; sourceTree = "<group>"; };
-		2309CE82140C95700038C78E /* Cluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cluster.m; sourceTree = "<group>"; };
-		2309CE83140C95700038C78E /* ClusterGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterGraph.h; sourceTree = "<group>"; };
-		2309CE84140C95700038C78E /* ClusterGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClusterGraph.m; sourceTree = "<group>"; };
-		2309CE86140C95700038C78E /* MIMColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMColor.h; sourceTree = "<group>"; };
-		2309CE87140C95700038C78E /* MIMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMColor.m; sourceTree = "<group>"; };
-		2309CE89140C95700038C78E /* FragmentedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedBar.h; sourceTree = "<group>"; };
-		2309CE8A140C95700038C78E /* FragmentedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FragmentedBar.m; sourceTree = "<group>"; };
-		2309CE8B140C95700038C78E /* FragmentedBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedBarChart.h; sourceTree = "<group>"; };
-		2309CE8C140C95700038C78E /* FragmentedBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FragmentedBarChart.m; sourceTree = "<group>"; };
-		2309CE8E140C95700038C78E /* 2DFragmentedDoughNut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 2DFragmentedDoughNut.h; sourceTree = "<group>"; };
-		2309CE8F140C95700038C78E /* 2DFragmentedDoughNut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = 2DFragmentedDoughNut.m; sourceTree = "<group>"; };
-		2309CE90140C95700038C78E /* DoughtNutFragmentTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoughtNutFragmentTitle.h; sourceTree = "<group>"; };
-		2309CE91140C95700038C78E /* DoughtNutFragmentTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoughtNutFragmentTitle.m; sourceTree = "<group>"; };
-		2309CE94140C95700038C78E /* LineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraph.h; sourceTree = "<group>"; };
-		2309CE95140C95700038C78E /* LineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineGraph.m; sourceTree = "<group>"; };
-		2309CE96140C95700038C78E /* LineInfoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineInfoBox.h; sourceTree = "<group>"; };
-		2309CE97140C95700038C78E /* LineInfoBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineInfoBox.m; sourceTree = "<group>"; };
-		2309CE98140C95700038C78E /* lines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lines.png; sourceTree = "<group>"; };
-		2309CE99140C95700038C78E /* lines1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lines1.png; sourceTree = "<group>"; };
-		2309CE9B140C95700038C78E /* MIMPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMPieChart.h; sourceTree = "<group>"; };
-		2309CE9C140C95700038C78E /* MIMPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMPieChart.m; sourceTree = "<group>"; };
-		2309CE9E140C95700038C78E /* WallGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallGraph.h; sourceTree = "<group>"; };
-		2309CE9F140C95700038C78E /* WallGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallGraph.m; sourceTree = "<group>"; };
-		2309CEA0140C95700038C78E /* WallTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallTestClass.h; sourceTree = "<group>"; };
-		2309CEA1140C95700038C78E /* WallTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallTestClass.m; sourceTree = "<group>"; };
-		2309CEC1140C98760038C78E /* BarTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarTestClass.h; sourceTree = "<group>"; };
-		2309CEC2140C98760038C78E /* BarTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarTestClass.m; sourceTree = "<group>"; };
-		2309CEC3140C98760038C78E /* ClusterTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterTestClass.h; sourceTree = "<group>"; };
-		2309CEC4140C98760038C78E /* ClusterTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClusterTestClass.m; sourceTree = "<group>"; };
-		2309CEC5140C98760038C78E /* FragmentedBarTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedBarTestClass.h; sourceTree = "<group>"; };
-		2309CEC6140C98760038C78E /* FragmentedBarTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FragmentedBarTestClass.m; sourceTree = "<group>"; };
-		2309CEC7140C98760038C78E /* GroupBarTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupBarTestClass.h; sourceTree = "<group>"; };
-		2309CEC8140C98760038C78E /* GroupBarTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupBarTestClass.m; sourceTree = "<group>"; };
-		2309CEC9140C98760038C78E /* TestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestClass.h; sourceTree = "<group>"; };
-		2309CECA140C98760038C78E /* TestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestClass.m; sourceTree = "<group>"; };
-		2309CECB140C98760038C78E /* TestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestClass.xib; sourceTree = "<group>"; };
-		2309CECC140C98760038C78E /* TestClassFragmented.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestClassFragmented.h; sourceTree = "<group>"; };
-		2309CECD140C98760038C78E /* TestClassFragmented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestClassFragmented.m; sourceTree = "<group>"; };
-		2309CECE140C98760038C78E /* TestLineClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLineClass.h; sourceTree = "<group>"; };
-		2309CECF140C98760038C78E /* TestLineClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLineClass.m; sourceTree = "<group>"; };
-		23228ADC13F3A7660001DE38 /* myTable.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myTable.csv; sourceTree = "<group>"; };
-		2333A89B13F5573A00229FE1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		236AF93113F28D30008A538D /* MIMChartLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIMChartLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		236AF93513F28D30008A538D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		236AF93713F28D30008A538D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		236AF93913F28D30008A538D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		236AF93D13F28D30008A538D /* MIMChartLib-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MIMChartLib-Info.plist"; sourceTree = "<group>"; };
-		236AF93F13F28D30008A538D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		236AF94113F28D30008A538D /* MIMChartLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MIMChartLib-Prefix.pch"; sourceTree = "<group>"; };
-		236AF94213F28D30008A538D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		236AF94413F28D30008A538D /* MIMChartLibAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MIMChartLibAppDelegate.h; sourceTree = "<group>"; };
-		236AF94513F28D30008A538D /* MIMChartLibAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MIMChartLibAppDelegate.m; sourceTree = "<group>"; };
-		236AF94813F28D30008A538D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		238BCE12140ABD3900BF9CE6 /* myTableLinesWithIntOnly.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myTableLinesWithIntOnly.csv; sourceTree = "<group>"; };
-		238EB77313FBB89300F0A21C /* myTableCluster.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myTableCluster.csv; sourceTree = "<group>"; };
-		238EB77B13FBC78E00F0A21C /* myTableFragmentedBar.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myTableFragmentedBar.csv; sourceTree = "<group>"; };
-		23C0D9DE13F5A13400F72BF4 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		23C0DA3813F9101400F72BF4 /* myTable1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myTable1.csv; sourceTree = "<group>"; };
-		23C0DA4913F9353E00F72BF4 /* myTable2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myTable2.csv; sourceTree = "<group>"; };
-		23C0DA6013F9B79E00F72BF4 /* myTableBar.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = myTableBar.csv; sourceTree = "<group>"; };
+		23197E85154BA3830023521F /* Anchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Anchor.h; sourceTree = "<group>"; };
+		23197E86154BA3830023521F /* Anchor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Anchor.m; sourceTree = "<group>"; };
+		23197E87154BA3830023521F /* AnchorInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnchorInfo.h; sourceTree = "<group>"; };
+		23197E88154BA3830023521F /* AnchorInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnchorInfo.m; sourceTree = "<group>"; };
+		23197E89154BA3830023521F /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		23197E8A154BA3830023521F /* CustomBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBox.h; sourceTree = "<group>"; };
+		23197E8B154BA3830023521F /* CustomBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBox.m; sourceTree = "<group>"; };
+		23197E8C154BA3830023521F /* PageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageControl.h; sourceTree = "<group>"; };
+		23197E8D154BA3830023521F /* PageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageControl.m; sourceTree = "<group>"; };
+		23197E8E154BA3830023521F /* XAxisBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAxisBand.h; sourceTree = "<group>"; };
+		23197E8F154BA3830023521F /* XAxisBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAxisBand.m; sourceTree = "<group>"; };
+		23197E90154BA3830023521F /* XAxisLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XAxisLabel.h; sourceTree = "<group>"; };
+		23197E91154BA3830023521F /* XAxisLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAxisLabel.m; sourceTree = "<group>"; };
+		23197E92154BA3830023521F /* YAxisBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAxisBand.h; sourceTree = "<group>"; };
+		23197E93154BA3830023521F /* YAxisBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAxisBand.m; sourceTree = "<group>"; };
+		23197E95154BA3830023521F /* BarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChart.h; sourceTree = "<group>"; };
+		23197E96154BA3830023521F /* BarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChart.m; sourceTree = "<group>"; };
+		23197E97154BA3830023521F /* BarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarView.h; sourceTree = "<group>"; };
+		23197E98154BA3830023521F /* BarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarView.m; sourceTree = "<group>"; };
+		23197E9A154BA3830023521F /* Cluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cluster.h; sourceTree = "<group>"; };
+		23197E9B154BA3830023521F /* Cluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cluster.m; sourceTree = "<group>"; };
+		23197E9C154BA3830023521F /* ClusterGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterGraph.h; sourceTree = "<group>"; };
+		23197E9D154BA3830023521F /* ClusterGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClusterGraph.m; sourceTree = "<group>"; };
+		23197E9F154BA3830023521F /* MIMColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMColor.h; sourceTree = "<group>"; };
+		23197EA0154BA3830023521F /* MIMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMColor.m; sourceTree = "<group>"; };
+		23197EA1154BA3830023521F /* MIMColorClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMColorClass.h; sourceTree = "<group>"; };
+		23197EA2154BA3830023521F /* MIMColorClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMColorClass.m; sourceTree = "<group>"; };
+		23197EA4154BA3830023521F /* FragmentedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedBar.h; sourceTree = "<group>"; };
+		23197EA5154BA3830023521F /* FragmentedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FragmentedBar.m; sourceTree = "<group>"; };
+		23197EA6154BA3830023521F /* FragmentedBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedBarChart.h; sourceTree = "<group>"; };
+		23197EA7154BA3830023521F /* FragmentedBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FragmentedBarChart.m; sourceTree = "<group>"; };
+		23197EA9154BA3830023521F /* 2DFragmentedDoughNut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 2DFragmentedDoughNut.h; sourceTree = "<group>"; };
+		23197EAA154BA3830023521F /* 2DFragmentedDoughNut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = 2DFragmentedDoughNut.m; sourceTree = "<group>"; };
+		23197EAB154BA3830023521F /* DoughtNutFragmentTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoughtNutFragmentTitle.h; sourceTree = "<group>"; };
+		23197EAC154BA3830023521F /* DoughtNutFragmentTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoughtNutFragmentTitle.m; sourceTree = "<group>"; };
+		23197EAE154BA3830023521F /* SingleLineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleLineGraph.h; sourceTree = "<group>"; };
+		23197EAF154BA3830023521F /* SingleLineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleLineGraph.m; sourceTree = "<group>"; };
+		23197EB0154BA3830023521F /* LineInfoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineInfoBox.h; sourceTree = "<group>"; };
+		23197EB1154BA3830023521F /* LineInfoBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineInfoBox.m; sourceTree = "<group>"; };
+		23197EB2154BA3830023521F /* lines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lines.png; sourceTree = "<group>"; };
+		23197EB3154BA3830023521F /* lines1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lines1.png; sourceTree = "<group>"; };
+		23197EB5154BA3830023521F /* BasicPie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicPie.h; sourceTree = "<group>"; };
+		23197EB6154BA3830023521F /* BasicPie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicPie.m; sourceTree = "<group>"; };
+		23197EB7154BA3830023521F /* BasicPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicPieChart.h; sourceTree = "<group>"; };
+		23197EB8154BA3830023521F /* BasicPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicPieChart.m; sourceTree = "<group>"; };
+		23197EB9154BA3830023521F /* BasicPieChartSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BasicPieChartSample.png; sourceTree = "<group>"; };
+		23197EBA154BA3830023521F /* BevelPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BevelPieChart.h; sourceTree = "<group>"; };
+		23197EBB154BA3830023521F /* BevelPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BevelPieChart.m; sourceTree = "<group>"; };
+		23197EBC154BA3830023521F /* BevelPieChart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BevelPieChart.png; sourceTree = "<group>"; };
+		23197EBD154BA3830023521F /* BiTransPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiTransPieChart.h; sourceTree = "<group>"; };
+		23197EBE154BA3830023521F /* BiTransPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiTransPieChart.m; sourceTree = "<group>"; };
+		23197EBF154BA3830023521F /* BiTransPieCHartSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BiTransPieCHartSample.png; sourceTree = "<group>"; };
+		23197EC0154BA3830023521F /* DefaultPopOverForPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultPopOverForPieChart.h; sourceTree = "<group>"; };
+		23197EC1154BA3830023521F /* DefaultPopOverForPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultPopOverForPieChart.m; sourceTree = "<group>"; };
+		23197EC2154BA3830023521F /* DetailPopOverStyle2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPopOverStyle2.h; sourceTree = "<group>"; };
+		23197EC3154BA3830023521F /* DetailPopOverStyle2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPopOverStyle2.m; sourceTree = "<group>"; };
+		23197EC4154BA3830023521F /* LayeredPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayeredPieChart.h; sourceTree = "<group>"; };
+		23197EC5154BA3830023521F /* layeredpiechart.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = layeredpiechart.jpg; sourceTree = "<group>"; };
+		23197EC6154BA3830023521F /* LayeredPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayeredPieChart.m; sourceTree = "<group>"; };
+		23197EC7154BA3830023521F /* LeftTriangleIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftTriangleIcon.png; sourceTree = "<group>"; };
+		23197EC8154BA3830023521F /* LeftTriangleIconBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftTriangleIconBlack.png; sourceTree = "<group>"; };
+		23197EC9154BA3830023521F /* MIMPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMPieChart.h; sourceTree = "<group>"; };
+		23197ECA154BA3830023521F /* MIMPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMPieChart.m; sourceTree = "<group>"; };
+		23197ECB154BA3830023521F /* MIMPieChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMPieChartDelegate.h; sourceTree = "<group>"; };
+		23197ECC154BA3830023521F /* OthersPart1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OthersPart1.png; sourceTree = "<group>"; };
+		23197ECD154BA3830023521F /* otherspart2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otherspart2.png; sourceTree = "<group>"; };
+		23197ECE154BA3830023521F /* OthersPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OthersPieChart.h; sourceTree = "<group>"; };
+		23197ECF154BA3830023521F /* OthersPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OthersPieChart.m; sourceTree = "<group>"; };
+		23197ED0154BA3830023521F /* padded_pie_chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = padded_pie_chart.png; sourceTree = "<group>"; };
+		23197ED1154BA3830023521F /* PaddedPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaddedPieChart.h; sourceTree = "<group>"; };
+		23197ED2154BA3830023521F /* PaddedPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaddedPieChart.m; sourceTree = "<group>"; };
+		23197ED5154BA3830023521F /* pie_pop_over_gradient.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pie_pop_over_gradient.jpg; sourceTree = "<group>"; };
+		23197ED6154BA3830023521F /* RightTriangleIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightTriangleIcon.png; sourceTree = "<group>"; };
+		23197ED7154BA3830023521F /* RightTriangleIconBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightTriangleIconBlack.png; sourceTree = "<group>"; };
+		23197ED8154BA3830023521F /* sectioned_pie_chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sectioned_pie_chart.png; sourceTree = "<group>"; };
+		23197ED9154BA3830023521F /* SectionedPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionedPieChart.h; sourceTree = "<group>"; };
+		23197EDA154BA3830023521F /* SectionedPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionedPieChart.m; sourceTree = "<group>"; };
+		23197EDB154BA3830023521F /* trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trophy.png; sourceTree = "<group>"; };
+		23197EDD154BA3830023521F /* WallGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallGraph.h; sourceTree = "<group>"; };
+		23197EDE154BA3830023521F /* WallGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallGraph.m; sourceTree = "<group>"; };
+		23197F3B154DEE150023521F /* AnchorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnchorDelegate.h; sourceTree = "<group>"; };
+		23197F3D154DF0440023521F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		23197F47154DF0880023521F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		23197F60154F161F0023521F /* LineGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraphDelegate.h; sourceTree = "<group>"; };
+		23197F80154F7FB50023521F /* FragmentedDoughNutDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedDoughNutDelegate.h; sourceTree = "<group>"; };
+		23197F83154F91C90023521F /* BarChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartDelegate.h; sourceTree = "<group>"; };
+		23197F84154F91DC0023521F /* FragmentBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentBarDelegate.h; sourceTree = "<group>"; };
+		23197F85154F92020023521F /* WallGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallGraphDelegate.h; sourceTree = "<group>"; };
+		23197F86154F921D0023521F /* ClusterGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterGraphDelegate.h; sourceTree = "<group>"; };
+		235C23F41548BBAD00919081 /* MIMChartLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIMChartLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		235C23F81548BBAD00919081 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		235C23FA1548BBAD00919081 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		235C23FC1548BBAD00919081 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		235C24001548BBAD00919081 /* MIMChartLib-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MIMChartLib-Info.plist"; sourceTree = "<group>"; };
+		235C24021548BBAD00919081 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		235C24041548BBAD00919081 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		235C24061548BBAD00919081 /* MIMChartLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MIMChartLib-Prefix.pch"; sourceTree = "<group>"; };
+		235C24071548BBAD00919081 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		235C24081548BBAD00919081 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		237F1259156D377D00A259FC /* MultiLineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiLineGraph.h; sourceTree = "<group>"; };
+		237F125A156D377D00A259FC /* MultiLineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiLineGraph.m; sourceTree = "<group>"; };
+		237F125C156D37E100A259FC /* MIM_MathClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIM_MathClass.h; sourceTree = "<group>"; };
+		237F125D156D37E200A259FC /* MIM_MathClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIM_MathClass.m; sourceTree = "<group>"; };
+		237F1269156DDE4E00A259FC /* NegativeLineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NegativeLineGraph.h; sourceTree = "<group>"; };
+		237F126A156DDE4F00A259FC /* NegativeLineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NegativeLineGraph.m; sourceTree = "<group>"; };
+		2384DAF21573F48700F9F126 /* WallLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallLongGraph.h; sourceTree = "<group>"; };
+		2384DAF31573F48700F9F126 /* WallLongGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallLongGraph.m; sourceTree = "<group>"; };
+		2384DAF51573F49C00F9F126 /* MultiWallGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiWallGraph.h; sourceTree = "<group>"; };
+		2384DAF61573F49C00F9F126 /* MultiWallGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiWallGraph.m; sourceTree = "<group>"; };
+		2384DAF81573F4AA00F9F126 /* MultiWallLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiWallLongGraph.h; sourceTree = "<group>"; };
+		2384DAF91573F4AA00F9F126 /* MultiWallLongGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiWallLongGraph.m; sourceTree = "<group>"; };
+		2384DAFB1573F4BA00F9F126 /* NegativeWallGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NegativeWallGraph.h; sourceTree = "<group>"; };
+		2384DAFC1573F4BA00F9F126 /* NegativeWallGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NegativeWallGraph.m; sourceTree = "<group>"; };
+		23BD8E3E156EE1B90098E85D /* LineScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineScrollView.h; path = "../Line Graph/LineScrollView.h"; sourceTree = "<group>"; };
+		23BD8E3F156EE1B90098E85D /* LineScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineScrollView.m; path = "../Line Graph/LineScrollView.m"; sourceTree = "<group>"; };
+		23BD8E43156EE7680098E85D /* SingleLineLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleLineLongGraph.h; sourceTree = "<group>"; };
+		23BD8E44156EE7680098E85D /* SingleLineLongGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleLineLongGraph.m; sourceTree = "<group>"; };
+		23BD8E4D156FEA090098E85D /* MultiLineLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiLineLongGraph.h; sourceTree = "<group>"; };
+		23BD8E4E156FEA090098E85D /* MultiLineLongGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiLineLongGraph.m; sourceTree = "<group>"; };
+		23CE0D13156467E70078BCC5 /* DefaultInfoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultInfoBox.h; sourceTree = "<group>"; };
+		23CE0D14156467E70078BCC5 /* DefaultInfoBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultInfoBox.m; sourceTree = "<group>"; };
+		23CE0D17156468010078BCC5 /* InfoBoxStyle1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoBoxStyle1.h; sourceTree = "<group>"; };
+		23CE0D18156468010078BCC5 /* InfoBoxStyle1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoBoxStyle1.m; sourceTree = "<group>"; };
+		23CE0D1A156468100078BCC5 /* InfoBoxStyle2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoBoxStyle2.h; sourceTree = "<group>"; };
+		23CE0D1B156468100078BCC5 /* InfoBoxStyle2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoBoxStyle2.m; sourceTree = "<group>"; };
+		23F9D33B1565A6D200A6FAE0 /* PermanentScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermanentScroller.h; sourceTree = "<group>"; };
+		23F9D33C1565A6D300A6FAE0 /* PermanentScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PermanentScroller.m; sourceTree = "<group>"; };
+		23F9D33E1565B48500A6FAE0 /* ScrollViewSubClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewSubClass.h; sourceTree = "<group>"; };
+		23F9D33F1565B48500A6FAE0 /* ScrollViewSubClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewSubClass.m; sourceTree = "<group>"; };
+		23F9D3451566D3C100A6FAE0 /* PieBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieBubble.h; sourceTree = "<group>"; };
+		23F9D3461566D3C100A6FAE0 /* PieBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieBubble.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		236AF92E13F28D30008A538D /* Frameworks */ = {
+		235C23F11548BBAD00919081 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23C0D9DF13F5A13400F72BF4 /* CoreText.framework in Frameworks */,
-				2333A89C13F5573A00229FE1 /* QuartzCore.framework in Frameworks */,
-				236AF93613F28D30008A538D /* UIKit.framework in Frameworks */,
-				236AF93813F28D30008A538D /* Foundation.framework in Frameworks */,
-				236AF93A13F28D30008A538D /* CoreGraphics.framework in Frameworks */,
+				23197F48154DF0880023521F /* QuartzCore.framework in Frameworks */,
+				23197F3E154DF0440023521F /* CoreText.framework in Frameworks */,
+				235C23F91548BBAD00919081 /* UIKit.framework in Frameworks */,
+				235C23FB1548BBAD00919081 /* Foundation.framework in Frameworks */,
+				235C23FD1548BBAD00919081 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2309CE6D140C95700038C78E /* Lib Files */ = {
+		23197E84154BA3830023521F /* Accessories */ = {
 			isa = PBXGroup;
 			children = (
-				2309CE6E140C95700038C78E /* Accessories */,
-				2309CE7B140C95700038C78E /* Bar Chart */,
-				2309CE80140C95700038C78E /* ClusterGraph */,
-				2309CE85140C95700038C78E /* Colors */,
-				2309CE88140C95700038C78E /* FragmentedBarChart */,
-				2309CE8D140C95700038C78E /* FragmentedPieChart */,
-				2309CE92140C95700038C78E /* Line Graph */,
-				2309CE9A140C95700038C78E /* Pie Chart */,
-				2309CE9D140C95700038C78E /* Wall Graph */,
-			);
-			path = "Lib Files";
-			sourceTree = "<group>";
-		};
-		2309CE6E140C95700038C78E /* Accessories */ = {
-			isa = PBXGroup;
-			children = (
-				042BD5BD153DF92C0002C94D /* Constant.h */,
-				2309CE6F140C95700038C78E /* Anchor.h */,
-				2309CE70140C95700038C78E /* Anchor.m */,
-				2309CE71140C95700038C78E /* AnchorInfo.h */,
-				2309CE72140C95700038C78E /* AnchorInfo.m */,
-				2309CE73140C95700038C78E /* CustomBox.h */,
-				2309CE74140C95700038C78E /* CustomBox.m */,
-				2309CE75140C95700038C78E /* XAxisBand.h */,
-				2309CE76140C95700038C78E /* XAxisBand.m */,
-				2309CE77140C95700038C78E /* XAxisLabel.h */,
-				2309CE78140C95700038C78E /* XAxisLabel.m */,
-				2309CE79140C95700038C78E /* YAxisBand.h */,
-				2309CE7A140C95700038C78E /* YAxisBand.m */,
+				237F125C156D37E100A259FC /* MIM_MathClass.h */,
+				237F125D156D37E200A259FC /* MIM_MathClass.m */,
+				23BD8E3E156EE1B90098E85D /* LineScrollView.h */,
+				23BD8E3F156EE1B90098E85D /* LineScrollView.m */,
+				23197F3B154DEE150023521F /* AnchorDelegate.h */,
+				23197E85154BA3830023521F /* Anchor.h */,
+				23197E86154BA3830023521F /* Anchor.m */,
+				23197E87154BA3830023521F /* AnchorInfo.h */,
+				23197E88154BA3830023521F /* AnchorInfo.m */,
+				23197E89154BA3830023521F /* Constant.h */,
+				23197E8A154BA3830023521F /* CustomBox.h */,
+				23197E8B154BA3830023521F /* CustomBox.m */,
+				23197E8C154BA3830023521F /* PageControl.h */,
+				23197E8D154BA3830023521F /* PageControl.m */,
+				23197E8E154BA3830023521F /* XAxisBand.h */,
+				23197E8F154BA3830023521F /* XAxisBand.m */,
+				23197E90154BA3830023521F /* XAxisLabel.h */,
+				23197E91154BA3830023521F /* XAxisLabel.m */,
+				23197E92154BA3830023521F /* YAxisBand.h */,
+				23197E93154BA3830023521F /* YAxisBand.m */,
 			);
 			path = Accessories;
 			sourceTree = "<group>";
 		};
-		2309CE7B140C95700038C78E /* Bar Chart */ = {
+		23197E94154BA3830023521F /* Bar Chart */ = {
 			isa = PBXGroup;
 			children = (
-				2309CE7C140C95700038C78E /* BarChart.h */,
-				2309CE7D140C95700038C78E /* BarChart.m */,
-				2309CE7E140C95700038C78E /* BarView.h */,
-				2309CE7F140C95700038C78E /* BarView.m */,
+				23197E95154BA3830023521F /* BarChart.h */,
+				23197E96154BA3830023521F /* BarChart.m */,
+				23197E97154BA3830023521F /* BarView.h */,
+				23197E98154BA3830023521F /* BarView.m */,
+				23197F83154F91C90023521F /* BarChartDelegate.h */,
 			);
 			path = "Bar Chart";
 			sourceTree = "<group>";
 		};
-		2309CE80140C95700038C78E /* ClusterGraph */ = {
+		23197E99154BA3830023521F /* ClusterGraph */ = {
 			isa = PBXGroup;
 			children = (
-				2309CE81140C95700038C78E /* Cluster.h */,
-				2309CE82140C95700038C78E /* Cluster.m */,
-				2309CE83140C95700038C78E /* ClusterGraph.h */,
-				2309CE84140C95700038C78E /* ClusterGraph.m */,
+				23197E9A154BA3830023521F /* Cluster.h */,
+				23197E9B154BA3830023521F /* Cluster.m */,
+				23197E9C154BA3830023521F /* ClusterGraph.h */,
+				23197E9D154BA3830023521F /* ClusterGraph.m */,
+				23197F86154F921D0023521F /* ClusterGraphDelegate.h */,
 			);
 			path = ClusterGraph;
 			sourceTree = "<group>";
 		};
-		2309CE85140C95700038C78E /* Colors */ = {
+		23197E9E154BA3830023521F /* Colors */ = {
 			isa = PBXGroup;
 			children = (
-				042BD5BE153DF9390002C94D /* MIMColorClass.h */,
-				042BD5BF153DF9390002C94D /* MIMColorClass.m */,
-				2309CE86140C95700038C78E /* MIMColor.h */,
-				2309CE87140C95700038C78E /* MIMColor.m */,
+				23197E9F154BA3830023521F /* MIMColor.h */,
+				23197EA0154BA3830023521F /* MIMColor.m */,
+				23197EA1154BA3830023521F /* MIMColorClass.h */,
+				23197EA2154BA3830023521F /* MIMColorClass.m */,
 			);
 			path = Colors;
 			sourceTree = "<group>";
 		};
-		2309CE88140C95700038C78E /* FragmentedBarChart */ = {
+		23197EA3154BA3830023521F /* FragmentedBarChart */ = {
 			isa = PBXGroup;
 			children = (
-				2309CE89140C95700038C78E /* FragmentedBar.h */,
-				2309CE8A140C95700038C78E /* FragmentedBar.m */,
-				2309CE8B140C95700038C78E /* FragmentedBarChart.h */,
-				2309CE8C140C95700038C78E /* FragmentedBarChart.m */,
+				23197EA4154BA3830023521F /* FragmentedBar.h */,
+				23197EA5154BA3830023521F /* FragmentedBar.m */,
+				23197EA6154BA3830023521F /* FragmentedBarChart.h */,
+				23197EA7154BA3830023521F /* FragmentedBarChart.m */,
+				23197F84154F91DC0023521F /* FragmentBarDelegate.h */,
 			);
 			path = FragmentedBarChart;
 			sourceTree = "<group>";
 		};
-		2309CE8D140C95700038C78E /* FragmentedPieChart */ = {
+		23197EA8154BA3830023521F /* FragmentedDoughnutChart */ = {
 			isa = PBXGroup;
 			children = (
-				2309CE8E140C95700038C78E /* 2DFragmentedDoughNut.h */,
-				2309CE8F140C95700038C78E /* 2DFragmentedDoughNut.m */,
-				2309CE90140C95700038C78E /* DoughtNutFragmentTitle.h */,
-				2309CE91140C95700038C78E /* DoughtNutFragmentTitle.m */,
+				23197EA9154BA3830023521F /* 2DFragmentedDoughNut.h */,
+				23197EAA154BA3830023521F /* 2DFragmentedDoughNut.m */,
+				23197EAB154BA3830023521F /* DoughtNutFragmentTitle.h */,
+				23197EAC154BA3830023521F /* DoughtNutFragmentTitle.m */,
+				23197F80154F7FB50023521F /* FragmentedDoughNutDelegate.h */,
 			);
+			name = FragmentedDoughnutChart;
 			path = FragmentedPieChart;
 			sourceTree = "<group>";
 		};
-		2309CE92140C95700038C78E /* Line Graph */ = {
+		23197EAD154BA3830023521F /* Line Graph */ = {
 			isa = PBXGroup;
 			children = (
-				2309CE93140C95700038C78E /* Colors */,
-				2309CE94140C95700038C78E /* LineGraph.h */,
-				2309CE95140C95700038C78E /* LineGraph.m */,
-				2309CE96140C95700038C78E /* LineInfoBox.h */,
-				2309CE97140C95700038C78E /* LineInfoBox.m */,
-				2309CE98140C95700038C78E /* lines.png */,
-				2309CE99140C95700038C78E /* lines1.png */,
+				23197EAE154BA3830023521F /* SingleLineGraph.h */,
+				23197EAF154BA3830023521F /* SingleLineGraph.m */,
+				23BD8E43156EE7680098E85D /* SingleLineLongGraph.h */,
+				23BD8E44156EE7680098E85D /* SingleLineLongGraph.m */,
+				237F1259156D377D00A259FC /* MultiLineGraph.h */,
+				237F125A156D377D00A259FC /* MultiLineGraph.m */,
+				23BD8E4D156FEA090098E85D /* MultiLineLongGraph.h */,
+				23BD8E4E156FEA090098E85D /* MultiLineLongGraph.m */,
+				237F1269156DDE4E00A259FC /* NegativeLineGraph.h */,
+				237F126A156DDE4F00A259FC /* NegativeLineGraph.m */,
+				23197F60154F161F0023521F /* LineGraphDelegate.h */,
+				23197EB0154BA3830023521F /* LineInfoBox.h */,
+				23197EB1154BA3830023521F /* LineInfoBox.m */,
+				23197EB2154BA3830023521F /* lines.png */,
+				23197EB3154BA3830023521F /* lines1.png */,
 			);
 			path = "Line Graph";
 			sourceTree = "<group>";
 		};
-		2309CE93140C95700038C78E /* Colors */ = {
+		23197EB4154BA3830023521F /* Pie Chart */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			path = Colors;
-			sourceTree = "<group>";
-		};
-		2309CE9A140C95700038C78E /* Pie Chart */ = {
-			isa = PBXGroup;
-			children = (
-				042BD5C1153DF9610002C94D /* MIMPieChartDelegate.h */,
-				042BD5C2153DF9610002C94D /* BasicPieChartSample.png */,
-				042BD5C3153DF9610002C94D /* BasicPieChart.h */,
-				042BD5C4153DF9610002C94D /* BasicPieChart.m */,
-				042BD5C5153DF9610002C94D /* BevelPieChart.png */,
-				042BD5C6153DF9610002C94D /* BevelPieChart.h */,
-				042BD5C7153DF9610002C94D /* BevelPieChart.m */,
-				042BD5C8153DF9610002C94D /* BiTransPieCHartSample.png */,
-				042BD5C9153DF9610002C94D /* BiTransPieChart.h */,
-				042BD5CA153DF9610002C94D /* BiTransPieChart.m */,
-				042BD5CB153DF9610002C94D /* padded_pie_chart.png */,
-				042BD5CC153DF9610002C94D /* PaddedPieChart.h */,
-				042BD5CD153DF9610002C94D /* PaddedPieChart.m */,
-				042BD5CE153DF9610002C94D /* sectioned_pie_chart.png */,
-				042BD5CF153DF9610002C94D /* SectionedPieChart.h */,
-				042BD5D0153DF9610002C94D /* SectionedPieChart.m */,
-				042BD5D1153DF9610002C94D /* OthersPart1.png */,
-				042BD5D2153DF9610002C94D /* otherspart2.png */,
-				042BD5D3153DF9610002C94D /* OthersPieChart.h */,
-				042BD5D4153DF9610002C94D /* OthersPieChart.m */,
-				042BD5D5153DF9610002C94D /* layeredpiechart.jpg */,
-				042BD5D6153DF9610002C94D /* LayeredPieChart.h */,
-				042BD5D7153DF9610002C94D /* LayeredPieChart.m */,
-				2309CE9B140C95700038C78E /* MIMPieChart.h */,
-				2309CE9C140C95700038C78E /* MIMPieChart.m */,
+				23E5FEB41561F36700EBE200 /* PopOvers */,
+				23CE0D1D156468160078BCC5 /* Info Box */,
+				23F9D3491566D3CD00A6FAE0 /* Bubbles */,
+				23197EB5154BA3830023521F /* BasicPie.h */,
+				23197EB6154BA3830023521F /* BasicPie.m */,
+				23197EB7154BA3830023521F /* BasicPieChart.h */,
+				23197EB8154BA3830023521F /* BasicPieChart.m */,
+				23197EB9154BA3830023521F /* BasicPieChartSample.png */,
+				23197EBA154BA3830023521F /* BevelPieChart.h */,
+				23197EBB154BA3830023521F /* BevelPieChart.m */,
+				23197EBC154BA3830023521F /* BevelPieChart.png */,
+				23197EBD154BA3830023521F /* BiTransPieChart.h */,
+				23197EBE154BA3830023521F /* BiTransPieChart.m */,
+				23197EBF154BA3830023521F /* BiTransPieCHartSample.png */,
+				23197EC5154BA3830023521F /* layeredpiechart.jpg */,
+				23197EC4154BA3830023521F /* LayeredPieChart.h */,
+				23197EC6154BA3830023521F /* LayeredPieChart.m */,
+				23197EC7154BA3830023521F /* LeftTriangleIcon.png */,
+				23197EC8154BA3830023521F /* LeftTriangleIconBlack.png */,
+				23197EC9154BA3830023521F /* MIMPieChart.h */,
+				23197ECA154BA3830023521F /* MIMPieChart.m */,
+				23197ECB154BA3830023521F /* MIMPieChartDelegate.h */,
+				23197ECC154BA3830023521F /* OthersPart1.png */,
+				23197ECD154BA3830023521F /* otherspart2.png */,
+				23197ECE154BA3830023521F /* OthersPieChart.h */,
+				23197ECF154BA3830023521F /* OthersPieChart.m */,
+				23197ED0154BA3830023521F /* padded_pie_chart.png */,
+				23197ED1154BA3830023521F /* PaddedPieChart.h */,
+				23197ED2154BA3830023521F /* PaddedPieChart.m */,
+				23197ED5154BA3830023521F /* pie_pop_over_gradient.jpg */,
+				23197ED6154BA3830023521F /* RightTriangleIcon.png */,
+				23197ED7154BA3830023521F /* RightTriangleIconBlack.png */,
+				23197ED8154BA3830023521F /* sectioned_pie_chart.png */,
+				23197ED9154BA3830023521F /* SectionedPieChart.h */,
+				23197EDA154BA3830023521F /* SectionedPieChart.m */,
+				23197EDB154BA3830023521F /* trophy.png */,
 			);
 			path = "Pie Chart";
 			sourceTree = "<group>";
 		};
-		2309CE9D140C95700038C78E /* Wall Graph */ = {
+		23197EDC154BA3830023521F /* Wall Graph */ = {
 			isa = PBXGroup;
 			children = (
-				2309CE9E140C95700038C78E /* WallGraph.h */,
-				2309CE9F140C95700038C78E /* WallGraph.m */,
-				2309CEA0140C95700038C78E /* WallTestClass.h */,
-				2309CEA1140C95700038C78E /* WallTestClass.m */,
+				23197F85154F92020023521F /* WallGraphDelegate.h */,
+				23197EDD154BA3830023521F /* WallGraph.h */,
+				23197EDE154BA3830023521F /* WallGraph.m */,
+				2384DAF21573F48700F9F126 /* WallLongGraph.h */,
+				2384DAF31573F48700F9F126 /* WallLongGraph.m */,
+				2384DAF51573F49C00F9F126 /* MultiWallGraph.h */,
+				2384DAF61573F49C00F9F126 /* MultiWallGraph.m */,
+				2384DAF81573F4AA00F9F126 /* MultiWallLongGraph.h */,
+				2384DAF91573F4AA00F9F126 /* MultiWallLongGraph.m */,
+				2384DAFB1573F4BA00F9F126 /* NegativeWallGraph.h */,
+				2384DAFC1573F4BA00F9F126 /* NegativeWallGraph.m */,
 			);
 			path = "Wall Graph";
 			sourceTree = "<group>";
 		};
-		2309CEC0140C98760038C78E /* HowToUseFiles */ = {
+		235C23E91548BBAD00919081 = {
 			isa = PBXGroup;
 			children = (
-				042BD5A8153DF90F0002C94D /* BasicPieChartTestClass.h */,
-				042BD5A9153DF90F0002C94D /* BasicPieChartTestClass.m */,
-				042BD5AA153DF90F0002C94D /* BevelPieChartTestClass.h */,
-				042BD5AB153DF90F0002C94D /* BevelPieChartTestClass.m */,
-				042BD5AC153DF90F0002C94D /* PaddedPieChartTestClass.h */,
-				042BD5AD153DF90F0002C94D /* PaddedPieChartTestClass.m */,
-				042BD5AE153DF90F0002C94D /* facebook.png */,
-				042BD5AF153DF90F0002C94D /* trans_icon.png */,
-				042BD5B0153DF90F0002C94D /* BiTransPieChartTestClass.h */,
-				042BD5B1153DF90F0002C94D /* BiTransPieChartTestClass.m */,
-				042BD5B2153DF90F0002C94D /* SectionedPieChartTestClass.h */,
-				042BD5B3153DF90F0002C94D /* SectionedPieChartTestClass.m */,
-				2309CEC1140C98760038C78E /* BarTestClass.h */,
-				2309CEC2140C98760038C78E /* BarTestClass.m */,
-				2309CEC3140C98760038C78E /* ClusterTestClass.h */,
-				2309CEC4140C98760038C78E /* ClusterTestClass.m */,
-				2309CEC5140C98760038C78E /* FragmentedBarTestClass.h */,
-				2309CEC6140C98760038C78E /* FragmentedBarTestClass.m */,
-				2309CEC7140C98760038C78E /* GroupBarTestClass.h */,
-				2309CEC8140C98760038C78E /* GroupBarTestClass.m */,
-				2309CEC9140C98760038C78E /* TestClass.h */,
-				2309CECA140C98760038C78E /* TestClass.m */,
-				2309CECB140C98760038C78E /* TestClass.xib */,
-				2309CECC140C98760038C78E /* TestClassFragmented.h */,
-				2309CECD140C98760038C78E /* TestClassFragmented.m */,
-				2309CECE140C98760038C78E /* TestLineClass.h */,
-				2309CECF140C98760038C78E /* TestLineClass.m */,
-			);
-			path = HowToUseFiles;
-			sourceTree = "<group>";
-		};
-		236AF92613F28D2F008A538D = {
-			isa = PBXGroup;
-			children = (
-				23C0D9DE13F5A13400F72BF4 /* CoreText.framework */,
-				2333A89B13F5573A00229FE1 /* QuartzCore.framework */,
-				236AF93B13F28D30008A538D /* MIMChartLib */,
-				236AF93413F28D30008A538D /* Frameworks */,
-				236AF93213F28D30008A538D /* Products */,
+				235C23FE1548BBAD00919081 /* MIMChartLib */,
+				235C23F71548BBAD00919081 /* Frameworks */,
+				235C23F51548BBAD00919081 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		236AF93213F28D30008A538D /* Products */ = {
+		235C23F51548BBAD00919081 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				236AF93113F28D30008A538D /* MIMChartLib.app */,
+				235C23F41548BBAD00919081 /* MIMChartLib.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		236AF93413F28D30008A538D /* Frameworks */ = {
+		235C23F71548BBAD00919081 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				236AF93513F28D30008A538D /* UIKit.framework */,
-				236AF93713F28D30008A538D /* Foundation.framework */,
-				236AF93913F28D30008A538D /* CoreGraphics.framework */,
+				23197F47154DF0880023521F /* QuartzCore.framework */,
+				23197F3D154DF0440023521F /* CoreText.framework */,
+				235C23F81548BBAD00919081 /* UIKit.framework */,
+				235C23FA1548BBAD00919081 /* Foundation.framework */,
+				235C23FC1548BBAD00919081 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		236AF93B13F28D30008A538D /* MIMChartLib */ = {
+		235C23FE1548BBAD00919081 /* MIMChartLib */ = {
 			isa = PBXGroup;
 			children = (
-				2309CEC0140C98760038C78E /* HowToUseFiles */,
-				2309CE6D140C95700038C78E /* Lib Files */,
-				236AF94513F28D30008A538D /* MIMChartLibAppDelegate.m */,
-				236AF94413F28D30008A538D /* MIMChartLibAppDelegate.h */,
-				236AF94713F28D30008A538D /* MainWindow.xib */,
-				236AF93C13F28D30008A538D /* Supporting Files */,
+				235C24311548D1E000919081 /* Lib Files */,
+				235C24071548BBAD00919081 /* AppDelegate.h */,
+				235C24081548BBAD00919081 /* AppDelegate.m */,
+				235C23FF1548BBAD00919081 /* Supporting Files */,
 			);
 			path = MIMChartLib;
 			sourceTree = "<group>";
 		};
-		236AF93C13F28D30008A538D /* Supporting Files */ = {
+		235C23FF1548BBAD00919081 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				238BCE12140ABD3900BF9CE6 /* myTableLinesWithIntOnly.csv */,
-				238EB77B13FBC78E00F0A21C /* myTableFragmentedBar.csv */,
-				238EB77313FBB89300F0A21C /* myTableCluster.csv */,
-				23C0DA6013F9B79E00F72BF4 /* myTableBar.csv */,
-				23C0DA4913F9353E00F72BF4 /* myTable2.csv */,
-				23C0DA3813F9101400F72BF4 /* myTable1.csv */,
-				23228ADC13F3A7660001DE38 /* myTable.csv */,
-				236AF93D13F28D30008A538D /* MIMChartLib-Info.plist */,
-				236AF93E13F28D30008A538D /* InfoPlist.strings */,
-				236AF94113F28D30008A538D /* MIMChartLib-Prefix.pch */,
-				236AF94213F28D30008A538D /* main.m */,
+				235C24001548BBAD00919081 /* MIMChartLib-Info.plist */,
+				235C24011548BBAD00919081 /* InfoPlist.strings */,
+				235C24041548BBAD00919081 /* main.m */,
+				235C24061548BBAD00919081 /* MIMChartLib-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		235C24311548D1E000919081 /* Lib Files */ = {
+			isa = PBXGroup;
+			children = (
+				23197E84154BA3830023521F /* Accessories */,
+				23197E94154BA3830023521F /* Bar Chart */,
+				23197E99154BA3830023521F /* ClusterGraph */,
+				23197E9E154BA3830023521F /* Colors */,
+				23197EA3154BA3830023521F /* FragmentedBarChart */,
+				23197EA8154BA3830023521F /* FragmentedDoughnutChart */,
+				23197EAD154BA3830023521F /* Line Graph */,
+				23197EB4154BA3830023521F /* Pie Chart */,
+				23197EDC154BA3830023521F /* Wall Graph */,
+			);
+			path = "Lib Files";
+			sourceTree = "<group>";
+		};
+		23CE0D1D156468160078BCC5 /* Info Box */ = {
+			isa = PBXGroup;
+			children = (
+				23CE0D13156467E70078BCC5 /* DefaultInfoBox.h */,
+				23CE0D14156467E70078BCC5 /* DefaultInfoBox.m */,
+				23CE0D17156468010078BCC5 /* InfoBoxStyle1.h */,
+				23CE0D18156468010078BCC5 /* InfoBoxStyle1.m */,
+				23CE0D1A156468100078BCC5 /* InfoBoxStyle2.h */,
+				23CE0D1B156468100078BCC5 /* InfoBoxStyle2.m */,
+				23F9D33B1565A6D200A6FAE0 /* PermanentScroller.h */,
+				23F9D33C1565A6D300A6FAE0 /* PermanentScroller.m */,
+				23F9D33E1565B48500A6FAE0 /* ScrollViewSubClass.h */,
+				23F9D33F1565B48500A6FAE0 /* ScrollViewSubClass.m */,
+			);
+			name = "Info Box";
+			sourceTree = "<group>";
+		};
+		23E5FEB41561F36700EBE200 /* PopOvers */ = {
+			isa = PBXGroup;
+			children = (
+				23197EC0154BA3830023521F /* DefaultPopOverForPieChart.h */,
+				23197EC1154BA3830023521F /* DefaultPopOverForPieChart.m */,
+				23197EC2154BA3830023521F /* DetailPopOverStyle2.h */,
+				23197EC3154BA3830023521F /* DetailPopOverStyle2.m */,
+			);
+			name = PopOvers;
+			sourceTree = "<group>";
+		};
+		23F9D3491566D3CD00A6FAE0 /* Bubbles */ = {
+			isa = PBXGroup;
+			children = (
+				23F9D3451566D3C100A6FAE0 /* PieBubble.h */,
+				23F9D3461566D3C100A6FAE0 /* PieBubble.m */,
+			);
+			name = Bubbles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		236AF93013F28D30008A538D /* MIMChartLib */ = {
+		235C23F31548BBAD00919081 /* MIMChartLib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 236AF94C13F28D30008A538D /* Build configuration list for PBXNativeTarget "MIMChartLib" */;
+			buildConfigurationList = 235C240C1548BBAD00919081 /* Build configuration list for PBXNativeTarget "MIMChartLib" */;
 			buildPhases = (
-				236AF92D13F28D30008A538D /* Sources */,
-				236AF92E13F28D30008A538D /* Frameworks */,
-				236AF92F13F28D30008A538D /* Resources */,
+				235C23F01548BBAD00919081 /* Sources */,
+				235C23F11548BBAD00919081 /* Frameworks */,
+				235C23F21548BBAD00919081 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -478,194 +521,203 @@
 			);
 			name = MIMChartLib;
 			productName = MIMChartLib;
-			productReference = 236AF93113F28D30008A538D /* MIMChartLib.app */;
+			productReference = 235C23F41548BBAD00919081 /* MIMChartLib.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		236AF92813F28D2F008A538D /* Project object */ = {
+		235C23EB1548BBAD00919081 /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 236AF92B13F28D2F008A538D /* Build configuration list for PBXProject "MIMChartLib" */;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 235C23EE1548BBAD00919081 /* Build configuration list for PBXProject "MIMChartLib" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 236AF92613F28D2F008A538D;
-			productRefGroup = 236AF93213F28D30008A538D /* Products */;
+			mainGroup = 235C23E91548BBAD00919081;
+			productRefGroup = 235C23F51548BBAD00919081 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				236AF93013F28D30008A538D /* MIMChartLib */,
+				235C23F31548BBAD00919081 /* MIMChartLib */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		236AF92F13F28D30008A538D /* Resources */ = {
+		235C23F21548BBAD00919081 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				236AF94013F28D30008A538D /* InfoPlist.strings in Resources */,
-				236AF94913F28D30008A538D /* MainWindow.xib in Resources */,
-				23228ADD13F3A7660001DE38 /* myTable.csv in Resources */,
-				23C0DA3913F9101400F72BF4 /* myTable1.csv in Resources */,
-				23C0DA4A13F9353E00F72BF4 /* myTable2.csv in Resources */,
-				23C0DA6113F9B79E00F72BF4 /* myTableBar.csv in Resources */,
-				238EB77413FBB89300F0A21C /* myTableCluster.csv in Resources */,
-				238EB77C13FBC78E00F0A21C /* myTableFragmentedBar.csv in Resources */,
-				238BCE13140ABD3900BF9CE6 /* myTableLinesWithIntOnly.csv in Resources */,
-				2309CEBB140C95700038C78E /* lines.png in Resources */,
-				2309CEBC140C95700038C78E /* lines1.png in Resources */,
-				2309CED5140C98760038C78E /* TestClass.xib in Resources */,
-				042BD5B7153DF90F0002C94D /* facebook.png in Resources */,
-				042BD5B8153DF90F0002C94D /* trans_icon.png in Resources */,
-				042BD5D8153DF9610002C94D /* BasicPieChartSample.png in Resources */,
-				042BD5DA153DF9610002C94D /* BevelPieChart.png in Resources */,
-				042BD5DC153DF9610002C94D /* BiTransPieCHartSample.png in Resources */,
-				042BD5DE153DF9610002C94D /* padded_pie_chart.png in Resources */,
-				042BD5E0153DF9610002C94D /* sectioned_pie_chart.png in Resources */,
-				042BD5E2153DF9610002C94D /* OthersPart1.png in Resources */,
-				042BD5E3153DF9610002C94D /* otherspart2.png in Resources */,
-				042BD5E5153DF9610002C94D /* layeredpiechart.jpg in Resources */,
+				235C24031548BBAD00919081 /* InfoPlist.strings in Resources */,
+				23197EF4154BA3830023521F /* lines.png in Resources */,
+				23197EF5154BA3830023521F /* lines1.png in Resources */,
+				23197EF8154BA3830023521F /* BasicPieChartSample.png in Resources */,
+				23197EFA154BA3830023521F /* BevelPieChart.png in Resources */,
+				23197EFC154BA3830023521F /* BiTransPieCHartSample.png in Resources */,
+				23197EFF154BA3830023521F /* layeredpiechart.jpg in Resources */,
+				23197F01154BA3830023521F /* LeftTriangleIcon.png in Resources */,
+				23197F02154BA3830023521F /* LeftTriangleIconBlack.png in Resources */,
+				23197F04154BA3830023521F /* OthersPart1.png in Resources */,
+				23197F05154BA3830023521F /* otherspart2.png in Resources */,
+				23197F07154BA3830023521F /* padded_pie_chart.png in Resources */,
+				23197F0A154BA3830023521F /* pie_pop_over_gradient.jpg in Resources */,
+				23197F0B154BA3830023521F /* RightTriangleIcon.png in Resources */,
+				23197F0C154BA3830023521F /* RightTriangleIconBlack.png in Resources */,
+				23197F0D154BA3830023521F /* sectioned_pie_chart.png in Resources */,
+				23197F0F154BA3830023521F /* trophy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		236AF92D13F28D30008A538D /* Sources */ = {
+		235C23F01548BBAD00919081 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				236AF94313F28D30008A538D /* main.m in Sources */,
-				236AF94613F28D30008A538D /* MIMChartLibAppDelegate.m in Sources */,
-				2309CEAA140C95700038C78E /* Anchor.m in Sources */,
-				2309CEAB140C95700038C78E /* AnchorInfo.m in Sources */,
-				2309CEAC140C95700038C78E /* CustomBox.m in Sources */,
-				2309CEAD140C95700038C78E /* XAxisBand.m in Sources */,
-				2309CEAE140C95700038C78E /* XAxisLabel.m in Sources */,
-				2309CEAF140C95700038C78E /* YAxisBand.m in Sources */,
-				2309CEB0140C95700038C78E /* BarChart.m in Sources */,
-				2309CEB1140C95700038C78E /* BarView.m in Sources */,
-				2309CEB2140C95700038C78E /* Cluster.m in Sources */,
-				2309CEB3140C95700038C78E /* ClusterGraph.m in Sources */,
-				2309CEB4140C95700038C78E /* MIMColor.m in Sources */,
-				2309CEB5140C95700038C78E /* FragmentedBar.m in Sources */,
-				2309CEB6140C95700038C78E /* FragmentedBarChart.m in Sources */,
-				2309CEB7140C95700038C78E /* 2DFragmentedDoughNut.m in Sources */,
-				2309CEB8140C95700038C78E /* DoughtNutFragmentTitle.m in Sources */,
-				2309CEB9140C95700038C78E /* LineGraph.m in Sources */,
-				2309CEBA140C95700038C78E /* LineInfoBox.m in Sources */,
-				2309CEBD140C95700038C78E /* MIMPieChart.m in Sources */,
-				2309CEBE140C95700038C78E /* WallGraph.m in Sources */,
-				2309CEBF140C95700038C78E /* WallTestClass.m in Sources */,
-				2309CED0140C98760038C78E /* BarTestClass.m in Sources */,
-				2309CED1140C98760038C78E /* ClusterTestClass.m in Sources */,
-				2309CED2140C98760038C78E /* FragmentedBarTestClass.m in Sources */,
-				2309CED3140C98760038C78E /* GroupBarTestClass.m in Sources */,
-				2309CED4140C98760038C78E /* TestClass.m in Sources */,
-				2309CED6140C98760038C78E /* TestClassFragmented.m in Sources */,
-				2309CED7140C98760038C78E /* TestLineClass.m in Sources */,
-				042BD5B4153DF90F0002C94D /* BasicPieChartTestClass.m in Sources */,
-				042BD5B5153DF90F0002C94D /* BevelPieChartTestClass.m in Sources */,
-				042BD5B6153DF90F0002C94D /* PaddedPieChartTestClass.m in Sources */,
-				042BD5B9153DF90F0002C94D /* BiTransPieChartTestClass.m in Sources */,
-				042BD5BA153DF90F0002C94D /* SectionedPieChartTestClass.m in Sources */,
-				042BD5C0153DF9390002C94D /* MIMColorClass.m in Sources */,
-				042BD5D9153DF9610002C94D /* BasicPieChart.m in Sources */,
-				042BD5DB153DF9610002C94D /* BevelPieChart.m in Sources */,
-				042BD5DD153DF9610002C94D /* BiTransPieChart.m in Sources */,
-				042BD5DF153DF9610002C94D /* PaddedPieChart.m in Sources */,
-				042BD5E1153DF9610002C94D /* SectionedPieChart.m in Sources */,
-				042BD5E4153DF9610002C94D /* OthersPieChart.m in Sources */,
-				042BD5E6153DF9610002C94D /* LayeredPieChart.m in Sources */,
+				235C24051548BBAD00919081 /* main.m in Sources */,
+				235C24091548BBAD00919081 /* AppDelegate.m in Sources */,
+				23197EE1154BA3830023521F /* Anchor.m in Sources */,
+				23197EE2154BA3830023521F /* AnchorInfo.m in Sources */,
+				23197EE3154BA3830023521F /* CustomBox.m in Sources */,
+				23197EE4154BA3830023521F /* PageControl.m in Sources */,
+				23197EE5154BA3830023521F /* XAxisBand.m in Sources */,
+				23197EE6154BA3830023521F /* XAxisLabel.m in Sources */,
+				23197EE7154BA3830023521F /* YAxisBand.m in Sources */,
+				23197EE8154BA3830023521F /* BarChart.m in Sources */,
+				23197EE9154BA3830023521F /* BarView.m in Sources */,
+				23197EEA154BA3830023521F /* Cluster.m in Sources */,
+				23197EEB154BA3830023521F /* ClusterGraph.m in Sources */,
+				23197EEC154BA3830023521F /* MIMColor.m in Sources */,
+				23197EED154BA3830023521F /* MIMColorClass.m in Sources */,
+				23197EEE154BA3830023521F /* FragmentedBar.m in Sources */,
+				23197EEF154BA3830023521F /* FragmentedBarChart.m in Sources */,
+				23197EF0154BA3830023521F /* 2DFragmentedDoughNut.m in Sources */,
+				23197EF1154BA3830023521F /* DoughtNutFragmentTitle.m in Sources */,
+				23197EF2154BA3830023521F /* SingleLineGraph.m in Sources */,
+				23197EF3154BA3830023521F /* LineInfoBox.m in Sources */,
+				23197EF6154BA3830023521F /* BasicPie.m in Sources */,
+				23197EF7154BA3830023521F /* BasicPieChart.m in Sources */,
+				23197EF9154BA3830023521F /* BevelPieChart.m in Sources */,
+				23197EFB154BA3830023521F /* BiTransPieChart.m in Sources */,
+				23197EFD154BA3830023521F /* DefaultPopOverForPieChart.m in Sources */,
+				23197EFE154BA3830023521F /* DetailPopOverStyle2.m in Sources */,
+				23197F00154BA3830023521F /* LayeredPieChart.m in Sources */,
+				23197F03154BA3830023521F /* MIMPieChart.m in Sources */,
+				23197F06154BA3830023521F /* OthersPieChart.m in Sources */,
+				23197F08154BA3830023521F /* PaddedPieChart.m in Sources */,
+				23197F0E154BA3830023521F /* SectionedPieChart.m in Sources */,
+				23197F10154BA3830023521F /* WallGraph.m in Sources */,
+				23CE0D15156467E80078BCC5 /* DefaultInfoBox.m in Sources */,
+				23CE0D19156468020078BCC5 /* InfoBoxStyle1.m in Sources */,
+				23CE0D1C156468100078BCC5 /* InfoBoxStyle2.m in Sources */,
+				23F9D33D1565A6D300A6FAE0 /* PermanentScroller.m in Sources */,
+				23F9D3401565B48600A6FAE0 /* ScrollViewSubClass.m in Sources */,
+				23F9D3471566D3C200A6FAE0 /* PieBubble.m in Sources */,
+				237F125B156D377D00A259FC /* MultiLineGraph.m in Sources */,
+				237F125E156D37E300A259FC /* MIM_MathClass.m in Sources */,
+				237F126B156DDE5000A259FC /* NegativeLineGraph.m in Sources */,
+				23BD8E40156EE1B90098E85D /* LineScrollView.m in Sources */,
+				23BD8E45156EE7690098E85D /* SingleLineLongGraph.m in Sources */,
+				23BD8E4F156FEA090098E85D /* MultiLineLongGraph.m in Sources */,
+				2384DAF41573F48700F9F126 /* WallLongGraph.m in Sources */,
+				2384DAF71573F49C00F9F126 /* MultiWallGraph.m in Sources */,
+				2384DAFA1573F4AA00F9F126 /* MultiWallLongGraph.m in Sources */,
+				2384DAFD1573F4BA00F9F126 /* NegativeWallGraph.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		236AF93E13F28D30008A538D /* InfoPlist.strings */ = {
+		235C24011548BBAD00919081 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				236AF93F13F28D30008A538D /* en */,
+				235C24021548BBAD00919081 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		236AF94713F28D30008A538D /* MainWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				236AF94813F28D30008A538D /* en */,
-			);
-			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		236AF94A13F28D30008A538D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
-			};
-			name = Debug;
-		};
-		236AF94B13F28D30008A538D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
-			};
-			name = Release;
-		};
-		236AF94D13F28D30008A538D /* Debug */ = {
+		235C240A1548BBAD00919081 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reetu Bok (8XBRM2999A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "76CD7FF1-581F-4573-8442-FCFB1F9477CF";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		235C240B1548BBAD00919081 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Reetu Bok (8XBRM2999A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "76CD7FF1-581F-4573-8442-FCFB1F9477CF";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		235C240D1548BBAD00919081 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MIMChartLib/MIMChartLib-Prefix.pch";
 				INFOPLIST_FILE = "MIMChartLib/MIMChartLib-Info.plist";
-				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
-		236AF94E13F28D30008A538D /* Release */ = {
+		235C240E1548BBAD00919081 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MIMChartLib/MIMChartLib-Prefix.pch";
 				INFOPLIST_FILE = "MIMChartLib/MIMChartLib-Info.plist";
-				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -673,25 +725,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		236AF92B13F28D2F008A538D /* Build configuration list for PBXProject "MIMChartLib" */ = {
+		235C23EE1548BBAD00919081 /* Build configuration list for PBXProject "MIMChartLib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				236AF94A13F28D30008A538D /* Debug */,
-				236AF94B13F28D30008A538D /* Release */,
+				235C240A1548BBAD00919081 /* Debug */,
+				235C240B1548BBAD00919081 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		236AF94C13F28D30008A538D /* Build configuration list for PBXNativeTarget "MIMChartLib" */ = {
+		235C240C1548BBAD00919081 /* Build configuration list for PBXNativeTarget "MIMChartLib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				236AF94D13F28D30008A538D /* Debug */,
-				236AF94E13F28D30008A538D /* Release */,
+				235C240D1548BBAD00919081 /* Debug */,
+				235C240E1548BBAD00919081 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 236AF92813F28D2F008A538D /* Project object */;
+	rootObject = 235C23EB1548BBAD00919081 /* Project object */;
 }

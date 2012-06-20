@@ -1,32 +1,37 @@
 /*
- Copyright (C) 2011  Reetu Raj (reetu.raj@gmail.com)
+ Copyright (C) 2011- 2012  Reetu Raj (reetu.raj@gmail.com)
  
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
- 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+ and associated documentation files (the “Software”), to deal in the Software without 
+ restriction, including without limitation the rights to use, copy, modify, merge, publish, 
+ distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom
+ the Software is furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all copies or 
+ substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT 
+ NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *///
 //  2DFragmentedDoughNut.m
-//  MIM3D
+//  MIM2D Library
 //
 //  Created by Reetu Raj on 01/08/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 __MIM 2D__. All rights reserved.
 //
 
 #import "2DFragmentedDoughNut.h"
 
+@interface _DFragmentedDoughNut () 
+-(void)setOutRadius:(float)ORadius AndInnerRadius:(float)IRadius;
+@end
 
 @implementation _DFragmentedDoughNut
-@synthesize valuesArray,tint,titleArray,center,isShadow;
-
+@synthesize tint,center,isShadow;
+@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -34,32 +39,76 @@
     if (self) {
         // Initialization code
         self.backgroundColor=[UIColor clearColor];
-
+        
+        if([MIMColor sizeOfColorArray]==0)
+            [MIMColor InitColors];
+        
     }
     return self;
 }
 
--(void)setOutRadius:(float)ORadius AndInnerRadius:(float)IRadius
+
+
+-(void)drawDoughNut
 {
-
-    float _viewWidth=self.frame.size.width;
-    float _viewHeight=self.frame.size.height;
+    //This will call all delegates
+    float innerR_;
+    float outerR_;
+    if([delegate respondsToSelector:@selector(innerRadiusForDoughNut:)])
+    {
+        innerR_=[delegate innerRadiusForDoughNut:self];
+        NSAssert((innerR_ !=0),@"WARNING::Inner Radius is 0.");
+    }
+    else
+    {
+        NSLog(@"Warning:Set Inner Radius.Use delegate Method innerRadiusForDoughNut: ");
+        return;
+    }
     
-    center.x=_viewWidth/2;
-    center.y=_viewHeight/2;
-    
-    outerRadius=ORadius;
-    innerRadius=IRadius;
-
-    [self setNeedsDisplay];
     
     
+    if([delegate respondsToSelector:@selector(outerRadiusForDoughNut:)])
+    {
+        outerR_=[delegate outerRadiusForDoughNut:self];
+        NSAssert((outerR_ !=0),@"WARNING::Outer Radius is 0.");
+    }
+    else
+    {
+        NSLog(@"Warning:Set Outer Radius.Use delegate Method outerRadiusForDoughNut: ");
+        return;
+    }
     
-
+    
+    
+    if([delegate respondsToSelector:@selector(valuesForDoughNut:)])
+    {
+        valuesArray=[delegate valuesForDoughNut:self];
+        NSAssert(([valuesArray count] !=0),@"WARNING::No Values to draw DoughNut.");
+    }
+    else
+    {
+        NSLog(@"Warning:No Values to draw DoughNut.Use delegate Method valuesForDoughNut: ");
+        return;
+    }
+    
+    
+    
+    if([delegate respondsToSelector:@selector(titlesForDoughNut:)])
+    {
+        titleArray=[delegate titlesForDoughNut:self];
+    }
+    else
+    {
+        NSLog(@"Warning:No Values for titles in DoughNut.Use delegate Method titlesForDoughNut: ");
+        return;
+    }
+    
+    
+    [self setOutRadius:outerR_ AndInnerRadius:innerR_];
+    
+    
+ 
 }
-
-
-
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -122,7 +171,7 @@
     
     
     if(isShadow)
-        CGContextSetShadow(context, CGSizeMake(2.0, -2.0), 1.0);
+        CGContextSetShadow(context, CGSizeMake(1.0, -1.0), 4.0);
     
     for(int i=0;i<[valuesArray count];i++)
     {
@@ -173,19 +222,12 @@
     }
         
         
-   // CGContextSaveGState(context);
-        
-    //CGContextSetShadowWithColor(context, CGSizeMake(-2.0, 2.0), 5.0, [UIColor blackColor].CGColor);
-
-
-
+    CGContextSaveGState(context);
     CGContextSetFillColorWithColor( context, [[UIColor alloc]initWithRed:0.16 green:0.17 blue:0.17 alpha:1.0].CGColor );
     CGContextSetBlendMode(context, kCGBlendModeClear);
-    CGRect holeRect= CGRectMake(center.x - innerRadius/2 , center.y - innerRadius/2, innerRadius, innerRadius);
+    CGRect holeRect= CGRectMake(center.x - innerRadius, center.y - innerRadius, innerRadius*2, innerRadius*2);
     CGContextFillEllipseInRect( context, holeRect );
-
-        
-      //  CGContextRestoreGState(context);
+    CGContextRestoreGState(context);
  
     
 }
@@ -223,9 +265,29 @@
    
 }
 
+
+#pragma mark - PRIVATE METHODS
+-(void)setOutRadius:(float)ORadius AndInnerRadius:(float)IRadius
+{
+    
+    float _viewWidth=self.frame.size.width;
+    float _viewHeight=self.frame.size.height;
+    
+    center.x=_viewWidth/2;
+    center.y=_viewHeight/2;
+    
+    outerRadius=ORadius;
+    innerRadius=IRadius;
+    
+    [self setNeedsDisplay];
+
+}
+
+
+
 - (void)dealloc
 {
-    [super dealloc];
+    ////[super dealloc];
 }
 
 @end

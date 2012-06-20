@@ -21,14 +21,15 @@
 @synthesize dropShadowOnRoad;
 @synthesize tint;
 @synthesize drawBorders;
+@synthesize userTouchAllowed;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        
-        [MIMColor InitColors];
+        if([MIMColor sizeOfColorArray]==0)
+            [MIMColor InitColors];
     }
     return self;
 }
@@ -112,8 +113,24 @@
     
     
     
-    [self setBackgroundColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0]];
+
     
+    if([delegate respondsToSelector:@selector(colorForBackground:)])
+    {
+        bgColor=[delegate colorForBackground:self];
+        
+        if(bgColor==nil)
+            bgColor=[MIMColorClass colorWithRed:0.9 Green:0.9 Blue:0.9 Alpha:1.0];
+        
+    }
+    else
+    {
+        //SET BACKGROUND COLOR
+        bgColor=[MIMColorClass colorWithRed:0.9 Green:0.9 Blue:0.9 Alpha:1.0];
+        
+    }
+    
+
     
     
     
@@ -298,11 +315,11 @@
     
     
 
-    float k=0.8;
+
     CGRect a=self.frame;
     a.origin.x=0;
     a.origin.y=0;
-    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:k green:k blue:k alpha:1.0].CGColor);    
+    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:bgColor.red green:bgColor.green blue:bgColor.blue alpha:bgColor.alpha].CGColor);    
     CGContextAddRect(context, a);
     CGContextFillPath(context);
     
@@ -404,7 +421,7 @@
                 }
                 
                 
-                CGGradientRef myGradient=(CGGradientRef)[pieChart.gradientArray_ objectAtIndex:0];
+                CGGradientRef myGradient=(__bridge CGGradientRef)[pieChart.gradientArray_ objectAtIndex:0];
                 CGContextDrawLinearGradient(context,myGradient , startshine, endRadius, kCGGradientDrawsAfterEndLocation);
                 
                 
@@ -428,7 +445,7 @@
                 }
                 
                 
-                CGGradientRef myGradient=(CGGradientRef)[pieChart.gradientArray_ objectAtIndex:i];
+                CGGradientRef myGradient=(__bridge CGGradientRef)[pieChart.gradientArray_ objectAtIndex:i];
                 CGContextDrawLinearGradient(context, myGradient, startshine, endRadius, kCGGradientDrawsAfterEndLocation);
                 
             }
@@ -693,7 +710,7 @@
 
 - (void)dealloc
 {
-    [super dealloc];
+    ////[super dealloc];
 }
 
 @end

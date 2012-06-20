@@ -1,31 +1,52 @@
 /*
- Copyright (C) 2011  Reetu Raj (reetu.raj@gmail.com)
+ Copyright (C) 2011- 2012  Reetu Raj (reetu.raj@gmail.com)
  
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
- 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+ and associated documentation files (the “Software”), to deal in the Software without 
+ restriction, including without limitation the rights to use, copy, modify, merge, publish, 
+ distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom
+ the Software is furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all copies or 
+ substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT 
+ NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *///
 //  WallGraph.h
-//  MIM3D
+//  MIM2D Library
 //
 //  Created by Reetu Raj on 07/07/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 __MIM 2D__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "Anchor.h"
+#import "WallGraphDelegate.h"
+#import "MIM_MathClass.h"
+#import "Constant.h"
+#import "WallLongGraph.h"
+#import "LineScrollView.h"
 
-@interface WallGraph : UIView {
+@interface WallGraph : UIView<AnchorDelegate> {
+    
+    
+    BOOL fitsToScreenWidth;
+    BOOL nonInteractiveAnchorPoints;
+    
+    X_TITLES_STYLE xTitleStyle;
+    WALL_PATTERN_STYLE patternStyle;
+    
+    
+    
+    
+    @private
+    
+    id<WallGraphDelegate>delegate;
     
     BOOL needStyleSetter;
     UIButton *styleButton;
@@ -34,57 +55,44 @@
     
     float pixelsPerTile;
     int numOfHLines;
-    
-    @private
     NSMutableArray *_yElements;
     NSMutableArray *_xElements;
+    NSArray *_xTitles;
+    
     float _gridWidth;
     float _gridHeight;
     float _scalingX;
     float _scalingY;
-    float _tileWidth;//Same will be the _tileHeight
-    float maxOfY;
+    float _tileWidth;
+    float _tileHeight;
     BOOL xIsString;
     BOOL isGradient;
     BOOL isShadow;
     UIImage *patternImage;
     ANCHORTYPE anchorType;
-}
+    
+    BOOL _verticalLinesVisible;
+    BOOL _horizontalLinesVisible;
+    MIMColorClass *colorOfGraphBgLine;
+    
+    float widthOfWallBorder;
 
-@property(nonatomic,assign)BOOL xIsString;
-@property(nonatomic,assign)BOOL isGradient;
-@property(nonatomic,assign)BOOL needStyleSetter;
+}
+@property(nonatomic,assign)X_TITLES_STYLE xTitleStyle;
+@property(nonatomic,assign)WALL_PATTERN_STYLE patternStyle;
+
+@property(nonatomic,assign)BOOL nonInteractiveAnchorPoints;
+
+
+
+@property(nonatomic,retain)id<WallGraphDelegate>delegate;
 @property(nonatomic,assign)BOOL isShadow;
 @property(nonatomic,assign) int style;
-@property(nonatomic,retain) UIImage *patternImage;
-@property(nonatomic,assign) ANCHORTYPE anchorType;
--(void)initAll;
--(int)findMaximumValue:(NSArray *)array;
--(void)populateXandYFromUserInput;
--(void)CalculateGridDimensions;
--(void)ScalingFactor;
--(void)FindTileWidth;
--(float)FindMaxOfY;
--(float)FindScaleOfX;
 
--(void)displayYAxis;
 
--(void)findScaleForYTile:(float)screenHeight;
--(void)findScaleForXTile;
-
+//Public Methods
 -(void)drawWallGraph;
--(void)drawAnchorPoints;
--(void)setNewYForAnchor;
 
--(void)readFromCSV:(NSString *)csvPath  TitleAtColumn:(int)tColumn  DataAtColumn:(int)dColumn;
 
-//AnchorMenu
--(void)displayAnchorInfo:(NSInteger)tagID At:(CGPoint)point;
--(void)RemoveAnchorInfo:(NSInteger)tagID;
 
--(void)drawThePattern:(CGContextRef)ctx;
--(void)drawWallEdge:(CGContextRef)ctx WithColors:(NSDictionary *)dColor;
--(void)drawBgPattern:(CGContextRef)ctx;
--(void)drawVerticalBgLines:(CGContextRef)ctx;
--(void)drawHorizontalBgLines:(CGContextRef)ctx;
 @end

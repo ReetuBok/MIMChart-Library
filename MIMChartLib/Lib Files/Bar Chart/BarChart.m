@@ -1,24 +1,26 @@
 /*
- Copyright (C) 2011  Reetu Raj (reetu.raj@gmail.com)
+ Copyright (C) 2011- 2012  Reetu Raj (reetu.raj@gmail.com)
  
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
- 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
- 
- You should have received a copy of the GNU General Public License
- along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
+ and associated documentation files (the “Software”), to deal in the Software without 
+ restriction, including without limitation the rights to use, copy, modify, merge, publish, 
+ distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom
+ the Software is furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all copies or 
+ substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT 
+ NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *///
 //  BarChart.m
 //  MIMChartLib
 //
 //  Created by Reetu Raj on 15/08/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 __MIM 2D__. All rights reserved.
 //
 
 #import "BarChart.h"
@@ -27,7 +29,20 @@
 
 @implementation BarChart
 @synthesize groupBars,xIsString,barWidth,needStyleSetter,style,isGradient,horizontalGradient;
+@synthesize delegate,xTitleStyle;
 
+static NSInteger firstNumSort(id str1, id str2, void *context) {
+    
+    int num1 = [str1 integerValue];
+    int num2 = [str2 integerValue];
+    
+    if (num1 < num2)
+        return NSOrderedAscending;
+    else if (num1 > num2)
+        return NSOrderedDescending;
+    
+    return NSOrderedSame;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -36,6 +51,7 @@
         // Initialization code
         
         groupBars=NO;
+        stackedBars=NO;
         
     }
     return self;
@@ -59,13 +75,13 @@
     
 
     XAxisBand *_xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), 100)];
-    [_xBand readTitleFromCSV:filePath AtColumn:xColumn];
+//    [_xBand readTitleFromCSV:filePath AtColumn:xColumn];
     _xBand.style=xstyle;
     _xBand.xIsString=xIsString;
-    if(groupBars)
+    if(groupBars ||stackedBars)
     {
         if (barWidth==0) _xBand.scalingFactor=[self FindBestScaleForGraph];
-        else  _xBand.scalingFactor=barWidth*[_xElements count]+20;
+        else  _xBand.scalingFactor=barWidth*[_xValElements count]+20;
     }
     else
     {
@@ -83,41 +99,24 @@
 
 
 
--(void)initAll
+-(void)initAndWarnings 
 {
     
     srand(time(NULL));
     
-
-    [self FindTileWidth];
+    [MIMColor nonAdjacentGradient];
     [self CalculateGridDimensions];
+    [self FindTileWidthAndHeight];
     [self ScalingFactor]; 
-    [self addSetterButton];
-    //[self drawLineInfoBox];
-   
     
-    
-    //If these property are not set by users
-    //set them here.
-    
-    if(style==0)
-        style=0;
-    
-    if(!groupBars)
-    {
-        if(barWidth==0)
-            barWidth=_scalingX;
-    }
-    
-    
-    
+
 }
 
 
 -(void)drawLineInfoBox
 {
     LineInfoBox *box=[[LineInfoBox alloc]initWithFrame:CGRectMake(0, 440, CGRectGetWidth(self.frame), 400)];
-    box.lineArray=[[NSMutableArray alloc]initWithArray:_xElements];
+    box.lineArray=[[NSMutableArray alloc]initWithArray:_xValElements];
     [self addSubview:box];
 }
 
@@ -130,68 +129,97 @@
 }
 
 
--(void)FindTileWidth
+
+
+
+
+-(void)FindTileWidthAndHeight
 {
+    //Check if Tilewidth is defined by user
+    if([delegate respondsToSelector:@selector(gapBetweenVerticalLines:)])
+    {
+        _tileWidth=[delegate gapBetweenVerticalLines:self];
+        if(_tileWidth==0)
+            _tileWidth=10;
+        NSLog(@"WARNING: Minimum gap between vertical lines is 10.");
+    }
+    else
+    {
+        _tileWidth=50;
+    }
     
-    _tileWidth=50;
+    
+    
+    if([delegate respondsToSelector:@selector(gapBetweenHorizontalLines:)])
+    {
+        _tileHeight=[delegate gapBetweenHorizontalLines:self];
+        if(_tileHeight==0)
+            _tileHeight=10;
+        NSLog(@"WARNING: Minimum gap between horizontal lines is 10.");
+    }
+    else
+    {
+        _tileHeight=50;
+    }
+    
+    
+    
+    
     
     
 }
-
-
-
-#pragma mark - Scale
 
 
 -(void)ScalingFactor
 {
-    if(groupBars){
-    
-        maxOfY=[self findMaximumValue:_yValElements];
-
-    }
-    else
-    {
-        maxOfY=[self findMaximumValue:_yElements];
-
-        
-    }
-    
-    [self findScaleForYTile:_gridHeight]; // Find Scaling factor for Y    
-    [self findScaleForXTile];
+    [self _findScaleForYTile];
+    [self _findScaleForXTile];
 
 }
 
 
--(float)FindMaxOfY
-{
-    
-    return maxOfY;
-    
-}
 
--(float)FindScaleOfX
+-(void)_findScaleForYTile
 {
-    
-    return _scalingX;
-    
-}
-
--(float)FindBestScaleForGraph
-{
-    
-    return MAX(_scalingX, _scalingY);
-    
-}
-
-
--(void)findScaleForYTile:(float)screenHeight
-{
-    int HorLines=screenHeight/_tileWidth;
+    int HorLines=_gridHeight/_tileHeight;
     numOfHLines=HorLines;
     
-    float maxY=maxOfY;
-    float pixelPerTile=maxY/(HorLines-1);
+    float maxOfY;
+    float minOfY;
+    
+    if(groupBars || stackedBars)
+    {
+    
+        maxOfY=[MIM_MathClass getMaxFloatValue:[_yValElements objectAtIndex:0]];
+        for (int i=1; i<[_yValElements count]; i++) 
+        {
+            float maxOfY1=[MIM_MathClass getMaxFloatValue:[_yValElements objectAtIndex:i]];
+            if(maxOfY1>maxOfY)
+                maxOfY=maxOfY1;
+        }
+        
+        
+        
+        minOfY=[MIM_MathClass getMinFloatValue:[_yValElements objectAtIndex:0]];
+        for (int i=1; i<[_yValElements count]; i++) 
+        {
+            float minOfY1=[MIM_MathClass getMinFloatValue:[_yValElements objectAtIndex:i]];
+            if(minOfY1<minOfY)
+                minOfY=minOfY1;
+        }
+        
+    }
+    else 
+    {
+        maxOfY=[MIM_MathClass getMaxFloatValue:_yValElements];
+        minOfY=[MIM_MathClass getMinFloatValue:_yValElements];
+    }
+    
+    
+    
+    
+    
+    float pixelPerTile=(maxOfY-minOfY)/(HorLines-1);
     int countDigits=[[NSString stringWithFormat:@"%.0f",pixelPerTile] length];
     
     //New Pixel per tile swould be
@@ -201,22 +229,55 @@
     
     pixelsPerTile=pixelPerTile;
     
-    _scalingY=_tileWidth/pixelPerTile;
+    _scalingY=_tileHeight/pixelPerTile;
     
     
 }
 
 
--(void)findScaleForXTile
+-(float)FindBestScaleForGraph
 {
-    if(xIsString){
-        _scalingX=_gridWidth/[_yElements count];
+    
+    return MAX(_scalingX, _scalingY);
+    
+}
+
+
+
+
+-(void)_findScaleForXTile
+{
+    int count=0;
+    
+   
+    if([[_xValElements objectAtIndex:0] isKindOfClass:[NSString class]])
+    {
+        count=[_xValElements count];
+        
+    }
+    else
+    {
+        //groupBars
+        count=[[_xValElements objectAtIndex:0] count];
+    }
+    
+    
+    
+    if(xIsString)
+    {
+        
+        _scalingX=_gridWidth/count;
         return;
     }
     
+    
+    
     int VerLines=_gridWidth/_tileWidth;
-    float maxX=[self findMaximumValue:_xElements];
-    float pixelPerTile=maxX/(VerLines-1);
+    float maxX=[MIM_MathClass getMaxFloatValue:_xValElements];
+    float minX=[MIM_MathClass getMinFloatValue:_xValElements];
+    
+    float pixelPerTile=(maxX-minX)/(VerLines-1);
+    
     int countDigits=[[NSString stringWithFormat:@"%.0f",pixelPerTile] length];
     
     //New Pixel per tile swould be
@@ -232,198 +293,115 @@
 
 
 
--(float)findMaximumValue:(NSArray *)array
+
+
+
+-(void)drawBarChart
 {
     
-    float maxVal=[[array objectAtIndex:0] floatValue];
-    for (int i=1; i<[array count]; i++) {
-        
-        if(maxVal<[[array objectAtIndex:i] floatValue])
-            maxVal=[[array objectAtIndex:i] floatValue];
-    }   
     
 
+    _yValElements=[[NSMutableArray alloc]init];
+    _xValElements=[[NSMutableArray alloc]init];
 
-    return maxVal;
     
-}
-
-
-
-#pragma  mark - read
--(void)readFromCSV:(NSString*)csvPath  TitleAtColumn:(int)tcolumn  DataAtColumn:(int)dColumn
-{
-    xColumn=tcolumn;
-
-    int _column;
-    if(groupBars) _column=0;
-    else _column=dColumn; 
-    
-    //  here - stores all values for y.
-    _yElements=[[NSMutableArray alloc]init];
-    
-    NSString *fileDataString=[NSString stringWithContentsOfFile:csvPath encoding:NSUTF8StringEncoding error:nil];
-    NSArray *linesArray=[fileDataString componentsSeparatedByString:@"\n"];
-    
-    filePath=[csvPath retain];
-    
-    
-    int k=0;
-    for (id string in linesArray)
-        if(k<[linesArray count]-1){
-            
-            NSString *lineString=[linesArray objectAtIndex:k];
-            NSArray *columnArray=[lineString componentsSeparatedByString:@";"];
-            [_yElements addObject:[columnArray objectAtIndex:_column]];
-            k++;
-            
-        }
-    [_yElements removeObjectAtIndex:0];
-    
-    //--
-    
-    
-    if(groupBars) _column=0;
-    else _column=tcolumn;
-    
-    //stores all values of x.
-    _xElements=[[NSMutableArray alloc]init];
-    
-    
-    fileDataString=[NSString stringWithContentsOfFile:csvPath encoding:NSUTF8StringEncoding error:nil];
-    linesArray=[fileDataString componentsSeparatedByString:@"\n"];
-    
-    
-    
-    if(groupBars)
+    if([delegate respondsToSelector:@selector(groupedBars:)])
     {
+        groupBars=[delegate groupedBars:self];
         
-        NSArray *columnArray=[[linesArray objectAtIndex:_column] componentsSeparatedByString:@";"];
-        
-        int k=0;
-        for (id string in columnArray)
-        if(k<[columnArray count]){
-            
-            [_xElements addObject:[columnArray objectAtIndex:k]];
-            k++;
-            
-        }
     }
     else
     {
+        groupBars=FALSE;
+    }
+
+    
+    
+    if([delegate respondsToSelector:@selector(stackedBars:)])
+    {
+        stackedBars=[delegate stackedBars:self];
         
-        int k=0;
-        for (id string in linesArray)
-            if(k<[linesArray count]-1){
-                
-                NSString *lineString=[linesArray objectAtIndex:k];
-                NSArray *columnArray=[lineString componentsSeparatedByString:@";"];
-                [_xElements addObject:[columnArray objectAtIndex:_column]];
-                k++;
-                
-            }
+    }
+    else
+    {
+        stackedBars=FALSE;
+    }
+
+    
+
+    
+    if([delegate respondsToSelector:@selector(valuesForGraph:)])
+    {
+        NSArray *valueArray_=[delegate valuesForGraph:self];
+        NSAssert(([valueArray_ count] !=0),@"WARNING::No values available to draw graph.");
+        
+        //See if the its an array or array or just one array
+        if([valueArray_ count]>0)
+        {
+            _yValElements=[NSMutableArray arrayWithArray:valueArray_];
+        }
         
         
     }
-    
-    
-    [_xElements removeObjectAtIndex:0];
-    
-    
-    
-    //populate
-    if(groupBars)
+    else
     {
-        _yValElements=[[NSMutableArray alloc]init];
-        _xValElements=[[NSMutableArray alloc]init];
-        
-        fileDataString=[NSString stringWithContentsOfFile:csvPath encoding:NSUTF8StringEncoding error:nil];
-        linesArray=[fileDataString componentsSeparatedByString:@"\n"];
+        NSLog(@"Error: Use delegate Method valuesForGraph: to give values for graph.");
+    }
 
+   
+    
+    if([delegate respondsToSelector:@selector(valuesForXAxis:)])
+    {
+        NSArray *valueArray_=[delegate valuesForXAxis:self];
+        NSAssert(([valueArray_ count] !=0),@"WARNING::No values available for x-Axis Labels.");
         
-        for(int k=0;k<[linesArray count]-1;k++)
+        
+        if([valueArray_ count]>0)
         {
-            
-            [_xValElements addObject:[NSNumber numberWithFloat:k]];
-            
-            NSString *lineString=[linesArray objectAtIndex:k+1];
-            NSArray *columnArray=[lineString componentsSeparatedByString:@";"];
-            for(int i=0;i<[columnArray count]-1;i++)
-            {
-                float value=[[columnArray objectAtIndex:i+1] floatValue];
-                [_yValElements addObject:[NSNumber numberWithFloat:value]];
-            }
-            
-            
+            _xValElements=[NSMutableArray arrayWithArray:valueArray_];
+        }
+        if(groupBars || stackedBars)
+            xIsString=[MIM_MathClass checkIfStringIsAlphaNumericOnly:[[_xValElements objectAtIndex:0]objectAtIndex:0]];
+        else 
+            xIsString=[MIM_MathClass checkIfStringIsAlphaNumericOnly:[_xValElements objectAtIndex:0]];
+        
+    }
+    else
+    {
+        NSLog(@"Warning:No values available for x-Axis Labels.Use delegate Method valuesForXAxis: ");
+        return;
+    }
+    
+    
+    
+    if([delegate respondsToSelector:@selector(WidthForBarChart:)])
+    {
+        barWidth=[delegate WidthForBarChart:self];
+        if(barWidth==0)
+        {
+            if (groupBars ||stackedBars) 
+                barWidth=30;
+            else 
+                barWidth=40;
 
         }
+            
+            NSLog(@"Warning:Since barWidth is explicitly 0, Code will automatically calculate its bar width.");
+        
     }
-
-    NSLog(@"%@",_yValElements);
-    [self initAll];
-
-}
-
-/*This method is needed only if you use Style setter*/
--(IBAction)styleButtonClicked:(id)sender
-{
- 
-    if(isGradient)    style=[sender tag]+2;
-    else     style=[sender tag]+1;
-    
-    
-    
-    [(UIButton*)sender setTag:style];
-    [styleLabel setText:[NSString stringWithFormat:@"style=%i",style]];
-    
-    
-    //Remove all FragmentedBar
-    for(UIView *view in self.subviews)
-    if([view isKindOfClass:[BarView class]])
-    [view removeFromSuperview];
-    
-    
-    [self setNeedsDisplay];
-    
-}
-
-
-
-
--(void)addSetterButton
-{
-    if(needStyleSetter)
+    else
     {
-        
-        //Style setter code start
-        styleButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-        styleButton.tag=style;
-        [styleButton setFrame:CGRectMake(10, 10, 100, 30)];
-        [styleButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [styleButton setTitle:@"Next" forState:UIControlStateNormal];
-        [styleButton addTarget:self action:@selector(styleButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:styleButton];
-        //Style setter code end
-        
-        
-        styleLabel=[[UILabel alloc]initWithFrame:CGRectMake(120, 10, 100, 30)];
-        [styleLabel setBackgroundColor:[UIColor clearColor]];
-        [styleLabel setText:[NSString stringWithFormat:@"style=%i",style]];
-        [styleLabel setTextColor:[UIColor blackColor]];
-        [styleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
-        [self addSubview:styleLabel];
-        
+        if (groupBars ||stackedBars) 
+            barWidth=30;
+        else 
+            barWidth=40;
     }
     
     
-}
-
-
-
-
--(void)drawBarGraph
-{
+   
     
+    
+    [self initAndWarnings];
     [self setNeedsDisplay];
    // [self drawAnchorPoints];
     
@@ -446,73 +424,272 @@
     
     int totalColors=[MIMColor sizeOfColorArray];
 
-    
-    // Drawing code
-    if(groupBars)
+    for (UIView *view in self.subviews) 
     {
-        int barsPerDivision=[_xElements count];
-        int SpaceOfEachBar;
-        
-        if(barWidth==0) SpaceOfEachBar=_scalingX/barsPerDivision-5;
-        else SpaceOfEachBar=barWidth;
-        
-        if(barWidth!=0) _scalingX=barWidth*barsPerDivision+20;
-        
-        for (int j=0; j<[_yElements count]; j++) {
-        for (int i=0; i< barsPerDivision; i++) {
-
+        [view removeFromSuperview];
+    }
     
-        int _height=[[_yValElements objectAtIndex:(j* barsPerDivision)+i] intValue];
-        _height=_height*_scalingY;
-            
-        BarView *view=[[BarView alloc]initWithFrame:CGRectMake(j* _scalingX + (i *SpaceOfEachBar) , _gridHeight-_height, SpaceOfEachBar, _height)];
-
-        view.isGradient=isGradient;
-        view.horGradient=horizontalGradient;
-            
-        if(isGradient)
+    
+    
+    
+    BOOL pickDefaultColorForLineChart;
+    NSArray *colorLineChartArray;
+    
+    
+    if([delegate respondsToSelector:@selector(ColorsForBarChart:)])
+    {
+        colorLineChartArray=[delegate ColorsForBarChart:self];
+        if([colorLineChartArray count]==0)
         {
-            view.dColor=[MIMColor GetColorAtIndex:(2*i+style+1)%totalColors];
-            view.lColor=[MIMColor GetColorAtIndex:(2*i+style)%totalColors];
+            pickDefaultColorForLineChart=TRUE;
+            NSLog(@"WARNING:Color of Line Chart not defined,hence picking up random color.");
+            
+            
         }
         else
-            view.color=[MIMColor GetColorAtIndex:(i+style)%totalColors];
-        
-            
-            
-  
-        view.borderColor=[UIColor blackColor];
-            
-        //Draw the shadow
-        [view.layer setShadowRadius:1.0];
-        [view.layer setShadowColor:[UIColor grayColor].CGColor];
-        [view.layer setShadowOffset:CGSizeMake(2.0, -1.0)];
-        [view.layer setShadowOpacity:0.8];
-        [self addSubview:view];
+        {
+            pickDefaultColorForLineChart=FALSE;
             
         }
         
-            
-        }
         
         
     }
     else
     {
-                
-        for (int i=0; i<[_xElements count]; i++) { 
+        pickDefaultColorForLineChart=TRUE;
+        
+    }
+
+    
+    style=rand()%totalColors;
+    if(isGradient)
+        style=2*style;
+    
+    // Drawing code
+    if(groupBars)
+    {
+        int barsPerDivision=[[_yValElements objectAtIndex:0] count];
+        int SpaceBetweenSameGroupBar=barWidth/10;
+        
+    
+        
+        BOOL addOnScrollView=FALSE;
+        LineScrollView *lineGScrollView;
+        //Find if there needs to be a scrollview
+        if(((barsPerDivision * barWidth * [_yValElements count]) + (barsPerDivision-1 * SpaceBetweenSameGroupBar * [_yValElements count]) + (barWidth * [_yValElements count] +1) )>_gridWidth)
+        {
             
-            int _height=[[_yElements objectAtIndex:i] floatValue]*_scalingY;
-            BarView *view=[[BarView alloc]initWithFrame:CGRectMake(i* barWidth, _gridHeight-_height, barWidth-10, _height)];
+            lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+            [lineGScrollView setBackgroundColor:[UIColor clearColor]];
+            
+            [self addSubview:lineGScrollView];
+            
+            
+            
+            addOnScrollView=TRUE;
+        }
+        
+        
+        
+        
+        
+        int xOrigin=barWidth;
+        for (int j=0; j<[_yValElements count]; j++) 
+        {
+            for (int i=0; i< [[_yValElements objectAtIndex:j] count]; i++) 
+            {
+                
+        
+                int _height=[[[_yValElements objectAtIndex:j] objectAtIndex:i] intValue];
+                _height=_height*_scalingY;
+                    
+                BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin, _gridHeight-_height, barWidth, _height)];
+
+                view.isGradient=isGradient;
+                view.horGradient=horizontalGradient;
+                    
+                if(isGradient)
+                {
+                    view.dColor=[MIMColor GetColorAtIndex:((2*i)+style+1)%totalColors];
+                    view.lColor=[MIMColor GetColorAtIndex:((2*i)+style)%totalColors];
+                }
+                else
+                    view.color=[MIMColor GetColorAtIndex:(i+style)%totalColors];
+                
+                    
+                    
+          
+                view.borderColor=[UIColor blackColor];
+                    
+                //Draw the shadow
+                [view.layer setShadowRadius:1.0];
+                [view.layer setShadowColor:[UIColor grayColor].CGColor];
+                [view.layer setShadowOffset:CGSizeMake(2.0, -1.0)];
+                [view.layer setShadowOpacity:0.8];
+                
+                if(addOnScrollView)
+                    [lineGScrollView addSubview:view];
+                else
+                    [self addSubview:view];
+                
+                if(i<[[_yValElements objectAtIndex:j] count]-1)
+                    xOrigin+=SpaceBetweenSameGroupBar;
+                
+                xOrigin+=barWidth;
+            }
+            
+            xOrigin+=barWidth;
+        }
+        
+        xOrigin+=barWidth;
+        lineGScrollView.contentSize=CGSizeMake(xOrigin, _gridHeight);
+        
+    }
+    else if(stackedBars)
+    {
+
+        int barsPerDivision=1;
+        int SpaceBetweenSameGroupBar=0;
+        
+        
+        
+        BOOL addOnScrollView=FALSE;
+        LineScrollView *lineGScrollView;
+        //Find if there needs to be a scrollview
+        if(((barsPerDivision * barWidth * [_yValElements count]) + (barsPerDivision-1 * SpaceBetweenSameGroupBar * [_yValElements count]) + (barWidth * [_yValElements count] +1) )>_gridWidth)
+        {
+            
+            lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+            [lineGScrollView setBackgroundColor:[UIColor clearColor]];
+            
+            [self addSubview:lineGScrollView];
+            
+            
+            
+            addOnScrollView=TRUE;
+        }
+        
+        
+        
+        
+        int xOrigin=barWidth;
+        for (int j=0; j<[_yValElements count]; j++) 
+        {
+            
+            //Find ordered elements of [_yValElements objectAtIndex:j]
+            NSArray *stackArray=[_yValElements objectAtIndex:j];
+            stackArray=[stackArray sortedArrayUsingFunction:firstNumSort context:NULL];
+            
+            for (int i=[stackArray count]-1; i >=0; i--) 
+            {
+                
+                
+                int _height=[[stackArray objectAtIndex:i] intValue];
+                _height=_height*_scalingY;
+                
+                BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin, _gridHeight-_height, barWidth, _height)];
+                
+                view.isGradient=isGradient;
+                view.horGradient=horizontalGradient;
+                
+                int t=0;
+                for (int k=0; k<[[_yValElements objectAtIndex:j] count]; k++) 
+                {
+                    int _h=[[[_yValElements objectAtIndex:j] objectAtIndex:k] intValue];
+                    _h=_h*_scalingY;
+                    
+                    if(_h==_height)
+                    {
+                        t=k;
+                        break;
+                    }
+                }
+                
+                if(isGradient)
+                {
+                    view.dColor=[MIMColor GetColorAtIndex:((2*t)+style+1)%totalColors];
+                    view.lColor=[MIMColor GetColorAtIndex:((2*t)+style)%totalColors];
+                }
+                else
+                    view.color=[MIMColor GetColorAtIndex:(i+style)%totalColors];
+                
+                
+                
+                
+                view.borderColor=[UIColor blackColor];
+                
+                //Draw the shadow
+                [view.layer setShadowRadius:1.0];
+                [view.layer setShadowColor:[UIColor grayColor].CGColor];
+                [view.layer setShadowOffset:CGSizeMake(2.0, -1.0)];
+                [view.layer setShadowOpacity:0.8];
+                
+                if(addOnScrollView)
+                    [lineGScrollView addSubview:view];
+                else
+                    [self addSubview:view];
+                
+                if(i<[[_yValElements objectAtIndex:j] count]-1)
+                    xOrigin+=SpaceBetweenSameGroupBar;
+                
+            }
+            
+            xOrigin+=2*barWidth;
+        }
+        
+        xOrigin+=barWidth;
+        lineGScrollView.contentSize=CGSizeMake(xOrigin, _gridHeight);
+
+    }
+    else
+    {
+       
+        BOOL addOnScrollView=FALSE;
+        LineScrollView *lineGScrollView;
+        //Find if there needs to be a scrollview
+        if((([_yValElements count]* barWidth) + 10*([_yValElements count]+1))>_gridWidth)
+        {
+        
+            lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+            [lineGScrollView setBackgroundColor:[UIColor clearColor]];
+            lineGScrollView.contentSize=CGSizeMake((([_yValElements count]* barWidth) + 10*([_yValElements count]+2)), _gridHeight);
+            [self addSubview:lineGScrollView];
+            
+        
+            
+            addOnScrollView=TRUE;
+        }
+        
+        
+        
+        
+                
+        for (int i=0; i<[_yValElements count]; i++) 
+        { 
+            
+            int _height=[[_yValElements objectAtIndex:i] floatValue]*_scalingY;
+            BarView *view=[[BarView alloc]initWithFrame:CGRectMake((i* barWidth) + 10*(i+1), _gridHeight-_height, barWidth, _height)];
             view.isGradient=isGradient;
             
-            if(isGradient)
+            
+            if(pickDefaultColorForLineChart)
             {
-                view.dColor=[MIMColor GetColorAtIndex:(style)%totalColors];
-                view.lColor=[MIMColor GetColorAtIndex:(style+1)%totalColors];
+                
+                if(isGradient)
+                {
+                    view.dColor=[MIMColor GetColorAtIndex:(style+1)%totalColors];
+                    view.lColor=[MIMColor GetColorAtIndex:(style)%totalColors];
+                }
+                else
+                    view.color=[MIMColor GetColorAtIndex:style%totalColors];
+            
             }
-            else
-                view.color=[MIMColor GetColorAtIndex:style%totalColors];
+            else 
+            {
+                
+            }
+            
 
             
 
@@ -525,7 +702,10 @@
             [view.layer setShadowOpacity:0.8];
 
             
-            [self addSubview:view];
+            if(addOnScrollView)
+                [lineGScrollView addSubview:view];
+            else
+                [self addSubview:view];
         }
     
     }
@@ -580,9 +760,12 @@
     
     
 }
+
+
+
 - (void)dealloc
 {
-    [super dealloc];
+    ////[super dealloc];
 }
 
 @end

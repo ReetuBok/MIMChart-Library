@@ -21,19 +21,22 @@
     TINTCOLOR tint;
     BOOL drawBorders;
 
+    //This lets user touch the pieChart, rotate it.    
+    BOOL userTouchAllowed;
+    
     @private
     float maxPForS1;
     int selectedPie;
     BOOL returnBackToOriginalLocation;
     BOOL gradientActive;
-    
+    MIMColorClass *bgColor;
 }
 @property (nonatomic,retain) id<MIMPieChartDelegate> delegate;
 @property (nonatomic,assign)TINTCOLOR tint;
 @property (nonatomic,assign)BOOL drawBorders;
 
 @property (nonatomic,assign)BOOL dropShadowOnRoad;
-
+@property (nonatomic,assign)BOOL userTouchAllowed;
 
 
 

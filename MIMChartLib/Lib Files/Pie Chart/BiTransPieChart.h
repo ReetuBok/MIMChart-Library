@@ -25,6 +25,7 @@
     float borderWidth;
     float percentValue;
     MIMColorClass *mcolor;
+    MIMColorClass *bgColor;
     BOOL glossEffect;
     //TINTCOLOR tint;
     UIImage *centerIcon;
@@ -32,6 +33,9 @@
     
     BOOL dropShadowOnRoad;
     
+    
+    //This lets user touch the pieChart, rotate it.    
+    BOOL userTouchAllowed;
     
 @private
     float maxPForS1;
@@ -47,6 +51,6 @@
 @property (nonatomic,assign)BOOL glossEffect;
 //@property (nonatomic,assign)TINTCOLOR tint;
 @property (nonatomic,retain)UIImage *centerIcon;
-
+@property (nonatomic,assign)BOOL userTouchAllowed;
 -(void)drawPieChart;
 @end

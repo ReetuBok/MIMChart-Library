@@ -24,7 +24,7 @@
 @synthesize paddingPixels;
 @synthesize glossEffect;
 @synthesize borderWidth;
-
+@synthesize userTouchAllowed;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -43,19 +43,7 @@
     
     
     
-    
-    NSArray *bcolorsArray;
-    
-    MIMColorClass *color1=[MIMColorClass colorWithComponent:@"108,178,205"];
-    MIMColorClass *color2=[MIMColorClass colorWithComponent:@"206,69,90"];
-    MIMColorClass *color3=[MIMColorClass colorWithComponent:@"107,160,124"];
-    MIMColorClass *color4=[MIMColorClass colorWithComponent:@"229,128,168"];
-    MIMColorClass *color5=[MIMColorClass colorWithComponent:@"226,198,90"];
-    
-    bcolorsArray=[NSArray arrayWithObjects:color1,color2,color3,color4,color5, nil];
-    
-    
-    
+   
     
     
     
@@ -100,7 +88,7 @@
     CGRect a=self.frame;
     a.origin.x=0;
     a.origin.y=0;
-    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0].CGColor);    
+    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:bgColor.red green:bgColor.green blue:bgColor.blue alpha:bgColor.alpha].CGColor);    
     CGContextAddRect(context, a);
     CGContextFillPath(context);
     
@@ -229,9 +217,11 @@
         //Works ok now dealing with very high width of border
         //it gives rounded edge for very thin sections too.
 
-        if(borderWidth > 0.0)
+        //If border has been set by user
+        //make sure that border colors have also been provided by user
+        if(borderWidth > 0.0 && ([pieChart.borderColorArray_ count]==[pieChart.valueArray_ count]))
         {
-            MIMColorClass *bcolor=[bcolorsArray objectAtIndex:i];
+            MIMColorClass *bcolor=[pieChart.borderColorArray_ objectAtIndex:i];
             UIColor *bordercolor=[[UIColor alloc]initWithRed:bcolor.red green:bcolor.green blue:bcolor.blue alpha:bcolor.alpha];  
 
             
@@ -379,8 +369,20 @@
     
     
     
-    [self setBackgroundColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0]];
-    
+    if([delegate respondsToSelector:@selector(colorForBackground:)])
+    {
+        bgColor=[delegate colorForBackground:self];
+        
+        if(bgColor==nil)
+            bgColor=[MIMColorClass colorWithRed:0.9 Green:0.9 Blue:0.9 Alpha:1.0];
+        
+    }
+    else
+    {
+        //SET BACKGROUND COLOR
+        bgColor=[MIMColorClass colorWithRed:0.9 Green:0.9 Blue:0.9 Alpha:1.0];
+        
+    }
     
     
     
@@ -403,18 +405,29 @@
     if([delegate respondsToSelector:@selector(GlossEffect)])
         pieChart.glossEffect=[delegate GlossEffect];
     
-    
+    //Obsolete way of setting border px    
     //SET BORDERVALUE
-    if([delegate respondsToSelector:@selector(BorderWidth)])
+    //    if([delegate respondsToSelector:@selector(BorderWidth)])
+    //    {
+    //        pieChart.borderWidth_=[delegate BorderWidth];
+    //    }
+    //    else 
+    //    {
+    //        pieChart.borderWidth_=2.0;
+    //        
+    //    }
+          
+    
+    
+    if([delegate respondsToSelector:@selector(bordercolorsForPie:)])
     {
-        pieChart.borderWidth_=[delegate BorderWidth];
-    }
-    else 
-    {
-        pieChart.borderWidth_=2.0;
+        pieChart.borderColorArray_=[NSMutableArray arrayWithArray:[delegate bordercolorsForPie:self]];
         
+        //Check the count of border colors == pie colors
+        NSAssert(([pieChart.borderColorArray_ count]==[pieChart.colorArray_ count]),@"ERROR::Border Colors not provided by user.");
+
     }
-        
+
     
 }
 -(void)findCenter

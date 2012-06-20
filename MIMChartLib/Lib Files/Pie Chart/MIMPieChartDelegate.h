@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Constant.h"
-
+#import "MIMColorClass.h"
 
 
 @protocol MIMPieChartDelegate <NSObject>
@@ -16,6 +16,12 @@
 
 
 @optional
+
+/**User can choose to give his own UI for detail Pop up ***/
+-(UIView *)viewForPopUpAtIndex:(int)index;
+
+
+
 /************************************************************************************************************************************************/
 // PROPERTIES OF PIECHART
 /************************************************************************************************************************************************/
@@ -34,13 +40,14 @@
 /************************************************************************************************************************************************/
 
 //Set background simple Color
-
+-(MIMColorClass *)colorForBackground:(id)pieChart;
 
 //Set background gradient
 
 
 
 //Set background UIView
+
 
 
 /************************************************************************************************************************************************/
@@ -50,10 +57,13 @@
 -(NSArray *)valuesForPie:(id)pieChart;
 
 
-/************************************************************************************************************************************************/
+/**********************************************************************************************************************/
 //  TITLES FOR PIECHART
-/************************************************************************************************************************************************/
+/**********************************************************************************************************************/
 
+-(NSArray *)titlesForPie:(id)pieChart;
+-(NSArray *)DescriptionForPie:(id)pieChart;
+-(NSArray *)IconForPie:(id)pieChart;
 
 
 
@@ -69,6 +79,10 @@
 -(NSArray *)colorsForPie:(id)pieChart;
 
 
+
+//User can give border colors for each pie
+//In Future, it will pick up light/dark mode for border colors Automatically.
+-(NSArray *)bordercolorsForPie:(id)pieChart;
 
 //User should be able to give an array of gradient CGGradientRef and also how to be applied like line or circular.
 //User should be able to give dic of colors and we will create the gradient for them
@@ -88,10 +102,6 @@
 /************************************************************************************************************************************************/
 //  VALUES FOR PIECHART
 /************************************************************************************************************************************************/
-
--(NSArray *)titlesForPie:(id)pieChart;
-
-
 
 
 

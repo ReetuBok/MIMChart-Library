@@ -20,17 +20,23 @@
     BOOL glossEffect;
     float borderWidth;
     
+    //This lets user touch the pieChart, rotate it.    
+    BOOL userTouchAllowed;
     
     @private
     float maxPForS1;
     int selectedPie;
     BOOL returnBackToOriginalLocation;
+    MIMColorClass *bgColor;
 
 }
 @property (nonatomic,retain) id<MIMPieChartDelegate> delegate;
 @property (nonatomic,assign) float paddingPixels;
 @property (nonatomic,assign) BOOL glossEffect;
 @property (nonatomic,assign) float borderWidth;
+@property (nonatomic,assign)BOOL userTouchAllowed;
+
+
 -(void)drawPieChart;
 
 

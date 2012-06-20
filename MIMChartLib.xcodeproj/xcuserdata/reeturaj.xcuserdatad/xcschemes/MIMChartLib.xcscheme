@@ -13,7 +13,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "236AF93013F28D30008A538D"
+               BlueprintIdentifier = "235C23F31548BBAD00919081"
                BuildableName = "MIMChartLib.app"
                BlueprintName = "MIMChartLib"
                ReferencedContainer = "container:MIMChartLib.xcodeproj">
@@ -28,19 +28,28 @@
       buildConfiguration = "Debug">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "235C23F31548BBAD00919081"
+            BuildableName = "MIMChartLib.app"
+            BlueprintName = "MIMChartLib"
+            ReferencedContainer = "container:MIMChartLib.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
-      displayScaleIsEnabled = "NO"
-      displayScale = "1.00"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug">
+      buildConfiguration = "Debug"
+      debugDocumentVersioning = "YES"
+      allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "236AF93013F28D30008A538D"
+            BlueprintIdentifier = "235C23F31548BBAD00919081"
             BuildableName = "MIMChartLib.app"
             BlueprintName = "MIMChartLib"
             ReferencedContainer = "container:MIMChartLib.xcodeproj">
@@ -50,16 +59,15 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      displayScaleIsEnabled = "NO"
-      displayScale = "1.00"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release">
+      buildConfiguration = "Release"
+      debugDocumentVersioning = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "236AF93013F28D30008A538D"
+            BlueprintIdentifier = "235C23F31548BBAD00919081"
             BuildableName = "MIMChartLib.app"
             BlueprintName = "MIMChartLib"
             ReferencedContainer = "container:MIMChartLib.xcodeproj">

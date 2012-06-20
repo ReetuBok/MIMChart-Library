@@ -14,6 +14,8 @@
 @synthesize dividerColor;
 @synthesize dividerGradient;
 @synthesize tint;
+@synthesize userTouchAllowed;
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -57,11 +59,11 @@
     
 
     
-    float k=0.8;
+
     CGRect a=self.frame;
     a.origin.x=0;
     a.origin.y=0;
-    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:k green:k blue:k alpha:1.0].CGColor);    
+    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:bgColor.red green:bgColor.green blue:bgColor.blue alpha:bgColor.alpha].CGColor);    
     CGContextAddRect(context, a);
     CGContextFillPath(context);
     
@@ -377,7 +379,20 @@
     
     
     //SET BACKGROUND COLOR
-    [self setBackgroundColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0]];
+    if([delegate respondsToSelector:@selector(colorForBackground:)])
+    {
+        bgColor=[delegate colorForBackground:self];
+        
+        if(bgColor==nil)
+            bgColor=[MIMColorClass colorWithRed:0.9 Green:0.9 Blue:0.9 Alpha:1.0];
+        
+    }
+    else
+    {
+        //SET BACKGROUND COLOR
+        bgColor=[MIMColorClass colorWithRed:0.9 Green:0.9 Blue:0.9 Alpha:1.0];
+        
+    }
     
 
     
