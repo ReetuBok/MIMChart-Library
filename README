@@ -30,7 +30,7 @@ HOW TO USE IT IN YOUR CODE
 1. Add all the needed frameworks for sure.
 2. Copy and Paste "Lib Files" folder in your project and Also add them to your project by right clicking your project in XCode and choose "Add files to your project". Note "Lib Files" folder can be found under MIMChartLib > "Lib Files" in MIMChart Project.
 3. Then you can add the chart of your purpose to your view in your app.
-4. See Sample Code to see how it is done
+4. See Sample Code under "How to Use folder in XCode Project" to see how it is done
 To find out more about how to stick the chart in your view please see the sample codes.
 
 
