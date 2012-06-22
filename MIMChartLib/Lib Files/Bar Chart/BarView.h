@@ -29,7 +29,6 @@
 @interface BarView : UIView {
     
     NSDictionary *color;
-    
     NSDictionary *lColor;
     NSDictionary *dColor;    
     UIColor *borderColor;

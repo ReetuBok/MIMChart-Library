@@ -360,6 +360,21 @@
 }
 
 
+-(NSDictionary *)animationOnBars:(id)graph
+{
+    if([(BarChart *)graph tag]==10)
+        return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:BAR_ANIMATION_VGROW_STYLE],[NSNumber numberWithFloat:1.0],[NSNumber numberWithFloat:1.0], nil] forKeys:[NSArray arrayWithObjects:@"type",@"animationDelay",@"animationDuration" ,nil] ];
+    else if([(BarChart *)graph tag]==11)
+        return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:BAR_ANIMATION_VGROW_STYLE],[NSNumber numberWithFloat:1.0], nil] forKeys:[NSArray arrayWithObjects:@"type",@"animationDuration" ,nil] ];
+    return nil;
+}
+
+-(MIMColorClass *)colorForBackground:(id)graph
+{
+    if([(BarChart *)graph tag]==11)
+    return [MIMColorClass colorWithComponent:@"0,0,0,0"];
+    return nil;
+}
 
 -(UILabel *)createLabelWithText:(NSString *)text
 {

@@ -106,3 +106,11 @@ typedef enum
 }WALL_PATTERN_STYLE;
 
 
+
+typedef enum
+{
+    BAR_ANIMATION_VGROW_STYLE=1, 
+    
+}BAR_ANIMATION_STYLE;
+
+

@@ -32,23 +32,22 @@
 #import "Constant.h"
 #import "MIM_MathClass.h"
 #import "LineScrollView.h"
-
+#import "MIMColorClass.h"
 @interface BarChart : UIView {
     
     id<BarChartDelegate>delegate;
     X_TITLES_STYLE xTitleStyle;
 
+    BOOL isGradient;
+    BOOL horizontalGradient;
     
     
-    float barWidth;
-    float pixelsPerTile;
-    int numOfHLines;
     
-    BOOL groupBars;
-    BOOL stackedBars;
+    
+
+    
     
     NSMutableArray *colorArray;
-    NSString *filePath;
     float _gridWidth;
     float _gridHeight;
     float _scalingX;
@@ -58,29 +57,26 @@
     BOOL xIsString;
     //float maxOfY;
     
-   
-    
+   @private
+    float pixelsPerTile;
+    int numOfHLines;
+    float barWidth;
     NSMutableArray *_yValElements;
     NSMutableArray *_xValElements;
-    
-    BOOL isGradient;
-    BOOL horizontalGradient;
+    BOOL groupBars;
+    BOOL stackedBars;
+   
     
     int style;
-    BOOL needStyleSetter;
-    UIButton *styleButton;
-    UILabel *styleLabel;
+  
     
-    int xColumn;
     
 }
 @property(nonatomic,retain)id<BarChartDelegate>delegate;
 @property(nonatomic,assign)X_TITLES_STYLE xTitleStyle;
 
-@property(nonatomic,assign)    BOOL groupBars;
-@property(nonatomic,assign) BOOL xIsString;
-@property(nonatomic,assign) float barWidth;
-@property(nonatomic,assign) BOOL needStyleSetter;
+
+
 @property(nonatomic,assign) int style;
 @property(nonatomic,assign)    BOOL isGradient;
 @property(nonatomic,assign)BOOL horizontalGradient;

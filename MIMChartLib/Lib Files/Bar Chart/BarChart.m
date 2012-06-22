@@ -15,7 +15,8 @@
  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *///
+ */
+//
 //  BarChart.m
 //  MIMChartLib
 //
@@ -28,7 +29,7 @@
 #import "LineInfoBox.h"
 
 @implementation BarChart
-@synthesize groupBars,xIsString,barWidth,needStyleSetter,style,isGradient,horizontalGradient;
+@synthesize style,isGradient,horizontalGradient;
 @synthesize delegate,xTitleStyle;
 
 static NSInteger firstNumSort(id str1, id str2, void *context) {
@@ -52,6 +53,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         
         groupBars=NO;
         stackedBars=NO;
+        [self setBackgroundColor:[UIColor clearColor]];
         
     }
     return self;
@@ -75,7 +77,6 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     
 
     XAxisBand *_xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), 100)];
-//    [_xBand readTitleFromCSV:filePath AtColumn:xColumn];
     _xBand.style=xstyle;
     _xBand.xIsString=xIsString;
     if(groupBars ||stackedBars)
@@ -418,6 +419,9 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 
     CGContextRef context = UIGraphicsGetCurrentContext();
 
+    CGContextSetAllowsAntialiasing(context, NO);
+    CGContextSetShouldAntialias(context, NO);
+    
     //Draw the bg gradient
     [self drawBg:context];
     [self drawHorizontalBgLines:context];
@@ -429,6 +433,8 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         [view removeFromSuperview];
     }
     
+    CGContextSetAllowsAntialiasing(context, YES);
+    CGContextSetShouldAntialias(context, YES);
     
     
     
@@ -461,6 +467,67 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         
     }
 
+    
+    
+    NSDictionary *animationDict;
+    BOOL animationOnBars;
+    if([delegate respondsToSelector:@selector(animationOnBars:)])
+    {
+        animationDict=[delegate animationOnBars:self];
+        if([animationDict respondsToSelector:@selector(allKeys)])
+        if([[animationDict allKeys] count]>0)
+        {
+            animationOnBars=TRUE;
+        
+        }
+        else 
+        {
+            NSLog(@"WARNING:animationOnBars delegate method returns nil.");
+        }
+                
+    
+    }
+   
+    //animation block
+    float animationDelayValue;
+    float animationDurationvalue;
+    int animationType;
+    if(animationOnBars)
+    {
+        
+        
+        NSArray *keysArray=[animationDict allKeys];
+        if ([keysArray containsObject:@"animationDelay"]) 
+        {
+            animationDelayValue=[[animationDict valueForKey:@"animationDelay"] floatValue];
+        }
+        else 
+        {
+            animationDelayValue=0;
+        }
+        
+        if ([keysArray containsObject:@"animationDelay"]) 
+        {
+            animationDurationvalue=[[animationDict valueForKey:@"animationDuration"] floatValue];
+        }
+        else 
+        {
+            animationDurationvalue=1.0;
+        }
+        
+        if ([keysArray containsObject:@"type"]) 
+        {
+            animationType=[[animationDict valueForKey:@"type"] intValue];
+        }
+        else 
+        {
+            animationType=1;
+        }
+        
+    }
+    
+    
+    
     
     style=rand()%totalColors;
     if(isGradient)
@@ -527,6 +594,34 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 [view.layer setShadowColor:[UIColor grayColor].CGColor];
                 [view.layer setShadowOffset:CGSizeMake(2.0, -1.0)];
                 [view.layer setShadowOpacity:0.8];
+                
+                
+                //animation block
+                if(animationOnBars)
+                {
+                    
+                    switch (animationType) 
+                    {
+                        case 1:
+                        default:
+                        {
+                            
+                            float tempHeight=_height;
+                            [view setTransform:CGAffineTransformConcat(CGAffineTransformMakeScale(1.0,0.001), CGAffineTransformMakeTranslation(0, tempHeight/2))];
+                            [UIView beginAnimations:nil context:nil];
+                            [UIView setAnimationDelay:animationDelayValue];
+                            [UIView setAnimationDuration:animationDurationvalue];
+                            [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+                            [view setTransform:CGAffineTransformConcat( CGAffineTransformMakeTranslation(0, 0.5*(tempHeight-view.bounds.size.height)),CGAffineTransformMakeScale(1.0,1.0))];        
+                            [UIView commitAnimations];
+                            
+                            
+                        }
+                            break;
+                    }
+                }
+
+                
                 
                 if(addOnScrollView)
                     [lineGScrollView addSubview:view];
@@ -625,6 +720,34 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 [view.layer setShadowOffset:CGSizeMake(2.0, -1.0)];
                 [view.layer setShadowOpacity:0.8];
                 
+                
+                //animation block
+                if(animationOnBars)
+                {
+                    
+                    switch (animationType) 
+                    {
+                        case 1:
+                        default:
+                        {
+                            
+                            float tempHeight=_height;
+                            [view setTransform:CGAffineTransformConcat(CGAffineTransformMakeScale(1.0,0.001), CGAffineTransformMakeTranslation(0, tempHeight/2))];
+                            [UIView beginAnimations:nil context:nil];
+                            [UIView setAnimationDelay:animationDelayValue];
+                            [UIView setAnimationDuration:animationDurationvalue];
+                            [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+                            [view setTransform:CGAffineTransformConcat( CGAffineTransformMakeTranslation(0, 0.5*(tempHeight-view.bounds.size.height)),CGAffineTransformMakeScale(1.0,1.0))];        
+                            [UIView commitAnimations];
+                            
+                            
+                        }
+                            break;
+                    }
+                }
+
+                
+                
                 if(addOnScrollView)
                     [lineGScrollView addSubview:view];
                 else
@@ -672,6 +795,8 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
             BarView *view=[[BarView alloc]initWithFrame:CGRectMake((i* barWidth) + 10*(i+1), _gridHeight-_height, barWidth, _height)];
             view.isGradient=isGradient;
             
+
+            
             
             if(pickDefaultColorForLineChart)
             {
@@ -690,7 +815,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 
             }
             
-
+            
             
 
             
@@ -701,6 +826,32 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
             [view.layer setShadowOffset:CGSizeMake(2.0, 1.0)];
             [view.layer setShadowOpacity:0.8];
 
+             //animation block
+            if(animationOnBars)
+            {
+                
+                switch (animationType) 
+                {
+                    case 1:
+                    default:
+                    {
+                       
+                        float tempHeight=_height;
+                        [view setTransform:CGAffineTransformConcat(CGAffineTransformMakeScale(1.0,0.001), CGAffineTransformMakeTranslation(0, tempHeight/2))];
+                        [UIView beginAnimations:nil context:nil];
+                        [UIView setAnimationDelay:animationDelayValue];
+                        [UIView setAnimationDuration:animationDurationvalue];
+                        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+                        [view setTransform:CGAffineTransformConcat( CGAffineTransformMakeTranslation(0, 0.5*(tempHeight-view.bounds.size.height)),CGAffineTransformMakeScale(1.0,1.0))];        
+                        [UIView commitAnimations];
+                        
+                    
+                    }
+                        break;
+                }
+            }
+            
+            
             
             if(addOnScrollView)
                 [lineGScrollView addSubview:view];
@@ -716,47 +867,100 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 -(void)drawBg:(CGContextRef)context
 {
     
-    CGContextSetAllowsAntialiasing(context, true);
-    CGContextSetShouldAntialias(context, true);
+ 
+    //Check if background color delegate method exists
+    MIMColorClass *bgColor=nil;
+
+    if([delegate respondsToSelector:@selector(colorForBackground:)])
+    {
+        bgColor=[delegate colorForBackground:self];
+
+        if(bgColor!=nil)
+        {
+            CGContextSetFillColorWithColor(context, [UIColor colorWithRed:bgColor.red green:bgColor.green blue:bgColor.blue alpha:bgColor.alpha].CGColor);
+            CGContextFillRect(context, CGRectMake(0, 0, _gridWidth, _gridHeight));
+        }
+        
+    }
+
+    if(bgColor==nil)
+    {
+        //Draw the background with the gray Gradient
+        float _viewWidth=self.frame.size.width;
+        float _viewHeight=self.frame.size.height;
+        
+        
+        
+        CGFloat BGLocations[3] = { 0.0, 0.65, 1.0 };
+        CGFloat BgComponents[12] = { 1.0, 1.0, 1.0 , 1.0,  // Start color
+            0.98, 0.98, 0.98 , 1.0,  // Start color
+            0.85, 0.85, 0.85 , 1.0 }; // Mid color and End color
+        CGColorSpaceRef BgRGBColorspace = CGColorSpaceCreateDeviceRGB();
+        CGGradientRef bgRadialGradient = CGGradientCreateWithColorComponents(BgRGBColorspace, BgComponents, BGLocations, 3);
+        
+        
+        CGPoint startBg = CGPointMake(_viewWidth/2,_viewHeight/2); 
+        CGFloat endRadius=MAX(_viewWidth/2, _viewHeight/2);
+        
+        
+        CGContextDrawRadialGradient(context, bgRadialGradient, startBg, 0, startBg, endRadius, kCGGradientDrawsAfterEndLocation);
+        CGColorSpaceRelease(BgRGBColorspace);
+        CGGradientRelease(bgRadialGradient);
+    }
     
     
-    //Draw the background with the gray Gradient
-    float _viewWidth=self.frame.size.width;
-    float _viewHeight=self.frame.size.height;
-    
-    
-    
-    CGFloat BGLocations[3] = { 0.0, 0.65, 1.0 };
-    CGFloat BgComponents[12] = { 1.0, 1.0, 1.0 , 1.0,  // Start color
-        0.9, 0.9, 0.9 , 1.0,  // Start color
-        0.75, 0.75, 0.75 , 1.0 }; // Mid color and End color
-    CGColorSpaceRef BgRGBColorspace = CGColorSpaceCreateDeviceRGB();
-    CGGradientRef bgRadialGradient = CGGradientCreateWithColorComponents(BgRGBColorspace, BgComponents, BGLocations, 3);
-    
-    
-    CGPoint startBg = CGPointMake(_viewWidth/2,_viewHeight/2); 
-    CGFloat endRadius=MAX(_viewWidth/2, _viewHeight/2);
-    
-    
-    CGContextDrawRadialGradient(context, bgRadialGradient, startBg, 0, startBg, endRadius, kCGGradientDrawsAfterEndLocation);
-    CGColorSpaceRelease(BgRGBColorspace);
-    CGGradientRelease(bgRadialGradient);
     
 }
 -(void)drawHorizontalBgLines:(CGContextRef)ctx
 {
     
+    
+    float widthOfLine;
+    MIMColorClass *colorOfLine;
+    
+    //Check if width and color of line can be accessed by delegate methods
+    if([delegate respondsToSelector:@selector(widthOfHorizontalLines:)])
+    {
+        widthOfLine=[delegate widthOfHorizontalLines:self];
+        if(widthOfLine==0)
+            NSLog(@"WARNING: Line width of horizontal line is 0.");
+        
+    }
+    else
+    {
+        widthOfLine=0.1;
+        
+    }
+    
+    if([delegate respondsToSelector:@selector(colorOfHorizontalLines:)])
+    {
+        colorOfLine=[delegate colorOfHorizontalLines:self];    
+        if(colorOfLine==nil)
+            NSLog(@"WARNING:No color defined for vertical line.");
+    }
+    else
+    {
+        colorOfLine=[MIMColorClass colorWithRed:0.8 Green:0.8 Blue:0.8 Alpha:1.0];
+    }
+
+    
+    
+    
     //Draw Gray Lines as the markers
     CGContextBeginPath(ctx);
-    CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0].CGColor);
-    CGContextSetLineWidth(ctx, 0.1);
-    int numHorzLines=_gridHeight/_tileWidth;
-    for (int i=0; i<numHorzLines; i++) {
+    CGContextSetBlendMode(ctx, kCGBlendModeNormal);
+    CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithRed:colorOfLine.red green:colorOfLine.green blue:colorOfLine.blue alpha:colorOfLine.alpha].CGColor);
+    CGContextSetLineWidth(ctx, widthOfLine);
+    int numHorzLines=_gridHeight/_tileHeight;
+    for (int i=0; i<=numHorzLines; i++) {
         
-        CGContextMoveToPoint(ctx, 0,i*_tileWidth);
-        CGContextAddLineToPoint(ctx,_gridWidth , i*_tileWidth);
+        CGContextMoveToPoint(ctx, 0,i*_tileHeight);
+        CGContextAddLineToPoint(ctx,_gridWidth , i*_tileHeight);
     }
     CGContextDrawPath(ctx, kCGPathStroke);
+    
+
+    
     
     
 }

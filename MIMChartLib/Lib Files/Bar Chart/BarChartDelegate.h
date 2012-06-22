@@ -5,6 +5,8 @@
 //  Created by Reetu Raj on 4/30/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
+#import "Constant.h"
+#import "MIMColorClass.h"
 
 #ifndef MIMChartLib_BarChartDelegate_h
 #define MIMChartLib_BarChartDelegate_h
@@ -40,6 +42,14 @@
 
 -(float)gapBetweenHorizontalLines:(id)graph;
 
+-(NSDictionary *)animationOnBars:(id)graph;
+
+
+-(MIMColorClass *)colorForBackground:(id)graph;
+
+-(float)widthOfHorizontalLines:(id)graph;
+
+-(MIMColorClass *)colorOfHorizontalLines:(id)graph;
 @end
 
 #endif
