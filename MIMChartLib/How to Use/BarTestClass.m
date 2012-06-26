@@ -95,7 +95,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return  3;
+    return  4;
     
 }
 
@@ -152,7 +152,19 @@
             
         }
             break;
-        
+        case 3:
+        {
+            
+            myBarChart1=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            myBarChart1.delegate=self;
+            myBarChart1.tag=10+indexPath.row;
+            myBarChart1.isGradient=YES;
+            myBarChart1.xTitleStyle=X_TITLES_STYLE2;
+            [myBarChart1 drawBarChart];
+            [cell.contentView addSubview:myBarChart1];
+            
+        }
+            break;
             
     }
     
@@ -171,12 +183,12 @@
 {
     NSArray *yValuesArray;
     
-    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=11)
+    if(([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=11) || graph==myBarChart1)
     {
         yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
     }
     
-    if([(BarChart *)graph tag]>=12)
+    if([(BarChart *)graph tag]==12)
     {
         yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
     }
@@ -191,11 +203,12 @@
     
 }
 
+
 -(NSArray *)valuesForXAxis:(id)graph
 {
     NSArray *xValuesArray=nil;
     
-    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=11)
+    if(([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=11)|| graph==myBarChart1)
         xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
                       @"Feb",
                       @"Mar",
@@ -210,7 +223,7 @@
                       @"Dec", nil];
     
     
-    if([(BarChart *)graph tag]>=12)
+    if([(BarChart *)graph tag]==12)
         xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
                       @"Feb",
                       @"Mar",
@@ -251,6 +264,7 @@
     
     return xValuesArray;
 }
+
 
 -(NSArray *)titlesForXAxis:(id)graph
 {
@@ -311,10 +325,19 @@
     return xValuesArray;
     
 }
+
+
+-(BOOL)horizontalGradient:(id)graph
+{
+    if (graph==myBarChart1) 
+        return YES;
+
+    return NO;
+}
 /*You need this method to return YES in order to display the titles on X-Axis*/
 -(BOOL)displayTitlesOnXAxis:(id)graph
 {
-    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=13)
+    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=14)
     {
         return YES;
     }
@@ -323,11 +346,12 @@
 }
 -(float)WidthForBarChart:(id)graph
 {
-    float w;
+    float w=40;
     
-    //if([(BarChart *)graph tag]==10)//fix it
+    if(graph==myBarChart1)//fix it
     {
-        w= 40;
+        w= 30;
+        return w;
     }
     
     return w;
@@ -336,27 +360,6 @@
 -(BOOL)displayTitlesOnYAxis:(id)graph
 {
     return YES;
-}
-
-
--(BOOL)drawHorizontalLines:(id)graph
-{
-    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=17)
-    {
-        return YES;
-    }
-    
-    return NO;
-}
-
--(BOOL)drawVerticalLines:(id)graph
-{
-    if([(BarChart *)graph tag]==11)
-    {
-        return YES;
-    }
-    
-    return NO;
 }
 
 

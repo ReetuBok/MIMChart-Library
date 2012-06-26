@@ -50,7 +50,8 @@
  
     
     
-    if (isGradient) {
+    if (isGradient) 
+    {
         
         
         float red=[[lColor valueForKey:@"red"] floatValue];

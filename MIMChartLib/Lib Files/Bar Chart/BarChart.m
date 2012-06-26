@@ -329,7 +329,17 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     }
 
     
+    if([delegate respondsToSelector:@selector(horizontalGradient:)])
+    {
+        horizontalGradient=[delegate horizontalGradient:self];
+    }
+    else
+    {
+        horizontalGradient=FALSE;
+    }
 
+    
+    
     
     if([delegate respondsToSelector:@selector(valuesForGraph:)])
     {
@@ -399,6 +409,9 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     }
     
     
+ 
+ 
+    
    
     
     
@@ -415,6 +428,10 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    for (UIView *view in self.subviews) 
+    {
+        [view removeFromSuperview];
+    }
     
 
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -422,17 +439,17 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     CGContextSetAllowsAntialiasing(context, NO);
     CGContextSetShouldAntialias(context, NO);
     
+    
+    CGAffineTransform flipTransform = CGAffineTransformMake( 1, 0, 0, -1, 0, self.frame.size.height);
+    CGContextConcatCTM(context, flipTransform);
+    
     //Draw the bg gradient
     [self drawBg:context];
     [self drawHorizontalBgLines:context];
     
     int totalColors=[MIMColor sizeOfColorArray];
 
-    for (UIView *view in self.subviews) 
-    {
-        [view removeFromSuperview];
-    }
-    
+   
     CGContextSetAllowsAntialiasing(context, YES);
     CGContextSetShouldAntialias(context, YES);
     
@@ -794,7 +811,8 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
             int _height=[[_yValElements objectAtIndex:i] floatValue]*_scalingY;
             BarView *view=[[BarView alloc]initWithFrame:CGRectMake((i* barWidth) + 10*(i+1), _gridHeight-_height, barWidth, _height)];
             view.isGradient=isGradient;
-            
+            view.horGradient=horizontalGradient;
+
 
             
             
@@ -860,6 +878,8 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         }
     
     }
+    
+    
     
     
 }
@@ -945,7 +965,6 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 
     
     
-    
     //Draw Gray Lines as the markers
     CGContextBeginPath(ctx);
     CGContextSetBlendMode(ctx, kCGBlendModeNormal);
@@ -959,8 +978,36 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     }
     CGContextDrawPath(ctx, kCGPathStroke);
     
-
     
+    
+    
+    //Display Y Axis elements
+    [self _displayYAxisWithColorRed:colorOfLine.red Blue:colorOfLine.blue Green:colorOfLine.green Alpha:colorOfLine.alpha];
+    
+    
+}
+
+
+-(void)_displayYAxisWithColorRed:(float)red Blue:(float)blue Green:(float)green Alpha:(float)alpha
+{
+    if([delegate respondsToSelector:@selector(displayTitlesOnYAxis:)])
+    {
+        BOOL displayY=[delegate displayTitlesOnYAxis:self];
+        if(displayY)
+        {
+            YAxisBand *_yBand=[[YAxisBand alloc]initWithFrame:CGRectMake(-80,0, 80, CGRectGetHeight(self.frame))];
+            _yBand.lineColor=[[UIColor alloc]initWithRed:red green:green blue:blue alpha:alpha];
+            [_yBand setScaleForYTile:pixelsPerTile withNumOfLines:numOfHLines];
+            [self addSubview:_yBand];
+        }
+        
+        
+    }
+    else
+    {
+        NSLog(@"WARNING:Use delegate method displayTitlesOnYAxis, to display titles on Y Axis.");
+        
+    }
     
     
 }

@@ -26,6 +26,8 @@
 
 -(NSArray *)ColorsForBarChart:(id)graph;
 
+-(BOOL)horizontalGradient:(id)graph;
+
 -(NSArray *)WidthsForBarChart:(id)graph;
 
 -(float)WidthForBarChart:(id)graph;
@@ -36,11 +38,16 @@
 
 
 
-
+//Vertical Lines
 -(float)gapBetweenVerticalLines:(id)graph;
 
 
+
+
 -(float)gapBetweenHorizontalLines:(id)graph;
+-(float)widthOfHorizontalLines:(id)graph;
+-(MIMColorClass *)colorOfHorizontalLines:(id)graph;
+
 
 -(NSDictionary *)animationOnBars:(id)graph;
 
@@ -50,6 +57,11 @@
 -(float)widthOfHorizontalLines:(id)graph;
 
 -(MIMColorClass *)colorOfHorizontalLines:(id)graph;
+
+
+/*The calculated values will be displayed on Y-Axis  by default, unless provided*/
+-(BOOL)displayTitlesOnYAxis:(id)graph;
+-(BOOL)displayTitlesOnXAxis:(id)graph;
 @end
 
 #endif
