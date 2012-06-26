@@ -94,9 +94,10 @@
 -(NSArray *)gradientsTypeForPie:(id)pieChart; 
 
 
+-(BOOL)hideInfoBox:(id)pieChart;
 
 
-
+-(NSDictionary *)infoBoxProperties:(id)pieChart;
 
 
 /************************************************************************************************************************************************/

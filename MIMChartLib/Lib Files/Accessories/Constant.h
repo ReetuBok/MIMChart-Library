@@ -1,6 +1,6 @@
 typedef enum
 {
-    USERDEFINED,
+    USERDEFINED=1,
     REDTINT,
     GREENTINT,
     BEIGETINT

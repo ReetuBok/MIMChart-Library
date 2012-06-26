@@ -27,7 +27,7 @@
 
 -(UILabel *)createLabelWithText:(NSString *)text
 {
-    UILabel *a=[[UILabel alloc]initWithFrame:CGRectMake(5, 220, 310, 20)];
+    UILabel *a=[[UILabel alloc]initWithFrame:CGRectMake(5, 220, 500, 20)];
     [a setBackgroundColor:[UIColor clearColor]];
     [a setText:text];
     a.numberOfLines=5;
@@ -84,16 +84,16 @@
             myPieChart1=[[BasicPieChart alloc]initWithFrame:CGRectMake(5, 5, 500, 240)];
             myPieChart1.delegate=self;
             myPieChart1.showInfoBox=YES;
+            myPieChart1.tint=GREENTINT; //Don't give colors in delegate method now,-(NSArray *)colorsForPie:(id)pieChart , return nil.
             myPieChart1.infoBoxSmoothenCorners=YES;
             myPieChart1.fontName=[UIFont fontWithName:@"TrebuchetMS" size:13];
             myPieChart1.fontColor=[MIMColorClass colorWithComponent:@"0.8,0.2,0.2"];
-            
             [cell.contentView addSubview:myPieChart1];
             
             
             [myPieChart1 drawPieChart];
             
-            [cell.contentView addSubview:[self createLabelWithText:@"Basic Pie Chart Touch Enabled+ Top Alignment of Detail POp up"]];
+            [cell.contentView addSubview:[self createLabelWithText:@"Basic Pie Chart+Default Info Box with some customization + Non user pie"]];
             
             
             
@@ -103,17 +103,17 @@
         {
             //This shows how to set offset,
             //if you are not happy with your default position of info box.
-            myPieChart=[[BasicPieChart alloc]initWithFrame:CGRectMake(5, 5, 500, 240)];
-            myPieChart.delegate=self;
-            myPieChart.showInfoBox=YES;
-            myPieChart.infoBoxOffset=CGPointMake(0, 30);
+            myPieChart2=[[BasicPieChart alloc]initWithFrame:CGRectMake(5, 5, 500, 240)];
+            myPieChart2.delegate=self;
+            myPieChart2.showInfoBox=YES;
+            myPieChart2.infoBoxOffset=CGPointMake(0, 30);
             
-            [cell.contentView addSubview:myPieChart];
+            [cell.contentView addSubview:myPieChart2];
             
             
-            [myPieChart drawPieChart];
+            [myPieChart2 drawPieChart];
             
-            [cell.contentView addSubview:[self createLabelWithText:@"Basic Pie Chart Touch Enabled+ Right Alignment of Detail POp up"]];
+            [cell.contentView addSubview:[self createLabelWithText:@"Basic Pie Chart+Default Info Box with some customization + Non user pie"]];
             
             
         }
@@ -122,19 +122,19 @@
         {
             //How you can set the shadow behind the color squares of info box
             
-            myPieChart=[[BasicPieChart alloc]initWithFrame:CGRectMake(5, 5, 500, 240)];
-            myPieChart.delegate=self;
-            myPieChart.showInfoBox=YES;
-            myPieChart.shadowBehindBoxes=YES;
+            myPieChart3=[[BasicPieChart alloc]initWithFrame:CGRectMake(5, 5, 500, 240)];
+            myPieChart3.delegate=self;
+            myPieChart3.showInfoBox=YES;
+            myPieChart3.shadowBehindBoxes=YES;
+
+            
+            [cell.contentView addSubview:myPieChart3];
             
             
-            [cell.contentView addSubview:myPieChart];
+            [myPieChart3 drawPieChart];
             
             
-            [myPieChart drawPieChart];
-            
-            
-            [cell.contentView addSubview:[self createLabelWithText:@"Basic Pie Chart Touch Enabled+ Bottom Alignment of Detail POp up"]];
+            [cell.contentView addSubview:[self createLabelWithText:@"Basic Pie Chart+Default Info Box with some customization + Non user pie"]];
             
             
         }
@@ -144,19 +144,19 @@
             
             //How you can set the text properties
             
-            myPieChart=[[BasicPieChart alloc]initWithFrame:CGRectMake(5, 5, 500, 240)];
-            myPieChart.delegate=self;
-            myPieChart.showInfoBox=YES;
-            myPieChart.infoBoxSmoothenCorners=YES;
-            myPieChart.fontName=[UIFont fontWithName:@"TrebuchetMS" size:15];
-            myPieChart.fontColor=[MIMColorClass colorWithComponent:@"0.2,0.2,0.5"];
+            myPieChart4=[[BasicPieChart alloc]initWithFrame:CGRectMake(5, 5, 500, 240)];
+            myPieChart4.delegate=self;
+            myPieChart4.showInfoBox=YES;
+            myPieChart4.infoBoxSmoothenCorners=YES;
+            myPieChart4.fontName=[UIFont fontWithName:@"TrebuchetMS" size:15];
+            myPieChart4.fontColor=[MIMColorClass colorWithComponent:@"0.2,0.2,0.5"];
             
-            [cell.contentView addSubview:myPieChart];
+            [cell.contentView addSubview:myPieChart4];
             
             
-            [myPieChart drawPieChart];
+            [myPieChart4 drawPieChart];
             
-            [cell.contentView addSubview:[self createLabelWithText:@"Basic Pie Chart Touch Enabled+ Top Alignment of Detail POp up"]];
+            [cell.contentView addSubview:[self createLabelWithText:@"Basic Pie Chart+Default Info Box with some customization + Non user pie"]];
             
             
         }
@@ -175,7 +175,7 @@
             
             [myPieChart drawPieChart];
             
-            [cell.contentView addSubview:[self createLabelWithText:@"Basic Pie Chart Touch Enabled+ Default Alignment of Detail POp up"]];
+            [cell.contentView addSubview:[self createLabelWithText:@"Basic Pie Chart+Default Info Box with some customization + Non user pie"]];
             
         }
             break;
@@ -202,7 +202,7 @@
 {
     NSArray *colorsArray;
     
-    if(pieChart == myPieChart)
+    if(pieChart != myPieChart1)
     {
         
         MIMColorClass *color1=[MIMColorClass colorWithComponent:@"137,215,234"];
@@ -217,22 +217,22 @@
         colorsArray=[NSArray arrayWithObjects:color1,color5,color2,color3,color4, nil];
         
     }
-    else if(pieChart==myPieChart1)
-    {
-        MIMColorClass *color1=[MIMColorClass colorWithComponent:@"137,215,234"];
-        MIMColorClass *color2=[MIMColorClass colorWithComponent:@"239,95,100"];
-        MIMColorClass *color3=[MIMColorClass colorWithComponent:@"127,186,140"];
-        MIMColorClass *color4=[MIMColorClass colorWithComponent:@"247,144,187"];
-        MIMColorClass *color5=[MIMColorClass colorWithComponent:@"249,219,122"];
-        MIMColorClass *color6=[MIMColorClass colorWithComponent:@"144,139,39"];
-        MIMColorClass *color7=[MIMColorClass colorWithComponent:@"208,195,135"];
-        MIMColorClass *color8=[MIMColorClass colorWithComponent:@"182,119,48"];
-        MIMColorClass *color9=[MIMColorClass colorWithComponent:@"183,142,50"];
-        MIMColorClass *color10=[MIMColorClass colorWithComponent:@"99,73,56"];
-        
-        
-        colorsArray=[NSArray arrayWithObjects:color1,color5,color2,color3,color4,color6,color7,color8,color9,color10, nil];
-    }
+//    else if(pieChart==myPieChart1)
+//    {
+//        MIMColorClass *color1=[MIMColorClass colorWithComponent:@"137,215,234"];
+//        MIMColorClass *color2=[MIMColorClass colorWithComponent:@"239,95,100"];
+//        MIMColorClass *color3=[MIMColorClass colorWithComponent:@"127,186,140"];
+//        MIMColorClass *color4=[MIMColorClass colorWithComponent:@"247,144,187"];
+//        MIMColorClass *color5=[MIMColorClass colorWithComponent:@"249,219,122"];
+//        MIMColorClass *color6=[MIMColorClass colorWithComponent:@"144,139,39"];
+//        MIMColorClass *color7=[MIMColorClass colorWithComponent:@"208,195,135"];
+//        MIMColorClass *color8=[MIMColorClass colorWithComponent:@"182,119,48"];
+//        MIMColorClass *color9=[MIMColorClass colorWithComponent:@"183,142,50"];
+//        MIMColorClass *color10=[MIMColorClass colorWithComponent:@"99,73,56"];
+//        
+//        
+//        colorsArray=[NSArray arrayWithObjects:color1,color5,color2,color3,color4,color6,color7,color8,color9,color10, nil];
+//    }
     else
         return nil;
     
@@ -243,7 +243,7 @@
 
 -(NSArray *)valuesForPie:(id)pieChart
 {    
-    if(pieChart == myPieChart)
+    if(pieChart != myPieChart1)
         return [NSArray arrayWithObjects:@"40000",@"21000",@"24000",@"11000",@"15000",nil];
     if(pieChart==myPieChart1)
         return [NSArray arrayWithObjects:@"40000",@"21000",@"24000",@"11000",@"15000",@"60000",@"18000",@"20000",@"9000",@"12000",nil];
@@ -252,7 +252,7 @@
 
 -(NSArray *)titlesForPie:(id)pieChart
 {
-    if(pieChart == myPieChart)
+    if(pieChart != myPieChart1)
         return [NSArray arrayWithObjects:@"Men",@"Women",@"Teens",@"Infants",@"Old",nil];
     
     if(pieChart == myPieChart1)
@@ -260,6 +260,19 @@
         
 }
 
+/*
+-(NSDictionary *)infoBoxProperties:(id)pieChart
+{
+    if(pieChart==myPieChart1)
+    {
+        myPieChart1.fontName=[UIFont fontWithName:@"TrebuchetMS" size:13];
+        myPieChart1.fontColor=[MIMColorClass colorWithComponent:@"0.8,0.2,0.2"];
+        return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:<#(id), ...#>, nil] forKeys:[NSArray arrayWithObjects:@"font",@"fontColor",nil]];
+        
+    }
+    
+}
+ */
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.

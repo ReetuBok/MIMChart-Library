@@ -16,7 +16,9 @@
     IBOutlet UITableView *myTableView;
     BasicPieChart *myPieChart;
     BasicPieChart *myPieChart1;
-    
+    BasicPieChart *myPieChart2;
+    BasicPieChart *myPieChart3;
+    BasicPieChart *myPieChart4;
 }
 
 

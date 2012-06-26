@@ -513,7 +513,8 @@ float pi=3.1415;
             if(self.tint==BEIGETINT)
             {
                 int totalColors=[MIMColor sizeOfColorArray];
-                NSDictionary *colorDic=[MIMColor GetColorAtIndex:(i+30)%totalColors];    //i+17 brown tint//30 dark colors(like beige)// // total 43
+                NSDictionary *colorDic=[MIMColor GetColorAtIndex:(i+30)%totalColors];   
+                //i+17 brown tint//30 dark colors(like beige)// // total 43
                 float red=[[colorDic valueForKey:@"red"] floatValue];
                 float green=[[colorDic valueForKey:@"green"] floatValue];
                 float blue=[[colorDic valueForKey:@"blue"] floatValue];

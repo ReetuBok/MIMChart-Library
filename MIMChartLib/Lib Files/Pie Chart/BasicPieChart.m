@@ -461,7 +461,25 @@
 //    sumOfValues=[pie getSum];
     NSLog(@"MsumOfValues=%f",sumOfValues);
 
-    [self _createInfoBox];
+    
+    
+    
+    //Get Info Box if asked not to hide.
+    if([delegate respondsToSelector:@selector(hideInfoBox:)])
+    {
+        if(![delegate hideInfoBox:self])
+        {
+            [self getColorsForInfoBox];
+            [self _createInfoBox];
+        } 
+    }
+    else
+    {
+        [self getColorsForInfoBox];
+        [self _createInfoBox];
+    }
+    
+ 
     
 }
 
@@ -849,6 +867,42 @@
     
 }
 
+
+-(void)getColorsForInfoBox
+{
+    int offset=0;
+    switch (pie.tint) 
+    {
+        case REDTINT:
+            offset=17;
+            break;
+        case BEIGETINT:
+            offset=30;
+            break;
+        case GREENTINT:
+            offset=0;
+            break;
+        default:
+            pie.colorArray_=pie.colorArray_;
+            return;
+            break;
+
+    }
+    int totalColors=[MIMColor sizeOfColorArray];
+    NSMutableArray *mColorArray=[[NSMutableArray alloc]init];
+    for (int i=0; i<[pie.valueArray_ count]; i++) 
+    {
+        
+        
+        NSDictionary *colorDic=[MIMColor GetColorAtIndex:(i+offset)%totalColors];
+        float r=[[colorDic valueForKey:@"red"] floatValue];
+        float g=[[colorDic valueForKey:@"green"] floatValue];
+        float b=[[colorDic valueForKey:@"blue"] floatValue];
+        [mColorArray addObject:[MIMColorClass colorWithRed:r Green:g Blue:b Alpha:1.0]];
+    }
+    pie.colorArray_=[NSMutableArray arrayWithArray:mColorArray];
+   
+}
 //User touched InfoBoxStyle1's Scrollview
 //Ask pie to rotate to given index
 -(void)rotatePieToIndex:(int)index whichDirection:(int)direction
@@ -961,4 +1015,6 @@
         [self showBubbleAtPoint:point AtIndex:index inQuadrant:quadrant];
     }
 }
+
+
 @end
