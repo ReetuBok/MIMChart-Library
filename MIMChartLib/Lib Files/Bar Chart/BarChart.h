@@ -55,7 +55,7 @@
     float _tileWidth;
     float _tileHeight;
     BOOL xIsString;
-    //float maxOfY;
+    NSArray *_xTitles;
     
    @private
     float pixelsPerTile;
@@ -65,12 +65,10 @@
     NSMutableArray *_xValElements;
     BOOL groupBars;
     BOOL stackedBars;
-   
-    
     int style;
-    
-    
-    
+    float gapBetweenBars; // for now it is 10 fixed.needs to be variable
+    float gapBetweenBarsDifferentGroup;
+    BOOL isLongGraph_;
 
     
     

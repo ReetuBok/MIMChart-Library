@@ -119,7 +119,7 @@
             myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
-            myBarChart.xTitleStyle=X_TITLES_STYLE1;
+            myBarChart.xTitleStyle=X_TITLES_STYLE3;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
             
@@ -146,7 +146,7 @@
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.isGradient=YES;
-            myBarChart.xTitleStyle=X_TITLES_STYLE2;
+            myBarChart.xTitleStyle=X_TITLES_STYLE1;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
             
@@ -159,7 +159,7 @@
             myBarChart1.delegate=self;
             myBarChart1.tag=10+indexPath.row;
             myBarChart1.isGradient=YES;
-            myBarChart1.xTitleStyle=X_TITLES_STYLE2;
+            myBarChart1.xTitleStyle=X_TITLES_STYLE1;
             [myBarChart1 drawBarChart];
             [cell.contentView addSubview:myBarChart1];
             
@@ -285,7 +285,7 @@
                       @"Dec", nil];
     
     
-    if([(BarChart *)graph tag]>=12)
+    if([(BarChart *)graph tag]==12)
         xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
                       @"Feb",
                       @"Mar",
@@ -297,7 +297,8 @@
                       @"Sep",
                       @"Oct",
                       @"Nov",
-                      @"Dec",@"Jan",
+                      @"Dec",
+                      @"Jan",
                       @"Feb",
                       @"Mar",
                       @"Apr",
@@ -308,7 +309,8 @@
                       @"Sep",
                       @"Oct",
                       @"Nov",
-                      @"Dec",@"Jan",
+                      @"Dec",
+                      @"Jan",
                       @"Feb",
                       @"Mar",
                       @"Apr",

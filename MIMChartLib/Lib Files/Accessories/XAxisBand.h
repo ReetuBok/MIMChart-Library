@@ -29,24 +29,26 @@
 @interface XAxisBand : UIView {
     
     NSArray *xElements;
-    float multipleOf;
     float _tileWidth;
     float _gridWidth;
     float scalingFactor;
     int style;
     BOOL lineChart;
     BOOL xIsString;
-    
+
+    float gapDistance;//Gap between two labels;
+    float barWidth;
     float lineWidth;
     UIColor *lineColor;
 
 }
 @property(nonatomic,retain) NSArray *xElements;
-@property(nonatomic,assign) float multipleOf;
 @property(nonatomic,assign) float scalingFactor;
 @property(nonatomic,assign) int style;
 @property(nonatomic,assign)   BOOL lineChart;
+@property(nonatomic,assign)   BOOL barChart;
 @property(nonatomic,assign)    BOOL xIsString;
+@property(nonatomic,assign)     float gapDistance;//Gap between two labels;
 @property(nonatomic,assign)float lineWidth;
 @property(nonatomic,retain)UIColor *lineColor;
 

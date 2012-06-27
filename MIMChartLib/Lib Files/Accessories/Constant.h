@@ -113,4 +113,5 @@ typedef enum
     
 }BAR_ANIMATION_STYLE;
 
-
+#define LINESCROLLVIEWTAG 1000
+#define XBANDTAG 1001

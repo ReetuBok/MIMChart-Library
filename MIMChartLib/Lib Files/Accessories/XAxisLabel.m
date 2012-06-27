@@ -129,6 +129,9 @@
         case 4:
             alignment = kCTCenterTextAlignment;
             break;
+        case 5:
+            alignment = kCTCenterTextAlignment;
+            break;
     }
     
     

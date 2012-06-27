@@ -410,7 +410,39 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     
     
  
- 
+    if([delegate respondsToSelector:@selector(displayTitlesOnXAxis:)])
+    {
+        BOOL displayTitleOnXAxis=[delegate displayTitlesOnXAxis:self];
+        if(displayTitleOnXAxis)
+        {
+            
+            
+            if([delegate respondsToSelector:@selector(titlesForXAxis:)])
+            {
+                _xTitles=[[NSArray alloc]initWithArray:[delegate titlesForXAxis:self]];
+                if([_xTitles count]==0)
+                {
+                    NSLog(@"WARNING:Give values in titlesForXAxis: to give display values on X-Axis.");   
+                }
+                
+                
+            }
+            else
+            {
+                NSLog(@"WARNING:If there are any auto-calculated values for X-Axis, they will be displayed, Otherwise Use delegate Method titlesForXAxis: to give display  specific values on X-Axis.");
+            }
+            
+            
+            
+        }
+        
+        
+    }
+    else
+    {
+        NSLog(@"WARNING:Use delegate Method displayTitlesOnXAxis: to give display values on X-Axis.");
+    }
+
     
    
     
@@ -775,7 +807,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 
             }
             
-            xOrigin+=2*barWidth;
+            xOrigin+=(barWidth+10);
         }
         
         xOrigin+=barWidth;
@@ -791,6 +823,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         if((([_yValElements count]* barWidth) + 10*([_yValElements count]+1))>_gridWidth)
         {
         
+            lineGScrollView.tag=LINESCROLLVIEWTAG;
             lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
             [lineGScrollView setBackgroundColor:[UIColor clearColor]];
             lineGScrollView.contentSize=CGSizeMake((([_yValElements count]* barWidth) + 10*([_yValElements count]+2)), _gridHeight);
@@ -803,7 +836,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         
         
         
-        
+        isLongGraph_=addOnScrollView;
                 
         for (int i=0; i<[_yValElements count]; i++) 
         { 
@@ -875,13 +908,22 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 [lineGScrollView addSubview:view];
             else
                 [self addSubview:view];
+            
+            
+            if(isLongGraph_) 
+            {
+                [lineGScrollView addSubview:[self viewWithTag:XBANDTAG]];
+                CGRect a=lineGScrollView.frame;
+                a.size.height+=50;
+                lineGScrollView.frame=a;
+            }            
+            
         }
     
     }
     
     
-    
-    
+   
 }
 
 -(void)drawBg:(CGContextRef)context
@@ -979,6 +1021,11 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     CGContextDrawPath(ctx, kCGPathStroke);
     
     
+    if (xTitleStyle==0)
+        xTitleStyle=X_TITLES_STYLE1;
+    
+    [self _displayXAxisWithStyle:xTitleStyle WithColorRed:colorOfLine.red Blue:colorOfLine.blue Green:colorOfLine.green Alpha:colorOfLine.alpha];
+
     
     
     //Display Y Axis elements
@@ -1013,6 +1060,44 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 }
 
 
+
+-(void)_displayXAxisWithStyle:(int)xstyle WithColorRed:(float)red Blue:(float)blue Green:(float)green Alpha:(float)alpha
+{
+    
+    gapBetweenBars=10;
+    
+    XAxisBand *_xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), 100)];
+    _xBand.xElements=[[NSArray alloc]initWithArray:_xTitles];
+    _xBand.style=xstyle;
+    _xBand.tag=XBANDTAG;
+    _xBand.xIsString=xIsString;
+    _xBand.barChart=YES;
+    _xBand.scalingFactor=barWidth;
+    _xBand.gapDistance=gapBetweenBars;
+    
+    float widthOfLine;
+    
+    
+    //Check if width and color of line can be accessed by delegate methods
+    if([delegate respondsToSelector:@selector(widthOfHorizontalLines:)])
+    {
+        widthOfLine=[delegate widthOfHorizontalLines:self];
+        if(widthOfLine==0)
+            NSLog(@"WARNING: Line width of horizontal line is 0.");
+        
+    }
+    else
+    {
+        widthOfLine=0.1;
+        
+    }
+    _xBand.lineWidth=widthOfLine;
+    _xBand.lineColor=[[UIColor alloc]initWithRed:red green:green blue:blue alpha:alpha];
+    
+    
+    [self addSubview:_xBand];
+    
+}
 
 - (void)dealloc
 {
