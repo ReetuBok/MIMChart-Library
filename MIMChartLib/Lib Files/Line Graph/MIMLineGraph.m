@@ -1,14 +1,14 @@
 //
-//  NegativeWallGraph.m
+//  MIMLineGraph.m
 //  MIMChartLib
 //
-//  Created by Reetu Raj on 5/28/12.
+//  Created by Reetu Raj on 7/3/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "NegativeWallGraph.h"
+#import "MIMLineGraph.h"
 
-@implementation NegativeWallGraph
+@implementation MIMLineGraph
 
 - (id)initWithFrame:(CGRect)frame
 {
