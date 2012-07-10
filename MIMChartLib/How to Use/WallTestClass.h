@@ -25,18 +25,26 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WallGraph.h"
 #import "MIMColor.h"
+#import "MIMWallGraph.h"
 
 @interface WallTestClass : UIViewController<UITableViewDelegate,UITableViewDataSource,WallGraphDelegate> 
 {
     
 
     IBOutlet UITableView *myTableView;
-    WallGraph *wallGraph;
-    WallGraph *wallGraph1;
+    MIMWallGraph *mWallGraph;
+    
     NSMutableArray *dataArrayFromCSV;
     NSMutableArray *xDataArrayFromCSV;
+    
+    
+    NSArray *yValuesArray;
+    NSArray *xValuesArray;
+    NSArray *xTitlesArray;
+    
+    NSDictionary *xProperty;
+    NSDictionary *yProperty;
 }
 
 @end

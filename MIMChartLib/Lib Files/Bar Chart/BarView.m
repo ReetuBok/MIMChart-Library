@@ -100,13 +100,7 @@
     else
     {
         
-        float red=[[color valueForKey:@"red"] floatValue];
-        float green=[[color valueForKey:@"green"] floatValue];
-        float blue=[[color valueForKey:@"blue"] floatValue];
-        UIColor *_color=[[UIColor alloc]initWithRed:red green:green blue:blue alpha:1.0]; 
-        
-        
-        //Draw the bar
+        UIColor *_color=[[UIColor alloc]initWithRed:color.red green:color.green blue:color.blue alpha:color.alpha]; 
         CGContextSetFillColorWithColor(context, _color.CGColor);
         CGContextAddRect(context, CGRectMake(0, 0, CGRectGetWidth(rect), CGRectGetHeight(rect)));  
         CGContextFillPath(context);

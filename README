@@ -8,18 +8,8 @@ Charts available:
 
 
 --------------------------------------------------------------
-Beta Version 1.3
+Beta Version 1.5
 --------------------------------------------------------------
-Currently, it supports taking values for graph by array as was requested, 
-as people don't like using .csv files to store the values(As its not convenient for all purposes).
-
-New class of color called MIMColor has been added, so that user can create their color using values in range(0,1) as well as (0,255),
-Unlike UIColor where you have to use range(0,1),
-
-
-Complete GUIde can be found HERE:
-Under Construction, for now use the sample code.
-Note: This post might be obsolete for PieCharts.
 
 
 
@@ -36,3 +26,6 @@ To find out more about how to stick the chart in your view please see the sample
 
 
 NOTE: Memory testing hasn't been done yet. Code quality check is not done yet.
+
+Screenshots: http://soulwithmobiletechnology.blogspot.com/2011/08/iphoneipad-chart-librarymimchartlib.html
+Official Website with Documentation: http://mimchartlibrary.blogspot.com/

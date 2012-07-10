@@ -25,6 +25,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
+#import "MIMColorClass.h"
+#import "Constant.h"
 
 @interface XAxisBand : UIView {
     
@@ -32,14 +34,17 @@
     float _tileWidth;
     float _gridWidth;
     float scalingFactor;
+    float gapDistance;//Gap between two labels;
+    float groupGapDistance;
+    float barWidth;
     int style;
     BOOL lineChart;
+    BOOL barChart;
+    BOOL groupBarChart;
     BOOL xIsString;
-
-    float gapDistance;//Gap between two labels;
-    float barWidth;
     float lineWidth;
     UIColor *lineColor;
+    NSDictionary *properties;
 
 }
 @property(nonatomic,retain) NSArray *xElements;
@@ -51,7 +56,7 @@
 @property(nonatomic,assign)     float gapDistance;//Gap between two labels;
 @property(nonatomic,assign)float lineWidth;
 @property(nonatomic,retain)UIColor *lineColor;
-
+@property(nonatomic,retain)NSDictionary *properties;
 
 -(void)drawXAxis:(CGContextRef)ctx;
 

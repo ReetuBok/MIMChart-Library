@@ -20,49 +20,52 @@
 
 @interface MultiWallLongGraph : UIView<AnchorDelegate>
 {
-    float gridWidth;
+
     float gridHeight;  
-    float tileWidth;
-    float tileHeight;
+
+    
     float scalingX;
     float scalingY;
     BOOL xIsString;
-    
-    NSArray *colorWallChart;
+    BOOL isGradient;
+
     NSArray *wallBezierPath;
     NSArray *wallEdgeBezierPath;
-    BOOL verticalLinesVisible;
-    BOOL horizontalLinesVisible;
-    float widthOfLine;
-    MIMColorClass *colorOfLine;
+
+    
     NSMutableArray *xValElements;
     NSMutableArray *yValElements;
-    X_TITLES_STYLE xTitleStyle;
-    BOOL nonInteractiveAnchorPoints;
-    ANCHORTYPE anchorType;
+   
+    
+    
+    NSArray *wallColorArray;
+    NSArray *edgeColorArray;
+    NSArray *wallGradientArray;
+    NSArray *orderArray;//Needed for Anchors
+    NSArray *maxValuesArray;
+    float METERLINEHEIGHT;
+
 }
 
-@property(nonatomic,assign)float gridWidth;
+
 @property(nonatomic,assign)float gridHeight;  
-@property(nonatomic,assign)float tileWidth;
-@property(nonatomic,assign)float tileHeight;
+
 @property(nonatomic,assign)float scalingX;
 @property(nonatomic,assign)float scalingY;
 @property(nonatomic,assign)BOOL xIsString;
+@property(nonatomic,assign)BOOL isGradient;
 
-@property(nonatomic,retain)NSArray *colorWallChart;
 @property(nonatomic,retain)NSArray *wallBezierPath;
 @property(nonatomic,retain)NSArray *wallEdgeBezierPath;
-@property(nonatomic,assign)BOOL verticalLinesVisible;
-@property(nonatomic,assign)BOOL horizontalLinesVisible;
-@property(nonatomic,assign)float widthOfLine;
-@property(nonatomic,retain)MIMColorClass *colorOfLine;
+
 @property(nonatomic,retain)NSMutableArray *xValElements;
 @property(nonatomic,retain)NSMutableArray *yValElements;
-@property(nonatomic,assign)X_TITLES_STYLE xTitleStyle;
-@property(nonatomic,assign)BOOL nonInteractiveAnchorPoints;
-@property(nonatomic,assign)ANCHORTYPE anchorType;
 
 
-
+@property(nonatomic,retain)NSArray *wallColorArray;
+@property(nonatomic,retain)NSArray *edgeColorArray;
+@property(nonatomic,retain)NSArray *wallGradientArray;
+@property(nonatomic,retain)NSArray *orderArray;//Needed for Anchors
+@property(nonatomic,retain)NSArray *maxValuesArray;
+@property(nonatomic,assign)float METERLINEHEIGHT;
 @end

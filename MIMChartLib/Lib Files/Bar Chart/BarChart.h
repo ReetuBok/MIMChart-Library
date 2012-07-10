@@ -37,75 +37,31 @@
     
     id<BarChartDelegate>delegate;
     X_TITLES_STYLE xTitleStyle;
-
+    BOOL groupedBars;
+    BOOL stackedBars;
+    MIMColorClass *backgroundcolor;
+    NSMutableArray *barcolorArray;
+    
+    
     BOOL isGradient;
     BOOL horizontalGradient;
-    
-    
-    
+ 
     
 
-    
-    
-    NSMutableArray *colorArray;
-    float _gridWidth;
-    float _gridHeight;
-    float _scalingX;
-    float _scalingY;
-    float _tileWidth;
-    float _tileHeight;
-    BOOL xIsString;
-    NSArray *_xTitles;
-    
-   @private
-    float pixelsPerTile;
-    int numOfHLines;
-    float barWidth;
-    NSMutableArray *_yValElements;
-    NSMutableArray *_xValElements;
-    BOOL groupBars;
-    BOOL stackedBars;
-    int style;
-    float gapBetweenBars; // for now it is 10 fixed.needs to be variable
-    float gapBetweenBarsDifferentGroup;
-    BOOL isLongGraph_;
-
-    
-    
 }
 @property(nonatomic,retain)id<BarChartDelegate>delegate;
 @property(nonatomic,assign)X_TITLES_STYLE xTitleStyle;
+@property(nonatomic,assign) BOOL groupedBars;
+@property(nonatomic,assign) BOOL stackedBars;
+@property(nonatomic,retain)MIMColorClass *backgroundcolor;
+@property(nonatomic,retain)NSMutableArray *barcolorArray;
 
-
-
-@property(nonatomic,assign) int style;
 @property(nonatomic,assign)    BOOL isGradient;
 @property(nonatomic,assign)BOOL horizontalGradient;
 
--(void)drawBarGraph;
-
-
-
-//Scale
--(void)displayYAxis;
--(void)displayXAxisWithStyle:(int)xstyle;
-
-
-
--(void)CalculateGridDimensions;
--(void)ScalingFactor;
--(void)FindTileWidth;
--(void)findScaleForYTile:(float)screenHeight;
--(void)findScaleForXTile;
--(float)FindBestScaleForGraph;
-
-
-
--(void)drawHorizontalBgLines:(CGContextRef)ctx;
-
-//draw
--(void)drawBg:(CGContextRef)context;
-
 -(void)drawBarChart;
+
+
+
 
 @end

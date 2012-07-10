@@ -27,16 +27,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SingleLineGraph.h"
 
+#import "MIMLineGraph.h"
 
 @interface TestLineClass : UIViewController<LineGraphDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     IBOutlet UITableView *myTableView;
-    SingleLineGraph *lineGraph;
-    SingleLineGraph *lineGraph1;
+    MIMLineGraph *mLineGraph;
     NSMutableArray *dataArrayFromCSV;
     NSMutableArray *xDataArrayFromCSV;
+    NSArray *anchorPropertiesArray;
+    NSDictionary *horizontalLinesPropertiesArray;
+
+    
+    NSArray *yValuesArray;
+    NSArray *xValuesArray;
+    NSArray *xTitlesArray;
 }
 
 @end

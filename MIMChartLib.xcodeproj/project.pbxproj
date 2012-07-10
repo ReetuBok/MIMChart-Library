@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2308011B15A3ED3900544123 /* MIMLineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2308011A15A3ED3800544123 /* MIMLineGraph.m */; };
+		2308011E15A3FAD200544123 /* MultiLineLongGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2308011D15A3FAD100544123 /* MultiLineLongGraph.m */; };
+		2308012115A3FBEF00544123 /* MIMWallGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2308012015A3FBEF00544123 /* MIMWallGraph.m */; };
 		23197EE1154BA3830023521F /* Anchor.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E86154BA3830023521F /* Anchor.m */; };
 		23197EE2154BA3830023521F /* AnchorInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E88154BA3830023521F /* AnchorInfo.m */; };
 		23197EE3154BA3830023521F /* CustomBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E8B154BA3830023521F /* CustomBox.m */; };
@@ -20,11 +23,8 @@
 		23197EEB154BA3830023521F /* ClusterGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E9D154BA3830023521F /* ClusterGraph.m */; };
 		23197EEC154BA3830023521F /* MIMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EA0154BA3830023521F /* MIMColor.m */; };
 		23197EED154BA3830023521F /* MIMColorClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EA2154BA3830023521F /* MIMColorClass.m */; };
-		23197EEE154BA3830023521F /* FragmentedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EA5154BA3830023521F /* FragmentedBar.m */; };
-		23197EEF154BA3830023521F /* FragmentedBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EA7154BA3830023521F /* FragmentedBarChart.m */; };
 		23197EF0154BA3830023521F /* 2DFragmentedDoughNut.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EAA154BA3830023521F /* 2DFragmentedDoughNut.m */; };
 		23197EF1154BA3830023521F /* DoughtNutFragmentTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EAC154BA3830023521F /* DoughtNutFragmentTitle.m */; };
-		23197EF2154BA3830023521F /* SingleLineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EAF154BA3830023521F /* SingleLineGraph.m */; };
 		23197EF3154BA3830023521F /* LineInfoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EB1154BA3830023521F /* LineInfoBox.m */; };
 		23197EF4154BA3830023521F /* lines.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197EB2154BA3830023521F /* lines.png */; };
 		23197EF5154BA3830023521F /* lines1.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197EB3154BA3830023521F /* lines1.png */; };
@@ -53,7 +53,6 @@
 		23197F0D154BA3830023521F /* sectioned_pie_chart.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197ED8154BA3830023521F /* sectioned_pie_chart.png */; };
 		23197F0E154BA3830023521F /* SectionedPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EDA154BA3830023521F /* SectionedPieChart.m */; };
 		23197F0F154BA3830023521F /* trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197EDB154BA3830023521F /* trophy.png */; };
-		23197F10154BA3830023521F /* WallGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EDE154BA3830023521F /* WallGraph.m */; };
 		23197F15154BA4510023521F /* ListBasicPieCharts.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197F14154BA4510023521F /* ListBasicPieCharts.m */; };
 		23197F3E154DF0440023521F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23197F3D154DF0440023521F /* CoreText.framework */; };
 		23197F48154DF0880023521F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23197F47154DF0880023521F /* QuartzCore.framework */; };
@@ -72,6 +71,7 @@
 		23197F88154F96EE0023521F /* BarTestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23197F87154F96ED0023521F /* BarTestClass.xib */; };
 		23197F8C154F97CB0023521F /* GroupBarTestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23197F8B154F97CB0023521F /* GroupBarTestClass.xib */; };
 		23197F8E154F981D0023521F /* WallTestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23197F8D154F981C0023521F /* WallTestClass.xib */; };
+		235C086F15A5F3C2006E9BED /* MIMMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = 235C086E15A5F3C2006E9BED /* MIMMeter.m */; };
 		235C23F91548BBAD00919081 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235C23F81548BBAD00919081 /* UIKit.framework */; };
 		235C23FB1548BBAD00919081 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235C23FA1548BBAD00919081 /* Foundation.framework */; };
 		235C23FD1548BBAD00919081 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235C23FC1548BBAD00919081 /* CoreGraphics.framework */; };
@@ -89,28 +89,13 @@
 		237C8CBB1564AA35004EC65A /* pajarito5.png in Resources */ = {isa = PBXBuildFile; fileRef = 237C8CB41564AA35004EC65A /* pajarito5.png */; };
 		237C8CBC1564AA35004EC65A /* pajarito6.png in Resources */ = {isa = PBXBuildFile; fileRef = 237C8CB51564AA35004EC65A /* pajarito6.png */; };
 		237C8CBD1564AA35004EC65A /* pajarito7.png in Resources */ = {isa = PBXBuildFile; fileRef = 237C8CB61564AA35004EC65A /* pajarito7.png */; };
-		237F125B156D377D00A259FC /* MultiLineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 237F125A156D377D00A259FC /* MultiLineGraph.m */; };
 		237F125E156D37E300A259FC /* MIM_MathClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 237F125D156D37E200A259FC /* MIM_MathClass.m */; };
-		237F1262156D398600A259FC /* MultiLineTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 237F1260156D398600A259FC /* MultiLineTestClass.m */; };
-		237F1263156D398600A259FC /* MultiLineTestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237F1261156D398600A259FC /* MultiLineTestClass.xib */; };
-		237F1267156DDDE800A259FC /* NegativeLineTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 237F1265156DDDE600A259FC /* NegativeLineTestClass.m */; };
-		237F1268156DDDE800A259FC /* NegativeLineTestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237F1266156DDDE600A259FC /* NegativeLineTestClass.xib */; };
-		237F126B156DDE5000A259FC /* NegativeLineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 237F126A156DDE4F00A259FC /* NegativeLineGraph.m */; };
-		2384DAE41573EA7600F9F126 /* NegativeWallTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAE21573EA7600F9F126 /* NegativeWallTestClass.m */; };
-		2384DAE51573EA7600F9F126 /* NegativeWallTestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2384DAE31573EA7600F9F126 /* NegativeWallTestClass.xib */; };
-		2384DAEA1573EABA00F9F126 /* MutiWallTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAE81573EABA00F9F126 /* MutiWallTestClass.m */; };
-		2384DAEB1573EABA00F9F126 /* MutiWallTestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2384DAE91573EABA00F9F126 /* MutiWallTestClass.xib */; };
 		2384DAF01573EBA100F9F126 /* StackedBarTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAEE1573EBA100F9F126 /* StackedBarTestClass.m */; };
 		2384DAF11573EBA100F9F126 /* StackedBarTestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2384DAEF1573EBA100F9F126 /* StackedBarTestClass.xib */; };
-		2384DAF41573F48700F9F126 /* WallLongGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAF31573F48700F9F126 /* WallLongGraph.m */; };
-		2384DAF71573F49C00F9F126 /* MultiWallGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAF61573F49C00F9F126 /* MultiWallGraph.m */; };
 		2384DAFA1573F4AA00F9F126 /* MultiWallLongGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAF91573F4AA00F9F126 /* MultiWallLongGraph.m */; };
-		2384DAFD1573F4BA00F9F126 /* NegativeWallGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAFC1573F4BA00F9F126 /* NegativeWallGraph.m */; };
 		23BD8E40156EE1B90098E85D /* LineScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23BD8E3F156EE1B90098E85D /* LineScrollView.m */; };
 		23BD8E42156EE3AB0098E85D /* data3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 23BD8E41156EE3AB0098E85D /* data3.csv */; };
-		23BD8E45156EE7690098E85D /* SingleLineLongGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23BD8E44156EE7680098E85D /* SingleLineLongGraph.m */; };
 		23BD8E4B156FE5810098E85D /* data4.csv in Resources */ = {isa = PBXBuildFile; fileRef = 23BD8E4A156FE5800098E85D /* data4.csv */; };
-		23BD8E4F156FEA090098E85D /* MultiLineLongGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23BD8E4E156FEA090098E85D /* MultiLineLongGraph.m */; };
 		23CE0D15156467E80078BCC5 /* DefaultInfoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CE0D14156467E70078BCC5 /* DefaultInfoBox.m */; };
 		23CE0D19156468020078BCC5 /* InfoBoxStyle1.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CE0D18156468010078BCC5 /* InfoBoxStyle1.m */; };
 		23CE0D1C156468100078BCC5 /* InfoBoxStyle2.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CE0D1B156468100078BCC5 /* InfoBoxStyle2.m */; };
@@ -120,6 +105,8 @@
 		23CE0D27156486C90078BCC5 /* InfoBoxStyle1TestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23CE0D25156486C80078BCC5 /* InfoBoxStyle1TestClass.xib */; };
 		23CE0D2B156486E90078BCC5 /* InfoBoxStyle2TestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CE0D29156486E80078BCC5 /* InfoBoxStyle2TestClass.m */; };
 		23CE0D2C156486E90078BCC5 /* InfoBoxStyle2TestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23CE0D2A156486E80078BCC5 /* InfoBoxStyle2TestClass.xib */; };
+		23E59BBB15A38B79008FFDF0 /* GaugeGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E59BBA15A38B79008FFDF0 /* GaugeGraph.m */; };
+		23E59BBE15A38E47008FFDF0 /* GaugeGraphTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E59BBD15A38E47008FFDF0 /* GaugeGraphTestClass.m */; };
 		23E5FE9C1561B52A00EBE200 /* ListPaddedPieCharts.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E5FE9A1561B52A00EBE200 /* ListPaddedPieCharts.m */; };
 		23E5FE9D1561B52A00EBE200 /* ListPaddedPieCharts.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23E5FE9B1561B52A00EBE200 /* ListPaddedPieCharts.xib */; };
 		23E5FEA21561C14B00EBE200 /* ListSectionedPieCharts.m in Sources */ = {isa = PBXBuildFile; fileRef = 23E5FEA01561C14A00EBE200 /* ListSectionedPieCharts.m */; };
@@ -158,6 +145,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2308011915A3ED3800544123 /* MIMLineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMLineGraph.h; sourceTree = "<group>"; };
+		2308011A15A3ED3800544123 /* MIMLineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMLineGraph.m; sourceTree = "<group>"; };
+		2308011C15A3FAD100544123 /* MultiLineLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiLineLongGraph.h; sourceTree = "<group>"; };
+		2308011D15A3FAD100544123 /* MultiLineLongGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiLineLongGraph.m; sourceTree = "<group>"; };
+		2308011F15A3FBEF00544123 /* MIMWallGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMWallGraph.h; sourceTree = "<group>"; };
+		2308012015A3FBEF00544123 /* MIMWallGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMWallGraph.m; sourceTree = "<group>"; };
 		23197E85154BA3830023521F /* Anchor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Anchor.h; sourceTree = "<group>"; };
 		23197E86154BA3830023521F /* Anchor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Anchor.m; sourceTree = "<group>"; };
 		23197E87154BA3830023521F /* AnchorInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnchorInfo.h; sourceTree = "<group>"; };
@@ -185,16 +178,10 @@
 		23197EA0154BA3830023521F /* MIMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMColor.m; sourceTree = "<group>"; };
 		23197EA1154BA3830023521F /* MIMColorClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMColorClass.h; sourceTree = "<group>"; };
 		23197EA2154BA3830023521F /* MIMColorClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMColorClass.m; sourceTree = "<group>"; };
-		23197EA4154BA3830023521F /* FragmentedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedBar.h; sourceTree = "<group>"; };
-		23197EA5154BA3830023521F /* FragmentedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FragmentedBar.m; sourceTree = "<group>"; };
-		23197EA6154BA3830023521F /* FragmentedBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedBarChart.h; sourceTree = "<group>"; };
-		23197EA7154BA3830023521F /* FragmentedBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FragmentedBarChart.m; sourceTree = "<group>"; };
 		23197EA9154BA3830023521F /* 2DFragmentedDoughNut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 2DFragmentedDoughNut.h; sourceTree = "<group>"; };
 		23197EAA154BA3830023521F /* 2DFragmentedDoughNut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = 2DFragmentedDoughNut.m; sourceTree = "<group>"; };
 		23197EAB154BA3830023521F /* DoughtNutFragmentTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoughtNutFragmentTitle.h; sourceTree = "<group>"; };
 		23197EAC154BA3830023521F /* DoughtNutFragmentTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoughtNutFragmentTitle.m; sourceTree = "<group>"; };
-		23197EAE154BA3830023521F /* SingleLineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleLineGraph.h; sourceTree = "<group>"; };
-		23197EAF154BA3830023521F /* SingleLineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleLineGraph.m; sourceTree = "<group>"; };
 		23197EB0154BA3830023521F /* LineInfoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineInfoBox.h; sourceTree = "<group>"; };
 		23197EB1154BA3830023521F /* LineInfoBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineInfoBox.m; sourceTree = "<group>"; };
 		23197EB2154BA3830023521F /* lines.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lines.png; sourceTree = "<group>"; };
@@ -236,8 +223,6 @@
 		23197ED9154BA3830023521F /* SectionedPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionedPieChart.h; sourceTree = "<group>"; };
 		23197EDA154BA3830023521F /* SectionedPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionedPieChart.m; sourceTree = "<group>"; };
 		23197EDB154BA3830023521F /* trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trophy.png; sourceTree = "<group>"; };
-		23197EDD154BA3830023521F /* WallGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallGraph.h; sourceTree = "<group>"; };
-		23197EDE154BA3830023521F /* WallGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallGraph.m; sourceTree = "<group>"; };
 		23197F13154BA4510023521F /* ListBasicPieCharts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListBasicPieCharts.h; sourceTree = "<group>"; };
 		23197F14154BA4510023521F /* ListBasicPieCharts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListBasicPieCharts.m; sourceTree = "<group>"; };
 		23197F3B154DEE150023521F /* AnchorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnchorDelegate.h; sourceTree = "<group>"; };
@@ -265,12 +250,13 @@
 		23197F80154F7FB50023521F /* FragmentedDoughNutDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedDoughNutDelegate.h; sourceTree = "<group>"; };
 		23197F81154F818F0023521F /* TestClassFragmented.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestClassFragmented.xib; sourceTree = "<group>"; };
 		23197F83154F91C90023521F /* BarChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartDelegate.h; sourceTree = "<group>"; };
-		23197F84154F91DC0023521F /* FragmentBarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentBarDelegate.h; sourceTree = "<group>"; };
 		23197F85154F92020023521F /* WallGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallGraphDelegate.h; sourceTree = "<group>"; };
 		23197F86154F921D0023521F /* ClusterGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterGraphDelegate.h; sourceTree = "<group>"; };
 		23197F87154F96ED0023521F /* BarTestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BarTestClass.xib; sourceTree = "<group>"; };
 		23197F8B154F97CB0023521F /* GroupBarTestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupBarTestClass.xib; sourceTree = "<group>"; };
 		23197F8D154F981C0023521F /* WallTestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WallTestClass.xib; sourceTree = "<group>"; };
+		235C086D15A5F3C2006E9BED /* MIMMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMMeter.h; sourceTree = "<group>"; };
+		235C086E15A5F3C2006E9BED /* MIMMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMMeter.m; sourceTree = "<group>"; };
 		235C23F41548BBAD00919081 /* MIMChartLib.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIMChartLib.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		235C23F81548BBAD00919081 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		235C23FA1548BBAD00919081 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -294,43 +280,17 @@
 		237C8CB41564AA35004EC65A /* pajarito5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pajarito5.png; path = ../pajarito5.png; sourceTree = "<group>"; };
 		237C8CB51564AA35004EC65A /* pajarito6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pajarito6.png; path = ../pajarito6.png; sourceTree = "<group>"; };
 		237C8CB61564AA35004EC65A /* pajarito7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pajarito7.png; path = ../pajarito7.png; sourceTree = "<group>"; };
-		237F1259156D377D00A259FC /* MultiLineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiLineGraph.h; sourceTree = "<group>"; };
-		237F125A156D377D00A259FC /* MultiLineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiLineGraph.m; sourceTree = "<group>"; };
 		237F125C156D37E100A259FC /* MIM_MathClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIM_MathClass.h; sourceTree = "<group>"; };
 		237F125D156D37E200A259FC /* MIM_MathClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIM_MathClass.m; sourceTree = "<group>"; };
-		237F125F156D398600A259FC /* MultiLineTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiLineTestClass.h; sourceTree = "<group>"; };
-		237F1260156D398600A259FC /* MultiLineTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiLineTestClass.m; sourceTree = "<group>"; };
-		237F1261156D398600A259FC /* MultiLineTestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiLineTestClass.xib; sourceTree = "<group>"; };
-		237F1264156DDDE500A259FC /* NegativeLineTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NegativeLineTestClass.h; sourceTree = "<group>"; };
-		237F1265156DDDE600A259FC /* NegativeLineTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NegativeLineTestClass.m; sourceTree = "<group>"; };
-		237F1266156DDDE600A259FC /* NegativeLineTestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NegativeLineTestClass.xib; sourceTree = "<group>"; };
-		237F1269156DDE4E00A259FC /* NegativeLineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NegativeLineGraph.h; sourceTree = "<group>"; };
-		237F126A156DDE4F00A259FC /* NegativeLineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NegativeLineGraph.m; sourceTree = "<group>"; };
-		2384DAE11573EA7600F9F126 /* NegativeWallTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NegativeWallTestClass.h; sourceTree = "<group>"; };
-		2384DAE21573EA7600F9F126 /* NegativeWallTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NegativeWallTestClass.m; sourceTree = "<group>"; };
-		2384DAE31573EA7600F9F126 /* NegativeWallTestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NegativeWallTestClass.xib; sourceTree = "<group>"; };
-		2384DAE71573EABA00F9F126 /* MutiWallTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutiWallTestClass.h; sourceTree = "<group>"; };
-		2384DAE81573EABA00F9F126 /* MutiWallTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutiWallTestClass.m; sourceTree = "<group>"; };
-		2384DAE91573EABA00F9F126 /* MutiWallTestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MutiWallTestClass.xib; sourceTree = "<group>"; };
 		2384DAED1573EBA100F9F126 /* StackedBarTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackedBarTestClass.h; sourceTree = "<group>"; };
 		2384DAEE1573EBA100F9F126 /* StackedBarTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackedBarTestClass.m; sourceTree = "<group>"; };
 		2384DAEF1573EBA100F9F126 /* StackedBarTestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StackedBarTestClass.xib; sourceTree = "<group>"; };
-		2384DAF21573F48700F9F126 /* WallLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallLongGraph.h; sourceTree = "<group>"; };
-		2384DAF31573F48700F9F126 /* WallLongGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallLongGraph.m; sourceTree = "<group>"; };
-		2384DAF51573F49C00F9F126 /* MultiWallGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiWallGraph.h; sourceTree = "<group>"; };
-		2384DAF61573F49C00F9F126 /* MultiWallGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiWallGraph.m; sourceTree = "<group>"; };
 		2384DAF81573F4AA00F9F126 /* MultiWallLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiWallLongGraph.h; sourceTree = "<group>"; };
 		2384DAF91573F4AA00F9F126 /* MultiWallLongGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiWallLongGraph.m; sourceTree = "<group>"; };
-		2384DAFB1573F4BA00F9F126 /* NegativeWallGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NegativeWallGraph.h; sourceTree = "<group>"; };
-		2384DAFC1573F4BA00F9F126 /* NegativeWallGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NegativeWallGraph.m; sourceTree = "<group>"; };
 		23BD8E3E156EE1B90098E85D /* LineScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineScrollView.h; path = "../Line Graph/LineScrollView.h"; sourceTree = "<group>"; };
 		23BD8E3F156EE1B90098E85D /* LineScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineScrollView.m; path = "../Line Graph/LineScrollView.m"; sourceTree = "<group>"; };
 		23BD8E41156EE3AB0098E85D /* data3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data3.csv; sourceTree = "<group>"; };
-		23BD8E43156EE7680098E85D /* SingleLineLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleLineLongGraph.h; sourceTree = "<group>"; };
-		23BD8E44156EE7680098E85D /* SingleLineLongGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleLineLongGraph.m; sourceTree = "<group>"; };
 		23BD8E4A156FE5800098E85D /* data4.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data4.csv; sourceTree = "<group>"; };
-		23BD8E4D156FEA090098E85D /* MultiLineLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiLineLongGraph.h; sourceTree = "<group>"; };
-		23BD8E4E156FEA090098E85D /* MultiLineLongGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiLineLongGraph.m; sourceTree = "<group>"; };
 		23CE0D13156467E70078BCC5 /* DefaultInfoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultInfoBox.h; sourceTree = "<group>"; };
 		23CE0D14156467E70078BCC5 /* DefaultInfoBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultInfoBox.m; sourceTree = "<group>"; };
 		23CE0D17156468010078BCC5 /* InfoBoxStyle1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoBoxStyle1.h; sourceTree = "<group>"; };
@@ -346,6 +306,10 @@
 		23CE0D28156486E80078BCC5 /* InfoBoxStyle2TestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoBoxStyle2TestClass.h; sourceTree = "<group>"; };
 		23CE0D29156486E80078BCC5 /* InfoBoxStyle2TestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoBoxStyle2TestClass.m; sourceTree = "<group>"; };
 		23CE0D2A156486E80078BCC5 /* InfoBoxStyle2TestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoBoxStyle2TestClass.xib; sourceTree = "<group>"; };
+		23E59BB915A38B79008FFDF0 /* GaugeGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GaugeGraph.h; sourceTree = "<group>"; };
+		23E59BBA15A38B79008FFDF0 /* GaugeGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GaugeGraph.m; sourceTree = "<group>"; };
+		23E59BBC15A38E46008FFDF0 /* GaugeGraphTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GaugeGraphTestClass.h; sourceTree = "<group>"; };
+		23E59BBD15A38E47008FFDF0 /* GaugeGraphTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GaugeGraphTestClass.m; sourceTree = "<group>"; };
 		23E5FE991561B52A00EBE200 /* ListPaddedPieCharts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPaddedPieCharts.h; sourceTree = "<group>"; };
 		23E5FE9A1561B52A00EBE200 /* ListPaddedPieCharts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListPaddedPieCharts.m; sourceTree = "<group>"; };
 		23E5FE9B1561B52A00EBE200 /* ListPaddedPieCharts.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListPaddedPieCharts.xib; sourceTree = "<group>"; };
@@ -432,6 +396,8 @@
 				23197E91154BA3830023521F /* XAxisLabel.m */,
 				23197E92154BA3830023521F /* YAxisBand.h */,
 				23197E93154BA3830023521F /* YAxisBand.m */,
+				235C086D15A5F3C2006E9BED /* MIMMeter.h */,
+				235C086E15A5F3C2006E9BED /* MIMMeter.m */,
 			);
 			path = Accessories;
 			sourceTree = "<group>";
@@ -471,18 +437,6 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
-		23197EA3154BA3830023521F /* FragmentedBarChart */ = {
-			isa = PBXGroup;
-			children = (
-				23197EA4154BA3830023521F /* FragmentedBar.h */,
-				23197EA5154BA3830023521F /* FragmentedBar.m */,
-				23197EA6154BA3830023521F /* FragmentedBarChart.h */,
-				23197EA7154BA3830023521F /* FragmentedBarChart.m */,
-				23197F84154F91DC0023521F /* FragmentBarDelegate.h */,
-			);
-			path = FragmentedBarChart;
-			sourceTree = "<group>";
-		};
 		23197EA8154BA3830023521F /* FragmentedDoughnutChart */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,17 +453,11 @@
 		23197EAD154BA3830023521F /* Line Graph */ = {
 			isa = PBXGroup;
 			children = (
-				23197EAE154BA3830023521F /* SingleLineGraph.h */,
-				23197EAF154BA3830023521F /* SingleLineGraph.m */,
-				23BD8E43156EE7680098E85D /* SingleLineLongGraph.h */,
-				23BD8E44156EE7680098E85D /* SingleLineLongGraph.m */,
-				237F1259156D377D00A259FC /* MultiLineGraph.h */,
-				237F125A156D377D00A259FC /* MultiLineGraph.m */,
-				23BD8E4D156FEA090098E85D /* MultiLineLongGraph.h */,
-				23BD8E4E156FEA090098E85D /* MultiLineLongGraph.m */,
-				237F1269156DDE4E00A259FC /* NegativeLineGraph.h */,
-				237F126A156DDE4F00A259FC /* NegativeLineGraph.m */,
+				2308011C15A3FAD100544123 /* MultiLineLongGraph.h */,
+				2308011D15A3FAD100544123 /* MultiLineLongGraph.m */,
 				23197F60154F161F0023521F /* LineGraphDelegate.h */,
+				2308011915A3ED3800544123 /* MIMLineGraph.h */,
+				2308011A15A3ED3800544123 /* MIMLineGraph.m */,
 				23197EB0154BA3830023521F /* LineInfoBox.h */,
 				23197EB1154BA3830023521F /* LineInfoBox.m */,
 				23197EB2154BA3830023521F /* lines.png */,
@@ -565,16 +513,10 @@
 			isa = PBXGroup;
 			children = (
 				23197F85154F92020023521F /* WallGraphDelegate.h */,
-				23197EDD154BA3830023521F /* WallGraph.h */,
-				23197EDE154BA3830023521F /* WallGraph.m */,
-				2384DAF21573F48700F9F126 /* WallLongGraph.h */,
-				2384DAF31573F48700F9F126 /* WallLongGraph.m */,
-				2384DAF51573F49C00F9F126 /* MultiWallGraph.h */,
-				2384DAF61573F49C00F9F126 /* MultiWallGraph.m */,
 				2384DAF81573F4AA00F9F126 /* MultiWallLongGraph.h */,
 				2384DAF91573F4AA00F9F126 /* MultiWallLongGraph.m */,
-				2384DAFB1573F4BA00F9F126 /* NegativeWallGraph.h */,
-				2384DAFC1573F4BA00F9F126 /* NegativeWallGraph.m */,
+				2308011F15A3FBEF00544123 /* MIMWallGraph.h */,
+				2308012015A3FBEF00544123 /* MIMWallGraph.m */,
 			);
 			path = "Wall Graph";
 			sourceTree = "<group>";
@@ -598,12 +540,6 @@
 				23197F5C154EFB310023521F /* TestLineClass.h */,
 				23197F5D154EFB310023521F /* TestLineClass.m */,
 				23197F61154F25850023521F /* TestLineClass.xib */,
-				237F125F156D398600A259FC /* MultiLineTestClass.h */,
-				237F1260156D398600A259FC /* MultiLineTestClass.m */,
-				237F1261156D398600A259FC /* MultiLineTestClass.xib */,
-				237F1264156DDDE500A259FC /* NegativeLineTestClass.h */,
-				237F1265156DDDE600A259FC /* NegativeLineTestClass.m */,
-				237F1266156DDDE600A259FC /* NegativeLineTestClass.xib */,
 			);
 			name = "Line Chart Sample Files";
 			sourceTree = "<group>";
@@ -630,12 +566,6 @@
 				23197F71154F79480023521F /* WallTestClass.h */,
 				23197F72154F79480023521F /* WallTestClass.m */,
 				23197F8D154F981C0023521F /* WallTestClass.xib */,
-				2384DAE11573EA7600F9F126 /* NegativeWallTestClass.h */,
-				2384DAE21573EA7600F9F126 /* NegativeWallTestClass.m */,
-				2384DAE31573EA7600F9F126 /* NegativeWallTestClass.xib */,
-				2384DAE71573EABA00F9F126 /* MutiWallTestClass.h */,
-				2384DAE81573EABA00F9F126 /* MutiWallTestClass.m */,
-				2384DAE91573EABA00F9F126 /* MutiWallTestClass.xib */,
 			);
 			name = "Wall Graph Sample";
 			sourceTree = "<group>";
@@ -716,6 +646,8 @@
 				23197F7B154F799E0023521F /* Wall Graph Sample */,
 				23197F5F154EFB3D0023521F /* Line Chart Sample Files */,
 				23197F5A154EFA370023521F /* Pie Chart Sample Files */,
+				23E59BBC15A38E46008FFDF0 /* GaugeGraphTestClass.h */,
+				23E59BBD15A38E47008FFDF0 /* GaugeGraphTestClass.m */,
 			);
 			path = "How to Use";
 			sourceTree = "<group>";
@@ -723,11 +655,11 @@
 		235C24311548D1E000919081 /* Lib Files */ = {
 			isa = PBXGroup;
 			children = (
+				23E59BB815A38B76008FFDF0 /* GaugeMeter */,
 				23197E84154BA3830023521F /* Accessories */,
 				23197E94154BA3830023521F /* Bar Chart */,
 				23197E99154BA3830023521F /* ClusterGraph */,
 				23197E9E154BA3830023521F /* Colors */,
-				23197EA3154BA3830023521F /* FragmentedBarChart */,
 				23197EA8154BA3830023521F /* FragmentedDoughnutChart */,
 				23197EAD154BA3830023521F /* Line Graph */,
 				23197EB4154BA3830023521F /* Pie Chart */,
@@ -751,6 +683,15 @@
 				23F9D33F1565B48500A6FAE0 /* ScrollViewSubClass.m */,
 			);
 			name = "Info Box";
+			sourceTree = "<group>";
+		};
+		23E59BB815A38B76008FFDF0 /* GaugeMeter */ = {
+			isa = PBXGroup;
+			children = (
+				23E59BB915A38B79008FFDF0 /* GaugeGraph.h */,
+				23E59BBA15A38B79008FFDF0 /* GaugeGraph.m */,
+			);
+			path = GaugeMeter;
 			sourceTree = "<group>";
 		};
 		23E5FEB41561F36700EBE200 /* PopOvers */ = {
@@ -985,12 +926,8 @@
 				237C8CBB1564AA35004EC65A /* pajarito5.png in Resources */,
 				237C8CBC1564AA35004EC65A /* pajarito6.png in Resources */,
 				237C8CBD1564AA35004EC65A /* pajarito7.png in Resources */,
-				237F1263156D398600A259FC /* MultiLineTestClass.xib in Resources */,
-				237F1268156DDDE800A259FC /* NegativeLineTestClass.xib in Resources */,
 				23BD8E42156EE3AB0098E85D /* data3.csv in Resources */,
 				23BD8E4B156FE5810098E85D /* data4.csv in Resources */,
-				2384DAE51573EA7600F9F126 /* NegativeWallTestClass.xib in Resources */,
-				2384DAEB1573EABA00F9F126 /* MutiWallTestClass.xib in Resources */,
 				2384DAF11573EBA100F9F126 /* StackedBarTestClass.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1019,11 +956,8 @@
 				23197EEB154BA3830023521F /* ClusterGraph.m in Sources */,
 				23197EEC154BA3830023521F /* MIMColor.m in Sources */,
 				23197EED154BA3830023521F /* MIMColorClass.m in Sources */,
-				23197EEE154BA3830023521F /* FragmentedBar.m in Sources */,
-				23197EEF154BA3830023521F /* FragmentedBarChart.m in Sources */,
 				23197EF0154BA3830023521F /* 2DFragmentedDoughNut.m in Sources */,
 				23197EF1154BA3830023521F /* DoughtNutFragmentTitle.m in Sources */,
-				23197EF2154BA3830023521F /* SingleLineGraph.m in Sources */,
 				23197EF3154BA3830023521F /* LineInfoBox.m in Sources */,
 				23197EF6154BA3830023521F /* BasicPie.m in Sources */,
 				23197EF7154BA3830023521F /* BasicPieChart.m in Sources */,
@@ -1036,7 +970,6 @@
 				23197F06154BA3830023521F /* OthersPieChart.m in Sources */,
 				23197F08154BA3830023521F /* PaddedPieChart.m in Sources */,
 				23197F0E154BA3830023521F /* SectionedPieChart.m in Sources */,
-				23197F10154BA3830023521F /* WallGraph.m in Sources */,
 				23197F15154BA4510023521F /* ListBasicPieCharts.m in Sources */,
 				23197F4F154E25460023521F /* ChartAnimation.m in Sources */,
 				23197F54154E46710023521F /* ListBevelPieCharts.m in Sources */,
@@ -1061,21 +994,16 @@
 				23F9D33D1565A6D300A6FAE0 /* PermanentScroller.m in Sources */,
 				23F9D3401565B48600A6FAE0 /* ScrollViewSubClass.m in Sources */,
 				23F9D3471566D3C200A6FAE0 /* PieBubble.m in Sources */,
-				237F125B156D377D00A259FC /* MultiLineGraph.m in Sources */,
 				237F125E156D37E300A259FC /* MIM_MathClass.m in Sources */,
-				237F1262156D398600A259FC /* MultiLineTestClass.m in Sources */,
-				237F1267156DDDE800A259FC /* NegativeLineTestClass.m in Sources */,
-				237F126B156DDE5000A259FC /* NegativeLineGraph.m in Sources */,
 				23BD8E40156EE1B90098E85D /* LineScrollView.m in Sources */,
-				23BD8E45156EE7690098E85D /* SingleLineLongGraph.m in Sources */,
-				23BD8E4F156FEA090098E85D /* MultiLineLongGraph.m in Sources */,
-				2384DAE41573EA7600F9F126 /* NegativeWallTestClass.m in Sources */,
-				2384DAEA1573EABA00F9F126 /* MutiWallTestClass.m in Sources */,
 				2384DAF01573EBA100F9F126 /* StackedBarTestClass.m in Sources */,
-				2384DAF41573F48700F9F126 /* WallLongGraph.m in Sources */,
-				2384DAF71573F49C00F9F126 /* MultiWallGraph.m in Sources */,
 				2384DAFA1573F4AA00F9F126 /* MultiWallLongGraph.m in Sources */,
-				2384DAFD1573F4BA00F9F126 /* NegativeWallGraph.m in Sources */,
+				23E59BBB15A38B79008FFDF0 /* GaugeGraph.m in Sources */,
+				23E59BBE15A38E47008FFDF0 /* GaugeGraphTestClass.m in Sources */,
+				2308011B15A3ED3900544123 /* MIMLineGraph.m in Sources */,
+				2308011E15A3FAD200544123 /* MultiLineLongGraph.m in Sources */,
+				2308012115A3FBEF00544123 /* MIMWallGraph.m in Sources */,
+				235C086F15A5F3C2006E9BED /* MIMMeter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1114,7 +1042,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PROVISIONING_PROFILE = "76CD7FF1-581F-4573-8442-FCFB1F9477CF";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1135,7 +1063,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "76CD7FF1-581F-4573-8442-FCFB1F9477CF";
 				SDKROOT = iphoneos;
@@ -1150,7 +1078,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MIMChartLib/MIMChartLib-Prefix.pch";
 				INFOPLIST_FILE = "MIMChartLib/MIMChartLib-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1162,7 +1090,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MIMChartLib/MIMChartLib-Prefix.pch";
 				INFOPLIST_FILE = "MIMChartLib/MIMChartLib-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

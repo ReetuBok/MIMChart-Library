@@ -24,11 +24,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MIMColorClass.h"
 
 
 @interface MIMColor : NSObject {
     
 }
++(MIMColorClass *)GetMIMColorAtIndex:(int)index;
 +(NSDictionary *)GetColorAtIndex:(int)index;
 +(void)InitColors;
 +(void)InitGreenTintColors;

@@ -24,11 +24,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Constant.h"
 
 @interface BarView : UIView {
     
-    NSDictionary *color;
+    MIMColorClass *color;
     NSDictionary *lColor;
     NSDictionary *dColor;    
     UIColor *borderColor;
@@ -36,7 +36,7 @@
     BOOL horGradient;
     
 }
-@property(nonatomic,retain) NSDictionary *color;
+@property(nonatomic,retain) MIMColorClass *color;
 @property(nonatomic,retain) NSDictionary *lColor;
 @property(nonatomic,retain) NSDictionary *dColor;    
 @property(nonatomic,retain) UIColor *borderColor;

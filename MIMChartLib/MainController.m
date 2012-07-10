@@ -36,16 +36,16 @@
         // Custom initialization
         self.title=@"MIM Chart Library iPad Index";
         
-        chartTypeSectionArray=[[NSArray alloc]initWithObjects:@"Pie Chart",@"Fragmented Doughnut Chart",@"Line Chart",@"Wall Graph",@"Bar Chart",@"Fragmented Bar Chart",nil];
+        chartTypeSectionArray=[[NSArray alloc]initWithObjects:@"Pie Chart",@"Doughnut Chart",@"Line Chart",@"Wall Graph",@"Bar Chart",@"Gauge Graph",nil];
         
         
         featureListCellArray=[[NSArray alloc]initWithObjects:
                               [[NSArray alloc]initWithObjects:@"Overview of all Pie Charts",@"Introduction Animation on Pie",@"Detail View Pop Up Styles",@"Display Information Styles",@"Other Features", nil],
-                              [[NSArray alloc]initWithObjects:@"Overview of all Fragmented Doughnut Charts", nil],
+                              [[NSArray alloc]initWithObjects:@"Overview of all Doughnut Charts", nil],
                               [[NSArray alloc]initWithObjects:@"Overview of all Line Charts", nil],
                               [[NSArray alloc]initWithObjects:@"Overview of all Wall Graphs", nil],
                               [[NSArray alloc]initWithObjects:@"Overview of all Bar Charts", nil],
-                              [[NSArray alloc]initWithObjects:@"Overview of all Fragmented Bar Charts", nil],nil];
+                              [[NSArray alloc]initWithObjects:@"Overview of Gauge Graphs", nil],nil];
         
     }
     return self;

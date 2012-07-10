@@ -124,8 +124,9 @@
             
             myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
+            myBarChart.groupedBars=YES;
             myBarChart.tag=10+indexPath.row;
-            myBarChart.xTitleStyle=X_TITLES_STYLE1;
+            myBarChart.xTitleStyle=X_TITLES_STYLE3;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
             
@@ -139,6 +140,7 @@
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.isGradient=YES;
+            myBarChart.groupedBars=YES;
             myBarChart.xTitleStyle=X_TITLES_STYLE2;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
@@ -152,7 +154,8 @@
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.isGradient=YES;
-            myBarChart.xTitleStyle=X_TITLES_STYLE2;
+            myBarChart.groupedBars=YES;
+            myBarChart.xTitleStyle=X_TITLES_STYLE1;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
             
@@ -173,10 +176,7 @@
 
 
 #pragma mark - DELEGATE METHODS
--(BOOL)groupedBars:(id)graph
-{
-    return YES;
-}
+
 
 -(NSArray *)valuesForGraph:(id)graph
 {
@@ -234,54 +234,6 @@
     return xValuesArray;
     
 }
-/*You need this method to return YES in order to display the titles on X-Axis*/
--(BOOL)displayTitlesOnXAxis:(id)graph
-{
-    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=13)
-    {
-        return YES;
-    }
-    
-    return NO;
-}
--(float)WidthForBarChart:(id)graph
-{
-    float w;
-    
-    //if([(BarChart *)graph tag]==10)//fix it
-    {
-        w= 40;
-    }
-    
-    return w;
-}
-
--(BOOL)displayTitlesOnYAxis:(id)graph
-{
-    return YES;
-}
-
-
--(BOOL)drawHorizontalLines:(id)graph
-{
-    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=17)
-    {
-        return YES;
-    }
-    
-    return NO;
-}
-
--(BOOL)drawVerticalLines:(id)graph
-{
-    if([(BarChart *)graph tag]==11)
-    {
-        return YES;
-    }
-    
-    return NO;
-}
-
 
 
 -(UILabel *)createLabelWithText:(NSString *)text

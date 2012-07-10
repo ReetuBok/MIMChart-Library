@@ -46,9 +46,23 @@
  
  */
 
+
 static NSMutableArray *colorValues;
 
 @implementation MIMColor
+
+
++(MIMColorClass *)GetMIMColorAtIndex:(int)index
+{
+    NSDictionary *dict= [colorValues objectAtIndex:index];
+
+    float red=[[dict valueForKey:@"red"] floatValue];
+    float green=[[dict valueForKey:@"green"] floatValue];
+    float blue=[[dict valueForKey:@"blue"] floatValue];
+    
+    MIMColorClass *c=[MIMColorClass colorWithRed:red Green:green Blue:blue Alpha:1.0];
+    return c;
+}
 
 
 +(NSDictionary *)GetColorAtIndex:(int)index

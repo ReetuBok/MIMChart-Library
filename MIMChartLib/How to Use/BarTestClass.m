@@ -133,6 +133,7 @@
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.isGradient=YES;
+            myBarChart.backgroundcolor=[MIMColorClass colorWithComponent:@"0,0,0,0"];
             myBarChart.xTitleStyle=X_TITLES_STYLE2;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
@@ -329,40 +330,6 @@
 }
 
 
--(BOOL)horizontalGradient:(id)graph
-{
-    if (graph==myBarChart1) 
-        return YES;
-
-    return NO;
-}
-/*You need this method to return YES in order to display the titles on X-Axis*/
--(BOOL)displayTitlesOnXAxis:(id)graph
-{
-    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=14)
-    {
-        return YES;
-    }
-    
-    return NO;
-}
--(float)WidthForBarChart:(id)graph
-{
-    float w=40;
-    
-    if(graph==myBarChart1)//fix it
-    {
-        w= 30;
-        return w;
-    }
-    
-    return w;
-}
-
--(BOOL)displayTitlesOnYAxis:(id)graph
-{
-    return YES;
-}
 
 
 -(NSDictionary *)animationOnBars:(id)graph
@@ -374,12 +341,7 @@
     return nil;
 }
 
--(MIMColorClass *)colorForBackground:(id)graph
-{
-    if([(BarChart *)graph tag]==11)
-    return [MIMColorClass colorWithComponent:@"0,0,0,0"];
-    return nil;
-}
+
 
 -(UILabel *)createLabelWithText:(NSString *)text
 {

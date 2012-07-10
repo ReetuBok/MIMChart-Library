@@ -26,21 +26,21 @@
 
 
 #import "TestLineClass.h"
-#import "MultiLineTestClass.h"
-#import "NegativeLineTestClass.h"
+
 
 
 #import "TestClassFragmented.h"
 
 #import "WallTestClass.h"
-#import "NegativeWallTestClass.h"
-#import "MutiWallTestClass.h"
+
+
 
 #import "BarTestClass.h"
 #import "GroupBarTestClass.h"
 #import "StackedBarTestClass.h"
 
 
+#import "GaugeGraphTestClass.h"
 
 @interface Level2iPadController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {

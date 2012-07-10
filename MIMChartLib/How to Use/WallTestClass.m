@@ -88,7 +88,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return  8;
+    return  12;
     
 }
 
@@ -96,7 +96,8 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    
+    xProperty=nil;
+    yProperty=nil;
     
     UITableViewCell *cell;// = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -108,27 +109,84 @@
     {
         case 0:
         {
+            yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
             
-            wallGraph=[[WallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            wallGraph.tag=indexPath.row+10;
-            wallGraph.delegate=self;
-            [wallGraph drawWallGraph];
-            [cell.contentView addSubview:wallGraph];
+            NSArray *keys=[NSArray arrayWithObjects:@"color",@"width", nil];
+            NSArray *values=[NSArray arrayWithObjects:@"0,0,0,1",@"2.0", nil];
+            xProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
+            yProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
+            
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.55)];
+            mWallGraph.tag=indexPath.row+10;
+            mWallGraph.delegate=self;
+            //mWallGraph.backgroundColor=[UIColor blackColor];
+            mWallGraph.isGradient=YES;
+            mWallGraph.displayMeterline=YES;
+            mWallGraph.xTitleStyle=X_TITLES_STYLE1;
+            [mWallGraph drawMIMWallGraph];
+            [cell.contentView addSubview:mWallGraph];
             
         }
             break;
             
         case 1:
         {
-            wallGraph=[[WallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            wallGraph.tag=indexPath.row+10;
-            wallGraph.delegate=self;
+            yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
             
-            wallGraph.isShadow=YES;
-          
-            
-            [wallGraph drawWallGraph];
-            [cell.contentView addSubview:wallGraph];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mWallGraph.tag=indexPath.row+10;
+            mWallGraph.delegate=self;
+            mWallGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:CIRCLEFILLED], nil];
+            [mWallGraph drawMIMWallGraph];
+            [cell.contentView addSubview:mWallGraph];
 
             
             
@@ -136,57 +194,502 @@
             break;
         case 2:
         {
-            wallGraph=[[WallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            wallGraph.delegate=self;
-            wallGraph.tag=10+indexPath.row;
-            wallGraph.patternStyle=WALL_PATTERN_STYLE2;
-            [wallGraph drawWallGraph];
-            [cell.contentView addSubview:wallGraph];
+            yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            
+            NSArray *keys=[NSArray arrayWithObjects:@"color",@"width", nil];
+            NSArray *values=[NSArray arrayWithObjects:@"0,0,1,1",@"0.5", nil];
+            xProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
+            yProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
+            
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mWallGraph.delegate=self;
+            mWallGraph.tag=10+indexPath.row;
+            [mWallGraph drawMIMWallGraph];
+            [cell.contentView addSubview:mWallGraph];
             
             
         }
             break;
         case 3:
         {
+            //Test for hiding X-Axis.
+            NSArray *keys=[NSArray arrayWithObjects:@"hide", nil];
+            NSArray *values=[NSArray arrayWithObjects:[NSNumber numberWithBool:YES], nil];
+            xProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
+
             
+            [self createDataForLongSingleWall];
+
             
+            yValuesArray=[NSArray arrayWithArray:dataArrayFromCSV];
+            xValuesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
+            xTitlesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
+            
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.55)];
+            mWallGraph.delegate=self;
+            mWallGraph.isGradient=YES;
+            mWallGraph.displayMeterline=YES;
+            mWallGraph.tag=10+indexPath.row;
+            [mWallGraph drawMIMWallGraph];
+            [cell.contentView addSubview:mWallGraph];
             
             
         }
             break;
         case 4:
         {
+            //Test for hiding Y-Axis
+            //NSArray *keys=[NSArray arrayWithObjects:@"hide", nil];
+            //NSArray *values=[NSArray arrayWithObjects:[NSNumber numberWithBool:YES], nil];
+            //yProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
+
+            
+            NSArray *array1=[NSArray arrayWithObjects:@"104.622"  ,  @"104.270" ,   @"100.635"   , @"103.684"   , @"105.483",    @"105.101" ,   @"105.447" ,   @"104.468",    @"102.064" ,   @"100.319"  ,  @"100.145"  ,  @"100.567", nil];
             
             
+            NSArray *array2=[NSArray arrayWithObjects:@"72.80",
+                             @"69.55",
+                             @"34.50",
+                             @"33.96",
+                             @"45.31",
+                             @"54.05",
+                             @"61.45",
+                             @"62.57",
+                             @"65.00",
+                             @"74.58",
+                             @"63.70",
+                             @"69.58", nil];
+            
+            NSArray *array3=[NSArray arrayWithObjects:@"93.83",
+                             @"93.96",
+                             @"93.63",
+                             @"93.70",
+                             @"93.65",
+                             @"93.82",
+                             @"93.88",
+                             @"93.80",
+                             @"93.79",
+                             @"93.86",
+                             @"93.78",
+                             @"93.47", nil];
+            
+            
+            
+            yValuesArray=[[NSArray alloc]initWithObjects:array1,array2,array3,nil];
+            
+            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-70, myTableView.frame.size.width * 0.5)];
+            mWallGraph.delegate=self;
+            mWallGraph.tag=10+indexPath.row;
+            mWallGraph.isGradient=YES;
+            mWallGraph.xTitleStyle=X_TITLES_STYLE1;
+            [mWallGraph drawMIMWallGraph];
+            [cell.contentView addSubview:mWallGraph];
+            
+            //All WIthout Anchors
             
         }
             break;
+            
         case 5:
         {
+            NSArray *array1=[NSArray arrayWithObjects:@"104.622"  ,  @"104.270" ,   @"100.635"   , @"103.684"   , @"105.483",    @"105.101" ,   @"105.447" ,   @"104.468",    @"102.064" ,   @"100.319"  ,  @"100.145"  ,  @"100.567", nil];
+            //        NSArray *array2=[NSArray arrayWithObjects:@"172.80",
+            //                         @"169.55",
+            //                         @"134.50",
+            //                         @"133.96",
+            //                         @"145.31",
+            //                         @"154.05",
+            //                         @"161.45",
+            //                         @"162.57",
+            //                         @"165.00",
+            //                         @"174.58",
+            //                         @"163.70",
+            //                         @"169.58", nil];
+            //THERE IS PROBLEM WITH ABOVE ARRAY- CHECK PLEASE.
+            NSArray *array2=[NSArray arrayWithObjects:@"72.80",
+                             @"69.55",
+                             @"34.50",
+                             @"33.96",
+                             @"45.31",
+                             @"54.05",
+                             @"61.45",
+                             @"62.57",
+                             @"65.00",
+                             @"74.58",
+                             @"63.70",
+                             @"69.58", nil];
             
+            NSArray *array3=[NSArray arrayWithObjects:@"93.83",
+                             @"93.96",
+                             @"93.63",
+                             @"93.70",
+                             @"93.65",
+                             @"93.82",
+                             @"93.88",
+                             @"93.80",
+                             @"93.79",
+                             @"93.86",
+                             @"93.78",
+                             @"93.47", nil];
+            
+            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            
+            yValuesArray=[[NSArray alloc]initWithObjects:array1,array2,array3,nil];
+            
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mWallGraph.delegate=self;
+            mWallGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:NONE],
+                                       [NSNumber numberWithInt:NONE],
+                                       [NSNumber numberWithInt:NONE], 
+                                       nil];
+            
+            mWallGraph.tag=10+indexPath.row;
+            mWallGraph.xTitleStyle=X_TITLES_STYLE2;
+            [mWallGraph drawMIMWallGraph];
+            [cell.contentView addSubview:mWallGraph];
+            
+
             
         }
             break;
+            
         case 6:
         {
+            NSArray *array1=[NSArray arrayWithObjects:@"104.622"  ,  @"104.270" ,   @"100.635"   , @"103.684"   , @"105.483",    @"105.101" ,   @"105.447" ,   @"104.468",    @"102.064" ,   @"100.319"  ,  @"100.145"  ,  @"100.567", nil];
+            //        NSArray *array2=[NSArray arrayWithObjects:@"172.80",
+            //                         @"169.55",
+            //                         @"134.50",
+            //                         @"133.96",
+            //                         @"145.31",
+            //                         @"154.05",
+            //                         @"161.45",
+            //                         @"162.57",
+            //                         @"165.00",
+            //                         @"174.58",
+            //                         @"163.70",
+            //                         @"169.58", nil];
+            //THERE IS PROBLEM WITH ABOVE ARRAY- CHECK PLEASE.
+            NSArray *array2=[NSArray arrayWithObjects:@"72.80",
+                             @"69.55",
+                             @"34.50",
+                             @"33.96",
+                             @"45.31",
+                             @"54.05",
+                             @"61.45",
+                             @"62.57",
+                             @"65.00",
+                             @"74.58",
+                             @"63.70",
+                             @"69.58", nil];
+            
+            NSArray *array3=[NSArray arrayWithObjects:@"93.83",
+                             @"93.96",
+                             @"93.63",
+                             @"93.70",
+                             @"93.65",
+                             @"93.82",
+                             @"93.88",
+                             @"93.80",
+                             @"93.79",
+                             @"93.86",
+                             @"93.78",
+                             @"93.47", nil];
+            
+            
+            
+            yValuesArray=[[NSArray alloc]initWithObjects:array1,array2,array3,nil];
+            
+            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
+            mWallGraph.delegate=self;
+            mWallGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:NONE],
+                                       [NSNumber numberWithInt:NONE],
+                                       [NSNumber numberWithInt:NONE], 
+                                       nil];
+            
+            mWallGraph.tag=10+indexPath.row;
+            mWallGraph.xTitleStyle=X_TITLES_STYLE2;
+            [mWallGraph drawMIMWallGraph];
+            [cell.contentView addSubview:mWallGraph];
+            
+            //All with some default colors
             
         }
             break;
         case 7:
         {
-            wallGraph=[[WallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            wallGraph.delegate=self;
-            wallGraph.tag=10+indexPath.row;
-            [wallGraph drawWallGraph];
-            [cell.contentView addSubview:wallGraph];
+            NSArray *keys=[NSArray arrayWithObjects:@"hide", nil];
+            NSArray *values=[NSArray arrayWithObjects:[NSNumber numberWithBool:YES], nil];
+            xProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
+
+            
+            
+            [self createDataForLongMultipleWall];
+            
+            yValuesArray=[NSArray arrayWithArray:dataArrayFromCSV];
+            xValuesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
+            xTitlesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
+            
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mWallGraph.delegate=self;
+            mWallGraph.tag=10+indexPath.row;
+            [mWallGraph drawMIMWallGraph];
+            [cell.contentView addSubview:mWallGraph];
             
         }
             break;
+            
         case 8:
         {
+            NSArray *array1=[NSArray arrayWithObjects:@"-40",@"-30",@"-20",@"-10", @"0",@"20",@"23" ,@"25",@"28" ,@"30",@"25",@"40",nil];
+            yValuesArray=[[NSArray alloc]initWithObjects:array1,nil];
+            
+            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            
+            
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            
+            
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-70, myTableView.frame.size.width * 0.5)];
+            mWallGraph.delegate=self;
+            mWallGraph.tag=10+indexPath.row;
+            mWallGraph.xTitleStyle=X_TITLES_STYLE1;
+            [mWallGraph drawMIMWallGraph];
+            [cell.contentView addSubview:mWallGraph];
             
             
             
+        }
+            break;
+            
+        case 9:
+        {
+            NSArray *array1=[NSArray arrayWithObjects:@"-40",@"-30",@"-20",@"-10", @"0",@"20",@"23" ,@"25",@"28" ,@"30",@"25",@"40",nil];
+            NSArray *array2=[NSArray arrayWithObjects:@"-140",@"-135",@"-120",@"-130", @"10",@"120",@"123" ,@"50",@"58" ,@"40",@"125",@"120",nil];
+            yValuesArray=[[NSArray alloc]initWithObjects:array1,array2,nil];
+            
+            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            
+            
+            
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mWallGraph.delegate=self;
+            mWallGraph.tag=10+indexPath.row;
+            mWallGraph.xTitleStyle=X_TITLES_STYLE2;
+            mWallGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:NONE],
+                                       [NSNumber numberWithInt:NONE], 
+                                       nil];
+            
+            [mWallGraph drawMIMWallGraph];
+            [cell.contentView addSubview:mWallGraph];
+            
+            //All with their own anchor styles
+            
+        }
+            break;
+            
+        case 10:
+        {
+            NSArray *array1=[NSArray arrayWithObjects:@"-40",@"-30",@"-20",@"-10", @"10",@"20",@"23" ,@"25",@"28" ,@"30",@"25",@"40",nil];
+            NSArray *array2=[NSArray arrayWithObjects:@"-140",@"-135",@"-120",@"-130", @"10",@"120",@"123" ,@"50",@"58" ,@"40",@"125",@"120",nil];
+            NSArray *array3=[NSArray arrayWithObjects:@"-10",@"-235",@"-80",@"-90", @"120",@"110",@"133" ,@"70",@"68" ,@"50",@"105",@"110",nil];
+            yValuesArray=[[NSArray alloc]initWithObjects:array1,array2,array3,nil];
+            
+            
+            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
+            mWallGraph.delegate=self;
+            mWallGraph.tag=10+indexPath.row;
+            mWallGraph.xTitleStyle=X_TITLES_STYLE2;
+            mWallGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:NONE],
+                                       [NSNumber numberWithInt:NONE],
+                                       [NSNumber numberWithInt:NONE], 
+                                       nil];
+            [mWallGraph drawMIMWallGraph];
+            [cell.contentView addSubview:mWallGraph];
+            
+            //All with some default colors
+            
+        }
+            break;
+        case 11:
+        {
+            
+            [self createDataForLongNegativeWall];
+            yValuesArray=[NSArray arrayWithArray:dataArrayFromCSV];
+            xValuesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
+            xTitlesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
+
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mWallGraph.delegate=self;
+            mWallGraph.tag=10+indexPath.row;
+            [mWallGraph drawMIMWallGraph];
+            [cell.contentView addSubview:mWallGraph];
             
         }
             break;
@@ -204,116 +707,32 @@
 #pragma mark - DELEGATE METHODS
 -(NSArray *)valuesForGraph:(id)graph
 {
-    NSArray *yValuesArray;
-    
-    if([(WallGraph *)graph tag]>=10 && [(WallGraph *)graph tag]<=16)
-    {
-        yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
-    }
-    
-    else if([(WallGraph *)graph tag] == 17)
-        return dataArrayFromCSV;
-    
     return yValuesArray;
-    
-    
-    
 }
 
 -(NSArray *)valuesForXAxis:(id)graph
-{
-    NSArray *xValuesArray=nil;
-    
-    if([(WallGraph *)graph tag]>=10 && [(WallGraph *)graph tag]<=16)
-        xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
-                      @"Feb",
-                      @"Mar",
-                      @"Apr",
-                      @"May",
-                      @"Jun",
-                      @"Jul",
-                      @"Aug",
-                      @"Sep",
-                      @"Oct",
-                      @"Nov",
-                      @"Dec", nil];
-    
-    else if([(WallGraph *)graph tag] == 17)
-        return xDataArrayFromCSV;
-    
+{    
     return xValuesArray;
 }
 
 -(NSArray *)titlesForXAxis:(id)graph
 {
-    NSArray *xValuesArray;
-    
-    if([(WallGraph *)graph tag]>=10 && [(WallGraph *)graph tag]<=16)
-        xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
-                      @"Feb",
-                      @"Mar",
-                      @"Apr",
-                      @"May",
-                      @"Jun",
-                      @"Jul",
-                      @"Aug",
-                      @"Sep",
-                      @"Oct",
-                      @"Nov",
-                      @"Dec", nil];
-    
-    
-    return xValuesArray;
-    
-}
-/*You need this method to return YES in order to display the titles on X-Axis*/
--(BOOL)displayTitlesOnXAxis:(id)graph
-{
-    if([(WallGraph *)graph tag]>=10 && [(WallGraph *)graph tag]<=13)
-    {
-        return YES;
-    }
-    
-    return NO;
-}
 
--(BOOL)displayTitlesOnYAxis:(id)graph
-{
-    return YES;
+    return xTitlesArray;    
 }
 
 
--(BOOL)drawHorizontalLines:(id)graph
+-(NSDictionary *)xAxisProperties:(id)graph
 {
-    if([(WallGraph *)graph tag]>=10 && [(WallGraph *)graph tag]<=17)
-    {
-        return YES;
-    }
-    
-    return NO;
+    return xProperty;
+}
+-(NSDictionary *)yAxisProperties:(id)graph
+{
+    return yProperty;
 }
 
--(BOOL)drawVerticalLines:(id)graph
-{
-    if([(WallGraph *)graph tag]==11)
-    {
-        return YES;
-    }
-    
-    return NO;
-}
 
--(float)widthOfWallBorder:(id)graph
-{
-    if([(WallGraph *)graph tag]==10)
-    {
-        return 3.0;
-    }
-    if([(WallGraph *)graph tag]==17)
-    {
-        return 2.0;
-    }
-}
+
 -(UILabel *)createLabelWithText:(NSString *)text
 {
     UILabel *a=[[UILabel alloc]initWithFrame:CGRectMake(5, myTableView.frame.size.width * 0.5 + 20, 310, 20)];
@@ -329,9 +748,11 @@
 }
 
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
+-(void)createDataForLongSingleWall
 {
+    [xDataArrayFromCSV removeAllObjects];xDataArrayFromCSV=nil;
+    [dataArrayFromCSV removeAllObjects];dataArrayFromCSV=nil;
+    
     
     xDataArrayFromCSV=[[NSMutableArray alloc]init];
     dataArrayFromCSV=[[NSMutableArray alloc]init];
@@ -350,12 +771,126 @@
         [xDataArrayFromCSV addObject:[columnArray objectAtIndex:0]];    
     }
     
-    [MIMColor InitFragmentedBarColors];
+
+}
+
+-(void)createDataForLongMultipleWall
+{
+    xDataArrayFromCSV=[[NSMutableArray alloc]init];
+    dataArrayFromCSV=[[NSMutableArray alloc]init];
+    
+    NSMutableArray *valArray=[[NSMutableArray alloc]init];
+    NSMutableArray *xvalArray=[[NSMutableArray alloc]init];
+    
+    NSString *csvPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"data3.csv"];
+    NSString *fileDataString=[NSString stringWithContentsOfFile:csvPath encoding:NSUTF8StringEncoding error:nil];
+    NSArray *linesArray=[fileDataString componentsSeparatedByString:@"\n"];
     
     
     
+    for (int i=1;i<[linesArray count];i++)
+    {
+        
+        NSString *lineString=[linesArray objectAtIndex:i];
+        NSArray *columnArray=[lineString componentsSeparatedByString:@","];
+        [valArray addObject:[columnArray objectAtIndex:1]];
+        [xvalArray addObject:[columnArray objectAtIndex:0]];    
+    }
+    
+    [xDataArrayFromCSV addObject:xvalArray];
+    [dataArrayFromCSV addObject:valArray];
     
     
+    
+    NSMutableArray *valArray1=[[NSMutableArray alloc]init];
+    NSMutableArray *xvalArray1=[[NSMutableArray alloc]init];
+    
+    
+    csvPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"data4.csv"];
+    fileDataString=[NSString stringWithContentsOfFile:csvPath encoding:NSUTF8StringEncoding error:nil];
+    linesArray=[fileDataString componentsSeparatedByString:@"\n"];
+    
+    
+    
+    for (int i=1;i<[linesArray count];i++)
+    {
+        
+        NSString *lineString=[linesArray objectAtIndex:i];
+        NSArray *columnArray=[lineString componentsSeparatedByString:@","];
+        [valArray1 addObject:[columnArray objectAtIndex:1]];
+        [xvalArray1 addObject:[columnArray objectAtIndex:0]];    
+    }
+    
+    [xDataArrayFromCSV addObject:xvalArray1];
+    [dataArrayFromCSV addObject:valArray1];
+    
+    
+
+    
+    
+}
+
+-(void)createDataForLongNegativeWall
+{
+    xDataArrayFromCSV=[[NSMutableArray alloc]init];
+    dataArrayFromCSV=[[NSMutableArray alloc]init];
+    
+    NSMutableArray *valArray=[[NSMutableArray alloc]init];
+    NSMutableArray *xvalArray=[[NSMutableArray alloc]init];
+    
+    NSString *csvPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"data3.csv"];
+    NSString *fileDataString=[NSString stringWithContentsOfFile:csvPath encoding:NSUTF8StringEncoding error:nil];
+    NSArray *linesArray=[fileDataString componentsSeparatedByString:@"\n"];
+    
+    
+    
+    for (int i=1;i<[linesArray count];i++)
+    {
+        
+        NSString *lineString=[linesArray objectAtIndex:i];
+        NSArray *columnArray=[lineString componentsSeparatedByString:@","];
+        [valArray addObject:[NSString stringWithFormat:@"-%@",[columnArray objectAtIndex:1]]];
+        [xvalArray addObject:[columnArray objectAtIndex:0]];    
+    }
+    
+    [xDataArrayFromCSV addObject:xvalArray];
+    [dataArrayFromCSV addObject:valArray];
+    
+    
+    
+    NSMutableArray *valArray1=[[NSMutableArray alloc]init];
+    NSMutableArray *xvalArray1=[[NSMutableArray alloc]init];
+    
+    
+    csvPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"data4.csv"];
+    fileDataString=[NSString stringWithContentsOfFile:csvPath encoding:NSUTF8StringEncoding error:nil];
+    linesArray=[fileDataString componentsSeparatedByString:@"\n"];
+    
+    
+    
+    for (int i=1;i<[linesArray count];i++)
+    {
+        
+        NSString *lineString=[linesArray objectAtIndex:i];
+        NSArray *columnArray=[lineString componentsSeparatedByString:@","];
+        [valArray1 addObject:[columnArray objectAtIndex:1]];
+        [xvalArray1 addObject:[columnArray objectAtIndex:0]];    
+    }
+    
+    [xDataArrayFromCSV addObject:xvalArray1];
+    [dataArrayFromCSV addObject:valArray1];
+    
+    
+
+    
+    
+}
+// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad
+{
+    
+    
+
     [super viewDidLoad];
 }
 

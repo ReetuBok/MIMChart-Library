@@ -25,38 +25,26 @@
 
 #import <UIKit/UIKit.h>
 #import "AnchorDelegate.h"
+#import "Constant.h"
 
-typedef enum{
 
-    SQUAREFILLED=1,
-    SQUAREBORDER=2,
-    CIRCLEFILLED=3,
-    CIRCLEBORDER=4,
-    NONE=5,
-    DEFAULT=6,
-    
-}ANCHORTYPE;
-
-@interface Anchor : UIView {
+@interface Anchor : UIView 
+{
     
     id<AnchorDelegate> delegate;
-    long int idTag;
-    ANCHORTYPE type;
-    BOOL highlightOn;
-    BOOL moveOn;
-    UIColor *color;
-    BOOL enabled;
-    BOOL isShadow;
+    long int anchorTag;
+    NSDictionary *properties;
+    
+    @private
+    UITapGestureRecognizer *tapGesture;
 
 }
 @property(nonatomic,strong)id <AnchorDelegate>delegate;
-@property(nonatomic,assign)    ANCHORTYPE type;
-@property(nonatomic,assign)long int idTag;
-@property(nonatomic,assign)BOOL highlightOn;
-@property(nonatomic,assign)BOOL moveOn;
-@property(nonatomic,retain)UIColor *color;
-@property(nonatomic,assign)BOOL enabled;
-@property(nonatomic,assign)BOOL isShadow;
+@property(nonatomic,assign)long int anchorTag;
+@property(nonatomic,retain)NSDictionary *properties;
+
 
 -(void)drawAnchor;
+-(void)createPopOutAnimation;
+-(void)createBounceAnimation;
 @end

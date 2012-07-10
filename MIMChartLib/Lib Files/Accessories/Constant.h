@@ -1,3 +1,24 @@
+#import "Anchor.h"
+#import "AnchorInfo.h"
+#import "MIMColor.h"
+#import "MIMColorClass.h"
+#import "LineInfoBox.h"
+#import "YAxisBand.h"
+#import "XAxisBand.h"
+#import "MIM_MathClass.h"
+#import "LineScrollView.h"
+#import "MIMMeter.h"
+
+#import <Foundation/Foundation.h>
+
+#ifdef DEBUG 
+#define DEBUG_MODE 1
+#endif
+
+#ifndef DEBUG 
+#define DEBUG_MODE 0
+#endif
+
 typedef enum
 {
     USERDEFINED=1,
@@ -7,6 +28,19 @@ typedef enum
     
 }TINTCOLOR;
 
+
+typedef enum{
+    
+    SQUAREFILLED=1,
+    SQUAREBORDER=2,
+    CIRCLEFILLED=3,
+    CIRCLEBORDER=4,
+    CIRCLE=5,//Circle with border as fill Color
+    SQUARE=6,
+    NONE=7,
+    DEFAULT=8,
+    
+}ANCHORTYPE;
 
 
 typedef enum
@@ -103,6 +137,7 @@ typedef enum
     WALL_PATTERN_STYLE3,
     WALL_PATTERN_STYLE4,
     WALL_PATTERN_STYLE5,
+    WALL_PATTERN_STYLE_NONE,
 }WALL_PATTERN_STYLE;
 
 
@@ -115,3 +150,4 @@ typedef enum
 
 #define LINESCROLLVIEWTAG 1000
 #define XBANDTAG 1001
+#define YBANDTAG 1002

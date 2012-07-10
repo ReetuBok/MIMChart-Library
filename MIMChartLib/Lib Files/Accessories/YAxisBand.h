@@ -25,20 +25,16 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
+#import "MIMColorClass.h"
+#import "Constant.h"
 
 @interface YAxisBand : UIView {
-    
-    float _tileWidth;
-    float pixelPerYTile;
-    int HorLines;
-    UIColor *lineColor;
-    float minStart;
+
+
+    NSDictionary *properties;
 
 }
-@property(nonatomic,retain)UIColor *lineColor;
+@property(nonatomic,retain)NSDictionary *properties;
 
 
--(void)setScaleForYTile:(float)value  withNumOfLines:(int)numOfHorLines;
--(void)setScaleForYTile:(float)value  withNumOfLines:(int)numOfHorLines withMin:(float)startFrom;
--(void)drawYAxis:(CGContextRef)ctx;
 @end

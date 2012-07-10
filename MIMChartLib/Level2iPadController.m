@@ -128,16 +128,7 @@
         TestLineClass *level3=[[TestLineClass alloc]initWithNibName:@"TestLineClass" bundle:nil];
         [self.navigationController pushViewController:level3 animated:YES];
     }
-    else if([title isEqualToString:@"Multi-Line Chart"])
-    {
-        MultiLineTestClass *level3=[[MultiLineTestClass alloc]initWithNibName:@"MultiLineTestClass" bundle:nil];
-        [self.navigationController pushViewController:level3 animated:YES];
-    }
-    else if([title isEqualToString:@"Negative-Line Chart"])
-    {
-        NegativeLineTestClass *level3=[[NegativeLineTestClass alloc]initWithNibName:@"NegativeLineTestClass" bundle:nil];
-        [self.navigationController pushViewController:level3 animated:YES];
-    }
+ 
     
     
     
@@ -158,16 +149,7 @@
         [self.navigationController pushViewController:level3 animated:YES];
         
     }
-    else if([title isEqualToString:@"Multi Wall Chart"])
-    {
-        MutiWallTestClass *level3=[[MutiWallTestClass alloc]initWithNibName:@"MutiWallTestClass" bundle:nil];
-        [self.navigationController pushViewController:level3 animated:YES];
-    }
-    else if([title isEqualToString:@"Negative Wall Chart"])
-    {
-        NegativeWallTestClass *level3=[[NegativeWallTestClass alloc]initWithNibName:@"NegativeWallTestClass" bundle:nil];
-        [self.navigationController pushViewController:level3 animated:YES];
-    }
+    
     
     
     
@@ -188,8 +170,13 @@
         [self.navigationController pushViewController:level3 animated:YES];
     }
     
+    /***************************GAUGE GRAPHS****************************/
     
-    
+    else if([title isEqualToString:@"Gauge Graphs"])
+    {
+        GaugeGraphTestClass *level3=[[GaugeGraphTestClass alloc]init];
+        [self.navigationController pushViewController:level3 animated:YES];
+    }
     
     
     
@@ -279,7 +266,7 @@
     /***************************LINE GRAPHS****************************/
     else if([titleString isEqualToString:@"Overview of all Line Charts"])
     {
-        featureListCellArray=[[NSArray alloc]initWithObjects:@"Basic Line Charts",@"Multi-Line Chart",@"Negative-Line Chart", nil];
+        featureListCellArray=[[NSArray alloc]initWithObjects:@"Basic Line Charts", nil];
     }
     
     
@@ -287,9 +274,9 @@
     
     
     /***************************FRAGMENTED DOUGHNUT CHART****************************/
-    else if([titleString isEqualToString:@"Overview of all Fragmented Doughnut Charts"])
+    else if([titleString isEqualToString:@"Overview of all Doughnut Charts"])
     {
-        featureListCellArray=[[NSArray alloc]initWithObjects:@"Basic Fragmented Doughnut Charts", nil];
+        featureListCellArray=[[NSArray alloc]initWithObjects:@"Basic Doughnut Charts", nil];
     }
     
     
@@ -298,7 +285,7 @@
     /***************************WALL GRAPHS****************************/
     else if([titleString isEqualToString:@"Overview of all Wall Graphs"])
     {
-        featureListCellArray=[[NSArray alloc]initWithObjects:@"Basic Wall Graphs",@"Multi Wall Chart",@"Negative Wall Chart",nil];
+        featureListCellArray=[[NSArray alloc]initWithObjects:@"Basic Wall Graphs",nil];
     }
     
     
@@ -314,13 +301,12 @@
  
     
     
-    
-    /***************************FRAGMENTED BAR CHARTS****************************/
-    else if([titleString isEqualToString:@"Overview of all Fragmented Bar Charts"])
-    {
-        featureListCellArray=[[NSArray alloc]initWithObjects:@"Basic Fragmented Bar Charts", nil];
-    }
   
+    /***************************Gauge GRAPH****************************/
+    else if([titleString isEqualToString:@"Overview of Gauge Graphs"])
+    {
+        featureListCellArray=[[NSArray alloc]initWithObjects:@"Gauge Graphs", nil];
+    }
     
     [myTableView reloadData];
     [super viewDidLoad];

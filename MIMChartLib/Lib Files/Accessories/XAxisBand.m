@@ -29,6 +29,8 @@
 @implementation XAxisBand
 @synthesize xElements,scalingFactor,style,lineChart,xIsString;
 @synthesize barChart,gapDistance,lineColor,lineWidth;
+@synthesize properties;
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -45,6 +47,63 @@
 
 
 
+-(void)setVariables
+{
+
+    if([xElements count]==0)
+        return;
+    
+    
+    //LineColor
+    MIMColorClass *c=[MIMColorClass colorWithRed:0.7 Green:0.7 Blue:0.7 Alpha:1.0];
+    if([properties valueForKey:@"color"]) 
+        c=[MIMColorClass colorWithComponent:[properties valueForKey:@"color"]];
+    lineColor=[UIColor colorWithRed:c.red green:c.green blue:c.blue alpha:c.alpha];
+    
+    
+    
+    //Width
+    lineWidth=0.1;
+    if([properties valueForKey:@"width"]) 
+        lineWidth=[[properties valueForKey:@"width"] floatValue];
+    if(lineWidth==0) NSLog(@"WARNING: Line width of horizontal line is 0.");
+    
+    
+    
+    style=X_TITLES_STYLE1;
+    if([properties valueForKey:@"style"]) 
+        style=[[properties valueForKey:@"style"] intValue];
+    
+    
+    
+    lineChart=FALSE;
+    if([properties valueForKey:@"linechart"]) 
+        lineChart=[[properties valueForKey:@"linechart"] boolValue];
+    
+    
+    barChart=FALSE;
+    if([properties valueForKey:@"barchart"]) 
+        barChart=[[properties valueForKey:@"barchart"] boolValue];
+    
+    xIsString=TRUE;
+    if([properties valueForKey:@"xisstring"]) 
+        xIsString=[[properties valueForKey:@"xisstring"] boolValue];
+    
+    if([properties valueForKey:@"xscaling"]) 
+        scalingFactor=[[properties valueForKey:@"xscaling"] floatValue];
+    
+    if([properties valueForKey:@"gapBetweenBars"]) 
+        gapDistance=[[properties valueForKey:@"gapBetweenBars"] floatValue];
+    
+    if([properties valueForKey:@"gapBetweenGroup"]) 
+        groupGapDistance=[[properties valueForKey:@"gapBetweenGroup"] floatValue];
+
+    
+    groupBarChart=FALSE;
+    if([properties valueForKey:@"groupedBars"]) 
+        groupBarChart=[[properties valueForKey:@"groupedBars"] boolValue];
+}
+
 
 
 
@@ -53,9 +112,10 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    
+    [self setVariables];
+    
 
-    if([xElements count]==0)
-        return;
     
     // Drawing code
     CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -67,6 +127,14 @@
     
     CGAffineTransform flipTransform = CGAffineTransformMake( 1, 0, 0, -1, 0, self.frame.size.height);
     CGContextConcatCTM(ctx, flipTransform);
+    
+    
+    //Clear the color of background
+    CGRect r=CGRectMake(0, 0, CGRectGetWidth(rect), CGRectGetHeight(rect));
+    //CGContextSetBlendMode(context,kCGBlendModeClear);
+    CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
+    CGContextAddRect(ctx, r);      
+    CGContextFillPath(ctx);
     
     
     //Draw Gray Lines for X-axis
@@ -115,8 +183,61 @@
     
     }
     
-    
-    
+    if(barChart)
+    {
+    if(groupBarChart)
+    {
+        float offset=scalingFactor;
+        for (int i=0; i<[xElements count]; i++) 
+        {
+         
+            for(int j=0;j<[[xElements objectAtIndex:i] count];j++)
+            {
+                XAxisLabel *label;
+                int v;
+                
+                
+                if(xIsString) v=i;
+                else v=[[[xElements objectAtIndex:i] objectAtIndex:j] intValue];
+                
+                
+                if(style==3){
+                    
+                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake(offset, 0, scalingFactor, 15.0)];
+                    label.style=5;label.width=scalingFactor;
+                }
+                if(style ==1)
+                {
+                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake(offset+(0.4*scalingFactor) , 0, 50, 15.0)];
+                    label.style=1;
+                    label.width=50;
+                }
+                
+                
+                
+                if(j<[[xElements objectAtIndex:i] count]-1)
+                    offset+=gapDistance;
+
+                
+                offset+=scalingFactor;
+                
+                label.lineChart=lineChart;
+                label.text=[NSString stringWithFormat:@"%@",[[xElements objectAtIndex:i] objectAtIndex:j]];
+                
+                [label drawTitleWithColor:lineColor];
+                [self addSubview:label];
+            }
+            
+            offset+=groupGapDistance;
+        
+        }
+            
+            
+        
+        
+    }
+    }
+    else
     //draw the labels
     for (int i=0; i<[xElements count]; i++) 
     {
@@ -141,8 +262,8 @@
          
         if(barChart)
         {
-        
-            switch (style) {
+            switch (style) 
+            {
                 case 1:
                     label=[[XAxisLabel alloc]initWithFrame:CGRectMake((v*scalingFactor) +(0.3*scalingFactor) +  ((v+1) *gapDistance), 0, scalingFactor+gapDistance, 15.0)];
                     label.style=self.style;
@@ -199,9 +320,8 @@
 
 -(void)drawXAxis:(CGContextRef)ctx
 {
-
-    if(lineWidth < 1)
-        lineWidth=1.0;
+    
+    if(lineWidth<1) lineWidth=1;
     
     CGContextBeginPath(ctx);
     CGContextSetStrokeColorWithColor(ctx, lineColor.CGColor);
@@ -209,7 +329,7 @@
     CGContextMoveToPoint(ctx, 0,self.frame.size.height);
     CGContextAddLineToPoint(ctx,self.frame.size.width, self.frame.size.height);
     CGContextDrawPath(ctx, kCGPathStroke);
-    
+  
 }
 
 

@@ -49,22 +49,22 @@
         return;
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSetAllowsAntialiasing(ctx, YES);
+    CGContextSetShouldAntialias(ctx, YES);
+
     
     CGAffineTransform flipTransform = CGAffineTransformMake( 1, 0, 0, -1, 0, self.frame.size.height);
     CGContextConcatCTM(ctx, flipTransform);
 
 
     CGContextSetBlendMode(ctx,kCGBlendModeClear);
-    CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
+    CGContextSetFillColorWithColor(ctx, [UIColor redColor].CGColor);
     CGContextAddRect(ctx, CGRectMake(0, 0, width, 15.0));      
     CGContextFillPath(ctx);
     
     
-     CGContextSetBlendMode(ctx,kCGBlendModeNormal);
-    
-//    CGContextSetFillColorWithColor(ctx, [UIColor redColor].CGColor);
-//    CGContextAddRect(ctx, CGRectMake(0, 0, CGRectGetWidth(rect), CGRectGetHeight(rect)));  
-//    CGContextFillPath(ctx);
+    CGContextSetBlendMode(ctx,kCGBlendModeNormal);
+
     
     //This is the string we want to write on our screen and we also need to get the string length
     NSString *test =[NSString stringWithFormat:@"%@",text];
@@ -89,9 +89,9 @@
     CFAttributedStringSetAttribute(attrString,CFRangeMake(0, _stringLength),kCTFontAttributeName,font);
     
     
-    switch (style) {
-        case 1:
-//            self.transform=CGAffineTransformConcat(CGAffineTransformMakeRotation(-1.57/2), CGAffineTransformMakeTranslation(-width/2, width/2));   
+    switch (style) 
+    {
+        case 1: 
             self.transform=CGAffineTransformConcat(CGAffineTransformMakeRotation(-1.57), CGAffineTransformMakeTranslation(-width/2, width/2));   
             break;
             

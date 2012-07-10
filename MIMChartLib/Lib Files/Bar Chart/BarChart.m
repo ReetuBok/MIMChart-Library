@@ -27,10 +27,56 @@
 #import "BarChart.h"
 #import "BarView.h"
 #import "LineInfoBox.h"
-
+@interface BarChart()
+{
+    NSMutableArray *_yValElements;
+    NSMutableArray *_xValElements;
+    
+    
+    NSMutableDictionary *barProperties;
+    NSMutableDictionary *hlProperties;
+    NSMutableDictionary *vlProperties;
+    NSMutableDictionary *xLProperties;
+    NSMutableDictionary *yLProperties;
+    
+    float _gridWidth;
+    float _gridHeight;
+    float _scalingX;
+    float _scalingY;
+    float _tileWidth;
+    float _tileHeight;
+    BOOL xIsString;
+    NSArray *_xTitles;
+    
+    float minimumOnY;
+    
+    float pixelsPerTile;
+    int numOfHLines;
+    float barWidth;
+    
+    LineScrollView *lineGScrollView;
+    
+    
+    float animationDelayValue;
+    float animationDurationvalue;
+    int animationType;
+    
+    int barsPerDivision;
+    int spaceBetweenSameGroupBar;
+    
+    int style;
+    float gapBetweenBars; // for now it is 10 fixed.needs to be variable
+    float gapBetweenBarsDifferentGroup;
+    BOOL isLongGraph_;
+    float contentSizeX;
+    
+}
+@end
 @implementation BarChart
-@synthesize style,isGradient,horizontalGradient;
-@synthesize delegate,xTitleStyle;
+@synthesize isGradient,horizontalGradient;
+@synthesize delegate,xTitleStyle,backgroundcolor,barcolorArray;
+@synthesize groupedBars,stackedBars;
+
 
 static NSInteger firstNumSort(id str1, id str2, void *context) {
     
@@ -51,7 +97,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     if (self) {
         // Initialization code
         
-        groupBars=NO;
+        groupedBars=NO;
         stackedBars=NO;
         [self setBackgroundColor:[UIColor clearColor]];
         
@@ -59,51 +105,100 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     return self;
 }
 
-#pragma mark - X and Y Axis stuff
 
--(void)displayYAxis
+-(void)drawBarChart
 {
     
-    YAxisBand *_yBand=[[YAxisBand alloc]initWithFrame:CGRectMake(-80,0, 80, CGRectGetHeight(self.frame))];
-    [_yBand setScaleForYTile:pixelsPerTile withNumOfLines:numOfHLines];
-    [self addSubview:_yBand];
+    [self getAnimationProperties];
+    [self initAndWarnings];
+    [self createLongBarGraphScrollView];
+  
     
-    
+    [self setNeedsDisplay];
+    [self _displayXAxisLabels];
+    [self _displayYAxisLabels];
 }
-
-
--(void)displayXAxisWithStyle:(int)xstyle
-{
-    
-
-    XAxisBand *_xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), 100)];
-    _xBand.style=xstyle;
-    _xBand.xIsString=xIsString;
-    if(groupBars ||stackedBars)
-    {
-        if (barWidth==0) _xBand.scalingFactor=[self FindBestScaleForGraph];
-        else  _xBand.scalingFactor=barWidth*[_xValElements count]+20;
-    }
-    else
-    {
-        if (barWidth==0) {
-            _xBand.scalingFactor=[self FindBestScaleForGraph];
-        }
-        else
-            _xBand.scalingFactor=barWidth;
-    }
-    
-    
-    [self addSubview:_xBand];
-    
-}
-
-
 
 -(void)initAndWarnings 
 {
     
     srand(time(NULL));
+    
+    
+    
+    _yValElements=[[NSMutableArray alloc]init];
+    _xValElements=[[NSMutableArray alloc]init];
+    
+    
+    if([delegate respondsToSelector:@selector(valuesForGraph:)])
+    {
+        NSArray *valueArray_=[delegate valuesForGraph:self];
+        NSAssert(([valueArray_ count] !=0),@"WARNING::No values available to draw graph.");
+        
+        //See if the its an array or array or just one array
+        if([valueArray_ count]>0)
+        {
+            _yValElements=[NSMutableArray arrayWithArray:valueArray_];
+        }
+        
+        
+    }
+    else
+    {
+        NSLog(@"Error: Use delegate Method valuesForGraph: to give values for graph.");
+    }
+    
+    
+    
+    if([delegate respondsToSelector:@selector(valuesForXAxis:)])
+    {
+        NSArray *valueArray_=[delegate valuesForXAxis:self];
+        NSAssert(([valueArray_ count] !=0),@"WARNING::No values available for x-Axis Labels.");
+        
+        
+        if([valueArray_ count]>0)
+        {
+            _xValElements=[NSMutableArray arrayWithArray:valueArray_];
+        }
+        if(groupedBars || stackedBars)
+            xIsString=[MIM_MathClass checkIfStringIsAlphaNumericOnly:[[_xValElements objectAtIndex:0]objectAtIndex:0]];
+        else 
+            xIsString=[MIM_MathClass checkIfStringIsAlphaNumericOnly:[_xValElements objectAtIndex:0]];
+        
+    }
+    else
+    {
+        NSLog(@"Warning:No values available for x-Axis Labels.Use delegate Method valuesForXAxis: ");
+    }
+    
+    
+    if([delegate respondsToSelector:@selector(titlesForXAxis:)])
+    {
+        _xTitles=[delegate titlesForXAxis:self];
+        NSLog(@"_xTitles at p,%@",[_xTitles objectAtIndex:0]);
+        NSAssert(([_xTitles count] !=0),@"WARNING::No values available for x-Axis Labels.");
+    }
+    else
+    {
+        NSLog(@"Warning:No values available for x-Axis Labels.Use delegate Method valuesForXAxis: ");
+    }
+    
+    
+    if (groupedBars ||stackedBars)  barWidth=30;
+    else  barWidth=40;
+    
+    if([delegate respondsToSelector:@selector(barProperties:)])
+    {
+        barProperties=[NSMutableDictionary dictionaryWithDictionary:[delegate barProperties:self]];
+        
+        if([barProperties valueForKey:@"barwidth"])
+            barWidth=[[barProperties valueForKey:@"barwidth"] floatValue];                
+    }
+    
+    
+    
+
+    
     
     [MIMColor nonAdjacentGradient];
     [self CalculateGridDimensions];
@@ -129,47 +224,36 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     _gridHeight=self.frame.size.height;
 }
 
-
-
-
-
-
 -(void)FindTileWidthAndHeight
 {
+    
     //Check if Tilewidth is defined by user
-    if([delegate respondsToSelector:@selector(gapBetweenVerticalLines:)])
+    _tileWidth=50;
+    if([vlProperties valueForKey:@"gap"]) 
+        _tileWidth=[[vlProperties valueForKey:@"gap"] floatValue];
+    
+    if(_tileWidth==0)
     {
-        _tileWidth=[delegate gapBetweenVerticalLines:self];
-        if(_tileWidth==0)
-            _tileWidth=10;
+        _tileWidth=10;
         NSLog(@"WARNING: Minimum gap between vertical lines is 10.");
     }
-    else
+    
+    //HEIGHT
+    _tileHeight=50;
+    if([hlProperties valueForKey:@"gap"]) 
+        _tileHeight=[[hlProperties valueForKey:@"gap"] floatValue];
+    
+    if(_tileHeight==0)
     {
-        _tileWidth=50;
-    }
-    
-    
-    
-    if([delegate respondsToSelector:@selector(gapBetweenHorizontalLines:)])
-    {
-        _tileHeight=[delegate gapBetweenHorizontalLines:self];
-        if(_tileHeight==0)
-            _tileHeight=10;
+        _tileHeight=10;
         NSLog(@"WARNING: Minimum gap between horizontal lines is 10.");
     }
-    else
-    {
-        _tileHeight=50;
-    }
     
-    
-    
+
     
     
     
 }
-
 
 -(void)ScalingFactor
 {
@@ -177,8 +261,6 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     [self _findScaleForXTile];
 
 }
-
-
 
 -(void)_findScaleForYTile
 {
@@ -188,7 +270,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     float maxOfY;
     float minOfY;
     
-    if(groupBars || stackedBars)
+    if(groupedBars || stackedBars)
     {
     
         maxOfY=[MIM_MathClass getMaxFloatValue:[_yValElements objectAtIndex:0]];
@@ -233,17 +315,12 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     _scalingY=_tileHeight/pixelPerTile;
     
     
-}
-
-
--(float)FindBestScaleForGraph
-{
-    
-    return MAX(_scalingX, _scalingY);
+    countDigits=[[NSString stringWithFormat:@"%.0f",fabs(minOfY)] length];
+    minimumOnY=minOfY/pow(10, countDigits-1);
+    minimumOnY=floorf(minimumOnY);
+    minimumOnY=minimumOnY*pow(10, countDigits-1);
     
 }
-
-
 
 
 -(void)_findScaleForXTile
@@ -294,229 +371,89 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 
 
 
-
-
-
--(void)drawBarChart
+-(void)createLongBarGraphScrollView
 {
     
-    
-
-    _yValElements=[[NSMutableArray alloc]init];
-    _xValElements=[[NSMutableArray alloc]init];
-
-    
-    if([delegate respondsToSelector:@selector(groupedBars:)])
+    int yCount=[_yValElements count];
+    if(groupedBars)
     {
-        groupBars=[delegate groupedBars:self];
         
-    }
-    else
-    {
-        groupBars=FALSE;
-    }
-
-    
-    
-    if([delegate respondsToSelector:@selector(stackedBars:)])
-    {
-        stackedBars=[delegate stackedBars:self];
-        
-    }
-    else
-    {
-        stackedBars=FALSE;
-    }
-
-    
-    if([delegate respondsToSelector:@selector(horizontalGradient:)])
-    {
-        horizontalGradient=[delegate horizontalGradient:self];
-    }
-    else
-    {
-        horizontalGradient=FALSE;
-    }
-
-    
-    
-    
-    if([delegate respondsToSelector:@selector(valuesForGraph:)])
-    {
-        NSArray *valueArray_=[delegate valuesForGraph:self];
-        NSAssert(([valueArray_ count] !=0),@"WARNING::No values available to draw graph.");
-        
-        //See if the its an array or array or just one array
-        if([valueArray_ count]>0)
+        barsPerDivision=[[_yValElements objectAtIndex:0] count];
+        spaceBetweenSameGroupBar=barWidth/10;
+        gapBetweenBarsDifferentGroup=barWidth;
+        contentSizeX=(barsPerDivision * barWidth * yCount) + (barsPerDivision-1 * spaceBetweenSameGroupBar * yCount) + (barWidth * yCount +1) ;
+        if(contentSizeX>_gridWidth)
         {
-            _yValElements=[NSMutableArray arrayWithArray:valueArray_];
+            isLongGraph_=TRUE;
         }
         
-        
     }
-    else
+    else if(stackedBars)
     {
-        NSLog(@"Error: Use delegate Method valuesForGraph: to give values for graph.");
-    }
-
-   
-    
-    if([delegate respondsToSelector:@selector(valuesForXAxis:)])
-    {
-        NSArray *valueArray_=[delegate valuesForXAxis:self];
-        NSAssert(([valueArray_ count] !=0),@"WARNING::No values available for x-Axis Labels.");
         
-        
-        if([valueArray_ count]>0)
+        barsPerDivision=1;
+        spaceBetweenSameGroupBar=0;
+        contentSizeX=(barsPerDivision * barWidth * yCount) + (barsPerDivision-1 * spaceBetweenSameGroupBar * yCount) + (barWidth * yCount +1) ;
+        if(contentSizeX>_gridWidth)
         {
-            _xValElements=[NSMutableArray arrayWithArray:valueArray_];
+            isLongGraph_=TRUE;
         }
-        if(groupBars || stackedBars)
-            xIsString=[MIM_MathClass checkIfStringIsAlphaNumericOnly:[[_xValElements objectAtIndex:0]objectAtIndex:0]];
-        else 
-            xIsString=[MIM_MathClass checkIfStringIsAlphaNumericOnly:[_xValElements objectAtIndex:0]];
-        
     }
     else
     {
-        NSLog(@"Warning:No values available for x-Axis Labels.Use delegate Method valuesForXAxis: ");
-        return;
-    }
-    
-    
-    
-    if([delegate respondsToSelector:@selector(WidthForBarChart:)])
-    {
-        barWidth=[delegate WidthForBarChart:self];
-        if(barWidth==0)
+        spaceBetweenSameGroupBar=10;
+        contentSizeX=(yCount* barWidth) + 10*(yCount+1);
+        if(contentSizeX>_gridWidth)
         {
-            if (groupBars ||stackedBars) 
-                barWidth=30;
-            else 
-                barWidth=40;
-
-        }
-            
-            NSLog(@"Warning:Since barWidth is explicitly 0, Code will automatically calculate its bar width.");
-        
-    }
-    else
-    {
-        if (groupBars ||stackedBars) 
-            barWidth=30;
-        else 
-            barWidth=40;
-    }
-    
-    
- 
-    if([delegate respondsToSelector:@selector(displayTitlesOnXAxis:)])
-    {
-        BOOL displayTitleOnXAxis=[delegate displayTitlesOnXAxis:self];
-        if(displayTitleOnXAxis)
-        {
-            
-            
-            if([delegate respondsToSelector:@selector(titlesForXAxis:)])
-            {
-                _xTitles=[[NSArray alloc]initWithArray:[delegate titlesForXAxis:self]];
-                if([_xTitles count]==0)
-                {
-                    NSLog(@"WARNING:Give values in titlesForXAxis: to give display values on X-Axis.");   
-                }
-                
-                
-            }
-            else
-            {
-                NSLog(@"WARNING:If there are any auto-calculated values for X-Axis, they will be displayed, Otherwise Use delegate Method titlesForXAxis: to give display  specific values on X-Axis.");
-            }
-            
-            
-            
+            isLongGraph_=TRUE;
         }
         
-        
     }
-    else
+    
+    
+    
+    if(isLongGraph_)
     {
-        NSLog(@"WARNING:Use delegate Method displayTitlesOnXAxis: to give display values on X-Axis.");
+        lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(0, 0, _gridWidth, _gridHeight)];
+        [lineGScrollView setBackgroundColor:[UIColor clearColor]];
+        lineGScrollView.tag=LINESCROLLVIEWTAG;
+        [self addSubview:lineGScrollView];        
     }
-
-    
-   
-    
-    
-    [self initAndWarnings];
-    [self setNeedsDisplay];
-   // [self drawAnchorPoints];
-    
 }
 
 
-
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+//Delegate Methods gets the priority
+-(void)getColorArray
 {
-    for (UIView *view in self.subviews) 
-    {
-        [view removeFromSuperview];
-    }
-    
-
-    CGContextRef context = UIGraphicsGetCurrentContext();
-
-    CGContextSetAllowsAntialiasing(context, NO);
-    CGContextSetShouldAntialias(context, NO);
-    
-    
-    CGAffineTransform flipTransform = CGAffineTransformMake( 1, 0, 0, -1, 0, self.frame.size.height);
-    CGContextConcatCTM(context, flipTransform);
-    
-    //Draw the bg gradient
-    [self drawBg:context];
-    [self drawHorizontalBgLines:context];
-    
     int totalColors=[MIMColor sizeOfColorArray];
-
-   
-    CGContextSetAllowsAntialiasing(context, YES);
-    CGContextSetShouldAntialias(context, YES);
     
     
-    
-    BOOL pickDefaultColorForLineChart;
-    NSArray *colorLineChartArray;
-    
-    
-    if([delegate respondsToSelector:@selector(ColorsForBarChart:)])
+    BOOL pickDefaultColor=TRUE;
+    if([delegate respondsToSelector:@selector(colorsForBarChart:)])
     {
-        colorLineChartArray=[delegate ColorsForBarChart:self];
-        if([colorLineChartArray count]==0)
-        {
-            pickDefaultColorForLineChart=TRUE;
-            NSLog(@"WARNING:Color of Line Chart not defined,hence picking up random color.");
-            
-            
-        }
-        else
-        {
-            pickDefaultColorForLineChart=FALSE;
-            
-        }
-        
-        
-        
+        barcolorArray=[NSMutableArray arrayWithArray:[delegate colorsForBarChart:self]];
+        if(barcolorArray) pickDefaultColor=FALSE;
     }
-    else
-    {
-        pickDefaultColorForLineChart=TRUE;
-        
-    }
-
     
+    
+    if(pickDefaultColor)
+    {
+        barcolorArray=[[NSMutableArray alloc]init];
+        if(DEBUG_MODE) NSLog(@"WARNING:Color of Bar Chart not defined,hence picking up random color.");
+        
+        int totalBarColors =1;
+        
+        if(groupedBars ||stackedBars) totalBarColors=[[_yValElements objectAtIndex:0] count];
+        
+        for (int i=0; i<totalBarColors; i++) 
+            [barcolorArray addObject:[MIMColor GetMIMColorAtIndex:style%totalColors]];
+
+    }
+}
+
+
+-(void)getAnimationProperties
+{
     
     NSDictionary *animationDict;
     BOOL animationOnBars;
@@ -527,20 +464,17 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         if([[animationDict allKeys] count]>0)
         {
             animationOnBars=TRUE;
-        
         }
         else 
         {
-            NSLog(@"WARNING:animationOnBars delegate method returns nil.");
+            if(DEBUG_MODE) NSLog(@"WARNING:animationOnBars delegate method returns nil.");
         }
-                
-    
+        
+        
     }
-   
+    
     //animation block
-    float animationDelayValue;
-    float animationDurationvalue;
-    int animationType;
+    
     if(animationOnBars)
     {
         
@@ -575,41 +509,80 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         
     }
     
+
+}
+
+
+-(void)createAnimationOn:(BarView *)view withBarHeight:(float)height
+{
+    //animation block
+  
+    
+        switch (animationType) 
+        {
+            case 1:
+            default:
+            {
+                
+                float tempHeight=height;
+                [view setTransform:CGAffineTransformConcat(CGAffineTransformMakeScale(1.0,0.001), CGAffineTransformMakeTranslation(0, tempHeight/2))];
+                [UIView beginAnimations:nil context:nil];
+                [UIView setAnimationDelay:animationDelayValue];
+                [UIView setAnimationDuration:animationDurationvalue];
+                [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+                [view setTransform:CGAffineTransformConcat( CGAffineTransformMakeTranslation(0, 0.5*(tempHeight-view.bounds.size.height)),CGAffineTransformMakeScale(1.0,1.0))];        
+                [UIView commitAnimations];
+                
+                
+            }
+                break;
+        }
     
     
-    
+
+}
+#pragma mark - DRAW CHARTS
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    int totalColors=[MIMColor sizeOfColorArray];
     style=rand()%totalColors;
-    if(isGradient)
-        style=2*style;
+    [self getColorArray];
+    
+    
+    for (UIView *view in self.subviews)
+    if([view isKindOfClass:[XAxisBand class]] || [view isKindOfClass:[YAxisBand class]]) {}
+    else [view removeFromSuperview];
+    
+    
+
+    CGContextRef context = UIGraphicsGetCurrentContext();
+
+    CGContextSetAllowsAntialiasing(context, NO);
+    CGContextSetShouldAntialias(context, NO);
+    
+    
+    CGAffineTransform flipTransform = CGAffineTransformMake( 1, 0, 0, -1, 0, self.frame.size.height);
+    CGContextConcatCTM(context, flipTransform);
+    
+    //Draw the bg gradient
+    [self drawBg:context];
+    [self drawHorizontalBgLines:context];
+    
+
+   
+    CGContextSetAllowsAntialiasing(context, YES);
+    CGContextSetShouldAntialias(context, YES);
+    
+   
+    
+    if(isGradient) style=2*style;
     
     // Drawing code
-    if(groupBars)
+    if(groupedBars)
     {
-        int barsPerDivision=[[_yValElements objectAtIndex:0] count];
-        int SpaceBetweenSameGroupBar=barWidth/10;
-        
     
-        
-        BOOL addOnScrollView=FALSE;
-        LineScrollView *lineGScrollView;
-        //Find if there needs to be a scrollview
-        if(((barsPerDivision * barWidth * [_yValElements count]) + (barsPerDivision-1 * SpaceBetweenSameGroupBar * [_yValElements count]) + (barWidth * [_yValElements count] +1) )>_gridWidth)
-        {
-            
-            lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-            [lineGScrollView setBackgroundColor:[UIColor clearColor]];
-            
-            [self addSubview:lineGScrollView];
-            
-            
-            
-            addOnScrollView=TRUE;
-        }
-        
-        
-        
-        
-        
         int xOrigin=barWidth;
         for (int j=0; j<[_yValElements count]; j++) 
         {
@@ -630,12 +603,8 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                     view.dColor=[MIMColor GetColorAtIndex:((2*i)+style+1)%totalColors];
                     view.lColor=[MIMColor GetColorAtIndex:((2*i)+style)%totalColors];
                 }
-                else
-                    view.color=[MIMColor GetColorAtIndex:(i+style)%totalColors];
-                
-                    
-                    
-          
+                else view.color=[MIMColor GetMIMColorAtIndex:(i+style)%totalColors];
+
                 view.borderColor=[UIColor blackColor];
                     
                 //Draw the shadow
@@ -645,47 +614,23 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 [view.layer setShadowOpacity:0.8];
                 
                 
-                //animation block
-                if(animationOnBars)
-                {
-                    
-                    switch (animationType) 
-                    {
-                        case 1:
-                        default:
-                        {
-                            
-                            float tempHeight=_height;
-                            [view setTransform:CGAffineTransformConcat(CGAffineTransformMakeScale(1.0,0.001), CGAffineTransformMakeTranslation(0, tempHeight/2))];
-                            [UIView beginAnimations:nil context:nil];
-                            [UIView setAnimationDelay:animationDelayValue];
-                            [UIView setAnimationDuration:animationDurationvalue];
-                            [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-                            [view setTransform:CGAffineTransformConcat( CGAffineTransformMakeTranslation(0, 0.5*(tempHeight-view.bounds.size.height)),CGAffineTransformMakeScale(1.0,1.0))];        
-                            [UIView commitAnimations];
-                            
-                            
-                        }
-                            break;
-                    }
-                }
-
+                [self createAnimationOn:view withBarHeight:_height];
                 
                 
-                if(addOnScrollView)
+                if(isLongGraph_) 
                     [lineGScrollView addSubview:view];
-                else
+                else 
                     [self addSubview:view];
                 
                 if(i<[[_yValElements objectAtIndex:j] count]-1)
-                    xOrigin+=SpaceBetweenSameGroupBar;
+                    xOrigin+=spaceBetweenSameGroupBar;
                 
                 xOrigin+=barWidth;
             }
             
             xOrigin+=barWidth;
         }
-        
+
         xOrigin+=barWidth;
         lineGScrollView.contentSize=CGSizeMake(xOrigin, _gridHeight);
         
@@ -693,28 +638,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     else if(stackedBars)
     {
 
-        int barsPerDivision=1;
-        int SpaceBetweenSameGroupBar=0;
-        
-        
-        
-        BOOL addOnScrollView=FALSE;
-        LineScrollView *lineGScrollView;
-        //Find if there needs to be a scrollview
-        if(((barsPerDivision * barWidth * [_yValElements count]) + (barsPerDivision-1 * SpaceBetweenSameGroupBar * [_yValElements count]) + (barWidth * [_yValElements count] +1) )>_gridWidth)
-        {
-            
-            lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-            [lineGScrollView setBackgroundColor:[UIColor clearColor]];
-            
-            [self addSubview:lineGScrollView];
-            
-            
-            
-            addOnScrollView=TRUE;
-        }
-        
-        
+       
         
         
         int xOrigin=barWidth;
@@ -756,7 +680,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                     view.lColor=[MIMColor GetColorAtIndex:((2*t)+style)%totalColors];
                 }
                 else
-                    view.color=[MIMColor GetColorAtIndex:(i+style)%totalColors];
+                    view.color=[MIMColor GetMIMColorAtIndex:(i+style)%totalColors];
                 
                 
                 
@@ -769,41 +693,14 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 [view.layer setShadowOffset:CGSizeMake(2.0, -1.0)];
                 [view.layer setShadowOpacity:0.8];
                 
-                
-                //animation block
-                if(animationOnBars)
-                {
-                    
-                    switch (animationType) 
-                    {
-                        case 1:
-                        default:
-                        {
-                            
-                            float tempHeight=_height;
-                            [view setTransform:CGAffineTransformConcat(CGAffineTransformMakeScale(1.0,0.001), CGAffineTransformMakeTranslation(0, tempHeight/2))];
-                            [UIView beginAnimations:nil context:nil];
-                            [UIView setAnimationDelay:animationDelayValue];
-                            [UIView setAnimationDuration:animationDurationvalue];
-                            [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-                            [view setTransform:CGAffineTransformConcat( CGAffineTransformMakeTranslation(0, 0.5*(tempHeight-view.bounds.size.height)),CGAffineTransformMakeScale(1.0,1.0))];        
-                            [UIView commitAnimations];
-                            
-                            
-                        }
-                            break;
-                    }
-                }
-
+                [self createAnimationOn:view withBarHeight:_height];
                 
                 
-                if(addOnScrollView)
-                    [lineGScrollView addSubview:view];
-                else
-                    [self addSubview:view];
+                if(isLongGraph_) [lineGScrollView addSubview:view];
+                else [self addSubview:view];
                 
                 if(i<[[_yValElements objectAtIndex:j] count]-1)
-                    xOrigin+=SpaceBetweenSameGroupBar;
+                    xOrigin+=spaceBetweenSameGroupBar;
                 
             }
             
@@ -817,287 +714,235 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     else
     {
        
-        BOOL addOnScrollView=FALSE;
-        LineScrollView *lineGScrollView;
-        //Find if there needs to be a scrollview
-        if((([_yValElements count]* barWidth) + 10*([_yValElements count]+1))>_gridWidth)
-        {
+       
         
-            lineGScrollView.tag=LINESCROLLVIEWTAG;
-            lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-            [lineGScrollView setBackgroundColor:[UIColor clearColor]];
-            lineGScrollView.contentSize=CGSizeMake((([_yValElements count]* barWidth) + 10*([_yValElements count]+2)), _gridHeight);
-            [self addSubview:lineGScrollView];
-            
-        
-            
-            addOnScrollView=TRUE;
-        }
-        
-        
-        
-        isLongGraph_=addOnScrollView;
-                
         for (int i=0; i<[_yValElements count]; i++) 
         { 
             
             int _height=[[_yValElements objectAtIndex:i] floatValue]*_scalingY;
-            BarView *view=[[BarView alloc]initWithFrame:CGRectMake((i* barWidth) + 10*(i+1), _gridHeight-_height, barWidth, _height)];
+            BarView *view=[[BarView alloc]initWithFrame:CGRectMake((i* barWidth) + spaceBetweenSameGroupBar*(i+1), _gridHeight-_height, barWidth, _height)];
             view.isGradient=isGradient;
             view.horGradient=horizontalGradient;
-
-
             
-            
-            if(pickDefaultColorForLineChart)
+            if(isGradient)
             {
-                
-                if(isGradient)
-                {
-                    view.dColor=[MIMColor GetColorAtIndex:(style+1)%totalColors];
-                    view.lColor=[MIMColor GetColorAtIndex:(style)%totalColors];
-                }
-                else
-                    view.color=[MIMColor GetColorAtIndex:style%totalColors];
-            
+                view.dColor=[MIMColor GetColorAtIndex:(style+1)%totalColors];
+                view.lColor=[MIMColor GetColorAtIndex:(style)%totalColors];
             }
             else 
-            {
-                
-            }
-            
-            
-            
-
-            
-            
+                view.color=[barcolorArray objectAtIndex:0];
+        
             //Draw the shadow
             [view.layer setShadowRadius:1.0];
             [view.layer setShadowColor:[UIColor grayColor].CGColor];
             [view.layer setShadowOffset:CGSizeMake(2.0, 1.0)];
             [view.layer setShadowOpacity:0.8];
-
-             //animation block
-            if(animationOnBars)
-            {
-                
-                switch (animationType) 
-                {
-                    case 1:
-                    default:
-                    {
-                       
-                        float tempHeight=_height;
-                        [view setTransform:CGAffineTransformConcat(CGAffineTransformMakeScale(1.0,0.001), CGAffineTransformMakeTranslation(0, tempHeight/2))];
-                        [UIView beginAnimations:nil context:nil];
-                        [UIView setAnimationDelay:animationDelayValue];
-                        [UIView setAnimationDuration:animationDurationvalue];
-                        [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-                        [view setTransform:CGAffineTransformConcat( CGAffineTransformMakeTranslation(0, 0.5*(tempHeight-view.bounds.size.height)),CGAffineTransformMakeScale(1.0,1.0))];        
-                        [UIView commitAnimations];
-                        
-                    
-                    }
-                        break;
-                }
-            }
+            
+            [self createAnimationOn:view withBarHeight:_height];
+             
+            
+            
+            if(isLongGraph_)[lineGScrollView addSubview:view];
+            else [self addSubview:view];
             
             
             
-            if(addOnScrollView)
-                [lineGScrollView addSubview:view];
-            else
-                [self addSubview:view];
-            
-            
-            if(isLongGraph_) 
-            {
-                [lineGScrollView addSubview:[self viewWithTag:XBANDTAG]];
-                CGRect a=lineGScrollView.frame;
-                a.size.height+=50;
-                lineGScrollView.frame=a;
-            }            
+                      
             
         }
     
     }
     
+    if(isLongGraph_) 
+    {  
+        lineGScrollView.contentSize=CGSizeMake(contentSizeX, _gridHeight);
+        CGRect a=lineGScrollView.frame;
+        a.size.height+=50;
+        lineGScrollView.frame=a;
+        [self addSubview:lineGScrollView];  
+    } 
+
     
-   
 }
 
--(void)drawBg:(CGContextRef)context
+-(void)drawBg:(CGContextRef)ctx
 {
     
  
-    //Check if background color delegate method exists
-    MIMColorClass *bgColor=nil;
-
-    if([delegate respondsToSelector:@selector(colorForBackground:)])
+    //Check if User has given any color for Background
+    if(self.backgroundcolor)
     {
-        bgColor=[delegate colorForBackground:self];
-
-        if(bgColor!=nil)
-        {
-            CGContextSetFillColorWithColor(context, [UIColor colorWithRed:bgColor.red green:bgColor.green blue:bgColor.blue alpha:bgColor.alpha].CGColor);
-            CGContextFillRect(context, CGRectMake(0, 0, _gridWidth, _gridHeight));
-        }
         
-    }
-
-    if(bgColor==nil)
-    {
-        //Draw the background with the gray Gradient
-        float _viewWidth=self.frame.size.width;
-        float _viewHeight=self.frame.size.height;
+        CGContextSaveGState(ctx);
+        CGContextSetFillColorWithColor(ctx, [UIColor colorWithRed:backgroundcolor.red green:backgroundcolor.green blue:backgroundcolor.blue alpha:backgroundcolor.alpha].CGColor);
+        CGContextFillRect(ctx, CGRectMake(0, 0, _gridWidth, _gridHeight));
+        CGContextRestoreGState(ctx);
+        return;
         
         
-        
-        CGFloat BGLocations[3] = { 0.0, 0.65, 1.0 };
-        CGFloat BgComponents[12] = { 1.0, 1.0, 1.0 , 1.0,  // Start color
-            0.98, 0.98, 0.98 , 1.0,  // Start color
-            0.85, 0.85, 0.85 , 1.0 }; // Mid color and End color
-        CGColorSpaceRef BgRGBColorspace = CGColorSpaceCreateDeviceRGB();
-        CGGradientRef bgRadialGradient = CGGradientCreateWithColorComponents(BgRGBColorspace, BgComponents, BGLocations, 3);
-        
-        
-        CGPoint startBg = CGPointMake(_viewWidth/2,_viewHeight/2); 
-        CGFloat endRadius=MAX(_viewWidth/2, _viewHeight/2);
-        
-        
-        CGContextDrawRadialGradient(context, bgRadialGradient, startBg, 0, startBg, endRadius, kCGGradientDrawsAfterEndLocation);
-        CGColorSpaceRelease(BgRGBColorspace);
-        CGGradientRelease(bgRadialGradient);
     }
     
+    if([delegate respondsToSelector:@selector(backgroundViewForLineChart:)])
+    {
+        
+        
+        return;
+    }
+    
+    
+    
+    //Else Draw the background with the gray Gradient
+    CGContextSaveGState(ctx);
+    CGFloat BGLocations[3] = { 0.0,0.5 ,1.0 };
+    CGFloat BgComponents[12] = { 0.96, 0.96, 0.96 , 1.0,  // Start color
+        0.99, 0.99, 0.99 , 1.0,  // Start color
+        1.0, 1.0, 1.0 , 1.0 }; // Mid color and End color
+    
+    CGColorSpaceRef BgRGBColorspace = CGColorSpaceCreateDeviceRGB();
+    CGGradientRef bgRadialGradient = CGGradientCreateWithColorComponents(BgRGBColorspace, BgComponents, BGLocations, 3);
+    
+    CGContextDrawLinearGradient(ctx, bgRadialGradient, CGPointMake(0, 0), CGPointMake(0, _gridHeight), 1);
+    if(!CGContextIsPathEmpty(ctx))     CGContextClip(ctx);
+    CGColorSpaceRelease(BgRGBColorspace);
+    CGGradientRelease(bgRadialGradient);
+    CGContextRestoreGState(ctx);
     
     
 }
+
 -(void)drawHorizontalBgLines:(CGContextRef)ctx
 {
+    BOOL horizontalLinesVisible=TRUE;
+    if([hlProperties valueForKey:@"hide"]) 
+        horizontalLinesVisible=[[hlProperties valueForKey:@"hide"] boolValue];
     
-    
-    float widthOfLine;
-    MIMColorClass *colorOfLine;
-    
-    //Check if width and color of line can be accessed by delegate methods
-    if([delegate respondsToSelector:@selector(widthOfHorizontalLines:)])
+    if(!horizontalLinesVisible)
     {
-        widthOfLine=[delegate widthOfHorizontalLines:self];
-        if(widthOfLine==0)
-            NSLog(@"WARNING: Line width of horizontal line is 0.");
-        
-    }
-    else
-    {
-        widthOfLine=0.1;
-        
+        NSLog(@"Caution:Horizontal Lines wont be visible on Line Graph. If you want them to be visible use  delegate method drawHorizontalLines:");
+        return;
     }
     
-    if([delegate respondsToSelector:@selector(colorOfHorizontalLines:)])
-    {
-        colorOfLine=[delegate colorOfHorizontalLines:self];    
-        if(colorOfLine==nil)
-            NSLog(@"WARNING:No color defined for vertical line.");
-    }
-    else
-    {
-        colorOfLine=[MIMColorClass colorWithRed:0.8 Green:0.8 Blue:0.8 Alpha:1.0];
-    }
-
+    
+    
+    //Width
+    float widthOfLine=0.1;
+    if([hlProperties valueForKey:@"width"]) 
+        widthOfLine=[[hlProperties valueForKey:@"width"] floatValue];
+    
+    if(widthOfLine==0) NSLog(@"WARNING: Line width of horizontal line is 0.");
+    
+    
+    
+    //Color
+    MIMColorClass *c=[MIMColorClass colorWithRed:0.8 Green:0.8 Blue:0.8 Alpha:1.0];
+    if([hlProperties valueForKey:@"color"]) 
+        c=[MIMColorClass colorWithComponent:[hlProperties valueForKey:@"color"]];
+    
+    
+    
     
     
     //Draw Gray Lines as the markers
     CGContextBeginPath(ctx);
     CGContextSetBlendMode(ctx, kCGBlendModeNormal);
-    CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithRed:colorOfLine.red green:colorOfLine.green blue:colorOfLine.blue alpha:colorOfLine.alpha].CGColor);
+    CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithRed:c.red green:c.green blue:c.blue alpha:c.alpha].CGColor);
     CGContextSetLineWidth(ctx, widthOfLine);
     int numHorzLines=_gridHeight/_tileHeight;
-    for (int i=0; i<=numHorzLines; i++) {
-        
+    for (int i=0; i<=numHorzLines; i++) 
+    {    
         CGContextMoveToPoint(ctx, 0,i*_tileHeight);
         CGContextAddLineToPoint(ctx,_gridWidth , i*_tileHeight);
     }
     CGContextDrawPath(ctx, kCGPathStroke);
     
     
-    if (xTitleStyle==0)
-        xTitleStyle=X_TITLES_STYLE1;
-    
-    [self _displayXAxisWithStyle:xTitleStyle WithColorRed:colorOfLine.red Blue:colorOfLine.blue Green:colorOfLine.green Alpha:colorOfLine.alpha];
-
     
     
-    //Display Y Axis elements
-    [self _displayYAxisWithColorRed:colorOfLine.red Blue:colorOfLine.blue Green:colorOfLine.green Alpha:colorOfLine.alpha];
+    
     
     
 }
 
+#pragma mark - X and Y Axis
 
--(void)_displayYAxisWithColorRed:(float)red Blue:(float)blue Green:(float)green Alpha:(float)alpha
-{
-    if([delegate respondsToSelector:@selector(displayTitlesOnYAxis:)])
-    {
-        BOOL displayY=[delegate displayTitlesOnYAxis:self];
-        if(displayY)
-        {
-            YAxisBand *_yBand=[[YAxisBand alloc]initWithFrame:CGRectMake(-80,0, 80, CGRectGetHeight(self.frame))];
-            _yBand.lineColor=[[UIColor alloc]initWithRed:red green:green blue:blue alpha:alpha];
-            [_yBand setScaleForYTile:pixelsPerTile withNumOfLines:numOfHLines];
-            [self addSubview:_yBand];
-        }
-        
-        
-    }
-    else
-    {
-        NSLog(@"WARNING:Use delegate method displayTitlesOnYAxis, to display titles on Y Axis.");
-        
-    }
-    
-    
-}
-
-
-
--(void)_displayXAxisWithStyle:(int)xstyle WithColorRed:(float)red Blue:(float)blue Green:(float)green Alpha:(float)alpha
+-(void)_displayXAxisLabels
 {
     
-    gapBetweenBars=10;
+    BOOL xLabelsVisible=TRUE;
+    if([xLProperties valueForKey:@"hide"]) 
+        xLabelsVisible=[[xLProperties valueForKey:@"hide"] boolValue];
     
-    XAxisBand *_xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), 100)];
-    _xBand.xElements=[[NSArray alloc]initWithArray:_xTitles];
-    _xBand.style=xstyle;
+    if(!xLabelsVisible)
+        return;
+    
+    if([[xLProperties allKeys] count]==0)
+        xLProperties=[[NSMutableDictionary alloc] init];
+    
+    
+    if(groupedBars)
+    {
+        if(xTitleStyle==2 || xTitleStyle==4) xTitleStyle=1;
+        [xLProperties setValue:[NSNumber numberWithInt:xTitleStyle] forKey:@"style"];   
+    }
+    else[xLProperties setValue:[NSNumber numberWithInt:xTitleStyle] forKey:@"style"];
+    
+    [xLProperties setValue:[NSNumber numberWithBool:xIsString] forKey:@"xisstring"];
+    [xLProperties setValue:[NSNumber numberWithBool:YES] forKey:@"barchart"];
+    [xLProperties setValue:[NSNumber numberWithFloat:barWidth] forKey:@"xscaling"];
+    
+    if(groupedBars)[xLProperties setValue:[NSNumber numberWithFloat:spaceBetweenSameGroupBar] forKey:@"gapBetweenBars"];
+    else if(stackedBars)[xLProperties setValue:[NSNumber numberWithInt:spaceBetweenSameGroupBar] forKey:@"gapBetweenBars"];
+    else [xLProperties setValue:[NSNumber numberWithInt:spaceBetweenSameGroupBar] forKey:@"gapBetweenBars"];
+    
+    if(groupedBars)[xLProperties setValue:[NSNumber numberWithFloat:gapBetweenBarsDifferentGroup] forKey:@"gapBetweenGroup"];
+    if(groupedBars)[xLProperties setValue:[NSNumber numberWithBool:YES] forKey:@"groupedBars"];
+
+    
+    //contentSizeX=1810;
+    
+    XAxisBand *_xBand;
+    
+    if(isLongGraph_)
+        _xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,CGRectGetHeight(self.frame), contentSizeX, 100)];
+    else 
+        _xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), 100)];
+        
+    _xBand.properties=xLProperties;
     _xBand.tag=XBANDTAG;
-    _xBand.xIsString=xIsString;
-    _xBand.barChart=YES;
-    _xBand.scalingFactor=barWidth;
-    _xBand.gapDistance=gapBetweenBars;
+    _xBand.xElements=[[NSArray alloc]initWithArray:_xTitles];
+
     
-    float widthOfLine;
+    if(isLongGraph_) [lineGScrollView addSubview:_xBand];
+    else [self addSubview:_xBand];
+
+}
+
+
+
+-(void)_displayYAxisLabels
+{
+    BOOL yLabelsVisible=TRUE;
+    if([yLProperties valueForKey:@"hide"]) 
+        yLabelsVisible=[[yLProperties valueForKey:@"hide"] boolValue];
     
+    if(!yLabelsVisible)
+        return;
     
-    //Check if width and color of line can be accessed by delegate methods
-    if([delegate respondsToSelector:@selector(widthOfHorizontalLines:)])
-    {
-        widthOfLine=[delegate widthOfHorizontalLines:self];
-        if(widthOfLine==0)
-            NSLog(@"WARNING: Line width of horizontal line is 0.");
-        
-    }
-    else
-    {
-        widthOfLine=0.1;
-        
-    }
-    _xBand.lineWidth=widthOfLine;
-    _xBand.lineColor=[[UIColor alloc]initWithRed:red green:green blue:blue alpha:alpha];
+    if([[yLProperties allKeys] count]==0)
+        yLProperties=[[NSMutableDictionary alloc] init];
     
+    [yLProperties setValue:[NSNumber numberWithFloat:pixelsPerTile] forKey:@"pxpertile"];
+    [yLProperties setValue:[NSNumber numberWithInt:numOfHLines] forKey:@"num"];
+    [yLProperties setValue:[NSNumber numberWithFloat:minimumOnY] forKey:@"minY"];
+    [yLProperties setValue:[NSNumber numberWithFloat:_tileHeight] forKey:@"tileHeight"];
+    YAxisBand *_yBand=[[YAxisBand alloc]initWithFrame:CGRectMake(-80,0, 80, CGRectGetHeight(self.frame)+10)];
+    _yBand.tag=YBANDTAG;
+    _yBand.properties=yLProperties;
+    [self addSubview:_yBand];
     
-    [self addSubview:_xBand];
     
 }
+
 
 - (void)dealloc
 {

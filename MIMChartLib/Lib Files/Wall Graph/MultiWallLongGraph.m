@@ -10,26 +10,27 @@
 
 @implementation MultiWallLongGraph
 
-@synthesize gridWidth;
+
 @synthesize gridHeight;  
-@synthesize tileWidth;
-@synthesize tileHeight;
 @synthesize scalingX;
 @synthesize scalingY;
 @synthesize xIsString;
+@synthesize isGradient;
 
-@synthesize colorWallChart;
 @synthesize wallBezierPath;
 @synthesize wallEdgeBezierPath;
-@synthesize verticalLinesVisible;
-@synthesize horizontalLinesVisible;
-@synthesize widthOfLine;
-@synthesize colorOfLine;
+
+
 @synthesize xValElements;
 @synthesize yValElements;
-@synthesize xTitleStyle;
-@synthesize nonInteractiveAnchorPoints;
-@synthesize anchorType;
+
+@synthesize wallColorArray;
+@synthesize edgeColorArray;
+@synthesize orderArray;
+@synthesize wallGradientArray;
+@synthesize maxValuesArray;
+@synthesize METERLINEHEIGHT;
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -44,7 +45,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    float r,g,b,a;
+
     
     if([xValElements count]==0)
         return;
@@ -77,38 +78,53 @@
     
     CGContextSetBlendMode(context, kCGBlendModeNormal);
     
-    
-    
-    
-    [self drawVerticalBgLines:context];
-    [self drawHorizontalBgLines:context];
+
     
     
     CGContextSetAllowsAntialiasing(context, YES);
     CGContextSetShouldAntialias(context, YES);
+  
     
     
+
     for (int i=0; i<[wallBezierPath count]; i++) 
     {
         
         //Fill the wall
-        MIMColorClass *mcolorLineChart=[colorWallChart objectAtIndex:i];
+        MIMColorClass *c=[wallColorArray objectAtIndex:i];
         
-        UIColor *_color=[[UIColor alloc]initWithRed:mcolorLineChart.red green:mcolorLineChart.green blue:mcolorLineChart.blue alpha:0.3]; 
-        
-        r=mcolorLineChart.red;
-        g=mcolorLineChart.green;
-        b=mcolorLineChart.blue;
-        a=mcolorLineChart.alpha;
-        
+        UIColor *_color=[[UIColor alloc]initWithRed:c.red green:c.green blue:c.blue alpha:0.3]; 
         [_color setFill];  
         
-        UIBezierPath *myP=[wallBezierPath objectAtIndex:i];
-        [myP fillWithBlendMode:kCGBlendModeNormal alpha:1.0];
         
+        UIBezierPath *myP=[wallBezierPath objectAtIndex:i];
+
+        if(isGradient)
+        {
+            int oIndex=[[orderArray objectAtIndex:i] intValue];
+            float maxOfY=[[maxValuesArray objectAtIndex:oIndex] floatValue];
+            
+            
+            CGContextSaveGState(context);
+            [myP closePath];
+            [myP addClip];
+            CGGradientRef g=(__bridge CGGradientRef )[wallGradientArray objectAtIndex:i];
+            CGContextDrawLinearGradient (context, g, CGPointMake(0, METERLINEHEIGHT), CGPointMake(0, maxOfY * scalingY + METERLINEHEIGHT), 0);
+            CGContextRestoreGState(context);
+        }
+        else
+        {
+            [myP fillWithBlendMode:kCGBlendModeNormal alpha:1.0];   
+        }
+        
+        
+
+        
+        MIMColorClass *e=[edgeColorArray objectAtIndex:i];
+
         
         //Stroke the edges
-        _color=[[UIColor alloc]initWithRed:mcolorLineChart.red green:mcolorLineChart.green blue:mcolorLineChart.blue alpha:1.0]; 
+        _color=[[UIColor alloc]initWithRed:e.red green:e.green blue:e.blue alpha:e.alpha]; 
         [_color setStroke];  
         
         myP=[wallEdgeBezierPath objectAtIndex:i];
@@ -118,127 +134,30 @@
         
         
         
-        //        [self _drawAnchorPointsWithColorRed:r Blue:b Green:g Alpha:a AtIndex:i];
+        //[self _drawAnchorPointsWithColorRed:r Blue:b Green:g Alpha:a AtIndex:i];
         
         
     }
-    
+    [self _drawAnchorPoints];
     
     
 }
 
 
--(void)drawVerticalBgLines:(CGContextRef)ctx
+
+-(void)_drawAnchorPoints
 {
-    if(!verticalLinesVisible)
-        return;
-    
-    
-    //Draw the Vertical ones
-    CGContextBeginPath(ctx);
-    CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithRed:colorOfLine.red green:colorOfLine.green blue:colorOfLine.blue alpha:colorOfLine.alpha].CGColor);
-    CGContextSetLineWidth(ctx, widthOfLine);
-    
-    int numVertLines=gridWidth/tileWidth;
-    
-    if(xIsString)
-    {
-        numVertLines=[xValElements count];
-        
-        for (int i=0; i<numVertLines; i++) 
-        {   
-            CGContextMoveToPoint(ctx, i * scalingX,0);
-            CGContextAddLineToPoint(ctx, i * scalingX,gridHeight);
-        }
-        
-    }
-    else
-    {
-        for (int i=0; i<numVertLines; i++) 
-        {   
-            CGContextMoveToPoint(ctx, i*tileWidth,0);
-            CGContextAddLineToPoint(ctx, i*tileWidth,gridHeight);
-        }
-    }
-    
-    CGContextDrawPath(ctx, kCGPathStroke);
-    
-    
     
     
 }
 
--(void)drawHorizontalBgLines:(CGContextRef)ctx
+-(void)displayAnchorInfo:(NSInteger)tagID At:(CGPoint)point
 {
-    if(!horizontalLinesVisible)
-        return;
     
     
-    
-    
-    
-    //Draw Gray Lines as the markers
-    CGContextBeginPath(ctx);
-    CGContextSetBlendMode(ctx, kCGBlendModeNormal);
-    CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithRed:colorOfLine.red green:colorOfLine.green blue:colorOfLine.blue alpha:colorOfLine.alpha].CGColor);
-    CGContextSetLineWidth(ctx, widthOfLine);
-    int numHorzLines=gridHeight/tileHeight;
-    for (int i=0; i<=numHorzLines; i++) {
-        
-        CGContextMoveToPoint(ctx, 0,i*tileHeight);
-        CGContextAddLineToPoint(ctx,gridWidth , i*tileHeight);
-    }
-    CGContextDrawPath(ctx, kCGPathStroke);
-    
-    
-    
-    //    if (xTitleStyle==0)
-    //        xTitleStyle=X_TITLES_STYLE1;
-    //    
-    //    [self _displayXAxisWithStyle:xTitleStyle WithColorRed:colorOfLine.red Blue:colorOfLine.blue Green:colorOfLine.green Alpha:colorOfLine.alpha];
     
 }
 
 
--(void)_drawAnchorPointsWithColorRed:(float)red Blue:(float)blue Green:(float)green Alpha:(float)alpha
-{
-    //Remove Any if there
-    for (UIView *view in self.subviews) 
-        if([view isKindOfClass:[Anchor class]])
-        {
-            [view removeFromSuperview];
-        }
-    
-    
-    for (int l=0; l<[yValElements count]; l++) 
-    {   
-        float valueY=[[yValElements objectAtIndex:l] floatValue];
-        float valueX;
-        if(xIsString)
-            valueX=(float)l;
-        else
-            valueX=[[xValElements objectAtIndex:l] floatValue];
-        
-        float mX=valueX*scalingX;
-        float mY=valueY*scalingY;
-        mY=gridHeight-mY;
-        
-        
-        Anchor *_anchor=[[Anchor alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
-        _anchor.center=CGPointMake(mX,mY);
-        _anchor.type=anchorType;
-        
-        
-        if(!nonInteractiveAnchorPoints)
-            _anchor.enabled=YES;
-        _anchor.color=[[UIColor alloc]initWithRed:red green:green blue:blue alpha:alpha];
-        _anchor.idTag=l;
-        _anchor.delegate=self;
-        [self addSubview:_anchor];
-        [_anchor drawAnchor];
-        
-    }
-    
-}
 
 @end

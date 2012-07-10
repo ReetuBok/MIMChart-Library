@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol MIMMeterDelegate
+-(void)meterCrossingAnchorPoint:(int)index;
+@end
 
-@interface MIMMeter : UIView
-
+@interface MIMMeter : UIView<UIGestureRecognizerDelegate>
+{
+    NSDictionary *mProperties;
+    float minPointX;
+    float maxPointX;
+    float _tileWidth;
+    
+}
+@property(nonatomic,assign) id <MIMMeterDelegate>delegate;
+@property(nonatomic,retain) NSDictionary *mProperties;
+@property(nonatomic,assign) float minPointX;
+@property(nonatomic,assign) float maxPointX;
+@property(nonatomic,assign) float tileWidth;
 @end
