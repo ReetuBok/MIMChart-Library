@@ -59,10 +59,12 @@
 @implementation MIMLineGraph
 
 @synthesize fitsToScreenWidth;
-@synthesize backgroundColor;
+@synthesize mbackgroundColor;
 @synthesize xTitleStyle;
 @synthesize delegate;
 @synthesize anchorTypeArray;
+@synthesize lineColorArray;
+@synthesize minimumLabelOnYIsZero;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -512,6 +514,11 @@
 
 -(void)createLineColorArray
 {
+    if(lineColorArray)
+    {
+        lineColorA=[[NSMutableArray alloc] initWithArray:lineColorArray];
+        return;
+    }
     
     int totalColors=[MIMColor sizeOfColorArray];
     
@@ -646,11 +653,11 @@
 {
     
     //Check if User has given any color for Background
-    if(self.backgroundColor)
+    if(self.mbackgroundColor)
     {
         
         CGContextSaveGState(ctx);
-        CGContextSetFillColorWithColor(ctx, [UIColor colorWithRed:backgroundColor.red green:backgroundColor.green blue:backgroundColor.blue alpha:backgroundColor.alpha].CGColor);
+        CGContextSetFillColorWithColor(ctx, [UIColor colorWithRed:mbackgroundColor.red green:mbackgroundColor.green blue:mbackgroundColor.blue alpha:mbackgroundColor.alpha].CGColor);
         CGContextFillRect(ctx, CGRectMake(0, 0, _gridWidth, _gridHeight));
         CGContextRestoreGState(ctx);
         return;
@@ -999,7 +1006,7 @@
     if([[xLProperties allKeys] count]==0)
         xLProperties=[[NSMutableDictionary alloc] init];
     
-    [xLProperties setValue:[NSNumber numberWithInt:xTitleStyle] forKey:@"style"];
+    if(![xLProperties valueForKey:@"style"]) [xLProperties setValue:[NSNumber numberWithInt:xTitleStyle] forKey:@"style"];
     [xLProperties setValue:[NSNumber numberWithBool:xIsString] forKey:@"xisstring"];
     [xLProperties setValue:[NSNumber numberWithBool:YES] forKey:@"linechart"];
     [xLProperties setValue:[NSNumber numberWithFloat:_scalingX] forKey:@"xscaling"];

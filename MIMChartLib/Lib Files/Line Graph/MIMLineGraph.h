@@ -20,17 +20,18 @@
     NSMutableArray *anchorTypeArray;//ANCHORTYPE
     X_TITLES_STYLE xTitleStyle;//
     id<LineGraphDelegate>delegate;
-    MIMColorClass *backgroundColor;
-                                //Make a color Array too.
-
+    MIMColorClass *mbackgroundColor;
+    NSArray *lineColorArray;//Make a color Array too.
+    BOOL minimumLabelOnYIsZero;
 }
 
 @property(nonatomic,retain)id<LineGraphDelegate>delegate;
 @property(nonatomic,assign)BOOL fitsToScreenWidth;
 @property(nonatomic,assign)X_TITLES_STYLE xTitleStyle;
 @property(nonatomic,retain)NSMutableArray *anchorTypeArray;
-@property(nonatomic,retain)MIMColorClass *backgroundColor;
-
+@property(nonatomic,retain)MIMColorClass *mbackgroundColor;
+@property(nonatomic,retain)NSArray *lineColorArray;
+@property(nonatomic,assign)BOOL minimumLabelOnYIsZero;
 
 -(void)drawMIMLineGraph;
 @end

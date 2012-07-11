@@ -95,7 +95,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return  4;
+    return  5;
     
 }
 
@@ -133,6 +133,7 @@
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.isGradient=YES;
+            myBarChart.barLabelStyle=BAR_LABEL_STYLE1;
             myBarChart.backgroundcolor=[MIMColorClass colorWithComponent:@"0,0,0,0"];
             myBarChart.xTitleStyle=X_TITLES_STYLE2;
             [myBarChart drawBarChart];
@@ -155,6 +156,62 @@
             break;
         case 3:
         {
+            
+            yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
+            
+            myBarChart1=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            myBarChart1.delegate=self;
+            myBarChart1.tag=10+indexPath.row;
+            myBarChart1.isGradient=YES;
+            myBarChart1.xTitleStyle=X_TITLES_STYLE1;
+            [myBarChart1 drawBarChart];
+            [cell.contentView addSubview:myBarChart1];
+            
+        }
+            break;
+            
+            
+        case 4:
+        {
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec",
+                          @"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec",
+                          @"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            
+            yValuesArray=[[NSArray alloc]initWithObjects:@"-10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",@"10000",@"-21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"-4000",@"10000",@"17000",@"15000",@"11000",@"10000",@"21000",@"24000",@"11000",@"5000",@"-2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
+            
             
             myBarChart1=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart1.delegate=self;
@@ -182,9 +239,9 @@
 #pragma mark - DELEGATE METHODS
 -(NSArray *)valuesForGraph:(id)graph
 {
-    NSArray *yValuesArray;
     
-    if(([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=11) || graph==myBarChart1)
+    
+    if(([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=11))
     {
         yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
     }
@@ -269,14 +326,15 @@
 
 -(NSArray *)titlesForXAxis:(id)graph
 {
-    NSArray *xValuesArray;
+
     
-    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=16)
-        xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=13)
+        xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
                       @"Feb",
                       @"Mar",
                       @"Apr",
                       @"May",
+      
                       @"Jun",
                       @"Jul",
                       @"Aug",
@@ -287,7 +345,7 @@
     
     
     if([(BarChart *)graph tag]==12)
-        xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+        xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
                       @"Feb",
                       @"Mar",
                       @"Apr",
@@ -325,7 +383,7 @@
                       @"Dec", nil];
     
     
-    return xValuesArray;
+    return xTitlesArray;
     
 }
 
@@ -334,7 +392,7 @@
 
 -(NSDictionary *)animationOnBars:(id)graph
 {
-    if([(BarChart *)graph tag]==10)
+    if([(BarChart *)graph tag]==14)
         return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:BAR_ANIMATION_VGROW_STYLE],[NSNumber numberWithFloat:1.0],[NSNumber numberWithFloat:1.0], nil] forKeys:[NSArray arrayWithObjects:@"type",@"animationDelay",@"animationDuration" ,nil] ];
     else if([(BarChart *)graph tag]==11)
         return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:BAR_ANIMATION_VGROW_STYLE],[NSNumber numberWithFloat:1.0], nil] forKeys:[NSArray arrayWithObjects:@"type",@"animationDuration" ,nil] ];

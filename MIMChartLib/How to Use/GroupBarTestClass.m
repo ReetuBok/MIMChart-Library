@@ -125,6 +125,7 @@
             myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.groupedBars=YES;
+            myBarChart.barLabelStyle=BAR_LABEL_STYLE1;
             myBarChart.tag=10+indexPath.row;
             myBarChart.xTitleStyle=X_TITLES_STYLE3;
             [myBarChart drawBarChart];
@@ -248,6 +249,16 @@
     [a setMinimumFontSize:8];
     return a;
     
+}
+
+
+-(NSDictionary *)animationOnBars:(id)graph
+{
+    if([(BarChart *)graph tag]==10)
+        return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:BAR_ANIMATION_VGROW_STYLE],[NSNumber numberWithFloat:1.0],[NSNumber numberWithFloat:1.0], nil] forKeys:[NSArray arrayWithObjects:@"type",@"animationDelay",@"animationDuration" ,nil] ];
+    else if([(BarChart *)graph tag]==13)
+        return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:BAR_ANIMATION_VGROW_STYLE],[NSNumber numberWithFloat:1.0], nil] forKeys:[NSArray arrayWithObjects:@"type",@"animationDuration" ,nil] ];
+    return nil;
 }
 
 

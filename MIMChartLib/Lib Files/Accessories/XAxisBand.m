@@ -183,9 +183,8 @@
     
     }
     
-    if(barChart)
+    if(barChart && groupBarChart)
     {
-    if(groupBarChart)
     {
         float offset=scalingFactor;
         for (int i=0; i<[xElements count]; i++) 

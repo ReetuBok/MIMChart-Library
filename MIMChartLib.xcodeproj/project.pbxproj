@@ -89,6 +89,7 @@
 		237C8CBB1564AA35004EC65A /* pajarito5.png in Resources */ = {isa = PBXBuildFile; fileRef = 237C8CB41564AA35004EC65A /* pajarito5.png */; };
 		237C8CBC1564AA35004EC65A /* pajarito6.png in Resources */ = {isa = PBXBuildFile; fileRef = 237C8CB51564AA35004EC65A /* pajarito6.png */; };
 		237C8CBD1564AA35004EC65A /* pajarito7.png in Resources */ = {isa = PBXBuildFile; fileRef = 237C8CB61564AA35004EC65A /* pajarito7.png */; };
+		237CBBEE15AD05EC008C693A /* BarInfoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 237CBBED15AD05EC008C693A /* BarInfoBox.m */; };
 		237F125E156D37E300A259FC /* MIM_MathClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 237F125D156D37E200A259FC /* MIM_MathClass.m */; };
 		2384DAF01573EBA100F9F126 /* StackedBarTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAEE1573EBA100F9F126 /* StackedBarTestClass.m */; };
 		2384DAF11573EBA100F9F126 /* StackedBarTestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2384DAEF1573EBA100F9F126 /* StackedBarTestClass.xib */; };
@@ -280,6 +281,8 @@
 		237C8CB41564AA35004EC65A /* pajarito5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pajarito5.png; path = ../pajarito5.png; sourceTree = "<group>"; };
 		237C8CB51564AA35004EC65A /* pajarito6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pajarito6.png; path = ../pajarito6.png; sourceTree = "<group>"; };
 		237C8CB61564AA35004EC65A /* pajarito7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pajarito7.png; path = ../pajarito7.png; sourceTree = "<group>"; };
+		237CBBEC15AD05EB008C693A /* BarInfoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarInfoBox.h; sourceTree = "<group>"; };
+		237CBBED15AD05EC008C693A /* BarInfoBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarInfoBox.m; sourceTree = "<group>"; };
 		237F125C156D37E100A259FC /* MIM_MathClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIM_MathClass.h; sourceTree = "<group>"; };
 		237F125D156D37E200A259FC /* MIM_MathClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIM_MathClass.m; sourceTree = "<group>"; };
 		2384DAED1573EBA100F9F126 /* StackedBarTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackedBarTestClass.h; sourceTree = "<group>"; };
@@ -410,6 +413,8 @@
 				23197E97154BA3830023521F /* BarView.h */,
 				23197E98154BA3830023521F /* BarView.m */,
 				23197F83154F91C90023521F /* BarChartDelegate.h */,
+				237CBBEC15AD05EB008C693A /* BarInfoBox.h */,
+				237CBBED15AD05EC008C693A /* BarInfoBox.m */,
 			);
 			path = "Bar Chart";
 			sourceTree = "<group>";
@@ -1004,6 +1009,7 @@
 				2308011E15A3FAD200544123 /* MultiLineLongGraph.m in Sources */,
 				2308012115A3FBEF00544123 /* MIMWallGraph.m in Sources */,
 				235C086F15A5F3C2006E9BED /* MIMMeter.m in Sources */,
+				237CBBEE15AD05EC008C693A /* BarInfoBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

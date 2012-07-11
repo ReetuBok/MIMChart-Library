@@ -434,9 +434,11 @@
             
             mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
-            mLineGraph.backgroundColor=[MIMColorClass colorWithComponent:@"0.2,0,0"];
+            mLineGraph.mbackgroundColor=[MIMColorClass colorWithComponent:@"1,1,1"];
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:NONE], nil];
+            MIMColorClass *c1=[MIMColorClass colorWithComponent:@"0,169,249"];
+            mLineGraph.lineColorArray=[NSArray arrayWithObjects:c1, nil];
             mLineGraph.xTitleStyle=X_TITLES_STYLE1;
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];

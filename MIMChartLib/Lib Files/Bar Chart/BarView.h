@@ -33,7 +33,8 @@
     NSDictionary *dColor;    
     UIColor *borderColor;
     BOOL isGradient;
-    BOOL horGradient;
+    GRADIENT_STYLE gradientStyle;
+    BOOL negativeBar;
     
 }
 @property(nonatomic,retain) MIMColorClass *color;
@@ -41,5 +42,6 @@
 @property(nonatomic,retain) NSDictionary *dColor;    
 @property(nonatomic,retain) UIColor *borderColor;
 @property(nonatomic,assign) BOOL isGradient;
-@property(nonatomic,assign) BOOL horGradient;
+@property(nonatomic,assign) GRADIENT_STYLE gradientStyle;
+@property(nonatomic,assign) BOOL negativeBar;
 @end

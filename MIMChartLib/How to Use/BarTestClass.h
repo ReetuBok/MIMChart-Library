@@ -34,6 +34,9 @@
     IBOutlet UITableView *myTableView;
     BarChart *myBarChart;
     BarChart *myBarChart1;
+    
+    NSArray *yValuesArray;
+    NSArray *xTitlesArray;
 }
 
 @end

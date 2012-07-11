@@ -24,15 +24,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <QuartzCore/QuartzCore.h>
-#import "MIMColor.h"
-#import "YAxisBand.h"
-#import "XAxisBand.h"
 #import "BarChartDelegate.h"
 #import "Constant.h"
-#import "MIM_MathClass.h"
-#import "LineScrollView.h"
-#import "MIMColorClass.h"
+
 @interface BarChart : UIView {
     
     id<BarChartDelegate>delegate;
@@ -44,11 +38,13 @@
     
     
     BOOL isGradient;
-    BOOL horizontalGradient;
- 
+    GRADIENT_STYLE gradientStyle;
+    BOOL minimumLabelOnYIsZero;
+    BAR_LABEL_STYLE barLabelStyle;
     
 
 }
+
 @property(nonatomic,retain)id<BarChartDelegate>delegate;
 @property(nonatomic,assign)X_TITLES_STYLE xTitleStyle;
 @property(nonatomic,assign) BOOL groupedBars;
@@ -57,7 +53,9 @@
 @property(nonatomic,retain)NSMutableArray *barcolorArray;
 
 @property(nonatomic,assign)    BOOL isGradient;
-@property(nonatomic,assign)BOOL horizontalGradient;
+@property(nonatomic,assign)GRADIENT_STYLE gradientStyle;
+@property(nonatomic,assign)BOOL minimumLabelOnYIsZero;
+@property(nonatomic,assign)BAR_LABEL_STYLE barLabelStyle;
 
 -(void)drawBarChart;
 

@@ -8,9 +8,10 @@
 #import "MIM_MathClass.h"
 #import "LineScrollView.h"
 #import "MIMMeter.h"
+#import "BarInfoBox.h"
 
 #import <Foundation/Foundation.h>
-
+#import <QuartzCore/QuartzCore.h>
 #ifdef DEBUG 
 #define DEBUG_MODE 1
 #endif
@@ -141,12 +142,29 @@ typedef enum
 }WALL_PATTERN_STYLE;
 
 
+typedef enum
+{
+    VERTICAL_GRADIENT_STYLE=1, 
+    HORIZONTAL_GRADIENT_STYLE,
+   
+}GRADIENT_STYLE;
+
+
 
 typedef enum
 {
     BAR_ANIMATION_VGROW_STYLE=1, 
     
 }BAR_ANIMATION_STYLE;
+
+typedef enum
+{
+    BAR_LABEL_STYLE1=1, 
+    BAR_LABEL_STYLE2,
+    
+}BAR_LABEL_STYLE;
+
+
 
 #define LINESCROLLVIEWTAG 1000
 #define XBANDTAG 1001

@@ -18,13 +18,16 @@
     BOOL displayMeterline;
     
     X_TITLES_STYLE xTitleStyle;
+    MIMColorClass *mbackgroundColor;
+    
     id<WallGraphDelegate>delegate;
     
     NSArray *anchorTypeArray;    
-    MIMColorClass *backgroundColor;
+    
     NSArray *wallColorArray;
     NSArray *wallGradientArray;
-    
+    BOOL minimumLabelOnYIsZero;
+
 }
 
 @property(nonatomic,retain)id<WallGraphDelegate>delegate;
@@ -33,9 +36,12 @@
 @property(nonatomic,assign)BOOL displayMeterline;
 
 @property(nonatomic,assign)X_TITLES_STYLE xTitleStyle;
+@property(nonatomic,retain)MIMColorClass *mbackgroundColor;
+
 @property(nonatomic,retain)NSArray *anchorTypeArray;   
 @property(nonatomic,retain)NSArray *wallColorArray;
 @property(nonatomic,retain)NSArray *wallGradientArray;
+@property(nonatomic,assign)BOOL minimumLabelOnYIsZero;
 
 -(void)drawMIMWallGraph;
 

@@ -67,10 +67,10 @@
 
 @implementation MIMWallGraph
 @synthesize fitsToScreenWidth,isGradient,displayMeterline;
-@synthesize xTitleStyle;
+@synthesize xTitleStyle,mbackgroundColor;
 @synthesize delegate;
 @synthesize anchorTypeArray,wallColorArray,wallGradientArray;
-
+@synthesize minimumLabelOnYIsZero;
 
 
 
@@ -678,6 +678,10 @@
         
     }
     
+    //Gradient is On and gradients are given by user.
+    if(isGradient && wallGradientArray)
+        return;
+    
     if(pickDefaultColor && isGradient)
     {
         _wallGradientArray=[[NSMutableArray alloc]init];
@@ -709,6 +713,7 @@
     
         return;
     }
+    
     
     if(pickDefaultColor)
     {
@@ -874,11 +879,11 @@
     
     
     //Check if User has given any color for Background
-    if(self.backgroundColor)
+    if(self.mbackgroundColor)
     {
         
         CGContextSaveGState(ctx);
-        CGContextSetFillColorWithColor(ctx, [UIColor colorWithRed:backgroundColor.red green:backgroundColor.green blue:backgroundColor.blue alpha:backgroundColor.alpha].CGColor);
+        CGContextSetFillColorWithColor(ctx, [UIColor colorWithRed:mbackgroundColor.red green:mbackgroundColor.green blue:mbackgroundColor.blue alpha:mbackgroundColor.alpha].CGColor);
         CGContextFillRect(ctx, CGRectMake(0, METERLINEHEIGHT, _gridWidth, _gridHeight));
         CGContextRestoreGState(ctx);
         return;

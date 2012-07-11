@@ -15,7 +15,8 @@
  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
  ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *///
+ */
+//
 //  BarView.m
 //  MIMChartLib
 //
@@ -27,13 +28,14 @@
 
 
 @implementation BarView
-@synthesize color,borderColor,lColor,dColor,isGradient,horGradient;
+@synthesize color,borderColor,lColor,dColor,isGradient,gradientStyle,negativeBar;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [self setBackgroundColor:[UIColor clearColor]];
     }
     return self;
 }
@@ -73,21 +75,32 @@
         
         rgbColorspace = CGColorSpaceCreateDeviceRGB();
         glossGradient = CGGradientCreateWithColorComponents(rgbColorspace, components, locations, num_locations);
-        CGRect myrect = CGRectMake(0,0,CGRectGetWidth(rect), CGRectGetHeight(rect));
+        int height=self.frame.size.height;
+        CGRect myrect = CGRectMake(0,0,CGRectGetWidth(rect), height);
         CGContextSaveGState(context);
         CGContextClipToRect(context, myrect);
         
-        if(horGradient)
+        if(gradientStyle==HORIZONTAL_GRADIENT_STYLE)
         {
             CGPoint start = CGPointMake(0,0); 
             CGPoint end = CGPointMake(CGRectGetWidth(rect), 0);
             CGContextDrawLinearGradient(context, glossGradient, end, start, kCGGradientDrawsBeforeStartLocation);
         }
-        else
+        else if(gradientStyle==VERTICAL_GRADIENT_STYLE)
         {
-            CGPoint start = CGPointMake(CGRectGetWidth(rect),CGRectGetHeight(rect)); 
-            CGPoint end = CGPointMake(CGRectGetWidth(rect), 0);
-            CGContextDrawLinearGradient(context, glossGradient, start, end, kCGGradientDrawsBeforeStartLocation);
+            if(negativeBar)
+            {
+                CGPoint start = CGPointMake(CGRectGetWidth(rect),-5); 
+                CGPoint end = CGPointMake(CGRectGetWidth(rect), CGRectGetHeight(rect)+10);
+                CGContextDrawLinearGradient(context, glossGradient, start, end, kCGGradientDrawsBeforeStartLocation);
+            }
+            else
+            {
+                CGPoint start = CGPointMake(CGRectGetWidth(rect),CGRectGetHeight(rect)+10); 
+                CGPoint end = CGPointMake(CGRectGetWidth(rect), -5);
+                CGContextDrawLinearGradient(context, glossGradient, start, end, kCGGradientDrawsBeforeStartLocation);
+            }
+            
         }
         
         CGContextRestoreGState(context);
