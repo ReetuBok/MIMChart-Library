@@ -203,9 +203,9 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     
     
 
+    if(stackedBars)[MIMColor InitFragmentedBarColors];
+    else [MIMColor nonAdjacentGradient];
     
-    
-    [MIMColor nonAdjacentGradient];
     [self CalculateGridDimensions];
     [self FindTileWidthAndHeight];
     [self ScalingFactor]; 

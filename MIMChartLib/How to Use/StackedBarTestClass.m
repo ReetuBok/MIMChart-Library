@@ -66,7 +66,7 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    
+    barProperty=nil;
     
     UITableViewCell *cell;// = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -92,12 +92,14 @@
             
         case 1:
         {
+            barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:@"50",@"barwidth", nil];
             
             myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.stackedBars=YES;
             myBarChart.isGradient=YES;
+            myBarChart.gradientStyle=HORIZONTAL_GRADIENT_STYLE;
             myBarChart.xTitleStyle=X_TITLES_STYLE2;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
@@ -106,12 +108,14 @@
             break;
         case 2:
         {
+            barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:@"40",@"barwidth", nil];
             
             myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.stackedBars=YES;
             myBarChart.isGradient=YES;
+            myBarChart.gradientStyle=HORIZONTAL_GRADIENT_STYLE;
             myBarChart.xTitleStyle=X_TITLES_STYLE1;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
@@ -191,7 +195,10 @@
     return xValuesArray;
     
 }
-
+-(NSDictionary *)barProperties:(id)graph; //barwidth,shadow,horGradient,verticalGradient
+{
+    return barProperty;
+}
 
 -(UILabel *)createLabelWithText:(NSString *)text
 {

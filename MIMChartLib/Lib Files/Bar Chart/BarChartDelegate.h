@@ -23,7 +23,7 @@
 
 -(UIView *)backgroundViewForLineChart:(id)graph;
 -(NSArray *)colorsForBarChart:(id)graph;
--(NSDictionary *)barProperties:(id)graph; //width,shadow,horGradient,verticalGradient
+-(NSDictionary *)barProperties:(id)graph; //barwidth,shadow,horGradient,verticalGradient
 -(NSDictionary *)animationOnBars:(id)graph; //animationDelay,animationDelay,type
 @end
 
