@@ -30,33 +30,37 @@
 @interface BarChart : UIView {
     
     id<BarChartDelegate>delegate;
-    X_TITLES_STYLE xTitleStyle;
+    X_TITLES_STYLE xTitleStyle;//Default is X_TITLES_STYLE1 
     BOOL groupedBars;
     BOOL stackedBars;
-    MIMColorClass *backgroundcolor;
+    MIMColorClass *mbackgroundcolor;
     NSMutableArray *barcolorArray;
     
     
     BOOL isGradient;
-    GRADIENT_STYLE gradientStyle;
+    GRADIENT_STYLE gradientStyle;//Default is VERTICAL_GRADIENT_STYLE
+    GLOSS_STYLE glossStyle;
     BOOL minimumLabelOnYIsZero;
     BAR_LABEL_STYLE barLabelStyle;
     
-
+    int style;//Optional, incase user wants to choose a particular color from MIMCOlorClass
+    float groupTitlesOffset;
 }
 
 @property(nonatomic,retain)id<BarChartDelegate>delegate;
 @property(nonatomic,assign)X_TITLES_STYLE xTitleStyle;
-@property(nonatomic,assign) BOOL groupedBars;
-@property(nonatomic,assign) BOOL stackedBars;
-@property(nonatomic,retain)MIMColorClass *backgroundcolor;
+@property(nonatomic,assign)BOOL groupedBars;
+@property(nonatomic,assign)BOOL stackedBars;
+@property(nonatomic,retain)MIMColorClass *mbackgroundcolor;
 @property(nonatomic,retain)NSMutableArray *barcolorArray;
 
-@property(nonatomic,assign)    BOOL isGradient;
+@property(nonatomic,assign)BOOL isGradient;
 @property(nonatomic,assign)GRADIENT_STYLE gradientStyle;
+@property(nonatomic,assign)GLOSS_STYLE glossStyle;
 @property(nonatomic,assign)BOOL minimumLabelOnYIsZero;
 @property(nonatomic,assign)BAR_LABEL_STYLE barLabelStyle;
-
+@property(nonatomic,assign)int style;
+@property(nonatomic,assign)float groupTitlesOffset;
 -(void)drawBarChart;
 
 

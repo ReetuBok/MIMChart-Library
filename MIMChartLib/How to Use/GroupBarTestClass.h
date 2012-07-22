@@ -32,6 +32,7 @@
     
     IBOutlet UITableView *myTableView;
     BarChart *myBarChart;
+    NSDictionary *barProperty;
 }
 
 @end

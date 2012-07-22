@@ -98,6 +98,8 @@
     
     xProperty=nil;
     yProperty=nil;
+    horizontalLinesProperties=nil;
+    verticalLinesProperties=nil;
     
     UITableViewCell *cell;// = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -109,6 +111,10 @@
     {
         case 0:
         {
+            horizontalLinesProperties=[NSDictionary dictionaryWithObjectsAndKeys:@"1,2",@"dotted", nil];
+            verticalLinesProperties=[NSDictionary dictionaryWithObjectsAndKeys:@"1,2",@"dotted", nil];
+            
+            
             yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
             xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
                           @"Feb",
@@ -140,10 +146,10 @@
             xProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
             yProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
             
-            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.55)];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(5, 5, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.55)];
             mWallGraph.tag=indexPath.row+10;
             mWallGraph.delegate=self;
-            //mWallGraph.backgroundColor=[UIColor blackColor];
+            mWallGraph.mbackgroundColor=[MIMColorClass colorWithComponent:@"0,0,0,1"];
             mWallGraph.isGradient=YES;
             mWallGraph.displayMeterline=YES;
             mWallGraph.xTitleStyle=X_TITLES_STYLE1;
@@ -181,7 +187,7 @@
                           @"Nov",
                           @"Dec", nil];
             
-            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.5)];
             mWallGraph.tag=indexPath.row+10;
             mWallGraph.delegate=self;
             mWallGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:CIRCLEFILLED], nil];
@@ -225,7 +231,7 @@
             xProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
             yProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
             
-            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.5)];
             mWallGraph.delegate=self;
             mWallGraph.tag=10+indexPath.row;
             [mWallGraph drawMIMWallGraph];
@@ -249,10 +255,11 @@
             xValuesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
             xTitlesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
             
-            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.55)];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.55)];
             mWallGraph.delegate=self;
             mWallGraph.isGradient=YES;
             mWallGraph.displayMeterline=YES;
+            mWallGraph.meterLineYOffset=30;
             mWallGraph.tag=10+indexPath.row;
             [mWallGraph drawMIMWallGraph];
             [cell.contentView addSubview:mWallGraph];
@@ -325,7 +332,7 @@
                           @"Oct",
                           @"Nov",
                           @"Dec", nil];
-            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-70, myTableView.frame.size.width * 0.5)];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.5)];
             mWallGraph.delegate=self;
             mWallGraph.tag=10+indexPath.row;
             mWallGraph.isGradient=YES;
@@ -407,7 +414,7 @@
             
             yValuesArray=[[NSArray alloc]initWithObjects:array1,array2,array3,nil];
             
-            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.5)];
             mWallGraph.delegate=self;
             mWallGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:NONE],
                                        [NSNumber numberWithInt:NONE],
@@ -495,7 +502,7 @@
                           @"Oct",
                           @"Nov",
                           @"Dec", nil];
-            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
             mWallGraph.delegate=self;
             mWallGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:NONE],
                                        [NSNumber numberWithInt:NONE],
@@ -525,7 +532,7 @@
             xValuesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
             xTitlesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
             
-            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.5)];
             mWallGraph.delegate=self;
             mWallGraph.tag=10+indexPath.row;
             [mWallGraph drawMIMWallGraph];
@@ -567,7 +574,7 @@
                           @"Dec", nil];
             
             
-            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-70, myTableView.frame.size.width * 0.5)];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mWallGraph.delegate=self;
             mWallGraph.tag=10+indexPath.row;
             mWallGraph.xTitleStyle=X_TITLES_STYLE1;
@@ -613,7 +620,7 @@
             
             
             
-            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.5)];
             mWallGraph.delegate=self;
             mWallGraph.tag=10+indexPath.row;
             mWallGraph.xTitleStyle=X_TITLES_STYLE2;
@@ -662,7 +669,7 @@
                           @"Oct",
                           @"Nov",
                           @"Dec", nil];
-            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
             mWallGraph.delegate=self;
             mWallGraph.tag=10+indexPath.row;
             mWallGraph.xTitleStyle=X_TITLES_STYLE2;
@@ -685,7 +692,7 @@
             xValuesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
             xTitlesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
 
-            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.5)];
             mWallGraph.delegate=self;
             mWallGraph.tag=10+indexPath.row;
             [mWallGraph drawMIMWallGraph];
@@ -729,6 +736,17 @@
 -(NSDictionary *)yAxisProperties:(id)graph
 {
     return yProperty;
+}
+
+-(NSDictionary *)horizontalLinesProperties:(id)graph 
+{
+    return horizontalLinesProperties;
+    
+}
+
+-(NSDictionary*)verticalLinesProperties:(id)graph
+{
+    return verticalLinesProperties;
 }
 
 

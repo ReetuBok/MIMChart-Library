@@ -28,7 +28,7 @@
 
 
 @implementation BarView
-@synthesize color,borderColor,lColor,dColor,isGradient,gradientStyle,negativeBar;
+@synthesize color,borderColor,lColor,dColor,isGradient,gradientStyle,glossStyle,negativeBar;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -48,37 +48,90 @@
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetBlendMode(context,kCGBlendModeNormal);
-    
+    int height=self.frame.size.height;
+    float red,green,blue,alpha,Dred,Dgreen,Dblue,DAlpha;
+
  
     
     
     if (isGradient) 
     {
         
+        Dred=[[dColor valueForKey:@"red"] floatValue];
+        Dgreen=[[dColor valueForKey:@"green"] floatValue];
+        Dblue=[[dColor valueForKey:@"blue"] floatValue];
+        if([dColor valueForKey:@"alpha"]) DAlpha=[[dColor valueForKey:@"alpha"] floatValue];
+        else DAlpha=1.0;
         
-        float red=[[lColor valueForKey:@"red"] floatValue];
-        float green=[[lColor valueForKey:@"green"] floatValue];
-        float blue=[[lColor valueForKey:@"blue"] floatValue];
+        if(lColor==nil)
+        {
+            UIColor *_color=[[UIColor alloc]initWithRed:Dred green:Dgreen blue:Dblue alpha:1.0]; 
+            CGContextSetFillColorWithColor(context, _color.CGColor);
+            CGContextAddRect(context, CGRectMake(0, 0, CGRectGetWidth(rect), CGRectGetHeight(rect)));  
+            CGContextFillPath(context);
+  
+            if(gradientStyle==VERTICAL_GRADIENT_STYLE)
+            {
+                Dred=0;
+                Dgreen=0;
+                Dblue=0;
+                DAlpha=0.1;
+                
+                
+                red=1.0;
+                green=1.0;
+                blue=1.0;
+                alpha=0.5;
+            
+            }
+            else
+            {
+                Dred=1.0;
+                Dgreen=1.0;
+                Dblue=1.0;
+                DAlpha=0.5;
+                
+                red=0.0;
+                green=0.0;
+                blue=0.0;
+                alpha=0.1;
+            }
+            
+            
+           
+            
+            
+        }
+        else
+        {
+            red=[[lColor valueForKey:@"red"] floatValue];
+            green=[[lColor valueForKey:@"green"] floatValue];
+            blue=[[lColor valueForKey:@"blue"] floatValue];
+            if([lColor valueForKey:@"alpha"]) alpha=[[lColor valueForKey:@"alpha"] floatValue];
+            else alpha=1.0;
+        }
         
-        float Dred=[[dColor valueForKey:@"red"] floatValue];
-        float Dgreen=[[dColor valueForKey:@"green"] floatValue];
-        float Dblue=[[dColor valueForKey:@"blue"] floatValue];
+        
         
         
         CGGradientRef glossGradient;
         CGColorSpaceRef rgbColorspace;
         size_t num_locations = 2;
         CGFloat locations[2] = { 0.0, 1.0 };
-        CGFloat components[8] = { red, green, blue, 1.0,  // Start color
-            Dred, Dgreen, Dblue, 1.0 }; // Mid color and End color
+        CGFloat components[8] = { red, green, blue, alpha,  // Start color
+            Dred, Dgreen, Dblue, DAlpha }; // Mid color and End color
         
         
         rgbColorspace = CGColorSpaceCreateDeviceRGB();
         glossGradient = CGGradientCreateWithColorComponents(rgbColorspace, components, locations, num_locations);
-        int height=self.frame.size.height;
+        
+       
+        
         CGRect myrect = CGRectMake(0,0,CGRectGetWidth(rect), height);
         CGContextSaveGState(context);
         CGContextClipToRect(context, myrect);
+        
+        
         
         if(gradientStyle==HORIZONTAL_GRADIENT_STYLE)
         {
@@ -86,7 +139,13 @@
             CGPoint end = CGPointMake(CGRectGetWidth(rect), 0);
             CGContextDrawLinearGradient(context, glossGradient, end, start, kCGGradientDrawsBeforeStartLocation);
         }
-        else if(gradientStyle==VERTICAL_GRADIENT_STYLE)
+        else if(gradientStyle==HORIZONTAL_GRADIENT_STYLE_2)
+        {
+            CGPoint start = CGPointMake(0,0); 
+            CGPoint end = CGPointMake(CGRectGetWidth(rect), 0);
+            CGContextDrawLinearGradient(context, glossGradient, start, end, kCGGradientDrawsBeforeStartLocation);
+        }
+        else if(gradientStyle==VERTICAL_GRADIENT_STYLE || gradientStyle ==VERTICAL_GRADIENT_STYLE_2)
         {
             if(negativeBar)
             {
@@ -96,9 +155,9 @@
             }
             else
             {
-                CGPoint start = CGPointMake(CGRectGetWidth(rect),CGRectGetHeight(rect)+10); 
+                CGPoint start = CGPointMake(CGRectGetWidth(rect),CGRectGetHeight(rect)); 
                 CGPoint end = CGPointMake(CGRectGetWidth(rect), -5);
-                CGContextDrawLinearGradient(context, glossGradient, start, end, kCGGradientDrawsBeforeStartLocation);
+                CGContextDrawLinearGradient(context, glossGradient, start, end, 0);
             }
             
         }
@@ -120,12 +179,88 @@
     
     }
        
+ 
     
-    //Set BorderLin
-//    CGContextSetLineWidth(context, 2.0);
-//    CGContextSetStrokeColorWithColor(context, borderColor.CGColor);
-//    CGContextAddRect(context, CGRectMake(0, 0, CGRectGetWidth(rect), CGRectGetHeight(rect)+4));  
-//    CGContextStrokePath(context);
+    
+    
+    
+    
+    if(glossStyle!=GLOSS_NONE)
+    {
+        Dred=1.0;
+        Dgreen=1.0;
+        Dblue=1.0;
+        DAlpha=0.5;
+        
+        
+        red=1.0;
+        green=1.0;
+        blue=1.0;
+        alpha=0.05;
+        
+        switch (glossStyle) 
+        {
+            case GLOSS_STYLE_1:
+            default:
+            {
+                CGContextSaveGState(context);
+                
+                
+                CGMutablePathRef path= CGPathCreateMutable();
+                CGPathMoveToPoint(path, NULL, 0, height);
+                CGPathAddCurveToPoint(path, NULL, 0, height,CGRectGetWidth(rect)/2 ,height/5, CGRectGetWidth(rect),  height/10);
+                CGPathAddLineToPoint(path, NULL, CGRectGetWidth(rect), 0);
+                CGPathAddLineToPoint(path, NULL, 0, 0);
+                CGPathCloseSubpath(path);
+                CGContextAddPath(context, path);
+                
+                CGContextClip(context);
+            }
+                break;
+                
+            case GLOSS_STYLE_2:
+            {
+                CGContextSaveGState(context);
+            
+                CGMutablePathRef path= CGPathCreateMutable();
+                CGPathMoveToPoint(path, NULL, 0, height*0.6);
+                
+                CGPathAddQuadCurveToPoint(path, NULL, CGRectGetWidth(rect)*0.5, height*0.55, CGRectGetWidth(rect), height*0.4);
+                CGPathAddLineToPoint(path, NULL, CGRectGetWidth(rect), 0);
+                CGPathAddLineToPoint(path, NULL, 0, 0);
+                CGPathCloseSubpath(path);
+                CGContextAddPath(context, path);
+                
+                CGContextClip(context);
+            }
+                break;
+        }
+        
+        
+        
+        //DRaw the gloss gradient
+        CGGradientRef glossGradient;
+        CGColorSpaceRef rgbColorspace;
+        size_t num_locations = 2;
+        CGFloat locations[2] = { 0.0, 1.0 };
+        CGFloat components[8] = { red, green, blue, alpha,  // Start color
+            Dred, Dgreen, Dblue, DAlpha }; // Mid color and End color
+        
+        
+        rgbColorspace = CGColorSpaceCreateDeviceRGB();
+        glossGradient = CGGradientCreateWithColorComponents(rgbColorspace, components, locations, num_locations);
+        CGPoint start = CGPointMake(CGRectGetWidth(rect),CGRectGetHeight(rect)*0.7); 
+        CGPoint end = CGPointMake(CGRectGetWidth(rect), -5);
+        CGContextDrawLinearGradient(context, glossGradient, start, end, kCGGradientDrawsBeforeStartLocation);
+ 
+
+        CGContextRestoreGState(context);
+        
+
+    }
+    
+    
+    
 
 }
 

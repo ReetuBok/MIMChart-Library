@@ -29,7 +29,7 @@
 @implementation XAxisBand
 @synthesize xElements,scalingFactor,style,lineChart,xIsString;
 @synthesize barChart,gapDistance,lineColor,lineWidth;
-@synthesize properties;
+@synthesize properties,groupTitles,groupTitleOffset;
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -40,6 +40,7 @@
         self.backgroundColor=[UIColor clearColor];
         _tileWidth=50;
         _gridWidth=self.frame.size.width-20;
+        groupTitleOffset=50;
 
     }
     return self;
@@ -59,6 +60,18 @@
     if([properties valueForKey:@"color"]) 
         c=[MIMColorClass colorWithComponent:[properties valueForKey:@"color"]];
     lineColor=[UIColor colorWithRed:c.red green:c.green blue:c.blue alpha:c.alpha];
+    
+    
+    c=[MIMColorClass colorWithRed:0.7 Green:0.7 Blue:0.7 Alpha:1.0];
+    if([properties valueForKey:@"groupTitleColor"]) 
+        c=[MIMColorClass colorWithComponent:[properties valueForKey:@"groupTitleColor"]];
+    groupTitleColor=[UIColor colorWithRed:c.red green:c.green blue:c.blue alpha:c.alpha];
+    
+    
+    c=[MIMColorClass colorWithRed:0.7 Green:0.7 Blue:0.7 Alpha:0];
+    if([properties valueForKey:@"groupTitleBgColor"]) 
+        c=[MIMColorClass colorWithComponent:[properties valueForKey:@"groupTitleBgColor"]];
+    groupTitleBgColor=[UIColor colorWithRed:c.red green:c.green blue:c.blue alpha:c.alpha];
     
     
     
@@ -139,6 +152,13 @@
     
     //Draw Gray Lines for X-axis
     [self drawXAxis:ctx];
+    
+    BOOL xLabelsVisible=FALSE;
+    if([properties valueForKey:@"hide"]) 
+        xLabelsVisible=[[properties valueForKey:@"hide"] boolValue];
+    
+    if(xLabelsVisible)
+        return;
     
     
     //Draw the sticks down
@@ -314,6 +334,49 @@
   
         
     }
+    
+    
+    
+    //Group Titles
+    if(!groupBarChart)return;
+    
+    float offset=scalingFactor;
+    for (int i=0; i<[groupTitles count]; i++) 
+    {
+        XAxisLabel *label=[[XAxisLabel alloc]initWithFrame:CGRectMake(offset, 40, scalingFactor, 15.0)];
+        label.style=5;
+        
+        for(int j=0;j<[[xElements objectAtIndex:i] count];j++)
+        {
+            if(j<[[xElements objectAtIndex:i] count]-1)
+                offset+=gapDistance;
+               
+            offset+=scalingFactor;
+        
+        }
+        
+        //Resize the width of group title label
+        CGRect r=label.frame;
+        r.size.width=offset-CGRectGetMinX(r);
+        label.frame=r;
+
+        
+        label.lineChart=lineChart;
+        label.width=CGRectGetWidth(r);
+        label.mBackgroundColor=groupTitleBgColor;
+        
+        label.text=[NSString stringWithFormat:@"%@",[groupTitles objectAtIndex:i]];
+        [label drawTitleWithColor:groupTitleColor];
+        
+        [self addSubview:label];
+        
+        
+        offset+=groupGapDistance;
+        
+    }
+    
+    
+    
  
 }
 

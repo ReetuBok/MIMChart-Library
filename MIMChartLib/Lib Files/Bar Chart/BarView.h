@@ -34,7 +34,10 @@
     UIColor *borderColor;
     BOOL isGradient;
     GRADIENT_STYLE gradientStyle;
+    GLOSS_STYLE glossStyle;
     BOOL negativeBar;
+    
+
     
 }
 @property(nonatomic,retain) MIMColorClass *color;
@@ -43,5 +46,7 @@
 @property(nonatomic,retain) UIColor *borderColor;
 @property(nonatomic,assign) BOOL isGradient;
 @property(nonatomic,assign) GRADIENT_STYLE gradientStyle;
+@property(nonatomic,assign) GLOSS_STYLE glossStyle;
 @property(nonatomic,assign) BOOL negativeBar;
+
 @end

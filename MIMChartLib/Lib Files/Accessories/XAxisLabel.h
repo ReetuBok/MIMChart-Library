@@ -34,6 +34,7 @@
     float width;
     BOOL lineChart;
     UIColor *xTitleColor;
+    UIColor *mBackgroundColor;
 }
 
 -(void)drawTitleWithColor:(UIColor *)color;
@@ -43,4 +44,5 @@
 @property(nonatomic,assign)    NSInteger style;
 @property(nonatomic,assign)    float width;
 @property(nonatomic,assign)     BOOL lineChart;
+@property(nonatomic,retain) UIColor *mBackgroundColor;
 @end

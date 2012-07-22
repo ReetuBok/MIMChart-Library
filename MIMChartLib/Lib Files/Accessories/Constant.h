@@ -9,6 +9,7 @@
 #import "LineScrollView.h"
 #import "MIMMeter.h"
 #import "BarInfoBox.h"
+#import "MIMProperties.h"
 
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
@@ -19,6 +20,8 @@
 #ifndef DEBUG 
 #define DEBUG_MODE 0
 #endif
+
+#define X_AXIS_HEIGHT 100
 
 typedef enum
 {
@@ -144,10 +147,24 @@ typedef enum
 
 typedef enum
 {
-    VERTICAL_GRADIENT_STYLE=1, 
-    HORIZONTAL_GRADIENT_STYLE,
+    VERTICAL_GRADIENT_STYLE=1, //UP
+    VERTICAL_GRADIENT_STYLE_2, //DOWN
+    HORIZONTAL_GRADIENT_STYLE,//LEFT
+    HORIZONTAL_GRADIENT_STYLE_2,//RIGHT
    
 }GRADIENT_STYLE;
+
+
+typedef enum
+{
+    GLOSS_STYLE_1=1, 
+    GLOSS_STYLE_2,
+    GLOSS_STYLE_3,
+    GLOSS_STYLE_4,
+    GLOSS_STYLE_5,
+    GLOSS_NONE,
+    
+}GLOSS_STYLE;
 
 
 

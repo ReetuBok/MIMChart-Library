@@ -92,7 +92,7 @@
             
         case 1:
         {
-            barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:@"50",@"barwidth", nil];
+            barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:@"50",@"barwidth",[NSNumber numberWithBool:NO],@"shadow" ,nil];
             
             myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
@@ -200,6 +200,19 @@
     return barProperty;
 }
 
+-(NSDictionary *)horizontalLinesProperties:(id)graph
+{
+    if([(BarChart *)graph tag]==10)
+        return [NSDictionary dictionaryWithObjectsAndKeys:@"1,2",@"dotted", nil];
+    
+    if([(BarChart *)graph tag]==11)
+        return [NSDictionary dictionaryWithObjectsAndKeys:@"4,1",@"dotted", nil];
+    
+    if([(BarChart *)graph tag]==12)
+        return [NSDictionary dictionaryWithObjectsAndKeys:@"1,4",@"dotted", nil];
+    
+    return nil;
+}
 -(UILabel *)createLabelWithText:(NSString *)text
 {
     UILabel *a=[[UILabel alloc]initWithFrame:CGRectMake(5, myTableView.frame.size.width * 0.5 + 20, 310, 20)];

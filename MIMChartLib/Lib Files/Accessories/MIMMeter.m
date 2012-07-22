@@ -86,7 +86,7 @@
     CGContextSaveGState(context);
     UIColor *shadowColor=[lineColor colorWithAlphaComponent:1.0];
     //Draw the line
-    r=CGRectMake((CGRectGetWidth(rect) -lineWidth)/2, 0, lineWidth, CGRectGetHeight(rect)-5);
+    r=CGRectMake((CGRectGetWidth(rect) -lineWidth)/2, 7, lineWidth, CGRectGetHeight(rect)-5);
     CGContextSetFillColorWithColor(context, lineColor.CGColor);
     CGContextSetShadowWithColor(context, CGSizeMake(0, 0), 10, shadowColor.CGColor);
     CGContextAddRect(context, r);      
@@ -136,6 +136,7 @@
 {
     int index=-1;
     float currentX=point.x;
+    currentX-=minPointX;
     
     float reminder=fmodf(currentX, _tileWidth);
     //NSLog(@"reminder=%f",reminder);

@@ -199,9 +199,9 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
-    horizontalLinesPropertiesArray=nil;
+    horizontalLinesProperties=nil;
         
-// dataArrayFromCSV
+
     [super viewDidLoad];
 }
 
@@ -395,12 +395,17 @@
     }
     
     */
+    verticalLinesProperties=nil;
     
     switch (indexPath.row) 
     {
         case 0:
         {
-            horizontalLinesPropertiesArray=nil;
+            
+            horizontalLinesProperties=[NSDictionary dictionaryWithObjectsAndKeys:@"1,2",@"dotted", nil];
+            verticalLinesProperties=[NSDictionary dictionaryWithObjectsAndKeys:@"1,2",@"dotted", nil];
+            
+            
             anchorPropertiesArray=nil;
             
             yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
@@ -432,7 +437,7 @@
                           @"Nov",
                           @"Dec", nil];
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.mbackgroundColor=[MIMColorClass colorWithComponent:@"1,1,1"];
             mLineGraph.tag=10+indexPath.row;
@@ -448,7 +453,7 @@
             
         case 1:
         {
-            horizontalLinesPropertiesArray=nil;
+            horizontalLinesProperties=[NSDictionary dictionaryWithObjectsAndKeys:@"4,1",@"dotted", nil];;
 
             
             yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
@@ -484,7 +489,7 @@
             anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"touchenabled"], nil];
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:CIRCLEFILLED], nil];
@@ -497,8 +502,8 @@
             break;
         case 2:
         {
-            horizontalLinesPropertiesArray=nil;
-
+            horizontalLinesProperties=[NSDictionary dictionaryWithObjectsAndKeys:@"1,4",@"dotted", nil];;
+            verticalLinesProperties=[NSDictionary dictionaryWithObjectsAndKeys:@"1,4",@"dotted", nil];
             
             yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
             
@@ -543,7 +548,7 @@
             break;
         case 3:
         {
-            horizontalLinesPropertiesArray=nil;
+            horizontalLinesProperties=nil;
 
             yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
             
@@ -590,7 +595,7 @@
             break;
         case 4:
         {
-            horizontalLinesPropertiesArray=nil;
+            horizontalLinesProperties=nil;
             
             
             yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
@@ -642,7 +647,7 @@
             break;
         case 5:
         {
-            horizontalLinesPropertiesArray=nil;
+            horizontalLinesProperties=nil;
             
             
             yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
@@ -688,7 +693,7 @@
             break;
         case 6:
         {
-            horizontalLinesPropertiesArray=nil;
+            horizontalLinesProperties=nil;
             
             
             yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
@@ -735,7 +740,7 @@
             break;
         case 7:
         {
-            horizontalLinesPropertiesArray=nil;
+            horizontalLinesProperties=nil;
             anchorPropertiesArray=nil;
             
             [self createDataForLongSingleLine];
@@ -755,7 +760,7 @@
             break;
         case 8:
         {
-            horizontalLinesPropertiesArray=nil;
+            horizontalLinesProperties=nil;
             anchorPropertiesArray=nil;
             
             xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
@@ -830,7 +835,7 @@
             
         case 9:
         {
-            horizontalLinesPropertiesArray=nil;
+            horizontalLinesProperties=nil;
             anchorPropertiesArray=nil;
             
             xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
@@ -909,7 +914,7 @@
             break;
         case 10:
         {
-            horizontalLinesPropertiesArray=nil;
+            horizontalLinesProperties=nil;
             xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
                           @"Feb",
                           @"Mar",
@@ -987,7 +992,7 @@
             break;
         case 11:
         {
-            horizontalLinesPropertiesArray=nil;
+            horizontalLinesProperties=nil;
             anchorPropertiesArray=nil;
             
             [self createDataForLongMultipleLines];
@@ -1006,7 +1011,7 @@
             break;
         case 12:
         {
-            horizontalLinesPropertiesArray=nil;
+            horizontalLinesProperties=nil;
             anchorPropertiesArray=nil;
             
             NSArray *array1=[NSArray arrayWithObjects:@"-40",@"-30",@"-20",@"-10", @"0",@"20",@"23" ,@"25",@"28" ,@"30",@"25",@"40",nil];
@@ -1055,7 +1060,7 @@
             
         case 13:
         {
-            horizontalLinesPropertiesArray=nil;
+            horizontalLinesProperties=nil;
             anchorPropertiesArray=nil;
             
             NSArray *array1=[NSArray arrayWithObjects:@"-40",@"-30",@"-20",@"-10", @"0",@"20",@"23" ,@"25",@"28" ,@"30",@"25",@"40",nil];
@@ -1103,7 +1108,7 @@
             
         case 14:
         {
-            horizontalLinesPropertiesArray=nil;
+            horizontalLinesProperties=nil;
             anchorPropertiesArray=nil;
             
             NSArray *array1=[NSArray arrayWithObjects:@"-40",@"-30",@"-20",@"-10", @"10",@"20",@"23" ,@"25",@"28" ,@"30",@"25",@"40",nil];
@@ -1152,7 +1157,7 @@
             break;
         case 15:
         {
-            horizontalLinesPropertiesArray=nil;
+            horizontalLinesProperties=nil;
             anchorPropertiesArray=nil;
             
             NSArray *array1=[NSArray arrayWithObjects:@"-40",@"-30",@"-20",@"-10", @"10",@"20",@"23" ,@"25",@"28" ,@"30",@"25",@"40",nil];
@@ -1200,7 +1205,7 @@
             break;
         case 16:
         {
-            horizontalLinesPropertiesArray=[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"20", nil] forKeys:[NSArray arrayWithObjects:@"gap", nil]];
+            horizontalLinesProperties=[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"20", nil] forKeys:[NSArray arrayWithObjects:@"gap", nil]];
             
             [self createDataForLongNegativeLines];
             
@@ -1254,8 +1259,13 @@
 
 -(NSDictionary *)horizontalLinesProperties:(id)graph 
 {
-    return horizontalLinesPropertiesArray;
+    return horizontalLinesProperties;
 
+}
+
+-(NSDictionary*)verticalLinesProperties:(id)graph
+{
+    return verticalLinesProperties;
 }
 
 

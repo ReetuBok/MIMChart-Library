@@ -27,7 +27,7 @@
 #import <CoreText/CoreText.h>
 
 @implementation XAxisLabel
-@synthesize text,labelTag,style,width,lineChart;
+@synthesize text,labelTag,style,width,lineChart,mBackgroundColor;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -35,6 +35,7 @@
     if (self) {
         // Initialization code
         self.backgroundColor=[UIColor clearColor];
+        mBackgroundColor=[UIColor clearColor];
     }
     return self;
 }
@@ -64,7 +65,10 @@
     
     
     CGContextSetBlendMode(ctx,kCGBlendModeNormal);
-
+    CGContextSetFillColorWithColor(ctx, mBackgroundColor.CGColor);
+    CGContextAddRect(ctx, CGRectMake(0, 0, width, 15.0));      
+    CGContextFillPath(ctx);
+    
     
     //This is the string we want to write on our screen and we also need to get the string length
     NSString *test =[NSString stringWithFormat:@"%@",text];

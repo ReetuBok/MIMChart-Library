@@ -101,7 +101,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return  3;
+    return  4;
     
 }
 
@@ -109,7 +109,7 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    
+    barProperty=nil;
     
     UITableViewCell *cell;// = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -127,6 +127,7 @@
             myBarChart.groupedBars=YES;
             myBarChart.barLabelStyle=BAR_LABEL_STYLE1;
             myBarChart.tag=10+indexPath.row;
+            myBarChart.glossStyle=GLOSS_STYLE_1;
             myBarChart.xTitleStyle=X_TITLES_STYLE3;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
@@ -142,6 +143,7 @@
             myBarChart.tag=10+indexPath.row;
             myBarChart.isGradient=YES;
             myBarChart.groupedBars=YES;
+            myBarChart.glossStyle=GLOSS_STYLE_1;
             myBarChart.xTitleStyle=X_TITLES_STYLE2;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
@@ -150,6 +152,8 @@
             break;
         case 2:
         {
+            barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:@"6",@"gapBetweenBars",@"35",@"gapBetweenGroup", nil];
+
             
             myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
@@ -157,12 +161,30 @@
             myBarChart.isGradient=YES;
             myBarChart.groupedBars=YES;
             myBarChart.xTitleStyle=X_TITLES_STYLE1;
+            myBarChart.glossStyle=GLOSS_STYLE_2;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
             
         }
             break;
             
+        case 3:
+        {
+            barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:@"50",@"gapBetweenGroup" ,nil];
+
+            
+            myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            myBarChart.delegate=self;
+            myBarChart.tag=10+indexPath.row;
+            myBarChart.isGradient=YES;
+            myBarChart.groupedBars=YES;
+            myBarChart.xTitleStyle=X_TITLES_STYLE1;
+            myBarChart.glossStyle=GLOSS_STYLE_2;
+            [myBarChart drawBarChart];
+            [cell.contentView addSubview:myBarChart];
+            
+        }
+            break;
             
     }
     
@@ -188,11 +210,14 @@
         yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],nil];
     }
     
-    if([(BarChart *)graph tag]>=12)
+    if([(BarChart *)graph tag]==12)
     {
         yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],nil];
     }
-    
+    if([(BarChart *)graph tag]==13)
+    {
+        yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"-11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"-4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"-2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],[NSArray arrayWithObjects:@"10000",@"21000",@"-14000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"-17000",@"15000",@"11000", nil],nil];
+    }
     
     
     
@@ -236,7 +261,35 @@
     
 }
 
+-(NSArray *)grouptitlesForXAxis:(id)graph
+{
+    NSArray *gValuesArray=nil;
+    
+    if([(BarChart *)graph tag]>=12)
+        gValuesArray=[[NSArray alloc]initWithObjects:@"Q1 2009",@" Q2 2009",@"Q3 2009",@"Q1 2010",@"Q2 2010",@"Q3 2010",@"Q1 2011",@"Q2 2011",@"Q3 2011", nil];
+    
+    return gValuesArray;
 
+}
+
+-(NSDictionary *)barProperties:(id)graph; 
+{
+    return barProperty;
+}
+
+-(NSDictionary *)horizontalLinesProperties:(id)graph
+{
+    if([(BarChart *)graph tag]==10)
+        return [NSDictionary dictionaryWithObjectsAndKeys:@"1,2",@"dotted", nil];
+    
+    if([(BarChart *)graph tag]==11)
+        return [NSDictionary dictionaryWithObjectsAndKeys:@"4,1",@"dotted", nil];
+    
+    if([(BarChart *)graph tag]==12)
+        return [NSDictionary dictionaryWithObjectsAndKeys:@"1,4",@"dotted", nil];
+    
+    return nil;
+}
 -(UILabel *)createLabelWithText:(NSString *)text
 {
     UILabel *a=[[UILabel alloc]initWithFrame:CGRectMake(5, myTableView.frame.size.width * 0.5 + 20, 310, 20)];
@@ -250,7 +303,13 @@
     return a;
     
 }
-
+-(NSDictionary *)xAxisProperties:(id)graph
+{
+    if([(BarChart *)graph tag]==12)
+    return [NSDictionary dictionaryWithObjectsAndKeys:@"0.95,0.95,0.95",@"groupTitleBgColor", nil];
+    
+    return nil;
+}
 
 -(NSDictionary *)animationOnBars:(id)graph
 {

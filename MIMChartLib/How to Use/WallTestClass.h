@@ -45,6 +45,9 @@
     
     NSDictionary *xProperty;
     NSDictionary *yProperty;
+    
+    NSDictionary *horizontalLinesProperties;
+    NSDictionary *verticalLinesProperties;
 }
 
 @end

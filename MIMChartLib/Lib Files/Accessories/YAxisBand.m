@@ -59,7 +59,7 @@
 {
     
     
-    MIMColorClass *c=[MIMColorClass colorWithRed:0.8 Green:0.8 Blue:0.8 Alpha:1.0];
+    MIMColorClass *c=[MIMColorClass colorWithRed:0.7 Green:0.7 Blue:0.7 Alpha:1.0];
     if([properties valueForKey:@"color"]) 
         c=[MIMColorClass colorWithComponent:[properties valueForKey:@"color"]];
     

@@ -54,6 +54,8 @@
     MIMMeter *meterLine;
     float METERLINEHEIGHT;
     int currentAnchorIndex;
+    float leftMargin;
+    float bottomMargin;
 }
 
 -(void)initVars;
@@ -66,7 +68,7 @@
 @end
 
 @implementation MIMWallGraph
-@synthesize fitsToScreenWidth,isGradient,displayMeterline;
+@synthesize fitsToScreenWidth,isGradient,displayMeterline,meterLineYOffset;
 @synthesize xTitleStyle,mbackgroundColor;
 @synthesize delegate;
 @synthesize anchorTypeArray,wallColorArray,wallGradientArray;
@@ -88,7 +90,7 @@
 -(void)drawMIMWallGraph
 {
 
-    if(displayMeterline) METERLINEHEIGHT =30;
+    if(displayMeterline) METERLINEHEIGHT =0;
     else METERLINEHEIGHT =0;
 
     BOOL multipleLines=[self initAndWarnings];
@@ -97,8 +99,15 @@
     BOOL addRandomAnchorType=TRUE;
     if (self.anchorTypeArray) addRandomAnchorType=FALSE;
 
+    float _leftMargin=leftMargin;
+    float _bottomMargin=bottomMargin;
     
-    
+    if(_gridWidth>CGRectGetWidth(self.frame))
+    {
+        _leftMargin=0;
+        _bottomMargin=0;
+        
+    }
     
     
     
@@ -154,23 +163,23 @@
                 
                 
                 if(l==0)
-                    [myPath moveToPoint:CGPointMake(valueX*_scalingX , valueY*_scalingY + METERLINEHEIGHT)];
+                    [myPath moveToPoint:CGPointMake(valueX*_scalingX +_leftMargin , valueY*_scalingY + _bottomMargin)];
                 else
-                    [myPath addLineToPoint:CGPointMake(valueX*_scalingX , valueY*_scalingY+ METERLINEHEIGHT)];
+                    [myPath addLineToPoint:CGPointMake(valueX*_scalingX +_leftMargin, valueY*_scalingY+ _bottomMargin)];
                 
                 
                 
                 if(l==0)
-                    [myLinePath moveToPoint:CGPointMake(valueX*_scalingX , valueY*_scalingY+ METERLINEHEIGHT)];
+                    [myLinePath moveToPoint:CGPointMake(valueX*_scalingX +_leftMargin, valueY*_scalingY+ _bottomMargin)];
                 else
-                    [myLinePath addLineToPoint:CGPointMake(valueX*_scalingX , valueY*_scalingY+ METERLINEHEIGHT)];
+                    [myLinePath addLineToPoint:CGPointMake(valueX*_scalingX +_leftMargin, valueY*_scalingY+ _bottomMargin)];
                 
                 
                 
                 if(l==[yArray_ count]-1)
                 {
-                    [myPath addLineToPoint:CGPointMake(valueX*_scalingX , 0)];
-                    [myPath addLineToPoint:CGPointMake(0 , 0)];
+                    [myPath addLineToPoint:CGPointMake(valueX*_scalingX +_leftMargin, 0)];
+                    [myPath addLineToPoint:CGPointMake(0 +_leftMargin , 0)];
                 }
                 
                 averageY+=valueY;
@@ -227,23 +236,23 @@
             
             
             if(i==0)
-                [myPath moveToPoint:CGPointMake(valueX*_scalingX , valueY*_scalingY+ METERLINEHEIGHT)];
+                [myPath moveToPoint:CGPointMake(valueX*_scalingX  +_leftMargin, valueY*_scalingY+ _bottomMargin)];
             else
-                [myPath addLineToPoint:CGPointMake(valueX*_scalingX , valueY*_scalingY+ METERLINEHEIGHT)];
+                [myPath addLineToPoint:CGPointMake(valueX*_scalingX  +_leftMargin, valueY*_scalingY+ _bottomMargin)];
             
             
             
             if(i==0)
-                [myLinePath moveToPoint:CGPointMake(valueX*_scalingX , valueY*_scalingY+ METERLINEHEIGHT)];
+                [myLinePath moveToPoint:CGPointMake(valueX*_scalingX  +_leftMargin, valueY*_scalingY+ _bottomMargin)];
             else
-                [myLinePath addLineToPoint:CGPointMake(valueX*_scalingX , valueY*_scalingY+ METERLINEHEIGHT)];
+                [myLinePath addLineToPoint:CGPointMake(valueX*_scalingX  +_leftMargin, valueY*_scalingY+ _bottomMargin)];
             
             
             
             if(i==[_yValElements count]-1)
             {
-                [myPath addLineToPoint:CGPointMake(valueX*_scalingX , 0)];
-                [myPath addLineToPoint:CGPointMake(0 , 0)];
+                [myPath addLineToPoint:CGPointMake(valueX*_scalingX  +_leftMargin, 0)];
+                [myPath addLineToPoint:CGPointMake(0  +_leftMargin, 0)];
             }
 
             
@@ -280,7 +289,7 @@
     anchorTypeArray=[[NSMutableArray alloc]init];
     xTitleStyle=X_TITLES_STYLE1;
     currentAnchorIndex=-1;
-    
+    meterLineYOffset=70;
 }
 
 
@@ -315,8 +324,11 @@
     _gridHeight=self.frame.size.height;  
 
 
-    _gridHeight=_gridHeight-METERLINEHEIGHT;
-
+    //_gridHeight=_gridHeight-METERLINEHEIGHT;
+    
+    
+    _gridHeight-=bottomMargin;
+    _gridWidth-=leftMargin;
     
 }   
 
@@ -605,12 +617,22 @@
     else
         yLProperties=[[NSMutableDictionary alloc]init];
     
+    leftMargin=50;
+    if([yLProperties  valueForKey:@"margin"])
+    leftMargin=[[yLProperties  valueForKey:@"margin"]floatValue];
+    
+    
+    bottomMargin=100;
+    if([xLProperties  valueForKey:@"margin"])
+        bottomMargin=[[xLProperties  valueForKey:@"margin"]floatValue];
+    
+    
     
     if([delegate respondsToSelector:@selector(WallProperties:)])
-        if([delegate WallProperties:self]!=nil)
-        {
-            wProperties=[[NSMutableArray alloc]initWithArray:[delegate WallProperties:self]];
-        }
+    if([delegate WallProperties:self]!=nil)
+    {
+        wProperties=[[NSMutableArray alloc]initWithArray:[delegate WallProperties:self]];
+    }
     
     
     [self CalculateGridDimensions];
@@ -627,7 +649,7 @@
 {
     if(_gridWidth > self.frame.size.width)
     {
-        lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(leftMargin, 0, CGRectGetWidth(self.frame)-leftMargin-10, self.frame.size.height)];
         [lineGScrollView setBackgroundColor:[UIColor clearColor]];
         lineGScrollView.contentSize=CGSizeMake(_gridWidth, self.frame.size.height);
         [self addSubview:lineGScrollView];        
@@ -697,8 +719,8 @@
             CGColorSpaceRef colorspace;
             size_t num_locations = 2;
             CGFloat locations[2] = { 0.0, 1.0 };
-            CGFloat components[8] = { d.red, d.green, d.blue, 1.0,  // Start color
-                l.red, l.green, l.blue, 0.4}; // End color
+            CGFloat components[8] = { l.red, l.green, l.blue, 0.4,  // Start color
+                d.red, d.green, d.blue, 1.0}; // End color
             
             colorspace = CGColorSpaceCreateDeviceRGB();
             gradient = CGGradientCreateWithColorComponents (colorspace, components, locations, num_locations);
@@ -742,6 +764,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+
     
     if([myPathArray count]==0)
         return;
@@ -757,28 +780,33 @@
     CGContextSetAllowsAntialiasing(ctx, NO);
     CGContextSetShouldAntialias(ctx, NO);
     
-    CGAffineTransform flipTransform = CGAffineTransformMake( 1, 0, 0, -1, 0, self.frame.size.height);
-    CGContextConcatCTM(ctx, flipTransform);
     
+    
+    
+   
     
     //Clear the color of background
     CGRect r=CGRectMake(0, 0, CGRectGetWidth(rect), CGRectGetHeight(rect));
     CGContextSetBlendMode(ctx,kCGBlendModeClear);
-    CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
+    CGContextSetFillColorWithColor(ctx, [UIColor redColor].CGColor);
     CGContextAddRect(ctx, r);      
     CGContextFillPath(ctx);
     CGContextSetBlendMode(ctx,kCGBlendModeNormal);
 
     
-    [self drawBgPattern:ctx];
-    [self drawHorizontalBgLines:ctx];
+    
+    [MIMProperties drawBgPattern:ctx color:mbackgroundColor gridWidth:_gridWidth gridHeight:_gridHeight leftMargin:leftMargin];
+
+    
+    
+    [MIMProperties drawHorizontalBgLines:ctx withProperties:hlProperties gridHeight:_gridHeight tileHeight:_tileHeight gridWidth:_gridWidth bottomMargin:bottomMargin leftMargin:leftMargin];
     
     
     
     
     if(_gridWidth > self.frame.size.width)
     {
-        MultiWallLongGraph *graph=[[MultiWallLongGraph alloc]initWithFrame:CGRectMake(0, 0, _gridWidth, self.frame.size.height)];
+        MultiWallLongGraph *graph=[[MultiWallLongGraph alloc]initWithFrame:CGRectMake(0, 0, _gridWidth, _gridHeight)];
         graph.gridHeight=_gridHeight;
         graph.scalingX=_scalingX;
         graph.scalingY=_scalingY;
@@ -793,6 +821,8 @@
         graph.xValElements=[[NSMutableArray alloc]initWithArray:_xValElements];
         graph.yValElements=[[NSMutableArray alloc]initWithArray:_yValElements];
         graph.METERLINEHEIGHT=METERLINEHEIGHT;
+        graph.leftMargin=leftMargin;
+        graph.bottomMargin=bottomMargin;
         
         [lineGScrollView addSubview:graph];
         
@@ -802,7 +832,12 @@
     }
     
     
-    [self drawVerticalBgLines:ctx];
+    [MIMProperties drawVerticalBgLines:ctx withProperties:vlProperties gridHeight:_gridHeight tileWidth:_tileWidth gridWidth:_gridWidth scalingX:_scalingX xIsString:xIsString bottomMargin:bottomMargin leftMargin:leftMargin];
+    
+    
+    CGAffineTransform flipTransform = CGAffineTransformMake( 1, 0, 0, -1, 0, self.frame.size.height);
+    CGContextConcatCTM(ctx, flipTransform);
+    
     
     CGContextSetAllowsAntialiasing(ctx, YES);
     CGContextSetShouldAntialias(ctx, YES);
@@ -836,7 +871,7 @@
 
             CGGradientRef g=(__bridge CGGradientRef )[wallGradientArray objectAtIndex:i];
 
-            CGContextDrawLinearGradient (ctx, g, CGPointMake(0, METERLINEHEIGHT), CGPointMake(0, maxOfY * _scalingY), 0);
+            CGContextDrawLinearGradient (ctx, g, CGPointMake(0, maxOfY * _scalingY) ,CGPointMake(0, bottomMargin) , 1);
             CGContextRestoreGState(ctx);
         }
         else
@@ -874,170 +909,9 @@
 }
 
 
--(void)drawBgPattern:(CGContextRef)ctx
-{
-    
-    
-    //Check if User has given any color for Background
-    if(self.mbackgroundColor)
-    {
-        
-        CGContextSaveGState(ctx);
-        CGContextSetFillColorWithColor(ctx, [UIColor colorWithRed:mbackgroundColor.red green:mbackgroundColor.green blue:mbackgroundColor.blue alpha:mbackgroundColor.alpha].CGColor);
-        CGContextFillRect(ctx, CGRectMake(0, METERLINEHEIGHT, _gridWidth, _gridHeight));
-        CGContextRestoreGState(ctx);
-        return;
-        
-        
-    }
-    
-    if([delegate respondsToSelector:@selector(backgroundViewForLineChart:)])
-    {
-        
-        
-        return;
-    }
-    
-    
-    
-    //Else Draw the background with the gray Gradient
-    CGContextSaveGState(ctx);
-    CGFloat BGLocations[3] = { 0.0,0.5 ,1.0 };
-    CGFloat BgComponents[12] = { 0.96, 0.96, 0.96 , 1.0,  // Start color
-        0.99, 0.99, 0.99 , 1.0,  // Start color
-        1.0, 1.0, 1.0 , 1.0 }; // Mid color and End color
-    
-    CGColorSpaceRef BgRGBColorspace = CGColorSpaceCreateDeviceRGB();
-    CGGradientRef bgRadialGradient = CGGradientCreateWithColorComponents(BgRGBColorspace, BgComponents, BGLocations, 3);
-    
-    CGContextDrawLinearGradient(ctx, bgRadialGradient, CGPointMake(0, METERLINEHEIGHT), CGPointMake(0, _gridHeight), 0 );
-    if(!CGContextIsPathEmpty(ctx))CGContextClip(ctx);
-    CGColorSpaceRelease(BgRGBColorspace);
-    CGGradientRelease(bgRadialGradient);
-    CGContextRestoreGState(ctx);
-    
-}
 
 
--(void)drawVerticalBgLines:(CGContextRef)ctx
-{
-    BOOL verticalLinesVisible=TRUE;
-    if([vlProperties valueForKey:@"hide"]) 
-        verticalLinesVisible=[[vlProperties valueForKey:@"hide"] boolValue];
-    
-    if(!verticalLinesVisible)
-    {
-        NSLog(@"Caution:Vertical Lines wont be visible on Line Graph. If you want them to be visible use  delegate method drawVerticalLines:");
-        
-        return;
-    }
-    
-    
-    //Width
-    float widthOfLine=0.1;
-    if([vlProperties valueForKey:@"width"]) 
-        widthOfLine=[[vlProperties valueForKey:@"width"] floatValue];
-    
-    if(widthOfLine==0) NSLog(@"WARNING: Line width of horizontal line is 0.");
-    
-    
-    
-    //Color
-    MIMColorClass *c=[MIMColorClass colorWithRed:0.8 Green:0.8 Blue:0.8 Alpha:1.0];
-    if([vlProperties valueForKey:@"color"]) 
-        c=[MIMColorClass colorWithComponent:[vlProperties valueForKey:@"color"]];
-    
-    
-    
-    
-    //Draw the Vertical ones
-    CGContextBeginPath(ctx);
-    CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithRed:c.red green:c.green blue:c.blue alpha:c.alpha].CGColor);
-    CGContextSetLineWidth(ctx, widthOfLine);
-    
-    int numVertLines=_gridWidth/_tileWidth;
-    
-    if(xIsString)
-    {
-        if([[_xValElements objectAtIndex:0] isKindOfClass:[NSString class]]) numVertLines=[_xValElements count];
-        else numVertLines=[[_xValElements objectAtIndex:0] count];
-        
-        
-        for (int i=0; i<numVertLines; i++) 
-        {   
-            CGContextMoveToPoint(ctx, i * _scalingX,METERLINEHEIGHT);
-            CGContextAddLineToPoint(ctx, i * _scalingX,_gridHeight);
-        }
-        
-    }
-    else
-    {
-        for (int i=0; i<numVertLines; i++) 
-        {   
-            CGContextMoveToPoint(ctx, i*_tileWidth,METERLINEHEIGHT);
-            CGContextAddLineToPoint(ctx, i*_tileWidth,_gridHeight);
-        }
-    }
-    
-    CGContextDrawPath(ctx, kCGPathStroke);
-    
-    
-    
-    
-}
 
--(void)drawHorizontalBgLines:(CGContextRef)ctx
-{
-    BOOL horizontalLinesVisible=TRUE;
-    if([hlProperties valueForKey:@"hide"]) 
-        horizontalLinesVisible=[[hlProperties valueForKey:@"hide"] boolValue];
-    
-    if(!horizontalLinesVisible)
-    {
-        NSLog(@"Caution:Horizontal Lines wont be visible on Line Graph. If you want them to be visible use  delegate method drawHorizontalLines:");
-        return;
-    }
-    
-    
-    
-    //Width
-    float widthOfLine=0.1;
-    if([hlProperties valueForKey:@"width"]) 
-        widthOfLine=[[hlProperties valueForKey:@"width"] floatValue];
-    
-    if(widthOfLine==0) NSLog(@"WARNING: Line width of horizontal line is 0.");
-    
-    
-    
-    //Color
-    MIMColorClass *c=[MIMColorClass colorWithRed:0.8 Green:0.8 Blue:0.8 Alpha:1.0];
-    if([hlProperties valueForKey:@"color"]) 
-        c=[MIMColorClass colorWithComponent:[hlProperties valueForKey:@"color"]];
-    
-    
-    
-    
-    
-    //Draw Gray Lines as the markers
-    CGContextBeginPath(ctx);
-    CGContextSetBlendMode(ctx, kCGBlendModeNormal);
-    CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithRed:c.red green:c.green blue:c.blue alpha:c.alpha].CGColor);
-    CGContextSetLineWidth(ctx, widthOfLine);
-    int numHorzLines=_gridHeight/_tileHeight;
-    for (int i=0; i<=numHorzLines; i++) 
-    {    
-        CGContextMoveToPoint(ctx, 0,i*_tileHeight + METERLINEHEIGHT);
-        CGContextAddLineToPoint(ctx,_gridWidth , i*_tileHeight+ METERLINEHEIGHT);
-    }
-    CGContextDrawPath(ctx, kCGPathStroke);
-    
-    
-    
-    
-    
-    
-    
-}
 
 
 
@@ -1101,7 +975,7 @@
                 else
                     valueX=[[_xValElements objectAtIndex:l] floatValue];
                 
-                float mX=valueX*_scalingX;
+                float mX=valueX*_scalingX + leftMargin;
                 float mY=valueY*_scalingY;
                 mY=_gridHeight-mY;
                 
@@ -1134,7 +1008,7 @@
                     
                     
                     
-                    float mX=valueX*_scalingX;
+                    float mX=valueX*_scalingX + leftMargin;
                     float mY=valueY*_scalingY;
                     mY=_gridHeight-mY;
                     
@@ -1222,12 +1096,8 @@
 
 -(void)_displayXAxisLabels
 {
-    BOOL xLabelsVisible=FALSE;
-    if([xLProperties valueForKey:@"hide"]) 
-        xLabelsVisible=[[xLProperties valueForKey:@"hide"] boolValue];
+   
     
-    if(xLabelsVisible)
-        return;
     
     if([[xLProperties allKeys] count]==0)
         xLProperties=[[NSMutableDictionary alloc] init];
@@ -1238,7 +1108,7 @@
     [xLProperties setValue:[NSNumber numberWithFloat:_scalingX] forKey:@"xscaling"];
     
     
-    XAxisBand *_xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,_gridHeight, _gridWidth, 100)];
+    XAxisBand *_xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(leftMargin,_gridHeight, CGRectGetWidth(self.frame)-leftMargin, bottomMargin)];
     _xBand.properties=xLProperties;
     _xBand.xElements=[[NSArray alloc]initWithArray:_xTitles];
     [self addSubview:_xBand];
@@ -1263,7 +1133,10 @@
     [yLProperties setValue:[NSNumber numberWithInt:numOfHLines] forKey:@"num"];
     [yLProperties setValue:[NSNumber numberWithFloat:minimumOnY] forKey:@"minY"];
     [yLProperties setValue:[NSNumber numberWithFloat:_tileHeight] forKey:@"tileHeight"];
-    YAxisBand *_yBand=[[YAxisBand alloc]initWithFrame:CGRectMake(-80,0, 80, _gridHeight+10)];
+    
+
+    
+    YAxisBand *_yBand=[[YAxisBand alloc]initWithFrame:CGRectMake(0,0, leftMargin, _gridHeight+10)];
     _yBand.properties=yLProperties;
     [self addSubview:_yBand];
     
@@ -1274,10 +1147,10 @@
 #pragma mark - METER 
 -(void)createMeterline
 {
-    NSLog(@"_tileWidth=%f",_tileWidth);
-    meterLine=[[MIMMeter alloc]initWithFrame:CGRectMake(80, 0, 40, CGRectGetHeight(self.frame))];
-    meterLine.maxPointX=CGRectGetWidth(self.frame)-20;
-    meterLine.minPointX=0;
+
+    meterLine=[[MIMMeter alloc]initWithFrame:CGRectMake(leftMargin, 0, 40,_gridHeight+meterLineYOffset)];
+    meterLine.maxPointX=CGRectGetWidth(self.frame)-10;
+    meterLine.minPointX=leftMargin;
     meterLine.delegate=self;
     if(xIsString)meterLine.tileWidth=_scalingX;
     [self addSubview:meterLine];

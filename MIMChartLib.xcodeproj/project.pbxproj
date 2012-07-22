@@ -94,6 +94,7 @@
 		2384DAF01573EBA100F9F126 /* StackedBarTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAEE1573EBA100F9F126 /* StackedBarTestClass.m */; };
 		2384DAF11573EBA100F9F126 /* StackedBarTestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2384DAEF1573EBA100F9F126 /* StackedBarTestClass.xib */; };
 		2384DAFA1573F4AA00F9F126 /* MultiWallLongGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAF91573F4AA00F9F126 /* MultiWallLongGraph.m */; };
+		23A7485F15BB940100E35409 /* MIMProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A7485E15BB940000E35409 /* MIMProperties.m */; };
 		23BD8E40156EE1B90098E85D /* LineScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23BD8E3F156EE1B90098E85D /* LineScrollView.m */; };
 		23BD8E42156EE3AB0098E85D /* data3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 23BD8E41156EE3AB0098E85D /* data3.csv */; };
 		23BD8E4B156FE5810098E85D /* data4.csv in Resources */ = {isa = PBXBuildFile; fileRef = 23BD8E4A156FE5800098E85D /* data4.csv */; };
@@ -290,6 +291,8 @@
 		2384DAEF1573EBA100F9F126 /* StackedBarTestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StackedBarTestClass.xib; sourceTree = "<group>"; };
 		2384DAF81573F4AA00F9F126 /* MultiWallLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiWallLongGraph.h; sourceTree = "<group>"; };
 		2384DAF91573F4AA00F9F126 /* MultiWallLongGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiWallLongGraph.m; sourceTree = "<group>"; };
+		23A7485D15BB940000E35409 /* MIMProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMProperties.h; sourceTree = "<group>"; };
+		23A7485E15BB940000E35409 /* MIMProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMProperties.m; sourceTree = "<group>"; };
 		23BD8E3E156EE1B90098E85D /* LineScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineScrollView.h; path = "../Line Graph/LineScrollView.h"; sourceTree = "<group>"; };
 		23BD8E3F156EE1B90098E85D /* LineScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LineScrollView.m; path = "../Line Graph/LineScrollView.m"; sourceTree = "<group>"; };
 		23BD8E41156EE3AB0098E85D /* data3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data3.csv; sourceTree = "<group>"; };
@@ -401,6 +404,8 @@
 				23197E93154BA3830023521F /* YAxisBand.m */,
 				235C086D15A5F3C2006E9BED /* MIMMeter.h */,
 				235C086E15A5F3C2006E9BED /* MIMMeter.m */,
+				23A7485D15BB940000E35409 /* MIMProperties.h */,
+				23A7485E15BB940000E35409 /* MIMProperties.m */,
 			);
 			path = Accessories;
 			sourceTree = "<group>";
@@ -1010,6 +1015,7 @@
 				2308012115A3FBEF00544123 /* MIMWallGraph.m in Sources */,
 				235C086F15A5F3C2006E9BED /* MIMMeter.m in Sources */,
 				237CBBEE15AD05EC008C693A /* BarInfoBox.m in Sources */,
+				23A7485F15BB940100E35409 /* MIMProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1033,8 +1039,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reetu Bok (8XBRM2999A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1049,7 +1055,6 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "76CD7FF1-581F-4573-8442-FCFB1F9477CF";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1061,8 +1066,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Reetu Bok (8XBRM2999A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Bok";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Bok";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1071,7 +1076,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "76CD7FF1-581F-4573-8442-FCFB1F9477CF";
+				PROVISIONING_PROFILE = "3853D13B-6C67-44CD-AF92-6F0AEC432448";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3853D13B-6C67-44CD-AF92-6F0AEC432448";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1102,6 +1108,42 @@
 			};
 			name = Release;
 		};
+		23720C1015B8D13A00D7D180 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Bok";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Bok";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "3853D13B-6C67-44CD-AF92-6F0AEC432448";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3853D13B-6C67-44CD-AF92-6F0AEC432448";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc";
+		};
+		23720C1115B8D13A00D7D180 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MIMChartLib/MIMChartLib-Prefix.pch";
+				INFOPLIST_FILE = "MIMChartLib/MIMChartLib-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Ad Hoc";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1110,6 +1152,7 @@
 			buildConfigurations = (
 				235C240A1548BBAD00919081 /* Debug */,
 				235C240B1548BBAD00919081 /* Release */,
+				23720C1015B8D13A00D7D180 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -1119,6 +1162,7 @@
 			buildConfigurations = (
 				235C240D1548BBAD00919081 /* Debug */,
 				235C240E1548BBAD00919081 /* Release */,
+				23720C1115B8D13A00D7D180 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

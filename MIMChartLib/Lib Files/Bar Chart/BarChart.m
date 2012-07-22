@@ -31,7 +31,7 @@
 {
     NSMutableArray *_yValElements;
     NSMutableArray *_xValElements;
-    
+
     
     NSMutableDictionary *barProperties;
     NSMutableDictionary *hlProperties;
@@ -64,19 +64,22 @@
     int barsPerDivision;
     int spaceBetweenSameGroupBar;
     
-    int style;
+
     float gapBetweenBars; // for now it is 10 fixed.needs to be variable
     float gapBetweenBarsDifferentGroup;
     BOOL isLongGraph_;
     float contentSizeX;
     float barYOffsetForNegativeGraphs;
     
+    BOOL pickLibColors;
+    float leftMargin;
+    float bottomMargin;
 }
 @end
 @implementation BarChart
-@synthesize isGradient,gradientStyle,minimumLabelOnYIsZero;
-@synthesize delegate,xTitleStyle,backgroundcolor,barcolorArray;
-@synthesize groupedBars,stackedBars,barLabelStyle;
+@synthesize isGradient,groupTitlesOffset,gradientStyle,glossStyle,minimumLabelOnYIsZero;
+@synthesize delegate,xTitleStyle,mbackgroundcolor,barcolorArray;
+@synthesize style, groupedBars,stackedBars,barLabelStyle;
 
 
 static NSInteger firstNumSort(id str1, id str2, void *context) {
@@ -92,22 +95,32 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     return NSOrderedSame;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) [self doInit];
+    return self;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-        
-        groupedBars=NO;
-        stackedBars=NO;
-        gradientStyle=VERTICAL_GRADIENT_STYLE;
-        xTitleStyle=X_TITLES_STYLE1;
-        barYOffsetForNegativeGraphs=0;
-        animationType=0;
-        [self setBackgroundColor:[UIColor clearColor]];
-        
-    }
+    if (self) [self doInit];
     return self;
+}
+
+- (void)doInit
+{
+    // Initialization code
+    
+    groupedBars=NO;
+    stackedBars=NO;
+    gradientStyle=HORIZONTAL_GRADIENT_STYLE;
+    glossStyle=GLOSS_NONE;//Default there is no gloss
+    xTitleStyle=X_TITLES_STYLE1;
+    barYOffsetForNegativeGraphs=0;
+    animationType=0;
+    [self setBackgroundColor:[UIColor clearColor]];
 }
 
 
@@ -180,7 +193,6 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     if([delegate respondsToSelector:@selector(titlesForXAxis:)])
     {
         _xTitles=[delegate titlesForXAxis:self];
-        NSLog(@"_xTitles at p,%@",[_xTitles objectAtIndex:0]);
         NSAssert(([_xTitles count] !=0),@"WARNING::No values available for x-Axis Labels.");
     }
     else
@@ -201,14 +213,52 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     }
     
     
+    //Horizontal Seperator Line
+    if([delegate respondsToSelector:@selector(horizontalLinesProperties:)])
+        hlProperties=[[NSMutableDictionary alloc]initWithDictionary:[delegate horizontalLinesProperties:self]];
+    else
+        hlProperties=[[NSMutableDictionary alloc]init];
     
+    //Vertical Seperator Line
+    if([delegate respondsToSelector:@selector(verticalLinesProperties:)])
+        vlProperties=[[NSMutableDictionary alloc]initWithDictionary:[delegate verticalLinesProperties:self]];
+    else
+        vlProperties=[[NSMutableDictionary alloc]init];
+    
+    
+    
+    if([delegate respondsToSelector:@selector(xAxisProperties:)])
+        xLProperties=[[NSMutableDictionary alloc]initWithDictionary:[delegate xAxisProperties:self]];
+    else
+        xLProperties=[[NSMutableDictionary alloc]init];
+    
+    //Y-Axis
+    if([delegate respondsToSelector:@selector(yAxisProperties:)])
+        yLProperties=[[NSMutableDictionary alloc]initWithDictionary:[delegate yAxisProperties:self]];
+    else
+        yLProperties=[[NSMutableDictionary alloc]init];
 
-    if(stackedBars)[MIMColor InitFragmentedBarColors];
+
+    leftMargin=50;
+    if([yLProperties  valueForKey:@"margin"])
+        leftMargin=[[yLProperties  valueForKey:@"margin"]floatValue];
+    
+    
+    bottomMargin=100;
+    if([xLProperties  valueForKey:@"margin"])
+        bottomMargin=[[xLProperties  valueForKey:@"margin"]floatValue];
+    
+    
+    
+    if(stackedBars && rand()%2==1)[MIMColor InitFragmentedBarColors];
     else [MIMColor nonAdjacentGradient];
     
     [self CalculateGridDimensions];
     [self FindTileWidthAndHeight];
     [self ScalingFactor]; 
+    
+    
+  
     
 
 }
@@ -399,8 +449,19 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     {
         
         barsPerDivision=[[_yValElements objectAtIndex:0] count];
-        spaceBetweenSameGroupBar=barWidth/10;
-        gapBetweenBarsDifferentGroup=barWidth;
+
+        
+        if([barProperties valueForKey:@"gapBetweenBars"]) 
+            spaceBetweenSameGroupBar=[[barProperties valueForKey:@"gapBetweenBars"] floatValue];
+        else 
+            spaceBetweenSameGroupBar=barWidth/10;
+        
+        
+        if([barProperties valueForKey:@"gapBetweenGroup"]) 
+            gapBetweenBarsDifferentGroup=[[barProperties valueForKey:@"gapBetweenGroup"] floatValue];
+        else 
+            gapBetweenBarsDifferentGroup=barWidth;
+        
         contentSizeX=(barsPerDivision * barWidth * yCount) + (barsPerDivision-1 * spaceBetweenSameGroupBar * yCount) + (barWidth * yCount +1) ;
         if(contentSizeX>_gridWidth)
         {
@@ -421,7 +482,10 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     }
     else
     {
-        spaceBetweenSameGroupBar=10;
+        if([barProperties valueForKey:@"gapBetweenBars"]) spaceBetweenSameGroupBar=[[barProperties valueForKey:@"gapBetweenBars"] floatValue];
+        else spaceBetweenSameGroupBar=10;
+        
+
         contentSizeX=(yCount* barWidth) + 10*(yCount+1);
         if(contentSizeX>_gridWidth)
         {
@@ -434,8 +498,10 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     
     if(isLongGraph_)
     {
-        lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(0, 0, _gridWidth, _gridHeight)];
+        lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(leftMargin, 0, CGRectGetWidth(self.frame)-leftMargin-10, self.frame.size.height)];
         [lineGScrollView setBackgroundColor:[UIColor clearColor]];
+
+
         lineGScrollView.tag=LINESCROLLVIEWTAG;
         [self addSubview:lineGScrollView];        
     }
@@ -447,6 +513,11 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 {
     int totalColors=[MIMColor sizeOfColorArray];
     
+    if([barcolorArray count]>0)
+    {
+        pickLibColors=FALSE;
+        return;
+    }
     
     BOOL pickDefaultColor=TRUE;
     if([delegate respondsToSelector:@selector(colorsForBarChart:)])
@@ -459,7 +530,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     if(pickDefaultColor)
     {
         barcolorArray=[[NSMutableArray alloc]init];
-        if(DEBUG_MODE) NSLog(@"WARNING:Color of Bar Chart not defined,hence picking up random color.");
+        //if(DEBUG_MODE) NSLog(@"WARNING:Color of Bar Chart not defined,hence picking up random color.");
         
         int totalBarColors =1;
         
@@ -469,6 +540,9 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
             [barcolorArray addObject:[MIMColor GetMIMColorAtIndex:style%totalColors]];
 
     }
+    
+    
+    pickLibColors=pickDefaultColor;
 }
 
 
@@ -589,23 +663,45 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 
     CGContextRef context = UIGraphicsGetCurrentContext();
 
+    CGRect r=CGRectMake(0, 0, CGRectGetWidth(rect), CGRectGetHeight(rect));
+    CGContextSetBlendMode(context,kCGBlendModeClear);
+    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+    CGContextAddRect(context, r);      
+    CGContextFillPath(context);
+    CGContextSetBlendMode(context,kCGBlendModeNormal);
+    
+    
+    
     CGContextSetAllowsAntialiasing(context, NO);
     CGContextSetShouldAntialias(context, NO);
     
     
+
+    //Draw the bg gradient
+
+    [MIMProperties drawBgPattern:context color:mbackgroundcolor gridWidth:_gridWidth gridHeight:_gridHeight leftMargin:leftMargin];
+    [MIMProperties drawHorizontalBgLines:context withProperties:hlProperties gridHeight:_gridHeight tileHeight:_tileHeight gridWidth:_gridWidth bottomMargin:bottomMargin leftMargin:leftMargin];
+
+   
     CGAffineTransform flipTransform = CGAffineTransformMake( 1, 0, 0, -1, 0, self.frame.size.height);
     CGContextConcatCTM(context, flipTransform);
     
-    //Draw the bg gradient
-    [self drawBg:context];
-    [self drawHorizontalBgLines:context];
     
-
-   
     CGContextSetAllowsAntialiasing(context, YES);
     CGContextSetShouldAntialias(context, YES);
     
    
+    float _leftMargin=leftMargin;
+    float _bottomMargin=bottomMargin;
+    
+    if(isLongGraph_)
+    {
+        _leftMargin=0;
+        _bottomMargin=0;
+        
+    }
+    
+    
     
     if(isGradient) style=2*style;
     
@@ -634,10 +730,11 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 
 
                     
-                BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin, originY, barWidth, _height)];
+                BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin, originY, barWidth, _height)];
 
                 view.isGradient=isGradient;
                 view.gradientStyle=gradientStyle;
+                view.glossStyle=glossStyle;
                 
                 if(isNegativeBar) view.negativeBar=TRUE;
                 else view.negativeBar=FALSE;
@@ -652,12 +749,8 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 view.borderColor=[UIColor blackColor];
                     
                 //Draw the shadow
-                [view.layer setShadowRadius:1.0];
-                [view.layer setShadowColor:[UIColor grayColor].CGColor];
-                if(isNegativeBar)[view.layer setShadowOffset:CGSizeMake(2.0, 1.0)];
-                else [view.layer setShadowOffset:CGSizeMake(2.0, -1.0)];
-                [view.layer setShadowOpacity:0.8];
-                
+                [self drawShadowOnView:view negativeBars:isNegativeBar];
+
                 
                 [self createAnimationOn:view withBarHeight:_height negativeBars:isNegativeBar];
                 
@@ -673,11 +766,11 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 xOrigin+=barWidth;
             }
             
-            xOrigin+=barWidth;
+            xOrigin+=gapBetweenBarsDifferentGroup;
         }
 
         xOrigin+=barWidth;
-        lineGScrollView.contentSize=CGSizeMake(xOrigin, _gridHeight);
+        lineGScrollView.contentSize=CGSizeMake(xOrigin, self.frame.size.height);
         
     }
     else if(stackedBars)
@@ -710,10 +803,12 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 if(_height<0)_height=-_height;
                 
                 
-                BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin,originY, barWidth, _height)];
+                BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin,originY, barWidth, _height)];
                 
                 view.isGradient=isGradient;
                 view.gradientStyle=gradientStyle;
+                view.glossStyle=glossStyle;
+                
                 if(isNegativeBar) view.negativeBar=TRUE;
                 else view.negativeBar=FALSE;
                 
@@ -743,13 +838,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 
                 view.borderColor=[UIColor blackColor];
                 
-                //Draw the shadow
-                [view.layer setShadowRadius:1.0];
-                [view.layer setShadowColor:[UIColor grayColor].CGColor];
-                if(isNegativeBar)[view.layer setShadowOffset:CGSizeMake(2.0, 1.0)];
-                else [view.layer setShadowOffset:CGSizeMake(2.0, -1.0)];
-                [view.layer setShadowOpacity:0.8];
-                
+                [self drawShadowOnView:view negativeBars:isNegativeBar];
                 [self createAnimationOn:view withBarHeight:_height negativeBars:isNegativeBar];
                 
                 
@@ -765,14 +854,14 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         }
         
         xOrigin+=barWidth;
-        lineGScrollView.contentSize=CGSizeMake(xOrigin, _gridHeight);
+        lineGScrollView.contentSize=CGSizeMake(xOrigin, self.frame.size.height);
 
     }
     else
     {
        
-       
-        
+        if (pickLibColors) NSLog(@"Style of view with tag %i is %i",self.tag,style);
+
         for (int i=0; i<[_yValElements count]; i++) 
         { 
             BOOL isNegativeBar=FALSE;
@@ -785,28 +874,49 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
             if(_height<0)_height=-_height;
             
             
-            BarView *view=[[BarView alloc]initWithFrame:CGRectMake((i* barWidth) + spaceBetweenSameGroupBar*(i+1),originY,barWidth,_height)];
+            BarView *view=[[BarView alloc]initWithFrame:CGRectMake((i* barWidth) + spaceBetweenSameGroupBar*(i+1) +_leftMargin,originY,barWidth,_height)];
             view.isGradient=isGradient;
             view.gradientStyle=gradientStyle;
+            view.glossStyle=glossStyle;
             if(isNegativeBar) view.negativeBar=TRUE;
             else view.negativeBar=FALSE;
             
             if(isGradient)
             {
-                view.dColor=[MIMColor GetColorAtIndex:(style+1)%totalColors];
-                view.lColor=[MIMColor GetColorAtIndex:(style)%totalColors];
-            }
-            else 
-                view.color=[barcolorArray objectAtIndex:0];
-        
-            //Draw the shadow
-            [view.layer setShadowRadius:1.0];
-            [view.layer setShadowColor:[UIColor grayColor].CGColor];
-            if(isNegativeBar)[view.layer setShadowOffset:CGSizeMake(2.0, 1.0)];
-            else [view.layer setShadowOffset:CGSizeMake(2.0, -1.0)];
-            [view.layer setShadowOpacity:0.8];
-            
+                
+                if(pickLibColors)
+                {
+                    //Colors of gradients NOT provided by user.
+                    view.dColor=[MIMColor GetColorAtIndex:(style+1)%totalColors];
+                    view.lColor=[MIMColor GetColorAtIndex:(style)%totalColors];
+                }
+                else
+                {
+                    if([barcolorArray count]==1)
+                    {
+                        //Only 1 Color of gradients IS provided by user.
+                        MIMColorClass *l=[barcolorArray objectAtIndex:0];
+                        view.dColor=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:l.red],@"red",[NSNumber numberWithFloat:l.green],@"green",[NSNumber numberWithFloat:l.blue],@"blue",[NSNumber numberWithFloat:l.alpha],@"alpha", nil];
+                        
+                        view.lColor=nil;
+                    }
+                    else if([barcolorArray count]==2)
+                    {
+                        //Colors of gradients ARE provided by user.
+                        MIMColorClass *l=[barcolorArray objectAtIndex:0];
+                        MIMColorClass *d=[barcolorArray objectAtIndex:1];
 
+                        
+                        view.dColor=view.dColor=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:d.red],@"red",[NSNumber numberWithFloat:d.green],@"green",[NSNumber numberWithFloat:d.blue],@"blue",[NSNumber numberWithFloat:d.alpha],@"alpha", nil];
+                        view.lColor=view.dColor=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:l.red],@"red",[NSNumber numberWithFloat:l.green],@"green",[NSNumber numberWithFloat:l.blue],@"blue",[NSNumber numberWithFloat:l.alpha],@"alpha", nil];
+                    }
+                }
+                
+                
+            }
+            else    view.color=[barcolorArray objectAtIndex:0];
+        
+            [self drawShadowOnView:view negativeBars:isNegativeBar];
             [self createAnimationOn:view withBarHeight:_height negativeBars:isNegativeBar];
              
             
@@ -825,116 +935,79 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     [self drawBarInfoBoxForGraph];
 
     if(isLongGraph_ && !groupedBars) 
-        lineGScrollView.contentSize=CGSizeMake(contentSizeX, _gridHeight);
+        lineGScrollView.contentSize=CGSizeMake(contentSizeX, self.frame.size.height);
 
     if(isLongGraph_) 
     {  
         CGRect a=lineGScrollView.frame;
-        a.size.height+=50;
+        a.size.height+=X_AXIS_HEIGHT;
         lineGScrollView.frame=a;
         [self addSubview:lineGScrollView];  
     } 
 
     
 }
-
--(void)drawBg:(CGContextRef)ctx
+-(void)drawShadowOnView:(BarView *)view  negativeBars:(BOOL)isNegativeBar
 {
-    
- 
-    //Check if User has given any color for Background
-    if(self.backgroundcolor)
+    //Draw the shadow
+    BOOL drawShadow=FALSE;
+    if(![barProperties valueForKey:@"shadow"])
     {
-        
-        CGContextSaveGState(ctx);
-        CGContextSetFillColorWithColor(ctx, [UIColor colorWithRed:backgroundcolor.red green:backgroundcolor.green blue:backgroundcolor.blue alpha:backgroundcolor.alpha].CGColor);
-        CGContextFillRect(ctx, CGRectMake(0, 0, _gridWidth, _gridHeight));
-        CGContextRestoreGState(ctx);
-        return;
-        
+        drawShadow=TRUE;
+    }
+    else
+    {
+        if([[barProperties valueForKey:@"shadow"] boolValue]==YES) 
+            drawShadow=TRUE;
         
     }
     
-    if([delegate respondsToSelector:@selector(backgroundViewForLineChart:)])
+    if(drawShadow)
     {
+        float shadowRadius=1.0;
+        if([barProperties valueForKey:@"shadowRadius"])
+            shadowRadius=[[barProperties valueForKey:@"shadowRadius"] floatValue];
         
+        UIColor *shadowColor=[UIColor grayColor];
+        if([barProperties valueForKey:@"shadowColor"])
+        {
+            MIMColorClass *sC=[barProperties valueForKey:@"shadowColor"];
+            shadowColor=[UIColor colorWithRed:sC.red green:sC.green blue:sC.blue alpha:sC.alpha];
+        }
         
-        return;
+        float xShadowOffset=2.0;
+        float yShadowOffset=1.0;
+        if([barProperties valueForKey:@"shadowOffset"])
+        {
+            CGSize shadowSize=[[barProperties valueForKey:@"shadowOffset"] CGSizeValue];
+            xShadowOffset=shadowSize.width;
+            yShadowOffset=shadowSize.height;
+        }
+        
+        float shadowOpacity=0.8;
+        if([barProperties valueForKey:@"shadowOpacity"])
+        {
+            shadowOpacity=[[barProperties valueForKey:@"shadowOpacity"] floatValue];
+        }
+
+        
+        [view.layer setShadowRadius:shadowRadius];
+        [view.layer setShadowColor:shadowColor.CGColor];
+        [view.layer setShadowOpacity:shadowOpacity];
+        
+        if(isNegativeBar)[view.layer setShadowOffset:CGSizeMake(xShadowOffset, yShadowOffset)];
+        else [view.layer setShadowOffset:CGSizeMake(xShadowOffset, -yShadowOffset)];
+        
     }
     
-    
-    
-    //Else Draw the background with the gray Gradient
-    CGContextSaveGState(ctx);
-    CGFloat BGLocations[3] = { 0.0,0.5 ,1.0 };
-    CGFloat BgComponents[12] = { 0.96, 0.96, 0.96 , 1.0,  // Start color
-        0.99, 0.99, 0.99 , 1.0,  // Start color
-        1.0, 1.0, 1.0 , 1.0 }; // Mid color and End color
-    
-    CGColorSpaceRef BgRGBColorspace = CGColorSpaceCreateDeviceRGB();
-    CGGradientRef bgRadialGradient = CGGradientCreateWithColorComponents(BgRGBColorspace, BgComponents, BGLocations, 3);
-    
-    CGContextDrawLinearGradient(ctx, bgRadialGradient, CGPointMake(0, 0), CGPointMake(0, _gridHeight), 1);
-    if(!CGContextIsPathEmpty(ctx))     CGContextClip(ctx);
-    CGColorSpaceRelease(BgRGBColorspace);
-    CGGradientRelease(bgRadialGradient);
-    CGContextRestoreGState(ctx);
-    
-    
+
 }
 
--(void)drawHorizontalBgLines:(CGContextRef)ctx
-{
-    BOOL horizontalLinesVisible=TRUE;
-    if([hlProperties valueForKey:@"hide"]) 
-        horizontalLinesVisible=[[hlProperties valueForKey:@"hide"] boolValue];
-    
-    if(!horizontalLinesVisible)
-    {
-        NSLog(@"Caution:Horizontal Lines wont be visible on Line Graph. If you want them to be visible use  delegate method drawHorizontalLines:");
-        return;
-    }
-    
-    
-    
-    //Width
-    float widthOfLine=0.1;
-    if([hlProperties valueForKey:@"width"]) 
-        widthOfLine=[[hlProperties valueForKey:@"width"] floatValue];
-    
-    if(widthOfLine==0) NSLog(@"WARNING: Line width of horizontal line is 0.");
-    
-    
-    
-    //Color
-    MIMColorClass *c=[MIMColorClass colorWithRed:0.8 Green:0.8 Blue:0.8 Alpha:1.0];
-    if([hlProperties valueForKey:@"color"]) 
-        c=[MIMColorClass colorWithComponent:[hlProperties valueForKey:@"color"]];
-    
-    
-    
-    
-    
-    //Draw Gray Lines as the markers
-    CGContextBeginPath(ctx);
-    CGContextSetBlendMode(ctx, kCGBlendModeNormal);
-    CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithRed:c.red green:c.green blue:c.blue alpha:c.alpha].CGColor);
-    CGContextSetLineWidth(ctx, widthOfLine);
-    int numHorzLines=_gridHeight/_tileHeight;
-    for (int i=0; i<=numHorzLines; i++) 
-    {    
-        CGContextMoveToPoint(ctx, 0,i*_tileHeight);
-        CGContextAddLineToPoint(ctx,_gridWidth , i*_tileHeight);
-    }
-    CGContextDrawPath(ctx, kCGPathStroke);
-    
-    
-    
-    
-    
-    
-    
-}
+
+
+
+
+
 #pragma mark - draw Bar Info Box
 
 -(void)drawBarInfoBoxForGraph
@@ -959,6 +1032,17 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 {
     if(!barLabelStyle)return;
     
+    
+    float _leftMargin=leftMargin;
+    float _bottomMargin=bottomMargin;
+    
+    if(isLongGraph_)
+    {
+        _leftMargin=0;
+        _bottomMargin=0;
+        
+    }
+
     
     if(groupedBars)
     {
@@ -987,7 +1071,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 
 
                 
-                BarInfoBox *view=[[BarInfoBox alloc]initWithFrame:CGRectMake(xOrigin,originY+yOffset,barWidth,25)];
+                BarInfoBox *view=[[BarInfoBox alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin,originY+yOffset,barWidth,25)];
                 [view setText:[[_xTitles objectAtIndex:j] objectAtIndex:i]];
                 
                 if(isLongGraph_) 
@@ -1027,7 +1111,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
             float yOffset=-20;
             if(isNegativeBar)yOffset=20;
             
-            BarInfoBox *view=[[BarInfoBox alloc]initWithFrame:CGRectMake((i* barWidth) + spaceBetweenSameGroupBar*(i+1),originY+yOffset,barWidth,25)];
+            BarInfoBox *view=[[BarInfoBox alloc]initWithFrame:CGRectMake((i* barWidth) + spaceBetweenSameGroupBar*(i+1)+_leftMargin,originY+yOffset,barWidth,25)];
             [view setText:[_xTitles objectAtIndex:i]];
             
             if(isLongGraph_)[lineGScrollView addSubview:view];
@@ -1046,12 +1130,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 -(void)_displayXAxisLabels
 {
     
-    BOOL xLabelsVisible=TRUE;
-    if([xLProperties valueForKey:@"hide"]) 
-        xLabelsVisible=[[xLProperties valueForKey:@"hide"] boolValue];
-    
-    if(!xLabelsVisible)
-        return;
+ 
     
     if([[xLProperties allKeys] count]==0)
         xLProperties=[[NSMutableDictionary alloc] init];
@@ -1079,13 +1158,21 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     //contentSizeX=1810;
     
     XAxisBand *_xBand;
+      
+    
     
     if(isLongGraph_)
-        _xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,CGRectGetHeight(self.frame), contentSizeX, 100)];
+    _xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,_gridHeight, contentSizeX, bottomMargin)];
     else 
-        _xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,CGRectGetHeight(self.frame), CGRectGetWidth(self.frame), 100)];
+    _xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(leftMargin,_gridHeight, CGRectGetWidth(self.frame)-leftMargin, bottomMargin)];
         
+    
     _xBand.properties=xLProperties;
+    if([delegate respondsToSelector:@selector(grouptitlesForXAxis:)])
+    {
+        _xBand.groupTitles=[delegate grouptitlesForXAxis:self];            
+    }
+    
     _xBand.tag=XBANDTAG;
     _xBand.xElements=[[NSArray alloc]initWithArray:_xTitles];
 
@@ -1113,7 +1200,9 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     [yLProperties setValue:[NSNumber numberWithInt:numOfHLines] forKey:@"num"];
     [yLProperties setValue:[NSNumber numberWithFloat:minimumOnY] forKey:@"minY"];
     [yLProperties setValue:[NSNumber numberWithFloat:_tileHeight] forKey:@"tileHeight"];
-    YAxisBand *_yBand=[[YAxisBand alloc]initWithFrame:CGRectMake(-80,0, 80, CGRectGetHeight(self.frame)+10)];
+    
+    YAxisBand *_yBand=[[YAxisBand alloc]initWithFrame:CGRectMake(0,0, leftMargin, _gridHeight+10)];
+
     _yBand.tag=YBANDTAG;
     _yBand.properties=yLProperties;
     [self addSubview:_yBand];

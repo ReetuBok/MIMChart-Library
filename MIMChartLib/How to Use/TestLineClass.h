@@ -37,8 +37,8 @@
     NSMutableArray *dataArrayFromCSV;
     NSMutableArray *xDataArrayFromCSV;
     NSArray *anchorPropertiesArray;
-    NSDictionary *horizontalLinesPropertiesArray;
-
+    NSDictionary *horizontalLinesProperties;
+    NSDictionary *verticalLinesProperties;
     
     NSArray *yValuesArray;
     NSArray *xValuesArray;

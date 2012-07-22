@@ -21,8 +21,8 @@
 
 -(NSDictionary *)horizontalLinesProperties:(id)graph; //hide,color,gap,width
 -(NSDictionary *)verticalLinesProperties:(id)graph;
--(NSDictionary *)xAxisProperties:(id)graph;//hide,color,width,style
--(NSDictionary *)yAxisProperties:(id)graph;//hide,color,width,style
+-(NSDictionary *)xAxisProperties:(id)graph;//hide,color,width,style,margin(bottom)
+-(NSDictionary *)yAxisProperties:(id)graph;//hide,color,width,style,margin(left)
 
 
 -(UIView *)backgroundViewForWallChart:(id)graph;

@@ -24,6 +24,8 @@
     
     NSMutableArray *xValElements;
     NSMutableArray *yValElements;
+    float leftMargin;
+    float bottomMargin;
 
 }
 
@@ -39,5 +41,6 @@
 
 @property(nonatomic,retain)NSMutableArray *xValElements;
 @property(nonatomic,retain)NSMutableArray *yValElements;
-
+@property(nonatomic,assign)float leftMargin;
+@property(nonatomic,assign)float bottomMargin;
 @end

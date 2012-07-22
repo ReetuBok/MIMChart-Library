@@ -24,7 +24,7 @@
 @synthesize aPropertiesArray;
 @synthesize xValElements;
 @synthesize yValElements;
-
+@synthesize bottomMargin,leftMargin;
 
 - (id)initWithFrame:(CGRect)frame
 {

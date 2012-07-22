@@ -45,6 +45,8 @@
     NSArray *maxValuesArray;
     float METERLINEHEIGHT;
 
+    float leftMargin;
+    float bottomMargin;
 }
 
 
@@ -68,4 +70,7 @@
 @property(nonatomic,retain)NSArray *orderArray;//Needed for Anchors
 @property(nonatomic,retain)NSArray *maxValuesArray;
 @property(nonatomic,assign)float METERLINEHEIGHT;
+
+@property(nonatomic,assign)float leftMargin;
+@property(nonatomic,assign)float bottomMargin;
 @end

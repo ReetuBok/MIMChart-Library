@@ -30,7 +30,7 @@
 @synthesize wallGradientArray;
 @synthesize maxValuesArray;
 @synthesize METERLINEHEIGHT;
-
+@synthesize leftMargin,bottomMargin;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -109,7 +109,7 @@
             [myP closePath];
             [myP addClip];
             CGGradientRef g=(__bridge CGGradientRef )[wallGradientArray objectAtIndex:i];
-            CGContextDrawLinearGradient (context, g, CGPointMake(0, METERLINEHEIGHT), CGPointMake(0, maxOfY * scalingY + METERLINEHEIGHT), 0);
+            CGContextDrawLinearGradient (context, g, CGPointMake(0, maxOfY * scalingY), CGPointMake(0, 0), 1);
             CGContextRestoreGState(context);
         }
         else

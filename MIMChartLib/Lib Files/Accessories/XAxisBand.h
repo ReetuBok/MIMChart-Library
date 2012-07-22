@@ -45,19 +45,23 @@
     float lineWidth;
     UIColor *lineColor;
     NSDictionary *properties;
-
+    NSArray *groupTitles;
+    float groupTitleOffset;
+    UIColor *groupTitleColor;
+    UIColor *groupTitleBgColor;
 }
-@property(nonatomic,retain) NSArray *xElements;
-@property(nonatomic,assign) float scalingFactor;
-@property(nonatomic,assign) int style;
-@property(nonatomic,assign)   BOOL lineChart;
-@property(nonatomic,assign)   BOOL barChart;
-@property(nonatomic,assign)    BOOL xIsString;
-@property(nonatomic,assign)     float gapDistance;//Gap between two labels;
+@property(nonatomic,retain)NSArray *xElements;
+@property(nonatomic,assign)float scalingFactor;
+@property(nonatomic,assign)int style;
+@property(nonatomic,assign)BOOL lineChart;
+@property(nonatomic,assign)BOOL barChart;
+@property(nonatomic,assign)BOOL xIsString;
+@property(nonatomic,assign)float gapDistance;//Gap between two labels;
 @property(nonatomic,assign)float lineWidth;
 @property(nonatomic,retain)UIColor *lineColor;
 @property(nonatomic,retain)NSDictionary *properties;
-
+@property(nonatomic,retain)NSArray *groupTitles;
+@property(nonatomic,assign)float groupTitleOffset;
 -(void)drawXAxis:(CGContextRef)ctx;
 
 
