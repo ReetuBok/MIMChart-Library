@@ -78,11 +78,20 @@
     {
         case 0:
         {
+            yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10",@"21",@"49",@"20",@"24000", nil],[NSArray arrayWithObjects:@"15",@"20",@"9",@"56",@"9000", nil],[NSArray arrayWithObjects:@"10",@"17",@"43",@"30",@"17000", nil],nil];
             
+            xValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr",@"Quarter 1", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug",@"Quarter 2",  nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", @"Quarter 3", nil], nil];
+            
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Q1",@"Q2" , @"Q3" , nil];
+
+            
+            barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"shadow" ,nil];
+
             myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.stackedBars=YES;
             myBarChart.tag=10+indexPath.row;
+            myBarChart.glossStyle=GLOSS_STYLE_1;
             
             myBarChart.rightMargin=50;
             myBarChart.topMargin=50;
@@ -97,7 +106,14 @@
             
         case 1:
         {
-            barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:@"50",@"barwidth",[NSNumber numberWithBool:NO],@"shadow" ,nil];
+            yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10",@"21",@"49",@"20",@"24000", nil],[NSArray arrayWithObjects:@"15",@"20",@"9",@"56",@"9000", nil],[NSArray arrayWithObjects:@"10",@"17",@"43",@"30",@"17000", nil],[NSArray arrayWithObjects:@"10",@"21",@"49",@"20",@"24000", nil],[NSArray arrayWithObjects:@"15",@"20",@"9",@"56",@"9000", nil],[NSArray arrayWithObjects:@"10",@"17",@"43",@"30",@"17000", nil],nil];
+            
+            xValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr",@"Quarter 1", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug",@"Quarter 2",  nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", @"Quarter 3", nil],[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr",@"Quarter 1", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug",@"Quarter 2",  nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", @"Quarter 3", nil], nil];
+            
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Day 1",@"Day 2" , @"Day 3",@"Day 4",@"Day 5" , @"Day 6",nil];
+
+            
+            barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:@"50",@"barwidth",nil];
             
             myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
@@ -106,6 +122,10 @@
             myBarChart.isGradient=YES;
             myBarChart.gradientStyle=HORIZONTAL_GRADIENT_STYLE;
             myBarChart.xTitleStyle=X_TITLES_STYLE2;
+            myBarChart.glossStyle=GLOSS_NONE;
+            
+            myBarChart.rightMargin=30;
+            
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
             
@@ -113,6 +133,15 @@
             break;
         case 2:
         {
+             yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10",@"21",@"49",@"20",@"24000", nil],[NSArray arrayWithObjects:@"15",@"20",@"9",@"56",@"9000", nil],[NSArray arrayWithObjects:@"10",@"17",@"43",@"30",@"17000", nil],[NSArray arrayWithObjects:@"20",@"11",@"39",@"30",@"24000", nil],[NSArray arrayWithObjects:@"15",@"20",@"29",@"36",@"9000", nil],[NSArray arrayWithObjects:@"40",@"17",@"23",@"20",@"17000", nil],[NSArray arrayWithObjects:@"20",@"21",@"39",@"20",@"30000", nil],[NSArray arrayWithObjects:@"50",@"17",@"23",@"10",@"27000", nil],[NSArray arrayWithObjects:@"10",@"37",@"23",@"30",@"37000", nil],nil];
+            
+            
+            
+            xValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil],[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil],[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil], nil];
+            
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Q1 2009",@"Q2 2009",@"Q3 2009",@"Q1 2010",@"Q2 2010",@"Q3 2010",@"Q1 2011",@"Q2 2011",@"Q3 2011", nil];
+            
+            
             barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:@"40",@"barwidth", nil];
             
             myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
@@ -121,7 +150,8 @@
             myBarChart.stackedBars=YES;
             myBarChart.isGradient=YES;
             myBarChart.gradientStyle=HORIZONTAL_GRADIENT_STYLE;
-            myBarChart.xTitleStyle=X_TITLES_STYLE1;
+            myBarChart.xTitleStyle=X_TITLES_STYLE2;
+
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
             
@@ -146,20 +176,6 @@
 
 -(NSArray *)valuesForGraph:(id)graph
 {
-    NSArray *yValuesArray;
-    
-    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=11)
-    {
-        yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],nil];
-    }
-    
-    if([(BarChart *)graph tag]>=12)
-    {
-        yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],nil];
-    }
-    
-    
-    
     
     
     return yValuesArray;
@@ -170,16 +186,6 @@
 
 -(NSArray *)valuesForXAxis:(id)graph
 {
-    NSArray *xValuesArray=nil;
-    
-    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=11)
-        xValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil], nil];
-    
-    
-    if([(BarChart *)graph tag]>=12)
-        xValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil],[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil],[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil], nil];
-    
-    
     
     
     return xValuesArray;
@@ -187,17 +193,11 @@
 
 -(NSArray *)titlesForXAxis:(id)graph
 {
-    NSArray *xValuesArray;
-    
-    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=11)
-        xValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil], nil];
+   
     
     
-    if([(BarChart *)graph tag]>=12)
-        xValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil],[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil],[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil], nil];
     
-    
-    return xValuesArray;
+    return xTitlesArray;
     
 }
 -(NSDictionary *)barProperties:(id)graph; //barwidth,shadow,horGradient,verticalGradient
@@ -232,6 +232,14 @@
     
 }
 
+-(NSDictionary *)animationOnBars:(id)graph
+{
+    if([(BarChart *)graph tag]==11)
+        return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:BAR_ANIMATION_VGROW_STYLE],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.5],[NSNumber numberWithBool:YES], nil] forKeys:[NSArray arrayWithObjects:@"type",@"animationDelay",@"animationDuration",@"transparentBg" ,nil] ];
+   
+    
+    return nil;
+}
 
 
 #pragma mark - View lifecycle

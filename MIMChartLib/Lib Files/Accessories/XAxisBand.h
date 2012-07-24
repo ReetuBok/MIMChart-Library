@@ -41,6 +41,8 @@
     BOOL lineChart;
     BOOL barChart;
     BOOL groupBarChart;
+    BOOL stackedBarChart;
+    
     BOOL xIsString;
     float lineWidth;
     UIColor *lineColor;

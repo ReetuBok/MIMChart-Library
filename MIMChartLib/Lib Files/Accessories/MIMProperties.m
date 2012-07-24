@@ -259,7 +259,86 @@
     
 }
 
++(void)createGloss:(CGContextRef)context  OnRect:(CGRect)rect withStyle:(int)glossStyle
+{
+    float red,green,blue,alpha,Dred,Dgreen,Dblue,DAlpha;
 
+    
+    if(glossStyle!=6)
+    {
+        Dred=1.0;
+        Dgreen=1.0;
+        Dblue=1.0;
+        DAlpha=0.5;
+        
+        
+        red=1.0;
+        green=1.0;
+        blue=1.0;
+        alpha=0.05;
+        
+        switch (glossStyle) 
+        {
+            case 1:
+            default:
+            {
+                CGContextSaveGState(context);
+                
+                
+                CGMutablePathRef path= CGPathCreateMutable();
+                CGPathMoveToPoint(path, NULL, 0, CGRectGetHeight(rect));
+                CGPathAddCurveToPoint(path, NULL, 0, CGRectGetHeight(rect),CGRectGetWidth(rect)/2 ,CGRectGetHeight(rect)/5, CGRectGetWidth(rect),  CGRectGetHeight(rect)/10);
+                CGPathAddLineToPoint(path, NULL, CGRectGetWidth(rect), 0);
+                CGPathAddLineToPoint(path, NULL, 0, 0);
+                CGPathCloseSubpath(path);
+                CGContextAddPath(context, path);
+                
+                CGContextClip(context);
+            }
+                break;
+                
+            case 2:
+            {
+                CGContextSaveGState(context);
+                
+                CGMutablePathRef path= CGPathCreateMutable();
+                CGPathMoveToPoint(path, NULL, 0, CGRectGetHeight(rect)*0.6);
+                
+                CGPathAddQuadCurveToPoint(path, NULL, CGRectGetWidth(rect)*0.5, CGRectGetHeight(rect)*0.55, CGRectGetWidth(rect), CGRectGetHeight(rect)*0.4);
+                CGPathAddLineToPoint(path, NULL, CGRectGetWidth(rect), 0);
+                CGPathAddLineToPoint(path, NULL, 0, 0);
+                CGPathCloseSubpath(path);
+                CGContextAddPath(context, path);
+                
+                CGContextClip(context);
+            }
+                break;
+        }
+        
+        
+        
+        //DRaw the gloss gradient
+        CGGradientRef glossGradient;
+        CGColorSpaceRef rgbColorspace;
+        size_t num_locations = 2;
+        CGFloat locations[2] = { 0.0, 1.0 };
+        CGFloat components[8] = { red, green, blue, alpha,  // Start color
+            Dred, Dgreen, Dblue, DAlpha }; // Mid color and End color
+        
+        
+        rgbColorspace = CGColorSpaceCreateDeviceRGB();
+        glossGradient = CGGradientCreateWithColorComponents(rgbColorspace, components, locations, num_locations);
+        CGPoint start = CGPointMake(CGRectGetWidth(rect),CGRectGetHeight(rect)*0.7); 
+        CGPoint end = CGPointMake(CGRectGetWidth(rect), -5);
+        CGContextDrawLinearGradient(context, glossGradient, start, end, kCGGradientDrawsBeforeStartLocation);
+        
+        
+        CGContextRestoreGState(context);
+        
+        
+    }
+    
+}
 
 
 

@@ -11,6 +11,11 @@
 #import "MIMColor.h"
 @interface StackedBarTestClass : UIViewController<UITableViewDelegate,UITableViewDataSource,BarChartDelegate>
 {
+    NSArray *xValuesArray;
+    NSArray *yValuesArray;
+    NSArray *xTitlesArray;
+
+    
     IBOutlet UITableView *myTableView;
     BarChart *myBarChart;
     NSDictionary *barProperty;

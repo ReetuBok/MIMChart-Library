@@ -69,6 +69,7 @@
     CGContextAddRect(ctx, CGRectMake(0, 0, width, 15.0));      
     CGContextFillPath(ctx);
     
+
     
     //This is the string we want to write on our screen and we also need to get the string length
     NSString *test =[NSString stringWithFormat:@"%@",text];

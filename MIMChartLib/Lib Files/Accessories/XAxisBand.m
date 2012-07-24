@@ -115,6 +115,11 @@
     groupBarChart=FALSE;
     if([properties valueForKey:@"groupedBars"]) 
         groupBarChart=[[properties valueForKey:@"groupedBars"] boolValue];
+    
+    stackedBarChart=FALSE;
+    if([properties valueForKey:@"stackedBars"]) 
+        stackedBarChart=[[properties valueForKey:@"stackedBars"] boolValue];
+    
 }
 
 
@@ -205,9 +210,14 @@
     
     }
     
+    
+    
+    
+    
     if(barChart && groupBarChart)
     {
-    {
+
+        
         float offset=scalingFactor;
         for (int i=0; i<[xElements count]; i++) 
         {
@@ -256,7 +266,63 @@
             
         
         
+    
+        
+    
     }
+    else if(barChart && stackedBarChart)
+    {
+        float offset=scalingFactor;
+        for (int i=0; i<[xElements count]; i++) 
+        {
+            
+           
+            
+                XAxisLabel *label;
+                int v;
+                
+                
+                if(xIsString) v=i;
+                else v=[[xElements objectAtIndex:i] intValue];
+                
+                
+                if(style==3){
+                    
+                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake(offset, 0, scalingFactor, 15.0)];
+                    label.style=5;
+                    label.width=scalingFactor;
+                }
+                if(style ==1)
+                {
+                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake(offset+(0.4*scalingFactor) , 0, 50, 15.0)];
+                    label.style=1;
+                    label.width=50;
+                }
+                if(style ==2)
+                {
+                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake(offset+(0.1*scalingFactor) , 0, 50, 15.0)];
+                    label.style=2;
+                    label.width=50;
+                }
+
+       
+            
+                offset+=scalingFactor;
+                
+                label.lineChart=lineChart;
+                label.text=[NSString stringWithFormat:@"%@",[xElements objectAtIndex:i]];
+                
+                [label drawTitleWithColor:lineColor];
+                [self addSubview:label];
+            
+                offset+=groupGapDistance;
+        }
+            
+           
+            
+    
+        
+        
     }
     else
     //draw the labels
@@ -328,7 +394,7 @@
         
         label.lineChart=lineChart;
         label.text=[NSString stringWithFormat:@"%@",[xElements objectAtIndex:i]];
-        
+
         label.width=scalingFactor;
         [label drawTitleWithColor:lineColor];
         [self addSubview:label];

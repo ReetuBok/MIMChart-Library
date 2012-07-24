@@ -72,9 +72,12 @@
     float barYOffsetForNegativeGraphs;
     
     BOOL pickLibColors;
-
+    BOOL transparentBgForStackedBars;
+    
     float yAxisWidth;
     float xAxisHeight;
+    
+    
 
 }
 @end
@@ -508,6 +511,8 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         
         barsPerDivision=1;
         spaceBetweenSameGroupBar=0;
+        gapBetweenBarsDifferentGroup=barWidth;
+        
         contentSizeX=(barsPerDivision * barWidth * yCount) + (barsPerDivision-1 * spaceBetweenSameGroupBar * yCount) + (barWidth * yCount +1) ;
         if(contentSizeX>_gridWidth)
         {
@@ -626,14 +631,19 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
             animationDurationvalue=1.0;
         }
         
+        
+        animationType=0;
         if ([keysArray containsObject:@"type"]) 
         {
             animationType=[[animationDict valueForKey:@"type"] intValue];
         }
-        else 
+        
+        transparentBgForStackedBars=NO;
+        if ([keysArray containsObject:@"transparentBg"]) 
         {
-            animationType=1;
+            transparentBgForStackedBars=[[animationDict valueForKey:@"transparentBg"] boolValue];
         }
+    
         
     }
     
@@ -641,7 +651,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 }
 
 
--(void)createAnimationOn:(BarView *)view withBarHeight:(float)height negativeBars:(BOOL)negativeBars
+-(void)createAnimationOn:(BarView *)view withBarHeight:(float)height negativeBars:(BOOL)negativeBars idValue:(int)idVal
 {
     //animation block
   
@@ -664,10 +674,19 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                     
                     
                 [UIView beginAnimations:nil context:nil];
+                if (idVal!=-1) {
+                    [UIView setAnimationDelay: (idVal*animationDurationvalue)+ animationDelayValue];
+                }
+                else
                 [UIView setAnimationDelay:animationDelayValue];
+                [UIView setAnimationDelegate:self];
                 [UIView setAnimationDuration:animationDurationvalue];
                 [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
                 [view setTransform:CGAffineTransformConcat( CGAffineTransformMakeTranslation(0, 0.5*(tempHeight-view.bounds.size.height)*negativeM),CGAffineTransformMakeScale(1.0,1.0))]; 
+                
+                if(idVal==0)
+                    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+                
                 [UIView commitAnimations];
                 
 
@@ -679,6 +698,13 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     
 
 }
+-(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
+    
+    //NSTimeInterval t=(([[_yValElements objectAtIndex:0] count] -2)*animationDurationvalue);
+    //[self performSelector:@selector(displayShadow) withObject:nil afterDelay:t];
+
+}
+
 #pragma mark - DRAW CHARTS
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -788,7 +814,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 [self drawShadowOnView:view negativeBars:isNegativeBar];
 
                 
-                [self createAnimationOn:view withBarHeight:_height negativeBars:isNegativeBar];
+                [self createAnimationOn:view withBarHeight:_height negativeBars:isNegativeBar idValue:-1];
                 
                 
                 if(isLongGraph_) 
@@ -825,14 +851,23 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
             
             //Find ordered elements of [_yValElements objectAtIndex:j]
             NSArray *stackArray=[_yValElements objectAtIndex:j];
-            stackArray=[stackArray sortedArrayUsingFunction:firstNumSort context:NULL];
+            //stackArray=[stackArray sortedArrayUsingFunction:firstNumSort context:NULL];
+            
+            float totalQ=[[stackArray lastObject] floatValue];
+            int heightOffset=0;
+            float totalHeight=0;
+            
             
             for (int i=[stackArray count]-1; i >=0; i--) 
             {
                 
                 BOOL isNegativeBar=FALSE;
                 
-                int _height=[[stackArray objectAtIndex:i] intValue];
+                int _height=[[stackArray objectAtIndex:i] intValue]*.01*totalQ;
+                
+                if(i==[stackArray count]-1)//continue;
+                    _height=totalQ;
+                    
                 _height=_height*_scalingY;
                 
                 float originY;
@@ -842,33 +877,51 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 if(_height<0)isNegativeBar=TRUE;
                 if(_height<0)_height=-_height;
                 
+                //for shadow//transparentBg
+
+                if(i==[stackArray count]-1)
+                {
+                    totalHeight=_height;
+                    BarView *bgviewForShadow;
+                    bgviewForShadow=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin,originY+topMargin+5, barWidth, _height-5)];
+
+                    bgviewForShadow.glossStyle=GLOSS_NONE;
+                    if(isNegativeBar) bgviewForShadow.negativeBar=TRUE;
+                    else bgviewForShadow.negativeBar=FALSE;
+                    
+
+                    bgviewForShadow.color=[MIMColorClass colorWithComponent:@"0,0,0,1"];
+                    
+                    [self drawShadowOnView:bgviewForShadow negativeBars:isNegativeBar];
+                    
+                    if(isLongGraph_) [lineGScrollView addSubview:bgviewForShadow];
+                    else [self addSubview:bgviewForShadow];
+                    
+                    bgviewForShadow.hidden=YES;
+                    
+                    //Call after animation Duration
+                   
+                    continue;
+
+                }
                 
-                BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin,originY+topMargin, barWidth, _height)];
+                
+                BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin,originY+topMargin-heightOffset, barWidth, _height)];
                 
                 view.isGradient=isGradient;
                 view.gradientStyle=gradientStyle;
-                view.glossStyle=glossStyle;
+                view.glossStyle=GLOSS_NONE;
                 
                 if(isNegativeBar) view.negativeBar=TRUE;
                 else view.negativeBar=FALSE;
                 
-                int t=0;
-                for (int k=0; k<[[_yValElements objectAtIndex:j] count]; k++) 
-                {
-                    int _h=[[[_yValElements objectAtIndex:j] objectAtIndex:k] intValue];
-                    _h=_h*_scalingY;
-                    
-                    if(_h==_height)
-                    {
-                        t=k;
-                        break;
-                    }
-                }
                 
+                
+              
                 if(isGradient)
                 {
-                    view.dColor=[MIMColor GetColorAtIndex:((2*t)+style+1)%totalColors];
-                    view.lColor=[MIMColor GetColorAtIndex:((2*t)+style)%totalColors];
+                    view.dColor=[MIMColor GetColorAtIndex:((2*i)+style+1)%totalColors];
+                    view.lColor=[MIMColor GetColorAtIndex:((2*i)+style)%totalColors];
                 }
                 else
                     view.color=[MIMColor GetMIMColorAtIndex:(i+style)%totalColors];
@@ -878,20 +931,56 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 
                 view.borderColor=[UIColor blackColor];
                 
-                [self drawShadowOnView:view negativeBars:isNegativeBar];
-                [self createAnimationOn:view withBarHeight:_height negativeBars:isNegativeBar];
+                [self createAnimationOn:view withBarHeight:_height negativeBars:isNegativeBar idValue:([stackArray count]-1 - i)];
                 
                 
                 if(isLongGraph_) [lineGScrollView addSubview:view];
                 else [self addSubview:view];
                 
+                //for gloss
+                if (i==0) 
+                {
+                    
+                    
+                    BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin,originY+topMargin-heightOffset, barWidth, totalHeight)];
+                    
+                    view.gradientStyle=gradientStyle;
+                    view.glossStyle=glossStyle;
+                    view.color=[MIMColorClass colorWithComponent:@"1,0,0,0"];
+                    
+                    if(isNegativeBar) view.negativeBar=TRUE;
+                    else view.negativeBar=FALSE;
+                    
+                    if(isLongGraph_) [lineGScrollView addSubview:view];
+                    else [self addSubview:view];
+                    
+                    
+
+                    
+                    
+
+                }
+                
+                heightOffset+=_height;
+
+                
                 if(i<[[_yValElements objectAtIndex:j] count]-1)
                     xOrigin+=spaceBetweenSameGroupBar;
                 
+                
+                               
+                
             }
             
-            xOrigin+=(barWidth+10);
+            
+            
+            
+            
+            xOrigin+=barWidth;
+            xOrigin+=gapBetweenBarsDifferentGroup;
         }
+        
+        
         
         xOrigin+=barWidth;
         lineGScrollView.contentSize=CGSizeMake(xOrigin, self.frame.size.height);
@@ -958,7 +1047,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
             else    view.color=[barcolorArray objectAtIndex:0];
         
             [self drawShadowOnView:view negativeBars:isNegativeBar];
-            [self createAnimationOn:view withBarHeight:_height negativeBars:isNegativeBar];
+            [self createAnimationOn:view withBarHeight:_height negativeBars:isNegativeBar idValue:-1];
              
             
             
@@ -1020,7 +1109,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         }
         
         float xShadowOffset=2.0;
-        float yShadowOffset=1.0;
+        float yShadowOffset=0.0;
         if([barProperties valueForKey:@"shadowOffset"])
         {
             CGSize shadowSize=[[barProperties valueForKey:@"shadowOffset"] CGSizeValue];
@@ -1043,10 +1132,31 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         else [view.layer setShadowOffset:CGSizeMake(xShadowOffset, -yShadowOffset)];
         
     }
+    else
+        [view removeFromSuperview];
     
 
 }
 
+
+-(void)displayShadow
+{
+    if(isLongGraph_)
+    {
+        for (UIView *view in lineGScrollView.subviews) {
+            [view setHidden:NO];
+        }
+    
+    }
+    else
+    {
+        for (UIView *view in self.subviews) {
+            [view setHidden:NO];
+        }
+    }
+       
+    
+}
 
 
 
@@ -1195,9 +1305,9 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     else if(stackedBars)[xLProperties setValue:[NSNumber numberWithInt:spaceBetweenSameGroupBar] forKey:@"gapBetweenBars"];
     else [xLProperties setValue:[NSNumber numberWithInt:spaceBetweenSameGroupBar] forKey:@"gapBetweenBars"];
     
-    if(groupedBars)[xLProperties setValue:[NSNumber numberWithFloat:gapBetweenBarsDifferentGroup] forKey:@"gapBetweenGroup"];
+    if(groupedBars || stackedBars)[xLProperties setValue:[NSNumber numberWithFloat:gapBetweenBarsDifferentGroup] forKey:@"gapBetweenGroup"];
     if(groupedBars)[xLProperties setValue:[NSNumber numberWithBool:YES] forKey:@"groupedBars"];
-
+    if(stackedBars)[xLProperties setValue:[NSNumber numberWithBool:YES] forKey:@"stackedBars"];
     
 
     

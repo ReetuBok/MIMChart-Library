@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MIMColorClass.h"
 
+
 @interface MIMProperties : NSObject
 {
 
@@ -19,4 +20,6 @@
 
 +(void)drawBgPattern:(CGContextRef)ctx color:(MIMColorClass *)mbackgroundColor gridWidth:(float)gridWidth gridHeight:(float)gridHeight leftMargin:(float)leftMargin topMargin:(float)topMargin;
 
+
++(void)createGloss:(CGContextRef)context  OnRect:(CGRect)rect withStyle:(int)glossStyle;
 @end
