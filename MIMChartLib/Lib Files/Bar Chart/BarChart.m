@@ -684,8 +684,8 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
                 [view setTransform:CGAffineTransformConcat( CGAffineTransformMakeTranslation(0, 0.5*(tempHeight-view.bounds.size.height)*negativeM),CGAffineTransformMakeScale(1.0,1.0))]; 
                 
-                if(idVal==0)
-                    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+               
+                
                 
                 [UIView commitAnimations];
                 
@@ -698,12 +698,8 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     
 
 }
--(void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
-    
-    //NSTimeInterval t=(([[_yValElements objectAtIndex:0] count] -2)*animationDurationvalue);
-    //[self performSelector:@selector(displayShadow) withObject:nil afterDelay:t];
 
-}
+
 
 #pragma mark - DRAW CHARTS
 // Only override drawRect: if you perform custom drawing.
@@ -851,23 +847,19 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
             
             //Find ordered elements of [_yValElements objectAtIndex:j]
             NSArray *stackArray=[_yValElements objectAtIndex:j];
-            //stackArray=[stackArray sortedArrayUsingFunction:firstNumSort context:NULL];
+
             
             float totalQ=[[stackArray lastObject] floatValue];
             int heightOffset=0;
             float totalHeight=0;
             
             
-            for (int i=[stackArray count]-1; i >=0; i--) 
+            for (int i=[stackArray count]-2; i >=0; i--) 
             {
                 
                 BOOL isNegativeBar=FALSE;
                 
                 int _height=[[stackArray objectAtIndex:i] intValue]*.01*totalQ;
-                
-                if(i==[stackArray count]-1)//continue;
-                    _height=totalQ;
-                    
                 _height=_height*_scalingY;
                 
                 float originY;
@@ -877,35 +869,8 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 if(_height<0)isNegativeBar=TRUE;
                 if(_height<0)_height=-_height;
                 
-                //for shadow//transparentBg
-
-                if(i==[stackArray count]-1)
-                {
-                    totalHeight=_height;
-                    BarView *bgviewForShadow;
-                    bgviewForShadow=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin,originY+topMargin+5, barWidth, _height-5)];
-
-                    bgviewForShadow.glossStyle=GLOSS_NONE;
-                    if(isNegativeBar) bgviewForShadow.negativeBar=TRUE;
-                    else bgviewForShadow.negativeBar=FALSE;
-                    
-
-                    bgviewForShadow.color=[MIMColorClass colorWithComponent:@"0,0,0,1"];
-                    
-                    [self drawShadowOnView:bgviewForShadow negativeBars:isNegativeBar];
-                    
-                    if(isLongGraph_) [lineGScrollView addSubview:bgviewForShadow];
-                    else [self addSubview:bgviewForShadow];
-                    
-                    bgviewForShadow.hidden=YES;
-                    
-                    //Call after animation Duration
-                   
-                    continue;
-
-                }
-                
-                
+               
+            
                 BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin,originY+topMargin-heightOffset, barWidth, _height)];
                 
                 view.isGradient=isGradient;
@@ -932,7 +897,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 view.borderColor=[UIColor blackColor];
                 
                 [self createAnimationOn:view withBarHeight:_height negativeBars:isNegativeBar idValue:([stackArray count]-1 - i)];
-                
+                [self drawShadowOnView:view negativeBars:isNegativeBar];
                 
                 if(isLongGraph_) [lineGScrollView addSubview:view];
                 else [self addSubview:view];
@@ -954,11 +919,6 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                     if(isLongGraph_) [lineGScrollView addSubview:view];
                     else [self addSubview:view];
                     
-                    
-
-                    
-                    
-
                 }
                 
                 heightOffset+=_height;
@@ -1136,26 +1096,6 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         [view removeFromSuperview];
     
 
-}
-
-
--(void)displayShadow
-{
-    if(isLongGraph_)
-    {
-        for (UIView *view in lineGScrollView.subviews) {
-            [view setHidden:NO];
-        }
-    
-    }
-    else
-    {
-        for (UIView *view in self.subviews) {
-            [view setHidden:NO];
-        }
-    }
-       
-    
 }
 
 

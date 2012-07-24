@@ -106,7 +106,7 @@
             
         case 1:
         {
-            yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10",@"21",@"49",@"20",@"24000", nil],[NSArray arrayWithObjects:@"15",@"20",@"9",@"56",@"9000", nil],[NSArray arrayWithObjects:@"10",@"17",@"43",@"30",@"17000", nil],[NSArray arrayWithObjects:@"10",@"21",@"49",@"20",@"24000", nil],[NSArray arrayWithObjects:@"15",@"20",@"9",@"56",@"9000", nil],[NSArray arrayWithObjects:@"10",@"17",@"43",@"30",@"17000", nil],nil];
+            yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10",@"21",@"49",@"20",@"24000", nil],[NSArray arrayWithObjects:@"15",@"20",@"9",@"56",@"9000", nil],[NSArray arrayWithObjects:@"20",@"17",@"43",@"20",@"17000", nil],[NSArray arrayWithObjects:@"10",@"21",@"41",@"28",@"24000", nil],[NSArray arrayWithObjects:@"15",@"20",@"9",@"56",@"9000", nil],[NSArray arrayWithObjects:@"30",@"17",@"43",@"10",@"17000", nil],nil];
             
             xValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr",@"Quarter 1", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug",@"Quarter 2",  nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", @"Quarter 3", nil],[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr",@"Quarter 1", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug",@"Quarter 2",  nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", @"Quarter 3", nil], nil];
             
@@ -122,7 +122,7 @@
             myBarChart.isGradient=YES;
             myBarChart.gradientStyle=HORIZONTAL_GRADIENT_STYLE;
             myBarChart.xTitleStyle=X_TITLES_STYLE2;
-            myBarChart.glossStyle=GLOSS_NONE;
+            myBarChart.glossStyle=GLOSS_STYLE_1;
             
             myBarChart.rightMargin=30;
             
@@ -133,7 +133,7 @@
             break;
         case 2:
         {
-             yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10",@"21",@"49",@"20",@"24000", nil],[NSArray arrayWithObjects:@"15",@"20",@"9",@"56",@"9000", nil],[NSArray arrayWithObjects:@"10",@"17",@"43",@"30",@"17000", nil],[NSArray arrayWithObjects:@"20",@"11",@"39",@"30",@"24000", nil],[NSArray arrayWithObjects:@"15",@"20",@"29",@"36",@"9000", nil],[NSArray arrayWithObjects:@"40",@"17",@"23",@"20",@"17000", nil],[NSArray arrayWithObjects:@"20",@"21",@"39",@"20",@"30000", nil],[NSArray arrayWithObjects:@"50",@"17",@"23",@"10",@"27000", nil],[NSArray arrayWithObjects:@"10",@"37",@"23",@"30",@"37000", nil],nil];
+             yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10",@"21",@"49",@"20",@"24000", nil],[NSArray arrayWithObjects:@"15",@"20",@"9",@"56",@"9000", nil],[NSArray arrayWithObjects:@"20",@"7",@"43",@"30",@"17000", nil],[NSArray arrayWithObjects:@"20",@"11",@"39",@"30",@"24000", nil],[NSArray arrayWithObjects:@"15",@"20",@"29",@"36",@"9000", nil],[NSArray arrayWithObjects:@"40",@"17",@"23",@"20",@"17000", nil],[NSArray arrayWithObjects:@"20",@"21",@"39",@"20",@"30000", nil],[NSArray arrayWithObjects:@"50",@"17",@"23",@"10",@"27000", nil],[NSArray arrayWithObjects:@"10",@"37",@"23",@"30",@"37000", nil],nil];
             
             
             
