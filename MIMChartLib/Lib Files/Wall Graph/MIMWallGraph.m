@@ -408,6 +408,13 @@
     }
     
     
+    if(_tileHeight+10 > _gridHeight)
+    {
+        NSLog(@"ERROR: frame too small to draw.!!");
+        
+    }
+
+    
 }
 
 
@@ -470,7 +477,11 @@
     
     maximumOnY=(maxOfY-minOfY);
     
+    
     float pixelPerTile=(maxOfY-minOfY)/(HorLines-1);
+    if(HorLines-1 ==0) pixelPerTile=(maxOfY-minOfY)/(HorLines);
+    
+    
     int countDigits=[[NSString stringWithFormat:@"%.0f",pixelPerTile] length];
     
     //New Pixel per tile swould be

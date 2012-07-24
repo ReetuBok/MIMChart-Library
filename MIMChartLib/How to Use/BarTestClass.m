@@ -116,7 +116,7 @@
         case 0:
         {
             
-            myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.3)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.xTitleStyle=X_TITLES_STYLE3;
