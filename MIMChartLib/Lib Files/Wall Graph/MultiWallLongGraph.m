@@ -30,7 +30,8 @@
 @synthesize wallGradientArray;
 @synthesize maxValuesArray;
 @synthesize METERLINEHEIGHT;
-@synthesize leftMargin,bottomMargin;
+
+@synthesize rightMargin,topMargin,leftMargin,bottomMargin;
 
 - (id)initWithFrame:(CGRect)frame
 {

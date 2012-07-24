@@ -12,7 +12,10 @@
 @implementation MIMProperties
 
 
-+(void)drawHorizontalBgLines:(CGContextRef)ctx  withProperties:(NSDictionary *)hlProperties gridHeight:(float)gridHeight tileHeight:(float)tileHeight gridWidth:(float)gridWidth bottomMargin:(float)bottomMargin leftMargin:(float)leftMargin
+
+
++(void)drawHorizontalBgLines:(CGContextRef)ctx  withProperties:(NSDictionary *)hlProperties gridHeight:(float)gridHeight tileHeight:(float)tileHeight gridWidth:(float)gridWidth leftMargin:(float)leftMargin topMargin:(float)topMargin;
+
 {
     
     float _tileHeight=tileHeight;
@@ -63,8 +66,8 @@
     
     for (int i=1; i<=numHorzLines; i++) 
     {    
-        CGContextMoveToPoint(ctx, leftMargin,gridHeight- i*_tileHeight );
-        CGContextAddLineToPoint(ctx,_gridWidth+leftMargin ,gridHeight- i*_tileHeight);
+        CGContextMoveToPoint(ctx, leftMargin,gridHeight+topMargin- i*_tileHeight );
+        CGContextAddLineToPoint(ctx,_gridWidth+leftMargin ,gridHeight+topMargin- i*_tileHeight);
     }
     
     if([dotted isEqualToString:@""])
@@ -100,7 +103,7 @@
 
 
 
-+(void)drawVerticalBgLines:(CGContextRef)ctx  withProperties:(NSDictionary *)vlProperties gridHeight:(float)gridHeight tileWidth:(float)tileWidth gridWidth:(float)gridWidth scalingX:(float)scalingX  xIsString:(BOOL)xIsString bottomMargin:(float)bottomMargin leftMargin:(float)leftMargin
++(void)drawVerticalBgLines:(CGContextRef)ctx  withProperties:(NSDictionary *)vlProperties gridHeight:(float)gridHeight tileWidth:(float)tileWidth gridWidth:(float)gridWidth scalingX:(float)scalingX  xIsString:(BOOL)xIsString bottomMargin:(float)bottomMargin leftMargin:(float)leftMargin topMargin:(float)topMargin
 {
     
     float _tileWidth=tileWidth;
@@ -159,8 +162,8 @@
         
         for (int i=1; i<numVertLines; i++) 
         {   
-            CGContextMoveToPoint(ctx, i * _scalingX + leftMargin,0);
-            CGContextAddLineToPoint(ctx, i * _scalingX + leftMargin,_gridHeight);
+            CGContextMoveToPoint(ctx, i * _scalingX + leftMargin,topMargin);
+            CGContextAddLineToPoint(ctx, i * _scalingX + leftMargin,_gridHeight+topMargin);
         }
         
     }
@@ -168,8 +171,8 @@
     {
         for (int i=1; i<numVertLines; i++) 
         {   
-            CGContextMoveToPoint(ctx, i*_tileWidth + leftMargin,0);
-            CGContextAddLineToPoint(ctx, i*_tileWidth + leftMargin,_gridHeight);
+            CGContextMoveToPoint(ctx, i*_tileWidth + leftMargin,topMargin);
+            CGContextAddLineToPoint(ctx, i*_tileWidth + leftMargin,_gridHeight+topMargin);
         }
     }
     
@@ -207,7 +210,7 @@
 }
 
 
-+(void)drawBgPattern:(CGContextRef)ctx color:(MIMColorClass *)mbackgroundColor gridWidth:(float)gridWidth gridHeight:(float)gridHeight leftMargin:(float)leftMargin
++(void)drawBgPattern:(CGContextRef)ctx color:(MIMColorClass *)mbackgroundColor gridWidth:(float)gridWidth gridHeight:(float)gridHeight leftMargin:(float)leftMargin topMargin:(float)topMargin
 {
     
     float _gridHeight=gridHeight;
@@ -219,7 +222,7 @@
         
         CGContextSaveGState(ctx);
         CGContextSetFillColorWithColor(ctx, [UIColor colorWithRed:mbackgroundColor.red green:mbackgroundColor.green blue:mbackgroundColor.blue alpha:mbackgroundColor.alpha].CGColor);
-        CGContextFillRect(ctx, CGRectMake(leftMargin, 0, _gridWidth, _gridHeight));
+        CGContextFillRect(ctx, CGRectMake(leftMargin, topMargin, _gridWidth, _gridHeight));
         CGContextRestoreGState(ctx);
         return;
         
@@ -244,11 +247,11 @@
     
     CGColorSpaceRef BgRGBColorspace = CGColorSpaceCreateDeviceRGB();
     CGGradientRef bgRadialGradient = CGGradientCreateWithColorComponents(BgRGBColorspace, BgComponents, BGLocations, 3);
-    CGContextAddRect(ctx, CGRectMake(leftMargin, 0, _gridWidth, _gridHeight));
+    CGContextAddRect(ctx, CGRectMake(leftMargin, topMargin, _gridWidth, _gridHeight+topMargin));
     if(!CGContextIsPathEmpty(ctx))
         CGContextClip(ctx);
     
-    CGContextDrawLinearGradient(ctx, bgRadialGradient, CGPointMake(0, 0), CGPointMake(0, _gridHeight), 0 );
+    CGContextDrawLinearGradient(ctx, bgRadialGradient, CGPointMake(0, topMargin), CGPointMake(0, _gridHeight+topMargin), 0 );
     
     CGColorSpaceRelease(BgRGBColorspace);
     CGGradientRelease(bgRadialGradient);

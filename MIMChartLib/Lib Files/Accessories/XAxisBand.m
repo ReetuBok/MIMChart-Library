@@ -144,12 +144,14 @@
     
     //Clear the color of background
     CGRect r=CGRectMake(0, 0, CGRectGetWidth(rect), CGRectGetHeight(rect));
-    //CGContextSetBlendMode(context,kCGBlendModeClear);
-    CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
+    CGContextSetBlendMode(ctx,kCGBlendModeClear);
+    CGContextSetFillColorWithColor(ctx, [UIColor blackColor].CGColor);
     CGContextAddRect(ctx, r);      
     CGContextFillPath(ctx);
     
     
+    
+    CGContextSetBlendMode(ctx,kCGBlendModeNormal);
     //Draw Gray Lines for X-axis
     [self drawXAxis:ctx];
     

@@ -42,6 +42,12 @@
     GLOSS_STYLE glossStyle;
     BOOL minimumLabelOnYIsZero;
     BAR_LABEL_STYLE barLabelStyle;
+    UILabel *titleLabel;
+    
+    float rightMargin;
+    float topMargin;
+    float leftMargin;
+    float bottomMargin;
     
     int style;//Optional, incase user wants to choose a particular color from MIMCOlorClass
     float groupTitlesOffset;
@@ -59,8 +65,16 @@
 @property(nonatomic,assign)GLOSS_STYLE glossStyle;
 @property(nonatomic,assign)BOOL minimumLabelOnYIsZero;
 @property(nonatomic,assign)BAR_LABEL_STYLE barLabelStyle;
+@property(nonatomic,retain)UILabel *titleLabel;
+
 @property(nonatomic,assign)int style;
 @property(nonatomic,assign)float groupTitlesOffset;
+
+@property(nonatomic,assign)float rightMargin;
+@property(nonatomic,assign)float topMargin;
+@property(nonatomic,assign)float leftMargin;
+@property(nonatomic,assign)float bottomMargin;
+
 -(void)drawBarChart;
 
 

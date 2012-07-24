@@ -22,11 +22,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "MIMChartLib/Lib Files/Bar Chart/BarChart.m"
-         timestampString = "364629823.598695"
+         timestampString = "364770819.266213"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "376"
-         endingLineNumber = "376"
+         startingLineNumber = "384"
+         endingLineNumber = "384"
          landmarkName = "-_findScaleForYTile"
          landmarkType = "5">
       </FileBreakpoint>

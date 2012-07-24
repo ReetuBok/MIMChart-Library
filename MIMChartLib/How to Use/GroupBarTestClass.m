@@ -127,6 +127,12 @@
             myBarChart.groupedBars=YES;
             myBarChart.barLabelStyle=BAR_LABEL_STYLE1;
             myBarChart.tag=10+indexPath.row;
+            
+            myBarChart.rightMargin=50;
+            myBarChart.topMargin=50;
+            myBarChart.bottomMargin=40;
+            
+            
             myBarChart.glossStyle=GLOSS_STYLE_1;
             myBarChart.xTitleStyle=X_TITLES_STYLE3;
             [myBarChart drawBarChart];
@@ -178,6 +184,12 @@
             myBarChart.tag=10+indexPath.row;
             myBarChart.isGradient=YES;
             myBarChart.groupedBars=YES;
+            
+            myBarChart.rightMargin=50;
+            myBarChart.topMargin=50;
+            myBarChart.bottomMargin=40;
+            
+            
             myBarChart.xTitleStyle=X_TITLES_STYLE1;
             myBarChart.glossStyle=GLOSS_STYLE_2;
             [myBarChart drawBarChart];

@@ -72,15 +72,20 @@
     float barYOffsetForNegativeGraphs;
     
     BOOL pickLibColors;
-    float leftMargin;
-    float bottomMargin;
+
+    float yAxisWidth;
+    float xAxisHeight;
+
 }
 @end
+
+#define TITLELABEL 1001
+
 @implementation BarChart
 @synthesize isGradient,groupTitlesOffset,gradientStyle,glossStyle,minimumLabelOnYIsZero;
 @synthesize delegate,xTitleStyle,mbackgroundcolor,barcolorArray;
-@synthesize style, groupedBars,stackedBars,barLabelStyle;
-
+@synthesize style, groupedBars,stackedBars,barLabelStyle,titleLabel;
+@synthesize rightMargin,topMargin,leftMargin,bottomMargin;
 
 static NSInteger firstNumSort(id str1, id str2, void *context) {
     
@@ -112,6 +117,13 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 - (void)doInit
 {
     // Initialization code
+    rightMargin=0;
+    topMargin=0;
+    leftMargin=0;
+    bottomMargin=0;
+    
+    yAxisWidth=50;
+    xAxisHeight=70;
     
     groupedBars=NO;
     stackedBars=NO;
@@ -121,16 +133,31 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     barYOffsetForNegativeGraphs=0;
     animationType=0;
     [self setBackgroundColor:[UIColor clearColor]];
+    
+    
+    titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
+    [titleLabel setBackgroundColor:[UIColor clearColor]];
+    titleLabel.tag=TITLELABEL;
+    [titleLabel setFont:[UIFont fontWithName:@"Helvetica" size:12]];
+    [titleLabel setTextColor:[UIColor blackColor]];
+    [titleLabel setTextAlignment:UITextAlignmentCenter];
+    [self addSubview:titleLabel];
+    
+    
+    
+  
 }
 
 
 -(void)drawBarChart
 {
-    
+
     [self getAnimationProperties];
     [self initAndWarnings];
     [self createLongBarGraphScrollView];
   
+    titleLabel.frame=CGRectMake(leftMargin, topMargin+_gridHeight+xAxisHeight+5, CGRectGetWidth(self.frame)-leftMargin-rightMargin, 20);
+    titleLabel.text=@"Bar Chart Title";
     
     [self setNeedsDisplay];
     [self _displayXAxisLabels];
@@ -238,18 +265,16 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     else
         yLProperties=[[NSMutableDictionary alloc]init];
 
+    
+    
 
-    leftMargin=50;
-    if([yLProperties  valueForKey:@"margin"])
-        leftMargin=[[yLProperties  valueForKey:@"margin"]floatValue];
+    if([yLProperties valueForKey:@"width"])
+        yAxisWidth=[[yLProperties valueForKey:@"width"] floatValue];
     
-    
-    bottomMargin=100;
-    if([xLProperties  valueForKey:@"margin"])
-        bottomMargin=[[xLProperties  valueForKey:@"margin"]floatValue];
-    
-    
-    
+    if([xLProperties valueForKey:@"height"])
+        xAxisHeight=[[xLProperties valueForKey:@"height"] floatValue];
+
+
     if(stackedBars && rand()%2==1)[MIMColor InitFragmentedBarColors];
     else [MIMColor nonAdjacentGradient];
     
@@ -277,6 +302,15 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     
     _gridWidth=self.frame.size.width;
     _gridHeight=self.frame.size.height;
+    
+    _gridWidth-=leftMargin;
+    _gridWidth-=rightMargin;
+    _gridWidth-=yAxisWidth;
+    
+    _gridHeight-=bottomMargin;
+    _gridHeight-=topMargin;
+    _gridHeight-=xAxisHeight;
+    
 }
 
 -(void)FindTileWidthAndHeight
@@ -498,7 +532,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     
     if(isLongGraph_)
     {
-        lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(leftMargin, 0, CGRectGetWidth(self.frame)-leftMargin-10, self.frame.size.height)];
+        lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(leftMargin+yAxisWidth, 0, _gridWidth-10, self.frame.size.height)];
         [lineGScrollView setBackgroundColor:[UIColor clearColor]];
 
 
@@ -656,7 +690,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     
     
     for (UIView *view in self.subviews)
-    if([view isKindOfClass:[XAxisBand class]] || [view isKindOfClass:[YAxisBand class]]) {}
+    if([view isKindOfClass:[XAxisBand class]] || [view isKindOfClass:[YAxisBand class]] || (view.tag ==TITLELABEL)) {}
     else [view removeFromSuperview];
     
     
@@ -679,8 +713,10 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 
     //Draw the bg gradient
 
-    [MIMProperties drawBgPattern:context color:mbackgroundcolor gridWidth:_gridWidth gridHeight:_gridHeight leftMargin:leftMargin];
-    [MIMProperties drawHorizontalBgLines:context withProperties:hlProperties gridHeight:_gridHeight tileHeight:_tileHeight gridWidth:_gridWidth bottomMargin:bottomMargin leftMargin:leftMargin];
+    [MIMProperties drawBgPattern:context color:mbackgroundcolor gridWidth:_gridWidth gridHeight:_gridHeight leftMargin:leftMargin+yAxisWidth topMargin:topMargin];
+    
+    
+    [MIMProperties drawHorizontalBgLines:context withProperties:hlProperties gridHeight:_gridHeight tileHeight:_tileHeight gridWidth:_gridWidth leftMargin:leftMargin+yAxisWidth topMargin:topMargin];
 
    
     CGAffineTransform flipTransform = CGAffineTransformMake( 1, 0, 0, -1, 0, self.frame.size.height);
@@ -691,13 +727,13 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     CGContextSetShouldAntialias(context, YES);
     
    
-    float _leftMargin=leftMargin;
-    float _bottomMargin=bottomMargin;
+    float _leftMargin=leftMargin+yAxisWidth;
+
     
     if(isLongGraph_)
     {
         _leftMargin=0;
-        _bottomMargin=0;
+
         
     }
     
@@ -730,7 +766,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 
 
                     
-                BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin, originY, barWidth, _height)];
+                BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin, originY+topMargin, barWidth, _height)];
 
                 view.isGradient=isGradient;
                 view.gradientStyle=gradientStyle;
@@ -771,6 +807,10 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 
         xOrigin+=barWidth;
         lineGScrollView.contentSize=CGSizeMake(xOrigin, self.frame.size.height);
+        contentSizeX=xOrigin;
+        
+     
+        
         
     }
     else if(stackedBars)
@@ -803,7 +843,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 if(_height<0)_height=-_height;
                 
                 
-                BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin,originY, barWidth, _height)];
+                BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin,originY+topMargin, barWidth, _height)];
                 
                 view.isGradient=isGradient;
                 view.gradientStyle=gradientStyle;
@@ -855,7 +895,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         
         xOrigin+=barWidth;
         lineGScrollView.contentSize=CGSizeMake(xOrigin, self.frame.size.height);
-
+        contentSizeX=xOrigin;
     }
     else
     {
@@ -865,7 +905,8 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         for (int i=0; i<[_yValElements count]; i++) 
         { 
             BOOL isNegativeBar=FALSE;
-            float _height=[[_yValElements objectAtIndex:i] floatValue]*_scalingY;
+            
+            int _height=[[_yValElements objectAtIndex:i] floatValue]*_scalingY;
             float originY;
             if(_height<0)originY=_gridHeight-barYOffsetForNegativeGraphs;
             else originY=_gridHeight-_height-barYOffsetForNegativeGraphs;
@@ -874,7 +915,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
             if(_height<0)_height=-_height;
             
             
-            BarView *view=[[BarView alloc]initWithFrame:CGRectMake((i* barWidth) + spaceBetweenSameGroupBar*(i+1) +_leftMargin,originY,barWidth,_height)];
+            BarView *view=[[BarView alloc]initWithFrame:CGRectMake((i* barWidth) + spaceBetweenSameGroupBar*(i+1) +_leftMargin,originY+topMargin,barWidth,_height)];
             view.isGradient=isGradient;
             view.gradientStyle=gradientStyle;
             view.glossStyle=glossStyle;
@@ -939,6 +980,9 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 
     if(isLongGraph_) 
     {  
+        
+        [[lineGScrollView viewWithTag:XBANDTAG] setFrame:CGRectMake(0,_gridHeight+topMargin, contentSizeX, xAxisHeight)];
+        
         CGRect a=lineGScrollView.frame;
         a.size.height+=X_AXIS_HEIGHT;
         lineGScrollView.frame=a;
@@ -1033,7 +1077,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     if(!barLabelStyle)return;
     
     
-    float _leftMargin=leftMargin;
+    float _leftMargin=leftMargin+yAxisWidth;
     float _bottomMargin=bottomMargin;
     
     if(isLongGraph_)
@@ -1071,7 +1115,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                 
 
                 
-                BarInfoBox *view=[[BarInfoBox alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin,originY+yOffset,barWidth,25)];
+                BarInfoBox *view=[[BarInfoBox alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin,originY+yOffset+topMargin,barWidth,25)];
                 [view setText:[[_xTitles objectAtIndex:j] objectAtIndex:i]];
                 
                 if(isLongGraph_) 
@@ -1155,16 +1199,16 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     if(groupedBars)[xLProperties setValue:[NSNumber numberWithBool:YES] forKey:@"groupedBars"];
 
     
-    //contentSizeX=1810;
+
     
     XAxisBand *_xBand;
       
-    
+   
     
     if(isLongGraph_)
-    _xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,_gridHeight, contentSizeX, bottomMargin)];
+    _xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,_gridHeight+topMargin, contentSizeX, xAxisHeight)];
     else 
-    _xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(leftMargin,_gridHeight, CGRectGetWidth(self.frame)-leftMargin, bottomMargin)];
+    _xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(leftMargin+yAxisWidth,_gridHeight+topMargin, _gridWidth, xAxisHeight)];
         
     
     _xBand.properties=xLProperties;
@@ -1193,6 +1237,9 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     if(!yLabelsVisible)
         return;
     
+
+    
+    
     if([[yLProperties allKeys] count]==0)
         yLProperties=[[NSMutableDictionary alloc] init];
     
@@ -1201,7 +1248,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     [yLProperties setValue:[NSNumber numberWithFloat:minimumOnY] forKey:@"minY"];
     [yLProperties setValue:[NSNumber numberWithFloat:_tileHeight] forKey:@"tileHeight"];
     
-    YAxisBand *_yBand=[[YAxisBand alloc]initWithFrame:CGRectMake(0,0, leftMargin, _gridHeight+10)];
+    YAxisBand *_yBand=[[YAxisBand alloc]initWithFrame:CGRectMake(leftMargin,topMargin, yAxisWidth, _gridHeight+10)];
 
     _yBand.tag=YBANDTAG;
     _yBand.properties=yLProperties;

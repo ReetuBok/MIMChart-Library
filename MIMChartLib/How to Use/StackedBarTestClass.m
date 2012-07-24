@@ -83,6 +83,11 @@
             myBarChart.delegate=self;
             myBarChart.stackedBars=YES;
             myBarChart.tag=10+indexPath.row;
+            
+            myBarChart.rightMargin=50;
+            myBarChart.topMargin=50;
+            myBarChart.bottomMargin=40;
+            
             myBarChart.xTitleStyle=X_TITLES_STYLE3;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];

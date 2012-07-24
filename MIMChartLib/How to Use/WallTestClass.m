@@ -141,7 +141,7 @@
                           @"Nov",
                           @"Dec", nil];
             
-            NSArray *keys=[NSArray arrayWithObjects:@"color",@"width", nil];
+            NSArray *keys=[NSArray arrayWithObjects:@"color",@"linewidth", nil];
             NSArray *values=[NSArray arrayWithObjects:@"0,0,0,1",@"2.0", nil];
             xProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
             yProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
@@ -149,12 +149,21 @@
             mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(5, 5, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.55)];
             mWallGraph.tag=indexPath.row+10;
             mWallGraph.delegate=self;
-            mWallGraph.mbackgroundColor=[MIMColorClass colorWithComponent:@"0,0,0,1"];
+            //mWallGraph.mbackgroundColor=[MIMColorClass colorWithComponent:@"0,0,0,1"];
             mWallGraph.isGradient=YES;
             mWallGraph.displayMeterline=YES;
             mWallGraph.xTitleStyle=X_TITLES_STYLE1;
+            mWallGraph.rightMargin=50;
+            mWallGraph.topMargin=40;
+            mWallGraph.bottomMargin=20;
+            
             [mWallGraph drawMIMWallGraph];
             [cell.contentView addSubview:mWallGraph];
+            
+            
+            [mWallGraph.layer setBorderColor:[UIColor blackColor].CGColor];
+            [mWallGraph.layer setBorderWidth:2];
+            
             
         }
             break;
@@ -226,7 +235,7 @@
                           @"Nov",
                           @"Dec", nil];
             
-            NSArray *keys=[NSArray arrayWithObjects:@"color",@"width", nil];
+            NSArray *keys=[NSArray arrayWithObjects:@"color",@"linewidth", nil];
             NSArray *values=[NSArray arrayWithObjects:@"0,0,1,1",@"0.5", nil];
             xProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
             yProperty=[NSDictionary dictionaryWithObjects:values forKeys:keys];
@@ -234,6 +243,12 @@
             mWallGraph=[[MIMWallGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.5)];
             mWallGraph.delegate=self;
             mWallGraph.tag=10+indexPath.row;
+            
+            mWallGraph.rightMargin=50;
+            mWallGraph.topMargin=35;
+            mWallGraph.bottomMargin=20;
+            
+            
             [mWallGraph drawMIMWallGraph];
             [cell.contentView addSubview:mWallGraph];
             
@@ -261,9 +276,17 @@
             mWallGraph.displayMeterline=YES;
             mWallGraph.meterLineYOffset=30;
             mWallGraph.tag=10+indexPath.row;
+            
+            mWallGraph.rightMargin=50;
+            mWallGraph.topMargin=35;
+            mWallGraph.bottomMargin=20;
+            
+            
             [mWallGraph drawMIMWallGraph];
             [cell.contentView addSubview:mWallGraph];
             
+            [mWallGraph.layer setBorderColor:[UIColor blackColor].CGColor];
+            [mWallGraph.layer setBorderWidth:2];
             
         }
             break;

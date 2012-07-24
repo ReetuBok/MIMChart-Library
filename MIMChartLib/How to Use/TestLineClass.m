@@ -251,150 +251,7 @@
     //if (cell == nil) 
     //{
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    /*
-    switch (indexPath.row) 
-    {
-        case 0:
-        {
-        
-            lineGraph=[[SingleLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            lineGraph.delegate=self;
-            lineGraph.backgroundColor=[MIMColorClass colorWithComponent:@"0.2,0,0"];
-            lineGraph.tag=10+indexPath.row;
-            lineGraph.anchorType=NONE;//If user doesnt give any anchor type, it should by default be NONE
-            lineGraph.xTitleStyle=X_TITLES_STYLE1;
-            [lineGraph drawLineGraph];
-            [cell.contentView addSubview:lineGraph];
-            
-        }
-            break;
-            
-        case 1:
-        {
-            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"touchenabled"], nil];
-
-            
-            lineGraph=[[SingleLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            lineGraph.delegate=self;
-            lineGraph.tag=10+indexPath.row;
-            lineGraph.anchorType=CIRCLEFILLED;
-            lineGraph.xTitleStyle=X_TITLES_STYLE2;
-            [lineGraph drawLineGraph];
-            [cell.contentView addSubview:lineGraph];
-            
-            
-        }
-            break;
-        case 2:
-        {
-
-            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:@"1,1,1" forKey:@"borderColor"], nil];
-
-            lineGraph=[[SingleLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            lineGraph.delegate=self;
-            lineGraph.tag=10+indexPath.row;
-            lineGraph.anchorType=CIRCLEBORDER;
-            lineGraph.xTitleStyle=X_TITLES_STYLE3;
-            [lineGraph drawLineGraph];
-            [cell.contentView addSubview:lineGraph];
-            
-            
-        }
-            break;
-        case 3:
-        {
-            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:@"0.5,0.3,0.5" forKey:@"fillColor"], nil];
-
-            
-            
-            lineGraph=[[SingleLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            lineGraph.delegate=self;
-            lineGraph.tag=10+indexPath.row;
-            lineGraph.anchorType=SQUAREFILLED;
-            [lineGraph drawLineGraph];
-            [cell.contentView addSubview:lineGraph];
-            
-            
-        }
-            break;
-        case 4:
-        {
-            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"1,1,1",
-                                                                                                  [NSNumber numberWithBool:YES],
-                                                                                                  @"5",nil] 
-                                                                                         forKeys:[NSArray arrayWithObjects:@"borderColor",
-                                                                                          @"hideShadow",@"radius",nil]], nil];
-
-            
-            lineGraph=[[SingleLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            lineGraph.delegate=self;
-            lineGraph.tag=10+indexPath.row;
-            lineGraph.anchorType=SQUAREBORDER;
-            [lineGraph drawLineGraph];
-            [cell.contentView addSubview:lineGraph];
-            
-            
-        }
-            break;
-        case 5:
-        {
-            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"hideShadow"], nil];
-
-            
-            lineGraph=[[SingleLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            lineGraph.delegate=self;
-            lineGraph.tag=10+indexPath.row;
-            lineGraph.anchorType=CIRCLE;
-            [lineGraph drawLineGraph];
-            [cell.contentView addSubview:lineGraph];
-            
-        }
-            break;
-        case 6:
-        {
-            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"hideShadow"], nil];
-
-            
-            lineGraph1=[[SingleLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            lineGraph1.delegate=self;
-            lineGraph1.tag=10+indexPath.row;
-            lineGraph1.anchorType=SQUARE;
-            [lineGraph1 drawLineGraph];
-            [cell.contentView addSubview:lineGraph1];
-            
-            
-            UIButton *styleButton=[UIButton buttonWithType:UIButtonTypeRoundedRect];
-            [styleButton setFrame:CGRectMake(10, 10, 200, 30)];
-            [styleButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-            [styleButton setTitle:@"Next Color" forState:UIControlStateNormal];
-            [styleButton addTarget:self action:@selector(styleButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-            [cell.contentView addSubview:styleButton];
-            
-        }
-            break;
-        case 7:
-        {
-            lineGraph=[[SingleLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            lineGraph.delegate=self;
-            lineGraph.tag=10+indexPath.row;
-            lineGraph.anchorType=NONE;
-            [lineGraph drawLineGraph];
-            [cell.contentView addSubview:lineGraph];
-            
-        }
-            break;
-        case 8:
-        {
-            
-            
-            
-            
-        }
-            break;
-        
-    }
     
-    */
     verticalLinesProperties=nil;
     
     switch (indexPath.row) 
@@ -445,6 +302,9 @@
             MIMColorClass *c1=[MIMColorClass colorWithComponent:@"0,169,249"];
             mLineGraph.lineColorArray=[NSArray arrayWithObjects:c1, nil];
             mLineGraph.xTitleStyle=X_TITLES_STYLE1;
+            mLineGraph.bottomMargin=40;
+            mLineGraph.rightMargin=50;
+            mLineGraph.leftMargin=30;
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
@@ -494,6 +354,7 @@
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:CIRCLEFILLED], nil];
             mLineGraph.xTitleStyle=X_TITLES_STYLE2;
+            mLineGraph.topMargin=50;
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
@@ -535,11 +396,13 @@
             
             anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:@"1,1,1" forKey:@"borderColor"], nil];
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:CIRCLEBORDER], nil];
             mLineGraph.xTitleStyle=X_TITLES_STYLE3;
+            mLineGraph.rightMargin=50;
+
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
@@ -583,7 +446,7 @@
             
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:SQUAREFILLED], nil];
@@ -635,7 +498,7 @@
                                                                                                   @"hideShadow",@"radius",nil]], nil];
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:SQUAREBORDER], nil];
@@ -682,7 +545,7 @@
             anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"hideShadow"], nil];
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:CIRCLE], nil];
@@ -728,7 +591,7 @@
             anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"hideShadow"], nil];
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:SQUARE], nil];
@@ -749,10 +612,15 @@
             xValuesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
             xTitlesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:NONE], nil];
+            
+            mLineGraph.rightMargin=50;
+            mLineGraph.topMargin=35;
+            mLineGraph.bottomMargin=20;
+            
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
@@ -821,7 +689,7 @@
             yValuesArray=[[NSArray alloc]initWithObjects:array1,array2,array3,nil];
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-70, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-70, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.xTitleStyle=X_TITLES_STYLE1;
@@ -900,11 +768,14 @@
             NSNumber *a2=    [NSNumber numberWithInt:CIRCLEFILLED];
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.anchorTypeArray=[[NSMutableArray alloc]initWithObjects:a,a2,a1, nil];
             mLineGraph.xTitleStyle=X_TITLES_STYLE2;
+            mLineGraph.topMargin=40;
+            mLineGraph.leftMargin=20;
+            mLineGraph.rightMargin=30;
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
@@ -979,7 +850,7 @@
                                     [NSDictionary dictionaryWithObject:@"1" forKey:@"style"],
                                     [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"hideShadow"], nil];
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.xTitleStyle=X_TITLES_STYLE2;
@@ -1001,7 +872,7 @@
             xValuesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
             xTitlesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             [mLineGraph drawMIMLineGraph];
@@ -1046,7 +917,7 @@
             
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-70, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-70, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.xTitleStyle=X_TITLES_STYLE1;
@@ -1094,7 +965,7 @@
                           @"Dec", nil];
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.xTitleStyle=X_TITLES_STYLE2;
@@ -1144,10 +1015,14 @@
                           @"Dec", nil];
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.xTitleStyle=X_TITLES_STYLE2;
+            
+            mLineGraph.topMargin=40;
+            mLineGraph.leftMargin=20;
+            
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
@@ -1192,10 +1067,11 @@
                           @"Dec", nil];
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             mLineGraph.xTitleStyle=X_TITLES_STYLE2;
+            
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
@@ -1215,7 +1091,7 @@
             
             anchorPropertiesArray=nil;
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
             [mLineGraph drawMIMLineGraph];

@@ -45,6 +45,8 @@
     NSArray *maxValuesArray;
     float METERLINEHEIGHT;
 
+    float rightMargin;
+    float topMargin;
     float leftMargin;
     float bottomMargin;
 }
@@ -71,6 +73,8 @@
 @property(nonatomic,retain)NSArray *maxValuesArray;
 @property(nonatomic,assign)float METERLINEHEIGHT;
 
+@property(nonatomic,assign)float rightMargin;
+@property(nonatomic,assign)float topMargin;
 @property(nonatomic,assign)float leftMargin;
 @property(nonatomic,assign)float bottomMargin;
 @end

@@ -28,6 +28,12 @@
     NSArray *wallColorArray;
     NSArray *wallGradientArray;
     BOOL minimumLabelOnYIsZero;
+    UILabel *titleLabel;
+
+    float rightMargin;
+    float topMargin;
+    float leftMargin;
+    float bottomMargin;
 
 }
 
@@ -44,7 +50,13 @@
 @property(nonatomic,retain)NSArray *wallColorArray;
 @property(nonatomic,retain)NSArray *wallGradientArray;
 @property(nonatomic,assign)BOOL minimumLabelOnYIsZero;
+@property(nonatomic,retain)UILabel *titleLabel;
 
+
+@property(nonatomic,assign)float rightMargin;
+@property(nonatomic,assign)float topMargin;
+@property(nonatomic,assign)float leftMargin;
+@property(nonatomic,assign)float bottomMargin;
 -(void)drawMIMWallGraph;
 
 @end

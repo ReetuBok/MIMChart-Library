@@ -67,8 +67,8 @@
     
     //Width
     lineWidth=0.1;
-    if([properties valueForKey:@"width"]) 
-        lineWidth=[[properties valueForKey:@"width"] floatValue];
+    if([properties valueForKey:@"linewidth"]) 
+        lineWidth=[[properties valueForKey:@"linewidth"] floatValue];
     
     if(lineWidth==0) NSLog(@"WARNING: Line width of horizontal line is 0.");
     

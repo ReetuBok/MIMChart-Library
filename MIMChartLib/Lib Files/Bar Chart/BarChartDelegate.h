@@ -18,7 +18,7 @@
 -(NSArray *)titlesForXAxis:(id)graph;/*These titles are displayed on X-Axis*/
 -(NSArray *)titlesForYAxis:(id)graph;/*If given,These titles are displayed on Y-Axis*/
 -(NSArray *)grouptitlesForXAxis:(id)graph;/*If given,These titles are displayed on Y-Axis for groups*/
--(NSDictionary *)xAxisProperties:(id)graph;//hide,color,width,style,groupTitleColor,groupTitleBgColor
+-(NSDictionary *)xAxisProperties:(id)graph;//hide,color,width,height,style,groupTitleColor,groupTitleBgColor
 -(NSDictionary *)yAxisProperties:(id)graph;//hide,color,width,style
 
 

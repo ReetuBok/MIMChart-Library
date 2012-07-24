@@ -120,8 +120,16 @@
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.xTitleStyle=X_TITLES_STYLE3;
+            
+            myBarChart.rightMargin=50;
+            myBarChart.topMargin=50;
+            myBarChart.bottomMargin=40;
+            
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
+            
+            [myBarChart.layer setBorderColor:[UIColor blackColor].CGColor];
+            [myBarChart.layer setBorderWidth:2];
             
         }
             break;
@@ -156,7 +164,8 @@
             myBarChart.barcolorArray=[NSArray arrayWithObjects:[MIMColorClass colorWithComponent:@"255,0,0,1"], nil];
             myBarChart.gradientStyle=VERTICAL_GRADIENT_STYLE_2;
             myBarChart.glossStyle=GLOSS_STYLE_2;
-
+            myBarChart.topMargin=50;
+            myBarChart.rightMargin=50;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
             
@@ -167,18 +176,18 @@
             
             yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
             
-            myBarChart1=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            myBarChart1.delegate=self;
-            myBarChart1.tag=10+indexPath.row;
+            myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            myBarChart.delegate=self;
+            myBarChart.tag=10+indexPath.row;
             //myBarChart1.barcolorArray=[NSArray arrayWithObjects:[MIMColorClass colorWithComponent:@"0,0,255,1"], nil];
 
-            myBarChart1.isGradient=YES;
-            myBarChart1.xTitleStyle=X_TITLES_STYLE1;
-            myBarChart1.gradientStyle=HORIZONTAL_GRADIENT_STYLE;
-            myBarChart1.glossStyle=GLOSS_STYLE_1;
+            myBarChart.isGradient=YES;
+            myBarChart.xTitleStyle=X_TITLES_STYLE1;
+            myBarChart.gradientStyle=HORIZONTAL_GRADIENT_STYLE;
+            myBarChart.glossStyle=GLOSS_STYLE_1;
 
-            [myBarChart1 drawBarChart];
-            [cell.contentView addSubview:myBarChart1];
+            [myBarChart drawBarChart];
+            [cell.contentView addSubview:myBarChart];
             
         }
             break;
@@ -226,17 +235,20 @@
             yValuesArray=[[NSArray alloc]initWithObjects:@"-10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",@"10000",@"-21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"-4000",@"10000",@"17000",@"15000",@"11000",@"10000",@"21000",@"24000",@"11000",@"5000",@"-2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
             
             
-            myBarChart1=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            myBarChart1.delegate=self;
-            myBarChart1.tag=10+indexPath.row;
+            myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            myBarChart.delegate=self;
+            myBarChart.tag=10+indexPath.row;
            // myBarChart1.barcolorArray=[NSArray arrayWithObjects:[MIMColorClass colorWithComponent:@"0,0,255,1"], nil];
 
-            myBarChart1.isGradient=YES;
-            myBarChart1.gradientStyle=HORIZONTAL_GRADIENT_STYLE_2;
-            myBarChart1.glossStyle=GLOSS_STYLE_2;
-            myBarChart1.xTitleStyle=X_TITLES_STYLE1;
-            [myBarChart1 drawBarChart];
-            [cell.contentView addSubview:myBarChart1];
+            myBarChart.isGradient=YES;
+            myBarChart.gradientStyle=HORIZONTAL_GRADIENT_STYLE_2;
+            myBarChart.glossStyle=GLOSS_STYLE_2;
+            myBarChart.xTitleStyle=X_TITLES_STYLE1;
+            myBarChart.topMargin=50;
+            myBarChart.rightMargin=50;
+            
+            [myBarChart drawBarChart];
+            [cell.contentView addSubview:myBarChart];
             
         }
             break;
@@ -283,20 +295,8 @@
 {
     NSArray *xValuesArray=nil;
     
-    if(([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=11)|| graph==myBarChart1)
-        xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
-                      @"Feb",
-                      @"Mar",
-                      @"Apr",
-                      @"May",
-                      @"Jun",
-                      @"Jul",
-                      @"Aug",
-                      @"Sep",
-                      @"Oct",
-                      @"Nov",
-                      @"Dec", nil];
-    
+
+        
     
     if([(BarChart *)graph tag]==12)
         xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
@@ -333,6 +333,20 @@
                       @"Oct",
                       @"Nov",
                       @"Dec", nil];
+    else
+        xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                      @"Feb",
+                      @"Mar",
+                      @"Apr",
+                      @"May",
+                      @"Jun",
+                      @"Jul",
+                      @"Aug",
+                      @"Sep",
+                      @"Oct",
+                      @"Nov",
+                      @"Dec", nil];
+
     
 
     
@@ -430,6 +444,15 @@
     return nil;
 }
 
+
+-(NSDictionary *)xAxisProperties:(id)graph
+{
+    return [NSDictionary dictionaryWithObjectsAndKeys:@"0,0,0,1",@"color", nil];
+}
+-(NSDictionary *)yAxisProperties:(id)graph
+{
+    return [NSDictionary dictionaryWithObjectsAndKeys:@"0,0,0,1",@"color", nil];
+}
 -(UILabel *)createLabelWithText:(NSString *)text
 {
     UILabel *a=[[UILabel alloc]initWithFrame:CGRectMake(5, myTableView.frame.size.width * 0.5 + 20, 310, 20)];
