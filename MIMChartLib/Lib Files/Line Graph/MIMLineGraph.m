@@ -682,6 +682,9 @@
     
     
     
+    
+    
+    
     [MIMProperties drawBgPattern:ctx color:mbackgroundColor gridWidth:(CGRectGetWidth(self.frame)-yAxisWidth-leftMargin-rightMargin) gridHeight:_gridHeight leftMargin:leftMargin+yAxisWidth topMargin:topMargin];
     
     

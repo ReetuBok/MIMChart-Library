@@ -1318,7 +1318,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
             if(_height<0)isNegativeBar=TRUE;
             if(_height<0)_height=-_height;
             
-            NSLog(@"original _height=%i",_height);
+
             BarView *view=[[BarView alloc]initWithFrame:CGRectMake((i* barWidth) + spaceBetweenSameGroupBar*(i+1) +_leftMargin,originY+topMargin,barWidth,_height)];
             view.isGradient=isGradient;
             view.tag=300+i;

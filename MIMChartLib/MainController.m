@@ -42,7 +42,7 @@
         featureListCellArray=[[NSArray alloc]initWithObjects:
                               [[NSArray alloc]initWithObjects:@"Overview of all Pie Charts",@"Introduction Animation on Pie",@"Detail View Pop Up Styles",@"Display Information Styles",@"Other Features", nil],
                               [[NSArray alloc]initWithObjects:@"Overview of all Doughnut Charts", nil],
-                              [[NSArray alloc]initWithObjects:@"Overview of all Line Charts", nil],
+                              [[NSArray alloc]initWithObjects:@"Overview of all Line Charts",@"Complex Line Charts", nil],
                               [[NSArray alloc]initWithObjects:@"Overview of all Wall Graphs", nil],
                               [[NSArray alloc]initWithObjects:@"Overview of all Bar Charts",@"Multiple Bar Views Management", nil],
                               [[NSArray alloc]initWithObjects:@"Overview of Gauge Graphs", nil],nil];

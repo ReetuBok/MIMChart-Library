@@ -128,7 +128,11 @@
         TestLineClass *level3=[[TestLineClass alloc]initWithNibName:@"TestLineClass" bundle:nil];
         [self.navigationController pushViewController:level3 animated:YES];
     }
- 
+    else if([title isEqualToString:@"Animated Line Charts"])
+    {
+        TestLineClass2 *level3=[[TestLineClass2 alloc]initWithNibName:@"TestLineClass2" bundle:nil];
+        [self.navigationController pushViewController:level3 animated:YES];
+    }
     
     
     
@@ -273,6 +277,10 @@
     else if([titleString isEqualToString:@"Overview of all Line Charts"])
     {
         featureListCellArray=[[NSArray alloc]initWithObjects:@"Basic Line Charts", nil];
+    }
+    else if([titleString isEqualToString:@"Complex Line Charts"])
+    {
+        featureListCellArray=[[NSArray alloc]initWithObjects:@"Animated Line Charts", nil];
     }
     
     

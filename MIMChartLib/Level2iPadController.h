@@ -26,7 +26,7 @@
 
 
 #import "TestLineClass.h"
-
+#import "TestLineClass2.h"
 
 
 #import "TestClassFragmented.h"

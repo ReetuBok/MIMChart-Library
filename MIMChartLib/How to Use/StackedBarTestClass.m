@@ -125,7 +125,7 @@
             myBarChart.glossStyle=GLOSS_STYLE_1;
             
             myBarChart.rightMargin=30;
-            
+            myBarChart.topMargin=50;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
             
