@@ -167,6 +167,352 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     [self _displayYAxisLabels];
 }
 
+-(void)reloadBarChartWithAnimation
+{
+    [_yValElements removeAllObjects];
+    
+
+    if([delegate respondsToSelector:@selector(valuesForGraph:)])
+    {
+        NSArray *valueArray_=[delegate valuesForGraph:self];
+        NSAssert(([valueArray_ count] !=0),@"WARNING::No values available to draw graph.");
+        
+        //See if the its an array or array or just one array
+        if([valueArray_ count]>0)
+        {
+            _yValElements=[NSMutableArray arrayWithArray:valueArray_];
+        }
+        
+        
+    }
+    else
+    {
+        NSLog(@"Error: Use delegate Method valuesForGraph: to give values for graph.");
+    }
+    
+    
+    
+    
+    
+    BOOL recalculation=[self findIfRecalculatingYScalingIsRequired];
+   
+    if(recalculation)
+    {
+        [self _findScaleForYTile];
+        [[self viewWithTag:YBANDTAG] removeFromSuperview];
+        [self _displayYAxisLabels];
+    }
+    
+    // Drawing code
+    if(groupedBars)
+    {
+        /*
+        int xOrigin=barWidth;
+        for (int j=0; j<[_yValElements count]; j++) 
+        {
+            for (int i=0; i< [[_yValElements objectAtIndex:j] count]; i++) 
+            {
+                
+                
+                BOOL isNegativeBar=FALSE;
+                
+                int _height=[[[_yValElements objectAtIndex:j] objectAtIndex:i] intValue];
+                _height=_height*_scalingY;
+                
+                float originY;
+                if(_height<0)originY=_gridHeight-barYOffsetForNegativeGraphs;
+                else originY=_gridHeight-_height-barYOffsetForNegativeGraphs;
+                
+                if(_height<0)isNegativeBar=TRUE;
+                if(_height<0)_height=-_height;
+                
+                
+                
+                BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin, originY+topMargin, barWidth, _height)];
+                
+                view.isGradient=isGradient;
+                view.gradientStyle=gradientStyle;
+                view.glossStyle=glossStyle;
+                
+                if(isNegativeBar) view.negativeBar=TRUE;
+                else view.negativeBar=FALSE;
+                
+                if(isGradient)
+                {
+                    view.dColor=[MIMColor GetColorAtIndex:((2*i)+style+1)%totalColors];
+                    view.lColor=[MIMColor GetColorAtIndex:((2*i)+style)%totalColors];
+                }
+                else view.color=[MIMColor GetMIMColorAtIndex:(i+style)%totalColors];
+                
+                view.borderColor=[UIColor blackColor];
+                
+                //Draw the shadow
+                [self drawShadowOnView:view negativeBars:isNegativeBar];
+                
+                
+                [self createAnimationOn:view withBarHeight:_height negativeBars:isNegativeBar idValue:-1];
+                
+                
+                if(isLongGraph_) 
+                    [lineGScrollView addSubview:view];
+                else 
+                    [self addSubview:view];
+                
+                if(i<[[_yValElements objectAtIndex:j] count]-1)
+                    xOrigin+=spaceBetweenSameGroupBar;
+                
+                xOrigin+=barWidth;
+            }
+            
+            xOrigin+=gapBetweenBarsDifferentGroup;
+        }
+        
+        xOrigin+=barWidth;
+        lineGScrollView.contentSize=CGSizeMake(xOrigin, self.frame.size.height);
+        contentSizeX=xOrigin;
+        
+        */
+        
+        
+    }
+    else if(stackedBars)
+    {
+        
+        
+        /*
+        
+        int xOrigin=barWidth;
+        for (int j=0; j<[_yValElements count]; j++) 
+        {
+            
+            //Find ordered elements of [_yValElements objectAtIndex:j]
+            NSArray *stackArray=[_yValElements objectAtIndex:j];
+            
+            
+            float totalQ=[[stackArray lastObject] floatValue];
+            int heightOffset=0;
+            float totalHeight=0;
+            
+            
+            for (int i=[stackArray count]-2; i >=0; i--) 
+            {
+                
+                BOOL isNegativeBar=FALSE;
+                
+                int _height=[[stackArray objectAtIndex:i] intValue]*.01*totalQ;
+                _height=_height*_scalingY;
+                
+                float originY;
+                if(_height<0)originY=_gridHeight-barYOffsetForNegativeGraphs;
+                else originY=_gridHeight-_height-barYOffsetForNegativeGraphs;
+                
+                if(_height<0)isNegativeBar=TRUE;
+                if(_height<0)_height=-_height;
+                
+                
+                
+                BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin,originY+topMargin-heightOffset, barWidth, _height)];
+                
+                view.isGradient=isGradient;
+                view.gradientStyle=gradientStyle;
+                view.glossStyle=GLOSS_NONE;
+                
+                if(isNegativeBar) view.negativeBar=TRUE;
+                else view.negativeBar=FALSE;
+                
+                
+                
+                
+                if(isGradient)
+                {
+                    view.dColor=[MIMColor GetColorAtIndex:((2*i)+style+1)%totalColors];
+                    view.lColor=[MIMColor GetColorAtIndex:((2*i)+style)%totalColors];
+                }
+                else
+                    view.color=[MIMColor GetMIMColorAtIndex:(i+style)%totalColors];
+                
+                
+                
+                
+                view.borderColor=[UIColor blackColor];
+                
+                [self createAnimationOn:view withBarHeight:_height negativeBars:isNegativeBar idValue:([stackArray count]-1 - i)];
+                [self drawShadowOnView:view negativeBars:isNegativeBar];
+                
+                if(isLongGraph_) [lineGScrollView addSubview:view];
+                else [self addSubview:view];
+                
+                //for gloss
+                if (i==0) 
+                {
+                    
+                    
+                    BarView *view=[[BarView alloc]initWithFrame:CGRectMake(xOrigin+_leftMargin,originY+topMargin-heightOffset, barWidth, totalHeight)];
+                    
+                    view.gradientStyle=gradientStyle;
+                    view.glossStyle=glossStyle;
+                    view.color=[MIMColorClass colorWithComponent:@"1,0,0,0"];
+                    
+                    if(isNegativeBar) view.negativeBar=TRUE;
+                    else view.negativeBar=FALSE;
+                    
+                    if(isLongGraph_) [lineGScrollView addSubview:view];
+                    else [self addSubview:view];
+                    
+                }
+                
+                heightOffset+=_height;
+                
+                
+                if(i<[[_yValElements objectAtIndex:j] count]-1)
+                    xOrigin+=spaceBetweenSameGroupBar;
+                
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+            xOrigin+=barWidth;
+            xOrigin+=gapBetweenBarsDifferentGroup;
+        }
+        
+        
+        
+        xOrigin+=barWidth;
+        lineGScrollView.contentSize=CGSizeMake(xOrigin, self.frame.size.height);
+        contentSizeX=xOrigin;
+         */
+    }
+    else
+    {
+        
+
+        
+        for (int i=0; i<[_yValElements count]; i++) 
+        { 
+            BOOL isNegativeBar=FALSE;
+            
+            int _height=[[_yValElements objectAtIndex:i] intValue]*_scalingY;
+            float originY;
+            if(_height<0)originY=_gridHeight-barYOffsetForNegativeGraphs;
+            else originY=_gridHeight-_height-barYOffsetForNegativeGraphs;
+            
+            if(_height<0)isNegativeBar=TRUE;
+            if(_height<0)_height=-_height;
+            
+            
+            BarView *view;
+            if(isLongGraph_)
+            {
+                view =(BarView *)[lineGScrollView viewWithTag:300+i];
+            }
+            else
+            {
+                view =(BarView *)[self viewWithTag:300+i];
+
+            }
+
+            
+
+            
+            
+            [UIView beginAnimations:[NSString stringWithFormat:@"%i",300+i] context:nil];
+            [UIView setAnimationDelegate:self];
+            [UIView setAnimationDuration:0.5];
+            
+        
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+            
+            CGRect a=view.frame;
+            a.origin.y=originY+topMargin;
+            a.size.height=_height;
+            view.frame=a;
+            
+            [UIView commitAnimations];
+            
+            
+ 
+        }
+        
+        
+    }
+    
+    
+    
+    
+}
+
+- (void) animationDone:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context {
+    
+    int tagid=[animationID intValue];
+
+    
+    
+    BOOL isNegativeBar=FALSE;
+
+    int _height=[[_yValElements objectAtIndex:tagid-300] floatValue]*_scalingY;
+    float originY;
+    if(_height<0)originY=_gridHeight-barYOffsetForNegativeGraphs;
+    else originY=_gridHeight-_height-barYOffsetForNegativeGraphs;
+
+    if(_height<0)isNegativeBar=TRUE;
+    if(_height<0)_height=-_height;
+
+
+    
+    BarView *view;
+    if(isLongGraph_)
+    {
+        view =(BarView *)[lineGScrollView viewWithTag:tagid];
+    }
+    else
+    {
+        view =(BarView *)[self viewWithTag:tagid];
+
+    }
+
+    
+    CGRect a=view.frame;
+    a.origin.y=originY+topMargin;
+    a.size.height=_height;
+    view.frame=a;
+
+    
+}
+
+-(BOOL)findIfRecalculatingYScalingIsRequired
+{
+    BOOL required=FALSE;
+    
+    for (int i=0; i<[_yValElements count]; i++) 
+    { 
+        BOOL isNegativeBar=FALSE;
+        
+        int _height=[[_yValElements objectAtIndex:i] intValue]*_scalingY;
+        float originY;
+        if(_height<0)originY=_gridHeight-barYOffsetForNegativeGraphs;
+        else originY=_gridHeight-_height-barYOffsetForNegativeGraphs;
+        
+        if(_height<0)isNegativeBar=TRUE;
+        if(_height<0)_height=-_height;
+        
+        if(abs(_height)>_gridHeight)
+        {
+            required=TRUE;
+            break;
+        }
+        
+    }
+    return required;
+    
+}
+
+#pragma mark - Internal Drawing Method
+
 -(void)initAndWarnings 
 {
     
@@ -972,9 +1318,10 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
             if(_height<0)isNegativeBar=TRUE;
             if(_height<0)_height=-_height;
             
-            
+            NSLog(@"original _height=%i",_height);
             BarView *view=[[BarView alloc]initWithFrame:CGRectMake((i* barWidth) + spaceBetweenSameGroupBar*(i+1) +_leftMargin,originY+topMargin,barWidth,_height)];
             view.isGradient=isGradient;
+            view.tag=300+i;
             view.gradientStyle=gradientStyle;
             view.glossStyle=glossStyle;
             if(isNegativeBar) view.negativeBar=TRUE;
@@ -1031,6 +1378,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         
         
     }
+    
     [self drawBarInfoBoxForGraph];
 
     if(isLongGraph_ && !groupedBars) 

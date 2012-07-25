@@ -38,7 +38,7 @@
 #import "BarTestClass.h"
 #import "GroupBarTestClass.h"
 #import "StackedBarTestClass.h"
-
+#import "MultipleBarViews.h"
 
 #import "GaugeGraphTestClass.h"
 

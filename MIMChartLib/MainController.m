@@ -44,7 +44,7 @@
                               [[NSArray alloc]initWithObjects:@"Overview of all Doughnut Charts", nil],
                               [[NSArray alloc]initWithObjects:@"Overview of all Line Charts", nil],
                               [[NSArray alloc]initWithObjects:@"Overview of all Wall Graphs", nil],
-                              [[NSArray alloc]initWithObjects:@"Overview of all Bar Charts", nil],
+                              [[NSArray alloc]initWithObjects:@"Overview of all Bar Charts",@"Multiple Bar Views Management", nil],
                               [[NSArray alloc]initWithObjects:@"Overview of Gauge Graphs", nil],nil];
         
     }

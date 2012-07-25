@@ -169,6 +169,12 @@
         StackedBarTestClass *level3=[[StackedBarTestClass alloc]initWithNibName:@"StackedBarTestClass" bundle:nil];
         [self.navigationController pushViewController:level3 animated:YES];
     }
+    else if([title isEqualToString:@"Basic Bar Views Management"])
+    {
+        MultipleBarViews *level3=[[MultipleBarViews alloc]initWithNibName:@"MultipleBarViews" bundle:nil];
+        [self.navigationController pushViewController:level3 animated:YES];
+    }
+    
     
     /***************************GAUGE GRAPHS****************************/
     
@@ -296,7 +302,10 @@
     {
         featureListCellArray=[[NSArray alloc]initWithObjects:@"Basic Bar Charts",@"Basic Grouped Bar Charts",@"Basic Stacked Bar Charts", nil];
     }
-    
+    else if([titleString isEqualToString:@"Multiple Bar Views Management"])
+    {
+        featureListCellArray=[[NSArray alloc]initWithObjects:@"Basic Bar Views Management", nil];
+    }
     
  
     

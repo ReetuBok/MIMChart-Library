@@ -76,7 +76,7 @@
 @property(nonatomic,assign)float bottomMargin;
 
 -(void)drawBarChart;
-
+-(void)reloadBarChartWithAnimation;
 
 
 

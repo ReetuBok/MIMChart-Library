@@ -94,6 +94,8 @@
 		2384DAF01573EBA100F9F126 /* StackedBarTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAEE1573EBA100F9F126 /* StackedBarTestClass.m */; };
 		2384DAF11573EBA100F9F126 /* StackedBarTestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2384DAEF1573EBA100F9F126 /* StackedBarTestClass.xib */; };
 		2384DAFA1573F4AA00F9F126 /* MultiWallLongGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2384DAF91573F4AA00F9F126 /* MultiWallLongGraph.m */; };
+		238C0C5E15BF57D700AF1382 /* MultipleBarViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 238C0C5C15BF57D700AF1382 /* MultipleBarViews.m */; };
+		238C0C5F15BF57D700AF1382 /* MultipleBarViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = 238C0C5D15BF57D700AF1382 /* MultipleBarViews.xib */; };
 		23A7485F15BB940100E35409 /* MIMProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A7485E15BB940000E35409 /* MIMProperties.m */; };
 		23BD8E40156EE1B90098E85D /* LineScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23BD8E3F156EE1B90098E85D /* LineScrollView.m */; };
 		23BD8E42156EE3AB0098E85D /* data3.csv in Resources */ = {isa = PBXBuildFile; fileRef = 23BD8E41156EE3AB0098E85D /* data3.csv */; };
@@ -291,6 +293,9 @@
 		2384DAEF1573EBA100F9F126 /* StackedBarTestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StackedBarTestClass.xib; sourceTree = "<group>"; };
 		2384DAF81573F4AA00F9F126 /* MultiWallLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiWallLongGraph.h; sourceTree = "<group>"; };
 		2384DAF91573F4AA00F9F126 /* MultiWallLongGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiWallLongGraph.m; sourceTree = "<group>"; };
+		238C0C5B15BF57D700AF1382 /* MultipleBarViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleBarViews.h; sourceTree = "<group>"; };
+		238C0C5C15BF57D700AF1382 /* MultipleBarViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleBarViews.m; sourceTree = "<group>"; };
+		238C0C5D15BF57D700AF1382 /* MultipleBarViews.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultipleBarViews.xib; sourceTree = "<group>"; };
 		23A7485D15BB940000E35409 /* MIMProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMProperties.h; sourceTree = "<group>"; };
 		23A7485E15BB940000E35409 /* MIMProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMProperties.m; sourceTree = "<group>"; };
 		23BD8E3E156EE1B90098E85D /* LineScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineScrollView.h; path = "../Line Graph/LineScrollView.h"; sourceTree = "<group>"; };
@@ -566,6 +571,9 @@
 				23197F6B154F79470023521F /* BarTestClass.h */,
 				23197F6C154F79470023521F /* BarTestClass.m */,
 				23197F87154F96ED0023521F /* BarTestClass.xib */,
+				238C0C5B15BF57D700AF1382 /* MultipleBarViews.h */,
+				238C0C5C15BF57D700AF1382 /* MultipleBarViews.m */,
+				238C0C5D15BF57D700AF1382 /* MultipleBarViews.xib */,
 			);
 			name = "Bar Chart Samples";
 			sourceTree = "<group>";
@@ -939,6 +947,7 @@
 				23BD8E42156EE3AB0098E85D /* data3.csv in Resources */,
 				23BD8E4B156FE5810098E85D /* data4.csv in Resources */,
 				2384DAF11573EBA100F9F126 /* StackedBarTestClass.xib in Resources */,
+				238C0C5F15BF57D700AF1382 /* MultipleBarViews.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1016,6 +1025,7 @@
 				235C086F15A5F3C2006E9BED /* MIMMeter.m in Sources */,
 				237CBBEE15AD05EC008C693A /* BarInfoBox.m in Sources */,
 				23A7485F15BB940100E35409 /* MIMProperties.m in Sources */,
+				238C0C5E15BF57D700AF1382 /* MultipleBarViews.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
