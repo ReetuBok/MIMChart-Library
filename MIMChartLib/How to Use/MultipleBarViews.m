@@ -41,11 +41,13 @@
     NSArray *a3=[NSArray arrayWithObjects:@"10000",@"17000",@"22000",@"11000",@"17000",@"13000",@"12000",@"17000",@"10000",@"37000",@"25000",@"21000", nil];
     NSArray *a4=[NSArray arrayWithObjects:@"6000",@"22000",@"21000",@"9000",@"15000",@"9000",@"15000",@"14000",@"12000",@"7000",@"15000",@"10000", nil];
     NSArray *a5=[NSArray arrayWithObjects:@"15000",@"25000",@"20000",@"15000",@"5000",@"9000",@"19000",@"17000",@"10000",@"17000",@"25000",@"31000", nil];
+    
+    
     yValuesArray=[[NSArray alloc]initWithObjects:a1,a2,a3,a4,a5,nil];
     
     
+    
     mBarChart.delegate=self;
-
     mBarChart.xTitleStyle=X_TITLES_STYLE3;
     
     mBarChart.rightMargin=50;

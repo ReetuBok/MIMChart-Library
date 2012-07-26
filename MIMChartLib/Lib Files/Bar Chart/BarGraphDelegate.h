@@ -10,7 +10,7 @@
 
 #ifndef MIMChartLib_BarChartDelegate_h
 #define MIMChartLib_BarChartDelegate_h
-@protocol BarChartDelegate<NSObject>
+@protocol BarGraphDelegate<NSObject>
 @optional
 
 -(NSArray *)valuesForGraph:(id)graph; /*This values are plot on Y-Axis*/

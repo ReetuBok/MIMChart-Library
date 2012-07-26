@@ -26,6 +26,7 @@
 #import "Anchor.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define DIM 20.0
 @implementation Anchor
 @synthesize delegate,anchorTag,properties;
 
@@ -73,7 +74,7 @@
     
     int style=[[properties valueForKey:@"style"] intValue];
 
-    float radius=10;
+    float radius=7;
     if([properties valueForKey:@"radius"])
         radius=[[properties valueForKey:@"radius"] floatValue];
 
@@ -148,30 +149,15 @@
         borderColor=[UIColor colorWithRed:c.red green:c.green blue:c.blue alpha:c.alpha];
     }
     
-    float borderWidth=0.4;
-    if([properties valueForKey:@"borderWidth"])
-        borderWidth=[[properties valueForKey:@"borderWidth"] floatValue];
-    
-    
+//    float borderWidth=0.4;
+//    if([properties valueForKey:@"borderWidth"])
+//        borderWidth=[[properties valueForKey:@"borderWidth"] floatValue];
+//    
+    float borderWidth=0.8;
 
     CGRect r;
     
-    if(!shadowOn) 
-    {
-        if(radius>7 && radius<9) r=CGRectMake(borderWidth, borderWidth, 2*radius - 2*borderWidth,  2*radius - 2*borderWidth);
-        else if(radius>=9) r=CGRectMake(borderWidth+1, borderWidth+1, 2*radius - 2*borderWidth -2,  2*radius - 2*borderWidth -2);
-        else r=CGRectMake(1, 1, 2*radius,  2*radius);
-        
-    }
-    else 
-    {       
-        //NSLog(@"WARNING:Radius may appear smaller because shadow is On.");
-
-        if(radius==7 || radius==8) r=CGRectMake(borderWidth, borderWidth, 2*radius - 2*borderWidth,  2*radius - 2*borderWidth);
-        else if(radius==9 || radius==10) r=CGRectMake(2, 2, 2*radius - 6,  2*radius - 6);
-        else r=CGRectMake(1, 1, 2*radius,  2*radius);
-    }
-    
+    r=CGRectMake(1 + ((DIM - 2*radius - 2)/2), 1 + ((DIM - 2*radius-2)/2), 2*radius - 2,  2*radius-2);    
     
     switch (style) 
     {

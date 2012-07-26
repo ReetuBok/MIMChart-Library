@@ -17,7 +17,7 @@
 		23197EE5154BA3830023521F /* XAxisBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E8F154BA3830023521F /* XAxisBand.m */; };
 		23197EE6154BA3830023521F /* XAxisLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E91154BA3830023521F /* XAxisLabel.m */; };
 		23197EE7154BA3830023521F /* YAxisBand.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E93154BA3830023521F /* YAxisBand.m */; };
-		23197EE8154BA3830023521F /* BarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E96154BA3830023521F /* BarChart.m */; };
+		23197EE8154BA3830023521F /* MIMBarGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E96154BA3830023521F /* MIMBarGraph.m */; };
 		23197EE9154BA3830023521F /* BarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E98154BA3830023521F /* BarView.m */; };
 		23197EEA154BA3830023521F /* Cluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E9B154BA3830023521F /* Cluster.m */; };
 		23197EEB154BA3830023521F /* ClusterGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E9D154BA3830023521F /* ClusterGraph.m */; };
@@ -172,8 +172,8 @@
 		23197E91154BA3830023521F /* XAxisLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAxisLabel.m; sourceTree = "<group>"; };
 		23197E92154BA3830023521F /* YAxisBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAxisBand.h; sourceTree = "<group>"; };
 		23197E93154BA3830023521F /* YAxisBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAxisBand.m; sourceTree = "<group>"; };
-		23197E95154BA3830023521F /* BarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChart.h; sourceTree = "<group>"; };
-		23197E96154BA3830023521F /* BarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChart.m; sourceTree = "<group>"; };
+		23197E95154BA3830023521F /* MIMBarGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MIMBarGraph.h; sourceTree = "<group>"; };
+		23197E96154BA3830023521F /* MIMBarGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMBarGraph.m; sourceTree = "<group>"; };
 		23197E97154BA3830023521F /* BarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarView.h; sourceTree = "<group>"; };
 		23197E98154BA3830023521F /* BarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarView.m; sourceTree = "<group>"; };
 		23197E9A154BA3830023521F /* Cluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cluster.h; sourceTree = "<group>"; };
@@ -255,7 +255,7 @@
 		23197F7D154F7EDB0023521F /* TestClassFragmented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestClassFragmented.m; sourceTree = "<group>"; };
 		23197F80154F7FB50023521F /* FragmentedDoughNutDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedDoughNutDelegate.h; sourceTree = "<group>"; };
 		23197F81154F818F0023521F /* TestClassFragmented.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestClassFragmented.xib; sourceTree = "<group>"; };
-		23197F83154F91C90023521F /* BarChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartDelegate.h; sourceTree = "<group>"; };
+		23197F83154F91C90023521F /* BarGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BarGraphDelegate.h; sourceTree = "<group>"; };
 		23197F85154F92020023521F /* WallGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallGraphDelegate.h; sourceTree = "<group>"; };
 		23197F86154F921D0023521F /* ClusterGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterGraphDelegate.h; sourceTree = "<group>"; };
 		23197F87154F96ED0023521F /* BarTestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BarTestClass.xib; sourceTree = "<group>"; };
@@ -423,11 +423,11 @@
 		23197E94154BA3830023521F /* Bar Chart */ = {
 			isa = PBXGroup;
 			children = (
-				23197E95154BA3830023521F /* BarChart.h */,
-				23197E96154BA3830023521F /* BarChart.m */,
+				23197E95154BA3830023521F /* MIMBarGraph.h */,
+				23197E96154BA3830023521F /* MIMBarGraph.m */,
 				23197E97154BA3830023521F /* BarView.h */,
 				23197E98154BA3830023521F /* BarView.m */,
-				23197F83154F91C90023521F /* BarChartDelegate.h */,
+				23197F83154F91C90023521F /* BarGraphDelegate.h */,
 				237CBBEC15AD05EB008C693A /* BarInfoBox.h */,
 				237CBBED15AD05EC008C693A /* BarInfoBox.m */,
 			);
@@ -978,7 +978,7 @@
 				23197EE5154BA3830023521F /* XAxisBand.m in Sources */,
 				23197EE6154BA3830023521F /* XAxisLabel.m in Sources */,
 				23197EE7154BA3830023521F /* YAxisBand.m in Sources */,
-				23197EE8154BA3830023521F /* BarChart.m in Sources */,
+				23197EE8154BA3830023521F /* MIMBarGraph.m in Sources */,
 				23197EE9154BA3830023521F /* BarView.m in Sources */,
 				23197EEA154BA3830023521F /* Cluster.m in Sources */,
 				23197EEB154BA3830023521F /* ClusterGraph.m in Sources */,

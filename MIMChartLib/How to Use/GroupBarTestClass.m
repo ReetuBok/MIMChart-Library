@@ -24,7 +24,7 @@
 //
 
 #import "GroupBarTestClass.h"
-#import "BarChart.h"
+#import "MIMBarGraph.h"
 #import "MIMColor.h"
 
 
@@ -122,7 +122,7 @@
         case 0:
         {
             
-            myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.groupedBars=YES;
             myBarChart.barLabelStyle=BAR_LABEL_STYLE1;
@@ -144,7 +144,7 @@
         case 1:
         {
             
-            myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.isGradient=YES;
@@ -161,7 +161,7 @@
             barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:@"6",@"gapBetweenBars",@"35",@"gapBetweenGroup", nil];
 
             
-            myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.isGradient=YES;
@@ -179,7 +179,7 @@
             barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:@"50",@"gapBetweenGroup" ,nil];
 
             
-            myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.isGradient=YES;
@@ -217,16 +217,16 @@
 {
     NSArray *yValuesArray;
     
-    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=11)
+    if([(MIMBarGraph *)graph tag]>=10 && [(MIMBarGraph *)graph tag]<=11)
     {
         yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],nil];
     }
     
-    if([(BarChart *)graph tag]==12)
+    if([(MIMBarGraph *)graph tag]==12)
     {
         yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],nil];
     }
-    if([(BarChart *)graph tag]==13)
+    if([(MIMBarGraph *)graph tag]==13)
     {
         yValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"-11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"-4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],[NSArray arrayWithObjects:@"10000",@"21000",@"24000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"-2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"17000",@"15000",@"11000", nil],[NSArray arrayWithObjects:@"10000",@"21000",@"-14000",@"11000", nil],[NSArray arrayWithObjects:@"5000",@"2000",@"9000",@"4000", nil],[NSArray arrayWithObjects:@"10000",@"-17000",@"15000",@"11000", nil],nil];
     }
@@ -244,11 +244,11 @@
 {
     NSArray *xValuesArray=nil;
     
-    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=11)
+    if([(MIMBarGraph *)graph tag]>=10 && [(MIMBarGraph *)graph tag]<=11)
         xValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil], nil];
     
     
-    if([(BarChart *)graph tag]>=12)
+    if([(MIMBarGraph *)graph tag]>=12)
         xValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil],[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil],[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil], nil];
     
     
@@ -261,11 +261,11 @@
 {
     NSArray *xValuesArray;
     
-    if([(BarChart *)graph tag]>=10 && [(BarChart *)graph tag]<=11)
+    if([(MIMBarGraph *)graph tag]>=10 && [(MIMBarGraph *)graph tag]<=11)
         xValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil], nil];
     
     
-    if([(BarChart *)graph tag]>=12)
+    if([(MIMBarGraph *)graph tag]>=12)
         xValuesArray=[[NSArray alloc]initWithObjects:[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil],[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil],[NSArray arrayWithObjects:@"Jan",@"Feb",@"Mar",@"Apr", nil],[NSArray arrayWithObjects:@"May",@"Jun",@"Jul",@"Aug", nil],[NSArray arrayWithObjects: @"Sep",@"Oct",@"Nov",@"Dec", nil], nil];
     
     
@@ -277,7 +277,7 @@
 {
     NSArray *gValuesArray=nil;
     
-    if([(BarChart *)graph tag]>=12)
+    if([(MIMBarGraph *)graph tag]>=12)
         gValuesArray=[[NSArray alloc]initWithObjects:@"Q1 2009",@" Q2 2009",@"Q3 2009",@"Q1 2010",@"Q2 2010",@"Q3 2010",@"Q1 2011",@"Q2 2011",@"Q3 2011", nil];
     
     return gValuesArray;
@@ -291,13 +291,13 @@
 
 -(NSDictionary *)horizontalLinesProperties:(id)graph
 {
-    if([(BarChart *)graph tag]==10)
+    if([(MIMBarGraph *)graph tag]==10)
         return [NSDictionary dictionaryWithObjectsAndKeys:@"1,2",@"dotted", nil];
     
-    if([(BarChart *)graph tag]==11)
+    if([(MIMBarGraph *)graph tag]==11)
         return [NSDictionary dictionaryWithObjectsAndKeys:@"4,1",@"dotted", nil];
     
-    if([(BarChart *)graph tag]==12)
+    if([(MIMBarGraph *)graph tag]==12)
         return [NSDictionary dictionaryWithObjectsAndKeys:@"1,4",@"dotted", nil];
     
     return nil;
@@ -317,7 +317,7 @@
 }
 -(NSDictionary *)xAxisProperties:(id)graph
 {
-    if([(BarChart *)graph tag]==12)
+    if([(MIMBarGraph *)graph tag]==12)
     return [NSDictionary dictionaryWithObjectsAndKeys:@"0.95,0.95,0.95",@"groupTitleBgColor", nil];
     
     return nil;
@@ -325,9 +325,9 @@
 
 -(NSDictionary *)animationOnBars:(id)graph
 {
-    if([(BarChart *)graph tag]==10)
+    if([(MIMBarGraph *)graph tag]==10)
         return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:BAR_ANIMATION_VGROW_STYLE],[NSNumber numberWithFloat:1.0],[NSNumber numberWithFloat:1.0], nil] forKeys:[NSArray arrayWithObjects:@"type",@"animationDelay",@"animationDuration" ,nil] ];
-    else if([(BarChart *)graph tag]==13)
+    else if([(MIMBarGraph *)graph tag]==13)
         return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:BAR_ANIMATION_VGROW_STYLE],[NSNumber numberWithFloat:1.0], nil] forKeys:[NSArray arrayWithObjects:@"type",@"animationDuration" ,nil] ];
     return nil;
 }

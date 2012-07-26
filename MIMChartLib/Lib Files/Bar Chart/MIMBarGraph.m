@@ -24,10 +24,10 @@
 //  Copyright (c) 2012 __MIM 2D__. All rights reserved.
 //
 
-#import "BarChart.h"
+#import "MIMBarGraph.h"
 #import "BarView.h"
 #import "LineInfoBox.h"
-@interface BarChart()
+@interface MIMBarGraph()
 {
     NSMutableArray *_yValElements;
     NSMutableArray *_xValElements;
@@ -84,7 +84,7 @@
 
 #define TITLELABEL 1001
 
-@implementation BarChart
+@implementation MIMBarGraph
 @synthesize isGradient,groupTitlesOffset,gradientStyle,glossStyle,minimumLabelOnYIsZero;
 @synthesize delegate,xTitleStyle,mbackgroundcolor,barcolorArray;
 @synthesize style, groupedBars,stackedBars,barLabelStyle,titleLabel;
@@ -146,7 +146,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     [titleLabel setTextAlignment:UITextAlignmentCenter];
     [self addSubview:titleLabel];
     
-    
+    titleLabel.text=@"Bar Chart Title";
     
   
 }
@@ -160,7 +160,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     [self createLongBarGraphScrollView];
   
     titleLabel.frame=CGRectMake(leftMargin, topMargin+_gridHeight+xAxisHeight+5, CGRectGetWidth(self.frame)-leftMargin-rightMargin, 20);
-    titleLabel.text=@"Bar Chart Title";
+    
     
     [self setNeedsDisplay];
     [self _displayXAxisLabels];
@@ -897,6 +897,10 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 
 
         lineGScrollView.tag=LINESCROLLVIEWTAG;
+        
+        [lineGScrollView setShowsHorizontalScrollIndicator:NO];
+        [lineGScrollView setShowsVerticalScrollIndicator:NO];
+
         [self addSubview:lineGScrollView];        
     }
 }

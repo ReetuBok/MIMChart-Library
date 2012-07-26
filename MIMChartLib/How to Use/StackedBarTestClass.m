@@ -87,7 +87,7 @@
             
             barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:[NSNumber numberWithBool:NO],@"shadow" ,nil];
 
-            myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.stackedBars=YES;
             myBarChart.tag=10+indexPath.row;
@@ -115,7 +115,7 @@
             
             barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:@"50",@"barwidth",nil];
             
-            myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.stackedBars=YES;
@@ -144,7 +144,7 @@
             
             barProperty=[[NSDictionary alloc]initWithObjectsAndKeys:@"40",@"barwidth", nil];
             
-            myBarChart=[[BarChart alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.stackedBars=YES;
@@ -207,13 +207,13 @@
 
 -(NSDictionary *)horizontalLinesProperties:(id)graph
 {
-    if([(BarChart *)graph tag]==10)
+    if([(MIMBarGraph *)graph tag]==10)
         return [NSDictionary dictionaryWithObjectsAndKeys:@"1,2",@"dotted", nil];
     
-    if([(BarChart *)graph tag]==11)
+    if([(MIMBarGraph *)graph tag]==11)
         return [NSDictionary dictionaryWithObjectsAndKeys:@"4,1",@"dotted", nil];
     
-    if([(BarChart *)graph tag]==12)
+    if([(MIMBarGraph *)graph tag]==12)
         return [NSDictionary dictionaryWithObjectsAndKeys:@"1,4",@"dotted", nil];
     
     return nil;
@@ -234,7 +234,7 @@
 
 -(NSDictionary *)animationOnBars:(id)graph
 {
-    if([(BarChart *)graph tag]==11)
+    if([(MIMBarGraph *)graph tag]==11)
         return [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:BAR_ANIMATION_VGROW_STYLE],[NSNumber numberWithFloat:0.2],[NSNumber numberWithFloat:0.5],[NSNumber numberWithBool:YES], nil] forKeys:[NSArray arrayWithObjects:@"type",@"animationDelay",@"animationDuration",@"transparentBg" ,nil] ];
    
     

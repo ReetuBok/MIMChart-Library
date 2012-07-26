@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BarChart.h"
+#import "MIMBarGraph.h"
 
-@interface MultipleBarViews : UIViewController<UIPickerViewDelegate,BarChartDelegate>
+@interface MultipleBarViews : UIViewController<UIPickerViewDelegate,BarGraphDelegate>
 {
     NSArray *yValuesArray;
     NSArray *xValuesArray;
     NSArray *xTitlesArray;
 
-    IBOutlet BarChart *mBarChart;
+    IBOutlet MIMBarGraph *mBarChart;
     IBOutlet UILabel *YearLabel;
     NSArray *yearArray;
     int selectedYear;

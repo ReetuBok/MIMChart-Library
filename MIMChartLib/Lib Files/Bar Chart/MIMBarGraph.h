@@ -24,12 +24,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BarChartDelegate.h"
+#import "BarGraphDelegate.h"
 #import "Constant.h"
 
-@interface BarChart : UIView {
+@interface MIMBarGraph : UIView {
     
-    id<BarChartDelegate>delegate;
+    id<BarGraphDelegate>delegate;
     X_TITLES_STYLE xTitleStyle;//Default is X_TITLES_STYLE1 
     BOOL groupedBars;
     BOOL stackedBars;
@@ -53,7 +53,7 @@
     float groupTitlesOffset;
 }
 
-@property(nonatomic,retain)id<BarChartDelegate>delegate;
+@property(nonatomic,retain)id<BarGraphDelegate>delegate;
 @property(nonatomic,assign)X_TITLES_STYLE xTitleStyle;
 @property(nonatomic,assign)BOOL groupedBars;
 @property(nonatomic,assign)BOOL stackedBars;

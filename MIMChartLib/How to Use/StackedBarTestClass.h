@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BarChart.h"
+#import "MIMBarGraph.h"
 #import "MIMColor.h"
-@interface StackedBarTestClass : UIViewController<UITableViewDelegate,UITableViewDataSource,BarChartDelegate>
+@interface StackedBarTestClass : UIViewController<UITableViewDelegate,UITableViewDataSource,BarGraphDelegate>
 {
     NSArray *xValuesArray;
     NSArray *yValuesArray;
@@ -17,7 +17,7 @@
 
     
     IBOutlet UITableView *myTableView;
-    BarChart *myBarChart;
+    MIMBarGraph *myBarChart;
     NSDictionary *barProperty;
 }
 @end

@@ -184,7 +184,6 @@
     
    
     titleLabel.frame=CGRectMake(leftMargin, topMargin+_gridHeight+xAxisHeight+5, CGRectGetWidth(self.frame)-leftMargin-rightMargin, 20);
-    titleLabel.text=@"Line Chart Title";
     
     [self createLineColorArray];//Get colors for the line
     [self setNeedsDisplay];
@@ -219,6 +218,9 @@
     [titleLabel setTextColor:[UIColor blackColor]];
     [titleLabel setTextAlignment:UITextAlignmentCenter];
     [self addSubview:titleLabel];
+    
+    titleLabel.text=@"Line Chart Title";
+
 }
 
 
@@ -599,6 +601,11 @@
         lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(leftMargin+yAxisWidth, 0, CGRectGetWidth(self.frame)-leftMargin-rightMargin-yAxisWidth -10, self.frame.size.height)];
         [lineGScrollView setBackgroundColor:[UIColor clearColor]];
         lineGScrollView.contentSize=CGSizeMake(_gridWidth, self.frame.size.height);
+        
+        [lineGScrollView setShowsHorizontalScrollIndicator:NO];
+        [lineGScrollView setShowsVerticalScrollIndicator:NO];
+
+        
         [self addSubview:lineGScrollView];        
     }
 }

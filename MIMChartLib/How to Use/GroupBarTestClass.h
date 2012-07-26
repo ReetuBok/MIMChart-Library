@@ -24,14 +24,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BarChart.h"
+#import "MIMBarGraph.h"
 #import "MIMColor.h"
 
-@interface GroupBarTestClass : UIViewController<UITableViewDelegate,UITableViewDataSource,BarChartDelegate>
+@interface GroupBarTestClass : UIViewController<UITableViewDelegate,UITableViewDataSource,BarGraphDelegate>
 {
     
     IBOutlet UITableView *myTableView;
-    BarChart *myBarChart;
+    MIMBarGraph *myBarChart;
     NSDictionary *barProperty;
 }
 

@@ -25,14 +25,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BarChart.h"
+#import "MIMBarGraph.h"
 #import "MIMColor.h"
 
-@interface BarTestClass : UIViewController<UITableViewDelegate,UITableViewDataSource,BarChartDelegate>
+@interface BarTestClass : UIViewController<UITableViewDelegate,UITableViewDataSource,BarGraphDelegate>
 {
     
     IBOutlet UITableView *myTableView;
-    BarChart *myBarChart;
+    MIMBarGraph *myBarChart;
 
     
     NSArray *yValuesArray;
