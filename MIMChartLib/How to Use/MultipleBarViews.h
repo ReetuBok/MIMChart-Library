@@ -16,6 +16,9 @@
     NSArray *xTitlesArray;
 
     IBOutlet MIMBarGraph *mBarChart;
+    IBOutlet MIMBarGraph *mGroupBarChart;
+    IBOutlet MIMBarGraph *mStackBarChart;
+    
     IBOutlet UILabel *YearLabel;
     NSArray *yearArray;
     int selectedYear;
