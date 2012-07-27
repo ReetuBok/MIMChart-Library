@@ -26,8 +26,11 @@
 #import <UIKit/UIKit.h>
 #import "BarGraphDelegate.h"
 #import "Constant.h"
+#import "BarView.h"
+#import "LineInfoBox.h"
+#import "MIMFloatingView.h"
 
-@interface MIMBarGraph : UIView {
+@interface MIMBarGraph : UIView<BarViewDelegate> {
     
     id<BarGraphDelegate>delegate;
     X_TITLES_STYLE xTitleStyle;//Default is X_TITLES_STYLE1 
@@ -51,6 +54,8 @@
     
     int style;//Optional, incase user wants to choose a particular color from MIMCOlorClass
     float groupTitlesOffset;
+    
+    MIMFloatingView *floatingView;
 }
 
 @property(nonatomic,retain)id<BarGraphDelegate>delegate;
@@ -75,9 +80,11 @@
 @property(nonatomic,assign)float leftMargin;
 @property(nonatomic,assign)float bottomMargin;
 
+
+@property(nonatomic,retain)MIMFloatingView *floatingView;
 -(void)drawBarChart;
 -(void)reloadBarChartWithAnimation;
 
-
+//-(void)displayFloatingView:(BarView *)view;
 
 @end

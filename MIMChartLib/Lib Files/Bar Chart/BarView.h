@@ -26,6 +26,12 @@
 #import <UIKit/UIKit.h>
 #import "Constant.h"
 
+@protocol BarViewDelegate <NSObject>
+
+-(void)displayFloatingView:(id)view;
+
+@end
+
 @interface BarView : UIView {
     
     MIMColorClass *color;
@@ -48,5 +54,5 @@
 @property(nonatomic,assign) GRADIENT_STYLE gradientStyle;
 @property(nonatomic,assign) GLOSS_STYLE glossStyle;
 @property(nonatomic,assign) BOOL negativeBar;
-
+@property(nonatomic,assign) id delegate;
 @end

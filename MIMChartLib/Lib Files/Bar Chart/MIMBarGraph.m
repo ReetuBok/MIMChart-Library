@@ -25,8 +25,7 @@
 //
 
 #import "MIMBarGraph.h"
-#import "BarView.h"
-#import "LineInfoBox.h"
+
 @interface MIMBarGraph()
 {
     NSMutableArray *_yValElements;
@@ -89,6 +88,7 @@
 @synthesize delegate,xTitleStyle,mbackgroundcolor,barcolorArray;
 @synthesize style, groupedBars,stackedBars,barLabelStyle,titleLabel;
 @synthesize rightMargin,topMargin,leftMargin,bottomMargin;
+@synthesize floatingView;
 
 static NSInteger firstNumSort(id str1, id str2, void *context) {
     
@@ -1348,6 +1348,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 
             BarView *view=[[BarView alloc]initWithFrame:CGRectMake((i* barWidth) + spaceBetweenSameGroupBar*(i+1) +_leftMargin,originY+topMargin,barWidth,_height)];
             view.isGradient=isGradient;
+            view.delegate=self;
             view.tag=300+i;
             view.gradientStyle=gradientStyle;
             view.glossStyle=glossStyle;
@@ -1380,8 +1381,8 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
                         MIMColorClass *d=[barcolorArray objectAtIndex:1];
 
                         
-                        view.dColor=view.dColor=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:d.red],@"red",[NSNumber numberWithFloat:d.green],@"green",[NSNumber numberWithFloat:d.blue],@"blue",[NSNumber numberWithFloat:d.alpha],@"alpha", nil];
-                        view.lColor=view.dColor=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:l.red],@"red",[NSNumber numberWithFloat:l.green],@"green",[NSNumber numberWithFloat:l.blue],@"blue",[NSNumber numberWithFloat:l.alpha],@"alpha", nil];
+                        view.dColor=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:d.red],@"red",[NSNumber numberWithFloat:d.green],@"green",[NSNumber numberWithFloat:d.blue],@"blue",[NSNumber numberWithFloat:d.alpha],@"alpha", nil];
+                        view.lColor=[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithFloat:l.red],@"red",[NSNumber numberWithFloat:l.green],@"green",[NSNumber numberWithFloat:l.blue],@"blue",[NSNumber numberWithFloat:l.alpha],@"alpha", nil];
                     }
                 }
                 
@@ -1602,6 +1603,43 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         }
     }
     
+}
+
+-(void)displayFloatingView:(id)view
+{
+    BarView *bView=(BarView *)view;
+    NSLog(@"tag touched=%i",bView.tag);
+    
+    if(!floatingView)
+    {
+        floatingView=[[MIMFloatingView alloc]initWithFrame:CGRectMake(0, 0, 100, 50)];
+        if(groupedBars)
+        {
+        
+        }
+        else if(stackedBars)
+        {
+        
+        }
+        else
+        {
+            [floatingView setLabelsOnView:[_yValElements objectAtIndex:bView.tag-300] subtitle:[_xValElements objectAtIndex:bView.tag-300]];
+        }
+        if(isLongGraph_)[lineGScrollView addSubview:floatingView];
+        else [self addSubview:floatingView];
+        
+        //Create border of floatingview layer
+        CALayer *layer=floatingView.layer;
+        layer.borderWidth=1;
+        layer.borderColor=[UIColor darkGrayColor].CGColor;
+        layer.cornerRadius=3;
+        
+         
+    }
+    CGRect a=floatingView.frame;
+    a.origin.x=CGRectGetMaxX(bView.frame)-10;
+    a.origin.y=CGRectGetMinY(bView.frame)-40;
+    floatingView.frame=a;
 }
 #pragma mark - X and Y Axis
 

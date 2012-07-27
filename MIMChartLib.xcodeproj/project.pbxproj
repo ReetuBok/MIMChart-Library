@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		046098D715C2309700D3F29E /* MIMFloatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046098D615C2309600D3F29E /* MIMFloatingView.m */; };
 		2308011B15A3ED3900544123 /* MIMLineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2308011A15A3ED3800544123 /* MIMLineGraph.m */; };
 		2308011E15A3FAD200544123 /* MultiLineLongGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2308011D15A3FAD100544123 /* MultiLineLongGraph.m */; };
 		2308012115A3FBEF00544123 /* MIMWallGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2308012015A3FBEF00544123 /* MIMWallGraph.m */; };
@@ -151,6 +152,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		046098D515C2309600D3F29E /* MIMFloatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMFloatingView.h; sourceTree = "<group>"; };
+		046098D615C2309600D3F29E /* MIMFloatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMFloatingView.m; sourceTree = "<group>"; };
 		2308011915A3ED3800544123 /* MIMLineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMLineGraph.h; sourceTree = "<group>"; };
 		2308011A15A3ED3800544123 /* MIMLineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMLineGraph.m; sourceTree = "<group>"; };
 		2308011C15A3FAD100544123 /* MultiLineLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiLineLongGraph.h; sourceTree = "<group>"; };
@@ -172,7 +175,7 @@
 		23197E91154BA3830023521F /* XAxisLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XAxisLabel.m; sourceTree = "<group>"; };
 		23197E92154BA3830023521F /* YAxisBand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAxisBand.h; sourceTree = "<group>"; };
 		23197E93154BA3830023521F /* YAxisBand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAxisBand.m; sourceTree = "<group>"; };
-		23197E95154BA3830023521F /* MIMBarGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; path = MIMBarGraph.h; sourceTree = "<group>"; };
+		23197E95154BA3830023521F /* MIMBarGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMBarGraph.h; sourceTree = "<group>"; };
 		23197E96154BA3830023521F /* MIMBarGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMBarGraph.m; sourceTree = "<group>"; };
 		23197E97154BA3830023521F /* BarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarView.h; sourceTree = "<group>"; };
 		23197E98154BA3830023521F /* BarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarView.m; sourceTree = "<group>"; };
@@ -255,7 +258,7 @@
 		23197F7D154F7EDB0023521F /* TestClassFragmented.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestClassFragmented.m; sourceTree = "<group>"; };
 		23197F80154F7FB50023521F /* FragmentedDoughNutDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FragmentedDoughNutDelegate.h; sourceTree = "<group>"; };
 		23197F81154F818F0023521F /* TestClassFragmented.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestClassFragmented.xib; sourceTree = "<group>"; };
-		23197F83154F91C90023521F /* BarGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; path = BarGraphDelegate.h; sourceTree = "<group>"; };
+		23197F83154F91C90023521F /* BarGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarGraphDelegate.h; sourceTree = "<group>"; };
 		23197F85154F92020023521F /* WallGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallGraphDelegate.h; sourceTree = "<group>"; };
 		23197F86154F921D0023521F /* ClusterGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClusterGraphDelegate.h; sourceTree = "<group>"; };
 		23197F87154F96ED0023521F /* BarTestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BarTestClass.xib; sourceTree = "<group>"; };
@@ -416,6 +419,8 @@
 				235C086E15A5F3C2006E9BED /* MIMMeter.m */,
 				23A7485D15BB940000E35409 /* MIMProperties.h */,
 				23A7485E15BB940000E35409 /* MIMProperties.m */,
+				046098D515C2309600D3F29E /* MIMFloatingView.h */,
+				046098D615C2309600D3F29E /* MIMFloatingView.m */,
 			);
 			path = Accessories;
 			sourceTree = "<group>";
@@ -1036,6 +1041,7 @@
 				23A7485F15BB940100E35409 /* MIMProperties.m in Sources */,
 				238C0C5E15BF57D700AF1382 /* MultipleBarViews.m in Sources */,
 				238C0C6415BF8FED00AF1382 /* TestLineClass2.m in Sources */,
+				046098D715C2309700D3F29E /* MIMFloatingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

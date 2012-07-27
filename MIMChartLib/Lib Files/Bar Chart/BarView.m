@@ -29,7 +29,7 @@
 
 @implementation BarView
 @synthesize color,borderColor,lColor,dColor,isGradient,gradientStyle,glossStyle,negativeBar;
-
+@synthesize delegate;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -262,6 +262,13 @@
     
     
 
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //Display the bar floating info view
+    NSLog(@"bar touched");
+    [delegate displayFloatingView:self];
 }
 
 
