@@ -28,7 +28,7 @@
 #import "Constant.h"
 #import "BarView.h"
 #import "LineInfoBox.h"
-#import "MIMFloatingView.h"
+
 
 @interface MIMBarGraph : UIView<BarViewDelegate> {
     
@@ -85,6 +85,6 @@
 -(void)drawBarChart;
 -(void)reloadBarChartWithAnimation;
 
-//-(void)displayFloatingView:(BarView *)view;
+
 
 @end

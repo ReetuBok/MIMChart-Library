@@ -58,6 +58,8 @@
     float yAxisWidth;
     float xAxisHeight;
     float contentSizeX;
+    
+    Anchor *longGraphAnchor;
 }
 
 -(void)initVars;
@@ -898,6 +900,8 @@
         [lineGScrollView addSubview:graph];
         
         
+        [lineGScrollView bringSubviewToFront:meterLine];
+        
         return;
         
     }
@@ -1239,17 +1243,31 @@
 #pragma mark - METER 
 -(void)createMeterline
 {
-
-    meterLine=[[MIMMeter alloc]initWithFrame:CGRectMake(leftMargin+yAxisWidth, topMargin, 40,_gridHeight+meterLineYOffset)];
-    meterLine.maxPointX=leftMargin+yAxisWidth+_gridWidth;
-    meterLine.minPointX=leftMargin+yAxisWidth;
-    meterLine.delegate=self;
-    if(xIsString)meterLine.tileWidth=_scalingX;
-    [self addSubview:meterLine];
+    if(_gridWidth>CGRectGetWidth(self.frame))
+    {
+        meterLine=[[MIMMeter alloc]initWithFrame:CGRectMake(_scalingX, topMargin, 40,_gridHeight+meterLineYOffset)];
+        meterLine.maxPointX=_gridWidth;
+        meterLine.minPointX=0;
+        meterLine.delegate=self;
+        if(xIsString)meterLine.tileWidth=_scalingX;
+        [lineGScrollView addSubview:meterLine];
+    }
+    else 
+    {
+        meterLine=[[MIMMeter alloc]initWithFrame:CGRectMake(leftMargin+yAxisWidth, topMargin, 40,_gridHeight+meterLineYOffset)];
+        meterLine.maxPointX=leftMargin+yAxisWidth+_gridWidth;
+        meterLine.minPointX=leftMargin+yAxisWidth;
+        meterLine.delegate=self;
+        if(xIsString)meterLine.tileWidth=_scalingX;
+        [self addSubview:meterLine];
+    }
+    
+    
 }
 
 -(void)meterCrossingAnchorPoint:(int)index
 {
+
     if(currentAnchorIndex ==index)return;
     
     currentAnchorIndex=index;
@@ -1257,23 +1275,85 @@
     
     if([[_yValElements objectAtIndex:0] isKindOfClass:[NSString class]])
     {
-        
-        
-        for (UIView *view in self.subviews) 
-        if([view isKindOfClass:[Anchor class]])
+        //Long Wall
+        if(_gridWidth>CGRectGetWidth(self.frame))
         {
-            if([(Anchor*)view anchorTag]==index)
-            {
-                //Pop bounce Animation
-                [(Anchor*)view createBounceAnimation];
-                break;
+            
+            
+            NSMutableDictionary *aProperties;
+            if ([aPropertiesArray count]>0)
+                aProperties=[[NSMutableDictionary alloc] initWithDictionary:[aPropertiesArray objectAtIndex:0]];
+            else aProperties=[[NSMutableDictionary alloc] init];
+            
+            MIMColorClass *c=[_wallColorArray objectAtIndex:0];
+            float red=c.red;
+            float green=c.green;
+            float blue=c.blue;
+            float alpha=c.alpha;
+            
+            
+            
+            if(![aProperties valueForKey:@"fillColor"])
+                [aProperties setValue:[NSString stringWithFormat:@"%f,%f,%f,%f",red,green,blue,alpha] forKey:@"fillColor"];
+            
+            
+            if ([anchorTypeArray count]>index)
+                [aProperties setValue:[anchorTypeArray objectAtIndex:index] forKey:@"style"];
+
+            
+            
+            if(!longGraphAnchor)
+                longGraphAnchor=[[Anchor alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+            
+            if(index <[_yValElements count])
+            for (int l=index; l<index+1; l++) 
+            {   
+                float valueY=[[_yValElements objectAtIndex:l] floatValue]-minimumOnY;
+                float valueX;
+                if(xIsString)
+                    valueX=(float)l;
+                else
+                    valueX=[[_xValElements objectAtIndex:l] floatValue];
+                
+                float mX=valueX*_scalingX;
+                float mY=valueY*_scalingY;
+                mY=_gridHeight-mY;
+                mY+=topMargin;
+                
+
+                longGraphAnchor.center=CGPointMake(mX,mY);
+                longGraphAnchor.properties=aProperties;
+                longGraphAnchor.anchorTag=l;
+                longGraphAnchor.delegate=self;
+                [lineGScrollView addSubview:longGraphAnchor];
+                [longGraphAnchor drawAnchor];
+                
             }
             
+            [self displayFloatingView:longGraphAnchor];
+            
         }
+        else 
+        {
+            for (UIView *view in self.subviews) 
+                if([view isKindOfClass:[Anchor class]])
+                {
+                    if([(Anchor*)view anchorTag]==index)
+                    {
+                        //Pop bounce Animation
+                        [(Anchor*)view createBounceAnimation];
+                        [self displayFloatingView:view];
+                        break;
+                    }
+                    
+                }
+        }
+        
 
     }
     else
     {
+        //Multiple Walls.
         /*
         for (int k=index; k<index+1; k++) 
         {
@@ -1312,6 +1392,59 @@
     
 }
 
+-(void)displayFloatingView:(id)view
+{
+    Anchor *bView=(Anchor *)view;
+    int tagVal=bView.anchorTag;
+    
+    
+    if(!floatingView)
+    {
+        floatingView=[[MIMFloatingView alloc]initWithFrame:CGRectMake(0, 0, 100, 50)];
+        
+    }
+  
+    
+    MIMColorClass *l=[_wallColorArray objectAtIndex:0];
+    floatingView.barColor=[UIColor colorWithRed:l.red green:l.green blue:l.blue alpha:1.0];
 
+    
+    
+        if([_xTitles count]>0)
+            [floatingView setLabelsOnView:[_yValElements objectAtIndex:tagVal] subtitle:[_xTitles objectAtIndex:tagVal]];
+        else
+            [floatingView setLabelsOnView:[_yValElements objectAtIndex:tagVal] subtitle:[_xValElements objectAtIndex:tagVal]];
+    
+    
+    if(_gridWidth>CGRectGetWidth(self.frame))[lineGScrollView addSubview:floatingView];
+    else 
+        [self addSubview:floatingView];
+    
+    //Create border of floatingview layer
+    CALayer *layer=floatingView.layer;
+    layer.borderWidth=1;
+    layer.borderColor=[UIColor darkGrayColor].CGColor;
+    layer.cornerRadius=3;
+    
+    
+    if(_gridWidth>CGRectGetWidth(self.frame))
+    {
+        CGRect a=floatingView.frame;
+        if(CGRectGetMaxX(bView.frame) > _gridWidth-120) a.origin.x=CGRectGetMaxX(bView.frame)-120;
+        else a.origin.x=CGRectGetMaxX(bView.frame);
+        a.origin.y=CGRectGetMinY(bView.frame)-40;
+        floatingView.frame=a;  
+    }
+    else
+    {
+        CGRect a=floatingView.frame;
+        a.origin.x=CGRectGetMaxX(bView.frame)-10;
+        a.origin.y=CGRectGetMinY(bView.frame)-40;
+        floatingView.frame=a;
+    }
+    
+    
+    
+}
 
 @end

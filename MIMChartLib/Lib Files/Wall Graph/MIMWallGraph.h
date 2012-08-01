@@ -34,6 +34,7 @@
     float topMargin;
     float leftMargin;
     float bottomMargin;
+    MIMFloatingView *floatingView;
 
 }
 

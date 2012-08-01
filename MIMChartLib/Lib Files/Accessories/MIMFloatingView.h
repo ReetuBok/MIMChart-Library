@@ -10,8 +10,12 @@
 
 @interface MIMFloatingView : UIView
 {
-
+    UILabel *title_;
+    UILabel *subtitle_;
+    UIColor *barColor;
 }
+@property(nonatomic,retain)UIColor *barColor;
+
 
 -(void)setLabelsOnView:(NSString *)title subtitle:(NSString *)subtitle;
 @end

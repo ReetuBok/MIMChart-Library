@@ -1331,7 +1331,8 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     else
     {
        
-        if (pickLibColors) NSLog(@"Style of view with tag %i is %i",self.tag,style);
+        //if (pickLibColors) 
+            NSLog(@"Style of view with tag %i is %i , %i",self.tag,style,[_yValElements count]);
 
         for (int i=0; i<[_yValElements count]; i++) 
         { 
@@ -1608,34 +1609,74 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 -(void)displayFloatingView:(id)view
 {
     BarView *bView=(BarView *)view;
-    NSLog(@"tag touched=%i",bView.tag);
+    int totalColors=[MIMColor sizeOfColorArray];
+    int tagVal=bView.tag-300;
+
     
     if(!floatingView)
     {
         floatingView=[[MIMFloatingView alloc]initWithFrame:CGRectMake(0, 0, 100, 50)];
-        if(groupedBars)
-        {
         
-        }
-        else if(stackedBars)
-        {
+    }
+    
+    
+    if(groupedBars)
+    {
+    
+    }
+    else if(stackedBars)
+    {
+    
+    }
+    else
+    {
         
+        if(isGradient)
+        {
+            
+            if(pickLibColors)
+            {
+                //Colors of gradients NOT provided by user.
+                NSDictionary *l=[MIMColor GetColorAtIndex:(style+1)%totalColors];
+                floatingView.barColor=[UIColor colorWithRed:[[l valueForKey:@"red"]floatValue] green:[[l valueForKey:@"green"]floatValue] blue:[[l valueForKey:@"blue"]floatValue] alpha:1.0];
+            }
+            else
+            {
+                if([barcolorArray count]>=1)
+                {
+                    //Only 1 Color of gradients IS provided by user.
+                    MIMColorClass *l=[barcolorArray objectAtIndex:0];
+                    floatingView.barColor=[UIColor colorWithRed:l.red green:l.green blue:l.blue alpha:1.0];
+                }
+               
+            }
+            
+            
         }
         else
-        {
-            [floatingView setLabelsOnView:[_yValElements objectAtIndex:bView.tag-300] subtitle:[_xValElements objectAtIndex:bView.tag-300]];
+        {    
+            MIMColorClass *l=[barcolorArray objectAtIndex:0];
+            floatingView.barColor=[UIColor colorWithRed:l.red green:l.green blue:l.blue alpha:1.0];
         }
-        if(isLongGraph_)[lineGScrollView addSubview:floatingView];
-        else [self addSubview:floatingView];
         
-        //Create border of floatingview layer
-        CALayer *layer=floatingView.layer;
-        layer.borderWidth=1;
-        layer.borderColor=[UIColor darkGrayColor].CGColor;
-        layer.cornerRadius=3;
+
+        if([_xTitles count]>0)
+        [floatingView setLabelsOnView:[_yValElements objectAtIndex:tagVal] subtitle:[_xTitles objectAtIndex:tagVal]];
+        else
+        [floatingView setLabelsOnView:[_yValElements objectAtIndex:tagVal] subtitle:[_xValElements objectAtIndex:tagVal]];
+    }
+
+    if(isLongGraph_)[lineGScrollView addSubview:floatingView];
+    else [self addSubview:floatingView];
+    
+    //Create border of floatingview layer
+    CALayer *layer=floatingView.layer;
+    layer.borderWidth=1;
+    layer.borderColor=[UIColor darkGrayColor].CGColor;
+    layer.cornerRadius=3;
         
          
-    }
+    
     CGRect a=floatingView.frame;
     a.origin.x=CGRectGetMaxX(bView.frame)-10;
     a.origin.y=CGRectGetMinY(bView.frame)-40;

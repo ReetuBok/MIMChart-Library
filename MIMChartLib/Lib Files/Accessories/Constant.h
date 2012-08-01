@@ -10,6 +10,8 @@
 #import "MIMMeter.h"
 #import "BarInfoBox.h"
 #import "MIMProperties.h"
+#import "MIMFloatingView.h"
+
 
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
