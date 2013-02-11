@@ -431,7 +431,7 @@
         
         
         
-        NSArray *g=[NSArray arrayWithObjects:(id)gradient1,gradient2,gradient3,gradient4,gradient5,nil];
+        NSArray *g=[NSArray arrayWithObjects:(__bridge id)gradient1,gradient2,gradient3,gradient4,gradient5,nil];
         
         return g;
         

@@ -1185,6 +1185,7 @@
 		235C240D1548BBAD00919081 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MIMChartLib/MIMChartLib-Prefix.pch";
 				INFOPLIST_FILE = "MIMChartLib/MIMChartLib-Info.plist";
@@ -1197,6 +1198,7 @@
 		235C240E1548BBAD00919081 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MIMChartLib/MIMChartLib-Prefix.pch";
 				INFOPLIST_FILE = "MIMChartLib/MIMChartLib-Info.plist";
@@ -1233,6 +1235,7 @@
 		23720C1115B8D13A00D7D180 /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MIMChartLib/MIMChartLib-Prefix.pch";
 				INFOPLIST_FILE = "MIMChartLib/MIMChartLib-Info.plist";

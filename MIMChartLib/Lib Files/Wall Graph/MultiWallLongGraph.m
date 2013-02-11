@@ -116,7 +116,7 @@
             CGContextSaveGState(context);
             [myP closePath];
             [myP addClip];
-            CGGradientRef g=(CGGradientRef )[wallGradientArray objectAtIndex:i];
+            CGGradientRef g=(__bridge CGGradientRef )[wallGradientArray objectAtIndex:i];
             CGContextDrawLinearGradient (context, g, CGPointMake(0, maxOfY * scalingY), CGPointMake(0, 0), 1);
             CGContextRestoreGState(context);
         }

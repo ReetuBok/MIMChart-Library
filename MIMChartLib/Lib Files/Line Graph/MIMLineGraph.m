@@ -217,7 +217,7 @@
                 mX+=offsetXLabelOnLongGraph;
                 mY+=xAxisHeight;
                 
-                NSLog(@"line y=%f",mY);
+                //NSLog(@"line y=%f",mY);
 
             }
             
@@ -938,6 +938,35 @@
     
 }
 
+#if  ! __has_feature(objc_arc)
+-(void)dealloc
+{
+    [mbackgroundColor release];
+    [lineColorArray release];
+    [anchorTypeArray release];
+    [titleLabel release];
+    
+    
+    
+    [myPathArray release];
+    [_yValElements release];
+    [_xValElements release];
+    [_xTitles release];
+    [lineColorA release];
 
+    
+    [aPropertiesArray release];
+    [hlProperties release];
+    [vlProperties release];
+    [xLProperties release];
+    [yLProperties release];
+
+    [lineGScrollView release];
+
+    [super dealloc];
+
+}
+
+#endif
 
 @end
