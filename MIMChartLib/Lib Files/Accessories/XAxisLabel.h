@@ -32,9 +32,13 @@
     NSInteger labelTag;
     NSInteger style;
     float width;
+    float height;
+    float  offset;
+    
     BOOL lineChart;
     UIColor *xTitleColor;
     UIColor *mBackgroundColor;
+    float fontSize;
 }
 
 -(void)drawTitleWithColor:(UIColor *)color;
@@ -43,6 +47,11 @@
 @property(nonatomic,assign)    NSInteger labelTag;
 @property(nonatomic,assign)    NSInteger style;
 @property(nonatomic,assign)    float width;
+@property(nonatomic,assign)    float height;
+@property(nonatomic,assign)     float  offset;
+
 @property(nonatomic,assign)     BOOL lineChart;
 @property(nonatomic,retain) UIColor *mBackgroundColor;
+@property(nonatomic,assign) float fontSize;
+
 @end

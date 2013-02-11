@@ -35,6 +35,7 @@
 
 -(void)initInfoBoxWithTitles:(NSArray *)titles withSquareColor:(NSArray *)sqColor //If titles include % value, show it.
 {
+    float defaultSize =20;
     
     infoScrollView=[[ScrollViewSubClass alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
     infoScrollView.tag=836913;
@@ -42,12 +43,11 @@
     
     for (int i=0; i<[titles count]; i++) 
     {
-        UILabel *titleSQ=[[UILabel alloc]initWithFrame:CGRectMake(5, i*30+10,10, 10)];
+        UILabel *titleSQ=[[UILabel alloc]initWithFrame:CGRectMake(5, i*defaultSize+10,10, 10)];
         titleSQ.tag=100+i;
         MIMColorClass *scolor=[sqColor objectAtIndex:i];
         [titleSQ setBackgroundColor:[UIColor colorWithRed:scolor.red green:scolor.green blue:scolor.blue alpha:scolor.alpha]];
         
-
         
         //Its not working right for some reason.
         if(shadowBehindBoxes)
@@ -66,7 +66,7 @@
         [infoScrollView addSubview:titleSQ];
         
         
-        UILabel *titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, i*30, CGRectGetWidth(self.frame)-25, 30)];
+        UILabel *titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, i*defaultSize, CGRectGetWidth(self.frame)-25, defaultSize)];
         titleLabel.tag=100+i;
         
         [titleLabel setBackgroundColor:[UIColor clearColor]];

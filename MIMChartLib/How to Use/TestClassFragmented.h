@@ -24,12 +24,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "2DFragmentedDoughNut.h"
+#import "MIMFragmentedDoughNut.h"
 
 @interface TestClassFragmented : UIViewController<FragmentedDoughNutDelegate,UITableViewDelegate,UITableViewDataSource> 
 {
     
     IBOutlet UITableView *myTable;
+    float innerRadius;
+    float outerRadius;
+    NSArray *colorsArray;
+    NSArray *titlesArray;
+    NSArray *valuesArray;
+    
+    
 }
 
 @end

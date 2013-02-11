@@ -7,7 +7,10 @@
 //
 
 #import "MIMProperties.h"
+#import "MIM_MathClass.h"
 
+#define DEFAULT_TILEWIDTH 40
+#define DEFAULT_TILEHEIGHT 40
 
 @implementation MIMProperties
 
@@ -62,7 +65,7 @@
     CGContextSetStrokeColorWithColor(ctx, [UIColor colorWithRed:c.red green:c.green blue:c.blue alpha:c.alpha].CGColor);
     CGContextSetLineWidth(ctx, widthOfLine);
     int numHorzLines=_gridHeight/_tileHeight;
-    
+    //NSLog(@"_tileHeight=%f",_tileHeight);
     
     for (int i=1; i<=numHorzLines; i++) 
     {    
@@ -340,6 +343,393 @@
     
 }
 
++(BOOL)findIfItIsALongGraph:(int)tileWidth TotalItemsOnXAxis:(int)totalItemsOnX GridWidth:(float)gridWidth
+{
+    //if tileWidth*totalItems on xAxis exceed gridWidth
+    BOOL _isLongGraph=FALSE;
+    if(tileWidth*totalItemsOnX + 20 > gridWidth)_isLongGraph=TRUE;
+    return _isLongGraph;
+    
+
+}
+
++(float)returnLongGraphContentWidth:(int)tileWidth TotalItemsOnXAxis:(int)totalItemsOnX
+{
+    return tileWidth*totalItemsOnX + 20.0;
+}
+
+
++(int)countXValuesInArray:(NSMutableArray *)xValElements
+{
+
+    int count=0;
+    if([[xValElements objectAtIndex:0] isKindOfClass:[NSString class]]||[[xValElements objectAtIndex:0] isKindOfClass:[NSNumber class]])
+    {
+        count=[xValElements count];
+    }
+    else
+    {
+        count=[[xValElements objectAtIndex:0]count];
+    }
+    
+    //if(count<=3) count=3;
+    
+    return count;
+
+}
+//CALCULATIONS FOR GRIDWIDTH/HEIGHT , TILEWIDTH/HEIGHT
++(float)CalculateGridWidth:(float)gwidth leftMargin:(float)lMargin rightMargin:(float)rMargin yAxisSpace:(float)ySpace
+{
+
+    float _gridWidth=gwidth;
+    _gridWidth-=lMargin;
+    _gridWidth-=rMargin;
+    _gridWidth-=ySpace;
+    return _gridWidth;
+
+}
+
+
++(float)CalculateGridHeight:(float)gheight bottomMargin:(float)bMargin topMargin:(float)tMargin xAxisSpace:(float)xSpace
+{
+  
+    float _gridHeight=gheight;
+
+    _gridHeight-=bMargin;
+    _gridHeight-=tMargin;
+    _gridHeight-=xSpace;
+    return _gridHeight;
+    
+}
+
+
++(float)FindTileWidth:(NSMutableDictionary *)vlProperties GridWidth:(float)gridWidth xItemsCount:(int)xCount
+{
+
+    
+    float _tileWidth=0;
+    
+    //Check if Tilewidth is defined by user
+    if([vlProperties objectForKey:@"gap"])
+    {
+        _tileWidth=[[vlProperties valueForKey:@"gap"] floatValue];
+        
+        if(_tileWidth <20)
+            NSLog(@"WARNING: Minimum gap between vertical lines is 20. Otherwise X-Axis labels may appear overlapping.");
+    }
+    
+    if(_tileWidth==0)
+    {
+        _tileWidth=gridWidth/xCount;
+        
+        if (_tileWidth<DEFAULT_TILEWIDTH)
+            _tileWidth=DEFAULT_TILEWIDTH;
+        
+    }
+
+    return _tileWidth;
+    
+    
+    
+    
+}
+
++(float)FindTileHeight:(NSMutableDictionary *)hlProperties GridHeight:(float)gridHeight
+{
+    
+    //Check if Tilewidth is defined by user
+    float _tileHeight=0;
+    
+    if([[hlProperties allKeys] containsObject:@"gap"])
+    {
+        _tileHeight=[[hlProperties valueForKey:@"gap"] floatValue];
+        if(_tileHeight < 20)
+        {
+        
+            NSLog(@"WARNING: Minimum gap between horizontal lines is 20.");
+            NSLog(@"CHECK: \n-(NSDictionary*)horizontalLinesProperties:(id)graph{ \n return [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:25.0] forKey:@\"gap\"];\n} \n Note: 25.0 is the plotting gap quantity,it should be replaced by number of your choice.But it should be <=20.0 \n");
+            
+        }
+    }
+    
+    if(_tileHeight==0)
+    {
+        _tileHeight=DEFAULT_TILEHEIGHT;
+       
+    }
+
+    
+    //WARNING
+//    if(_tileHeight+5 >= gridHeight)
+//    {
+//        NSLog(@"ERROR:Frame too small to draw. Increase your graph's frame height.");
+//    }
+    
+    
+    return _tileHeight;
+    
+    
+    
+}
+
+
++(float)fixTileHeight:(float)gridHeight
+{
+    
+    float _gridHeight=gridHeight;
+    
+    float newTileHeight=_gridHeight/3;
+    //Because screen should have atleast 3 horizontal lines parallel to x axis
+    
+    if(newTileHeight<20)
+    {
+        NSLog(@"WARNING:Increase your graph's frame height.Your Y-Axis Labels may appear overlapping each other.");
+    }
+    
+    return newTileHeight;
+
+}
+
++(float)findScaleForYTile:(NSMutableArray *)yValElements gridHeight:(float)gridHeight tileHeight:(float)tileHeight :(int)countHLines Min:(float)minOfY Max:(float)maxOfY
+{
+    // This piece of code is for range graph where y values are strings
+    float _scalingY;
+    if(minOfY==0 && maxOfY==0)
+    {
+        //Find how many elements are there in yValElement
+        //Find count*tileHeight should be < gridHeight, otherwise _scalingY=gridHeight/count.
+        //If _scalingY < 20, WARNING: Increase gridHeight
+        int countY=[yValElements count]+1;
+        if(countY * tileHeight > gridHeight)
+            _scalingY=gridHeight/countY;
+        else
+            _scalingY=tileHeight;
+        
+        return _scalingY;
+    }
+    
+    //NSLog(@"_yValElements=%@",_yValElements);
+    float _gridHeight=gridHeight;
+
+    float _tileHeight=tileHeight;
+    int numOfHLines=countHLines;
+    
+    
+    int HorLines=_gridHeight/_tileHeight;
+    numOfHLines=HorLines;
+    
+
+    float ppt;//pixel per tile.
+    int divider=HorLines;
+    
+    //We need to have min 3 Hor Lines on y-Axis
+    if(HorLines<=3)divider=3;
+    else divider=HorLines-1;
+    
+    int countDigits=[[NSString stringWithFormat:@"%.0f",minOfY] length];
+    
+    BOOL minIsNegative=FALSE;
+    if(minOfY<0){
+     
+        minIsNegative=TRUE;
+        countDigits=countDigits-1;
+    }
+    
+    //Normalize minOfY
+    
+    if(countDigits==1)countDigits=2;
+    
+    //New Pixel per tile swould be
+    minOfY=minOfY/pow(10, countDigits-1);
+    minOfY=floorf(minOfY);
+    minOfY=minOfY*pow(10, countDigits-1);
+    
+    
+    
+    
+    if(maxOfY==minOfY) ppt=(maxOfY)/divider;
+    else ppt=(maxOfY-minOfY)/divider;
+    
+    
+    //NSLog(@"pixelPerTile=%f,maxOfY=%f",maxOfY,pixelPerTile);
+    
+    countDigits=[[NSString stringWithFormat:@"%.0f",ppt] length];
+    
+    //New Pixel per tile swould be
+    ppt=ppt/pow(10, countDigits-1);
+    ppt=ceilf(ppt);
+    ppt=ppt*pow(10, countDigits-1);
+    
+   // pixelsPerTile=ppt;
+    
+    _scalingY=_tileHeight/ppt;
+    
+    return _scalingY;
+    
+    
+    
+    
+}
+
+
+
++(float)findGlobalMinimum:(NSMutableArray *)yValElements
+{
+    NSMutableArray *_yValElements=[NSMutableArray arrayWithArray:yValElements];
+
+    
+    float minOfY;
+    if([[_yValElements objectAtIndex:0] isKindOfClass:[NSString class]])
+    {
+        
+        minOfY=[MIM_MathClass getMinFloatValue:_yValElements];
+        
+        
+    }
+    else if([[_yValElements objectAtIndex:0] isKindOfClass:[NSNumber class]])
+    {
+        
+        minOfY=[MIM_MathClass getMinFloatValue:_yValElements];
+        
+        
+    }
+    else
+    {
+        
+        minOfY=[MIM_MathClass getMinFloatValue:[_yValElements objectAtIndex:0]];
+        for (int i=1; i<[_yValElements count]; i++)
+        {
+            float minOfY1=[MIM_MathClass getMinFloatValue:[_yValElements objectAtIndex:i]];
+            if(minOfY1<minOfY)
+                minOfY=minOfY1;
+        }
+        
+    }
+    
+    return minOfY;
+    
+    
+    
+    
+}
++(float)findGlobalMaximum:(NSMutableArray *)yValElements
+{
+    NSMutableArray *_yValElements=[NSMutableArray arrayWithArray:yValElements];
+
+    
+    float maxOfY;
+
+    if([[_yValElements objectAtIndex:0] isKindOfClass:[NSString class]])
+    {
+        maxOfY=[MIM_MathClass getMaxFloatValue:_yValElements];
+
+    }
+    else if([[_yValElements objectAtIndex:0] isKindOfClass:[NSNumber class]])
+    {
+        maxOfY=[MIM_MathClass getMaxFloatValue:_yValElements];
+        
+    }
+    else
+    {
+        maxOfY=[MIM_MathClass getMaxFloatValue:[_yValElements objectAtIndex:0]];
+        for (int i=1; i<[_yValElements count]; i++)
+        {
+            float maxOfY1=[MIM_MathClass getMaxFloatValue:[_yValElements objectAtIndex:i]];
+            if(maxOfY1>maxOfY)
+                maxOfY=maxOfY1;
+        }
+        
+    }
+    
+    return maxOfY;
+    
+}
+
+
+
++(float)findMinimumOnY:(float)minOfY
+{
+    int countDigits=[[NSString stringWithFormat:@"%.0f",fabs(minOfY)] length];
+    if(countDigits==1)countDigits=2;
+    
+  
+    
+    
+    float minimumOnY=minOfY/pow(10, countDigits-1);
+    minimumOnY=floorf(minimumOnY);
+    minimumOnY=minimumOnY*pow(10, countDigits-1);
+
+    
+    return minimumOnY; //This is the number with which labelling on y -Axis starts
+}
+
+
+//Scaling on X axis exists only for string values. Right now you can give numbers on x-axis, if numbers then give in form on string.
+//No scaling will happen on numeric value
++(float)findScaleForXTile:(NSMutableArray *)xValElements XValuesAreString:(BOOL)xIsString LongGraph:(BOOL)isLongGraph TileWidth:(float)tileWidth TileWidthDefinedByUser:(BOOL)tileWidthDefinedByUser
+{
+    
+    
+
+    float _scalingX;
+    
+    
+    if(xIsString)
+    {
+        
+        _scalingX=tileWidth;
+        
+        //If tileWidth is not defined by user
+        if(isLongGraph)
+            if(!tileWidthDefinedByUser)
+            {
+                NSLog(@"Since graph is too long,plotting gap auto resizes itself to default size px.");
+                NSLog(@"WARNING: Plotting gap on x-axis is auto-calculated. If items are plotted very close/distant to each other in graph,USE: \n-(NSDictionary*)verticalLinesProperties:(id)graph{ \n return [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:25.0] forKey:@\"gap\"];\n} \nNote: 25.0 is the plotting gap quantity,it should be replaced by number of your choice.\n");
+                _scalingX=DEFAULT_TILEWIDTH;
+            }
+        
+
+    }
+    
+    
+    
+//    NSMutableArray *_xValElements=[NSMutableArray arrayWithArray:xValElements];
+//
+//    
+//    int count=0;
+//    if([[_xValElements objectAtIndex:0] isKindOfClass:[NSString class]])
+//    {
+//        count=[_xValElements count];
+//        
+//    }
+//    else
+//    {
+//        count=[[_xValElements objectAtIndex:0] count];
+//    }
+//    
+//    
+//
+//    
+//    int VerLines=_gridWidth/_tileWidth;
+//    float maxX=[MIM_MathClass getMaxFloatValue:_xValElements];
+//    float minX=[MIM_MathClass getMinFloatValue:_xValElements];
+//    
+//    float pixelPerTile=(maxX-minX)/(VerLines-1);
+//    
+//    int countDigits=[[NSString stringWithFormat:@"%.0f",pixelPerTile] length];
+//    
+//    //New Pixel per tile swould be
+//    pixelPerTile=pixelPerTile/pow(10, countDigits-1);
+//    pixelPerTile=ceilf(pixelPerTile);
+//    pixelPerTile=pixelPerTile*pow(10, countDigits-1);
+//    
+//    
+//    _scalingX=_tileWidth/pixelPerTile;
+//    
+//    
+    return _scalingX;
+    
+}
 
 
 

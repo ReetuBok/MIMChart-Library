@@ -129,11 +129,11 @@ typedef enum
 
 typedef enum
 {
-    X_TITLES_STYLE1=1, 
-    X_TITLES_STYLE2,
-    X_TITLES_STYLE3,
-    X_TITLES_STYLE4,
-}X_TITLES_STYLE;
+    XTitleStyle1=1, 
+    XTitleStyle2,
+    XTitleStyle3,
+    XTitleStyle4,
+}XTitleStyle;
 
 
 typedef enum
@@ -149,7 +149,8 @@ typedef enum
 
 typedef enum
 {
-    VERTICAL_GRADIENT_STYLE=1, //UP
+    NONE_GRADIENT_STYLE=0,
+    VERTICAL_GRADIENT_STYLE, //UP
     VERTICAL_GRADIENT_STYLE_2, //DOWN
     HORIZONTAL_GRADIENT_STYLE,//LEFT
     HORIZONTAL_GRADIENT_STYLE_2,//RIGHT
@@ -182,6 +183,15 @@ typedef enum
     BAR_LABEL_STYLE2,
     
 }BAR_LABEL_STYLE;
+
+
+typedef enum
+{
+    BAR_GRAPH_STYLE_DEFAULT=0,
+    BAR_GRAPH_STYLE_GROUPED,
+    BAR_GRAPH_STYLE_STACKED,
+    
+}BAR_GRAPH_STYLE;
 
 
 

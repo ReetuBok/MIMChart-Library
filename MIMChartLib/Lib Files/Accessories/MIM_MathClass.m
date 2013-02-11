@@ -50,7 +50,7 @@
 {
     BOOL valid;
 
-    NSMutableCharacterSet *_NumericOnly = [NSMutableCharacterSet characterSetWithCharactersInString:@"."];
+    NSMutableCharacterSet *_NumericOnly = [NSMutableCharacterSet characterSetWithCharactersInString:@""];
     [_NumericOnly formUnionWithCharacterSet:[NSCharacterSet decimalDigitCharacterSet]];
     NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:string];
     valid = [_NumericOnly isSupersetOfSet:inStringSet];

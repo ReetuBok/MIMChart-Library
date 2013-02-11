@@ -51,6 +51,7 @@
     float ox=w*2*0.2; 
     float s=w*2*0.8;
     
+    
     switch (bubbleStyle) 
     {
         case mPIE_BUBBLE_STYLE1:
@@ -62,7 +63,7 @@
             {
             
                 //Line
-                CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:k green:k blue:k alpha:1.0].CGColor); 
+                CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:k green:k blue:k alpha:1].CGColor);
                 CGContextSetLineWidth(context, 2);
                 CGContextMoveToPoint(context, w+w/2, w/4);
                 CGContextAddLineToPoint(context, 0, 2*w);
@@ -95,7 +96,7 @@
             else if(quadrant_==1)
             {
                 //Line
-                CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:k green:k blue:k alpha:1.0].CGColor); 
+                CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:k green:k blue:k alpha:1].CGColor);
                 CGContextSetLineWidth(context, 2);
                 CGContextMoveToPoint(context, w+w/2,w+w/2);
                 CGContextAddLineToPoint(context, 0, 0);
@@ -130,7 +131,7 @@
             else if(quadrant_==2)
             {
                 //Line
-                CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:k green:k blue:k alpha:1.0].CGColor); 
+                CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:k green:k blue:k alpha:1].CGColor);
                 CGContextSetLineWidth(context, 2);
                 CGContextMoveToPoint(context, w/4,w+w/2);
                 CGContextAddLineToPoint(context, 2*w, 0);
@@ -165,7 +166,7 @@
             else if(quadrant_==3)
             {
                 //Line
-                CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:k green:k blue:k alpha:1.0].CGColor); 
+                CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:k green:k blue:k alpha:1].CGColor);
                 CGContextSetLineWidth(context, 2);
                 CGContextMoveToPoint(context, w/4,w/4);
                 CGContextAddLineToPoint(context, 2*w, 2*w);
@@ -206,7 +207,79 @@
 
         }
         break;
+        case mPIE_BUBBLE_STYLE2:
+        {
+            CGContextSaveGState(context);
+
             
+            if(quadrant_==4)
+            {
+
+                float k=1;
+                
+                //Create the Label
+                UILabel *textLabel=[[UILabel alloc]initWithFrame:CGRectMake(ox+2,2,s-4,s-4)];
+                [textLabel setBackgroundColor:[UIColor clearColor]];
+                [textLabel setText:bubbleString];
+                [textLabel setTextAlignment:UITextAlignmentCenter];
+                [textLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
+                [textLabel setMinimumFontSize:9];
+                [textLabel setTextColor:[UIColor colorWithRed:k green:k blue:k alpha:1.0]];
+                [self addSubview:textLabel];
+            }
+            else if(quadrant_==1)
+            {
+                float k=1;
+                
+                //Create the Label
+                UILabel *textLabel=[[UILabel alloc]initWithFrame:CGRectMake(ox+2,ox+2,s-4,s-4)];
+                [textLabel setBackgroundColor:[UIColor clearColor]];
+                [textLabel setText:bubbleString];
+                [textLabel setTextAlignment:UITextAlignmentCenter];
+                [textLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
+                [textLabel setMinimumFontSize:9];
+                [textLabel setTextColor:[UIColor colorWithRed:k green:k blue:k alpha:1.0]];
+                [self addSubview:textLabel];
+                
+            }
+            else if(quadrant_==2)
+            {
+                float k=1;
+                
+                //Create the Label
+                UILabel *textLabel=[[UILabel alloc]initWithFrame:CGRectMake(2,ox+2,s-4,s-4)];
+                [textLabel setBackgroundColor:[UIColor clearColor]];
+                [textLabel setText:bubbleString];
+                [textLabel setTextAlignment:UITextAlignmentCenter];
+                [textLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
+                [textLabel setMinimumFontSize:9];
+                [textLabel setTextColor:[UIColor colorWithRed:k green:k blue:k alpha:1.0]];
+                [self addSubview:textLabel];
+                
+            }
+            else if(quadrant_==3)
+            {
+            
+                float k=1;
+                
+                //Create the Label
+                UILabel *textLabel=[[UILabel alloc]initWithFrame:CGRectMake(2,2,s-4,s-4)];
+                [textLabel setBackgroundColor:[UIColor clearColor]];
+                [textLabel setText:bubbleString];
+                [textLabel setTextAlignment:UITextAlignmentCenter];
+                [textLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12]];
+                [textLabel setMinimumFontSize:9];
+                [textLabel setTextColor:[UIColor colorWithRed:k green:k blue:k alpha:1.0]];
+                [self addSubview:textLabel];
+                
+            }
+            
+            CGContextRestoreGState(context);
+            
+            
+            
+        }
+            break;
         default:
             break;
     }

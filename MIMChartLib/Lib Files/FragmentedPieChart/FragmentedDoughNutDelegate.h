@@ -15,6 +15,7 @@
 -(float)outerRadiusForDoughNut:(id)doughnut;
 -(NSArray *)valuesForDoughNut:(id)doughnut;
 -(NSArray *)titlesForDoughNut:(id)doughnut;
+-(NSArray *)colorsForDoughNut:(id)doughnut;
 @end
 
 

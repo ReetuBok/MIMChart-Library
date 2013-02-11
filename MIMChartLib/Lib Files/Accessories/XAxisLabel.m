@@ -27,7 +27,8 @@
 #import <CoreText/CoreText.h>
 
 @implementation XAxisLabel
-@synthesize text,labelTag,style,width,lineChart,mBackgroundColor;
+@synthesize text,labelTag,style,width,height,lineChart,mBackgroundColor;
+@synthesize fontSize,offset;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -48,7 +49,7 @@
    
     if(!xTitleColor)
         return;
-    
+        
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSetAllowsAntialiasing(ctx, YES);
     CGContextSetShouldAntialias(ctx, YES);
@@ -59,18 +60,19 @@
 
 
     CGContextSetBlendMode(ctx,kCGBlendModeClear);
-    CGContextSetFillColorWithColor(ctx, [UIColor redColor].CGColor);
-    CGContextAddRect(ctx, CGRectMake(0, 0, width, 15.0));      
+    //CGContextSetBlendMode(ctx,kCGBlendModeNormal);
+    CGContextSetFillColorWithColor(ctx, [UIColor greenColor].CGColor);
+    CGContextAddRect(ctx, CGRectMake(0, 0, width, height-2));
     CGContextFillPath(ctx);
     
     
     CGContextSetBlendMode(ctx,kCGBlendModeNormal);
-    CGContextSetFillColorWithColor(ctx, mBackgroundColor.CGColor);
-    CGContextAddRect(ctx, CGRectMake(0, 0, width, 15.0));      
-    CGContextFillPath(ctx);
+//    CGContextSetFillColorWithColor(ctx, mBackgroundColor.CGColor);
+//    CGContextAddRect(ctx, CGRectMake(0, height-coreTextSize.height, width, coreTextSize.height));
+//    CGContextFillPath(ctx);
     
 
-    
+//    text=@"Jan\n2011";
     //This is the string we want to write on our screen and we also need to get the string length
     NSString *test =[NSString stringWithFormat:@"%@",text];
     NSInteger _stringLength=[test length];
@@ -84,39 +86,18 @@
     CFAttributedStringReplaceString (attrString,CFRangeMake(0, 0), string);
     
 
+    //Lets have our string  as defined color
     CGColorRef _red=xTitleColor.CGColor;
-    
-    //Lets have our string  as red 
     CFAttributedStringSetAttribute(attrString, CFRangeMake(0, _stringLength),kCTForegroundColorAttributeName, _red);    
     
     
-    CTFontRef font = CTFontCreateWithName((CFStringRef)@"Helvetica", 12.0f, nil);
+    CTFontRef font = CTFontCreateWithName((CFStringRef)@"Helvetica", fontSize, nil);
     CFAttributedStringSetAttribute(attrString,CFRangeMake(0, _stringLength),kCTFontAttributeName,font);
     
-    
-    switch (style) 
-    {
-        case 1: 
-            self.transform=CGAffineTransformConcat(CGAffineTransformMakeRotation(-1.57), CGAffineTransformMakeTranslation(-width/2, width/2));   
-            break;
-            
-        case 2:
-        {
-            float theta=1.57/2;
-            if(lineChart)
-            self.transform=CGAffineTransformConcat(CGAffineTransformMakeRotation(-theta), CGAffineTransformMakeTranslation(-width* asin(theta), width/2* acos(theta)));
-            else
-            self.transform=CGAffineTransformConcat(CGAffineTransformMakeRotation(-1.57/2), CGAffineTransformMakeTranslation(-width/2, width/2));   
-
-        }
-
-            break;
-            
-    }
-
+ 
     
     
-    //Set the paragrapgh attribute
+    //Set the paragrapgh attribute horizontal alignment
     CTTextAlignment alignment; 
     
     switch (style) {
@@ -129,7 +110,7 @@
               alignment = kCTRightTextAlignment;
             break;
         case 3:
-              alignment = kCTLeftTextAlignment;
+              alignment = kCTCenterTextAlignment;
             break;
         case 4:
             alignment = kCTCenterTextAlignment;
@@ -144,20 +125,66 @@
     CTParagraphStyleRef paragraphStyle = CTParagraphStyleCreate(_settings, sizeof(_settings) / sizeof(_settings[0]));
     CFAttributedStringSetAttribute(attrString, CFRangeMake(0, _stringLength), kCTParagraphStyleAttributeName, paragraphStyle);
     
-
-    // Initialize a rectangular path.
-    CGMutablePathRef path = CGPathCreateMutable();
-    CGRect bounds = CGRectMake(0, 0, width, 15.0);
-    CGPathAddRect(path, NULL, bounds);
+    
+    
+    
+    
     
     // Create the framesetter with the attributed string.
     CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString(attrString);
+    CFRange range;
+    CGFloat maxWidth  = width;
+    CGFloat maxHeight = height;
+    CGSize constraint = CGSizeMake(maxWidth, maxHeight);
+    CGSize coreTextSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, [text length]), nil, constraint, &range);
+
+    
+//    CGContextSetFillColorWithColor(ctx, [UIColor redColor].CGColor);
+//    CGContextAddRect(ctx, CGRectMake(0, height-coreTextSize.height, width, coreTextSize.height));
+//    CGContextFillPath(ctx);
+    
+
+    // Initialize a rectangular path.
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGRect bounds = CGRectMake(0, height-coreTextSize.height, width, coreTextSize.height);
+    CGPathAddRect(path, NULL, bounds);
+    
+    
+
+    
+    
+    
+    
     CFRelease(attrString);
     
     // Create the frame and draw it into the graphics context
     CTFrameRef frame = CTFramesetterCreateFrame(framesetter,CFRangeMake(0, 0), path, NULL);
     CFRelease(framesetter);
     CTFrameDraw(frame, ctx);
+    
+    
+
+    switch (style)
+    {
+        case 1:
+            self.transform=CGAffineTransformConcat(CGAffineTransformMakeRotation(-1.57), CGAffineTransformMakeTranslation((height-coreTextSize.height)/2-width/2, (width-height+10)/2));
+            break;
+            
+        case 2:
+        {
+            float theta=1.57/2;
+            if(lineChart)
+                self.transform=CGAffineTransformConcat(CGAffineTransformMakeRotation(-theta), CGAffineTransformMakeTranslation(-width* asin(theta), width/2* acos(theta)));
+            else
+                self.transform=CGAffineTransformConcat(CGAffineTransformMakeRotation(-1.57/2), CGAffineTransformMakeTranslation(-width/2, width/2));
+            
+        }
+            
+            break;
+            
+    }
+
+    
    
 }
 

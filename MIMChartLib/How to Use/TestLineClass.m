@@ -243,14 +243,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    
-    
-    
-    UITableViewCell *cell;// = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    //if (cell == nil) 
-    //{
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
     verticalLinesProperties=nil;
     
@@ -259,10 +252,170 @@
         case 0:
         {
             
-            horizontalLinesProperties=[NSDictionary dictionaryWithObjectsAndKeys:@"1,2",@"dotted", nil];
-            verticalLinesProperties=[NSDictionary dictionaryWithObjectsAndKeys:@"1,2",@"dotted", nil];
+            horizontalLinesProperties=nil;
+            verticalLinesProperties=nil;
+            anchorPropertiesArray=nil;
+            
+        
+            yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
+            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 30, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.5)];
+            mLineGraph.delegate=self;
+            mLineGraph.tag=10+indexPath.row;
+            
+            //Set initial Y-Label as 0..
+            mLineGraph.minimumLabelOnYIsZero=TRUE;
+            
+
+            //Set color for line graph
+            MIMColorClass *c1=[MIMColorClass colorWithComponent:@"0,169,249"];
+            mLineGraph.lineColorArray=[NSArray arrayWithObjects:c1, nil];
+
+        
+            mLineGraph.titleLabel.text=@"Example 1: User assigned color for the line graph. Minimum Assigned value on Y-Axis is 0.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
+            [mLineGraph drawMIMLineGraph];
+            [cell.contentView addSubview:mLineGraph];
+            
+        }
+            break;
+            
+        case 1:
+        {
+
+            horizontalLinesProperties=[[NSDictionary alloc] initWithObjectsAndKeys:@"2,1",@"dotted", nil];
+            verticalLinesProperties=[[NSDictionary alloc]initWithObjectsAndKeys:@"1,2",@"dotted", nil];
             
             
+            
+            yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
+            
+            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            
+            
+           
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 30, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph.delegate=self;
+            mLineGraph.tag=10+indexPath.row;
+          
+            
+            mLineGraph.titleLabel.text=@"Example 2: User assigned style for X-Axis and Y-Axis separator lines style.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
+            
+            [mLineGraph drawMIMLineGraph];
+            [cell.contentView addSubview:mLineGraph];
+            
+            
+        }
+            break;
+        case 2:
+        {
+
+            
+            
+            horizontalLinesProperties=nil;
+            verticalLinesProperties=nil;
+            anchorPropertiesArray=nil;
+            
+            
+            yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
+            
+            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                          @"Feb",
+                          @"Mar",
+                          @"Apr",
+                          @"May",
+                          @"Jun",
+                          @"Jul",
+                          @"Aug",
+                          @"Sep",
+                          @"Oct",
+                          @"Nov",
+                          @"Dec", nil];
+        
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 30, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph.delegate=self;
+            mLineGraph.tag=10+indexPath.row;
+            mLineGraph.mbackgroundColor=[MIMColorClass colorWithComponent:@"255,255,255"];
+            
+        
+            mLineGraph.titleLabel.text=@"Example 3: User assigned white background color.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
+            [mLineGraph drawMIMLineGraph];
+            
+            [cell.contentView addSubview:mLineGraph];
+            
+            
+        }
+            break;
+        case 3:
+        {
+            horizontalLinesProperties=nil;
+            verticalLinesProperties=nil;
             anchorPropertiesArray=nil;
             
             yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
@@ -280,7 +433,6 @@
                           @"Oct",
                           @"Nov",
                           @"Dec", nil];
-            
             xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
                           @"Feb",
                           @"Mar",
@@ -294,162 +446,28 @@
                           @"Nov",
                           @"Dec", nil];
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.5)];
+            
+           
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 30, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
-            mLineGraph.mbackgroundColor=[MIMColorClass colorWithComponent:@"1,1,1"];
             mLineGraph.tag=10+indexPath.row;
-            mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:NONE], nil];
-            MIMColorClass *c1=[MIMColorClass colorWithComponent:@"0,169,249"];
+            
+            
+            
+            //Define color of line graph
+            MIMColorClass *c1=[MIMColorClass colorWithComponent:@"248,172,65"];
             mLineGraph.lineColorArray=[NSArray arrayWithObjects:c1, nil];
-            mLineGraph.xTitleStyle=X_TITLES_STYLE1;
-            mLineGraph.bottomMargin=40;
-            mLineGraph.rightMargin=50;
-            mLineGraph.leftMargin=30;
-            [mLineGraph drawMIMLineGraph];
-            [cell.contentView addSubview:mLineGraph];
             
-        }
-            break;
+            //Define transparent background
+            mLineGraph.mbackgroundColor=[MIMColorClass colorWithComponent:@"0,0,0,0"];
             
-        case 1:
-        {
-            horizontalLinesProperties=[NSDictionary dictionaryWithObjectsAndKeys:@"4,1",@"dotted", nil];;
+            //I have set the background color of cell as darkgrey, so that transparent background of the linegraph is visible.
+            cell.contentView.backgroundColor=[UIColor darkGrayColor];
+            
+            mLineGraph.titleLabel.text=@"Example 4: User assigned transparent background color.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
 
-            
-            yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
-            
-            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
-                          @"Feb",
-                          @"Mar",
-                          @"Apr",
-                          @"May",
-                          @"Jun",
-                          @"Jul",
-                          @"Aug",
-                          @"Sep",
-                          @"Oct",
-                          @"Nov",
-                          @"Dec", nil];
-            
-            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
-                          @"Feb",
-                          @"Mar",
-                          @"Apr",
-                          @"May",
-                          @"Jun",
-                          @"Jul",
-                          @"Aug",
-                          @"Sep",
-                          @"Oct",
-                          @"Nov",
-                          @"Dec", nil];
-            
-            
-            
-            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"touchenabled"], nil];
-            
-            
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            mLineGraph.delegate=self;
-            mLineGraph.tag=10+indexPath.row;
-            mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:CIRCLEFILLED], nil];
-            mLineGraph.xTitleStyle=X_TITLES_STYLE2;
-            mLineGraph.topMargin=50;
-            [mLineGraph drawMIMLineGraph];
-            [cell.contentView addSubview:mLineGraph];
-            
-            
-        }
-            break;
-        case 2:
-        {
-            horizontalLinesProperties=[NSDictionary dictionaryWithObjectsAndKeys:@"1,4",@"dotted", nil];;
-            verticalLinesProperties=[NSDictionary dictionaryWithObjectsAndKeys:@"1,4",@"dotted", nil];
-            
-            yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
-            
-            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
-                          @"Feb",
-                          @"Mar",
-                          @"Apr",
-                          @"May",
-                          @"Jun",
-                          @"Jul",
-                          @"Aug",
-                          @"Sep",
-                          @"Oct",
-                          @"Nov",
-                          @"Dec", nil];
-            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
-                          @"Feb",
-                          @"Mar",
-                          @"Apr",
-                          @"May",
-                          @"Jun",
-                          @"Jul",
-                          @"Aug",
-                          @"Sep",
-                          @"Oct",
-                          @"Nov",
-                          @"Dec", nil];
-            
-            
-            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:@"1,1,1" forKey:@"borderColor"], nil];
-            
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            mLineGraph.delegate=self;
-            mLineGraph.tag=10+indexPath.row;
-            mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:CIRCLEBORDER], nil];
-            mLineGraph.xTitleStyle=X_TITLES_STYLE3;
-            mLineGraph.rightMargin=50;
-
-            [mLineGraph drawMIMLineGraph];
-            [cell.contentView addSubview:mLineGraph];
-            
-            
-        }
-            break;
-        case 3:
-        {
-            horizontalLinesProperties=nil;
-
-            yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
-            
-            
-            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
-                          @"Feb",
-                          @"Mar",
-                          @"Apr",
-                          @"May",
-                          @"Jun",
-                          @"Jul",
-                          @"Aug",
-                          @"Sep",
-                          @"Oct",
-                          @"Nov",
-                          @"Dec", nil];
-            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
-                          @"Feb",
-                          @"Mar",
-                          @"Apr",
-                          @"May",
-                          @"Jun",
-                          @"Jul",
-                          @"Aug",
-                          @"Sep",
-                          @"Oct",
-                          @"Nov",
-                          @"Dec", nil];
-            
-            
-            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:@"0.5,0.3,0.5" forKey:@"fillColor"], nil];
-            
-            
-            
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            mLineGraph.delegate=self;
-            mLineGraph.tag=10+indexPath.row;
-            mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:SQUAREFILLED], nil];
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
@@ -459,10 +477,10 @@
         case 4:
         {
             horizontalLinesProperties=nil;
-            
+            verticalLinesProperties=nil;
+            anchorPropertiesArray=nil;
             
             yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
-            
             
             xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
                           @"Feb",
@@ -490,18 +508,23 @@
                           @"Nov",
                           @"Dec", nil];
             
-            
-            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"1,1,1",
-                                                                                                  [NSNumber numberWithBool:YES],
-                                                                                                  @"5",nil] 
-                                                                                         forKeys:[NSArray arrayWithObjects:@"borderColor",
-                                                                                                  @"hideShadow",@"radius",nil]], nil];
+        
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 40, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
-            mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:SQUAREBORDER], nil];
+            
+
+            mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:NONE], nil];
+            
+            
+            mLineGraph.titleLabel.text=@"Example 5: Hide the Anchor Points.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
+
+            
+            
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
@@ -510,12 +533,12 @@
             break;
         case 5:
         {
-            horizontalLinesProperties=nil;
+            verticalLinesProperties=nil;
+            horizontalLinesProperties=[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:30.0] forKey:@"gap"];
+            anchorPropertiesArray=nil;
             
             
             yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
-            
-            
             xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
                           @"Feb",
                           @"Mar",
@@ -528,6 +551,7 @@
                           @"Oct",
                           @"Nov",
                           @"Dec", nil];
+            
             xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
                           @"Feb",
                           @"Mar",
@@ -542,13 +566,19 @@
                           @"Dec", nil];
             
             
-            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"hideShadow"], nil];
+
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 40, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
-            mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:CIRCLE], nil];
+
+            
+            mLineGraph.titleLabel.text=@"Example 6: Set gap between Y-Axis separator.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
+            
+            
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
@@ -556,7 +586,12 @@
             break;
         case 6:
         {
+
+            //Set the gap for x-axis separator lines.
+            verticalLinesProperties=[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:100.0] forKey:@"gap"];
+            
             horizontalLinesProperties=nil;
+            anchorPropertiesArray=nil;
             
             
             yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
@@ -588,13 +623,21 @@
                           @"Dec", nil];
             
             
-            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"hideShadow"], nil];
+
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 40, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
-            mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:SQUARE], nil];
+            
+            
+            mLineGraph.xTitleStyle=XTitleStyle1;
+
+            
+            mLineGraph.titleLabel.text=@"Example 7: Set gap between X-Axis separator.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
+            
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
@@ -605,21 +648,28 @@
         {
             horizontalLinesProperties=nil;
             anchorPropertiesArray=nil;
-            
+            verticalLinesProperties=[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:15.0] forKey:@"gap"];
             [self createDataForLongSingleLine];
             
             yValuesArray=[NSArray arrayWithArray:dataArrayFromCSV];
             xValuesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
             xTitlesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 40, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
+            
             mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:NONE], nil];
             
-            mLineGraph.rightMargin=50;
-            mLineGraph.topMargin=35;
-            mLineGraph.bottomMargin=20;
+
+            
+            
+            mLineGraph.titleLabel.text=@"Example 8: Set gap between X-Axis separator and X-Axis Label style.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
+            
+            mLineGraph.xTitleStyle=XTitleStyle1;
+
             
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
@@ -630,7 +680,11 @@
         {
             horizontalLinesProperties=nil;
             anchorPropertiesArray=nil;
+            verticalLinesProperties=nil;
             
+            
+            
+
             xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
                           @"Feb",
                           @"Mar",
@@ -689,10 +743,23 @@
             yValuesArray=[[NSArray alloc]initWithObjects:array1,array2,array3,nil];
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-70, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 40, myTableView.frame.size.width-70, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
-            mLineGraph.xTitleStyle=X_TITLES_STYLE1;
+
+            //Set the colors for multiple lines.
+            MIMColorClass *c1=[MIMColorClass colorWithComponent:@"0,169,249"];
+            MIMColorClass *c2=[MIMColorClass colorWithComponent:@"255,0,0"];
+            MIMColorClass *c3=[MIMColorClass colorWithComponent:@"0,230,49"];
+            
+            mLineGraph.lineColorArray=[NSArray arrayWithObjects:c1,c2,c3, nil];
+
+            
+            
+            mLineGraph.titleLabel.text=@"Example 9: Multiple line graph with user assigned color.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
+            
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
@@ -704,6 +771,7 @@
         case 9:
         {
             horizontalLinesProperties=nil;
+            verticalLinesProperties=nil;
             anchorPropertiesArray=nil;
             
             xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
@@ -763,19 +831,25 @@
             
             yValuesArray=[[NSArray alloc]initWithObjects:array1,array2,array3,nil];
             
-            NSNumber *a=    [NSNumber numberWithInt:SQUAREFILLED];
-            NSNumber *a1=    [NSNumber numberWithInt:CIRCLEBORDER];
-            NSNumber *a2=    [NSNumber numberWithInt:CIRCLEFILLED];
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 40, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
+            
+            NSNumber *a=    [NSNumber numberWithInt:SQUAREFILLED];
+            NSNumber *a1=    [NSNumber numberWithInt:CIRCLEFILLED];
+            NSNumber *a2=    [NSNumber numberWithInt:CIRCLEFILLED];
             mLineGraph.anchorTypeArray=[[NSMutableArray alloc]initWithObjects:a,a2,a1, nil];
-            mLineGraph.xTitleStyle=X_TITLES_STYLE2;
-            mLineGraph.topMargin=40;
-            mLineGraph.leftMargin=20;
-            mLineGraph.rightMargin=30;
+            
+            
+            
+            mLineGraph.titleLabel.text=@"Example 10: Set different anchor style for multiple lines.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
+            
+            
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
@@ -786,6 +860,9 @@
         case 10:
         {
             horizontalLinesProperties=nil;
+            verticalLinesProperties=nil;
+
+            
             xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
                           @"Feb",
                           @"Mar",
@@ -844,49 +921,41 @@
             yValuesArray=[[NSArray alloc]initWithObjects:array1,array2,array3,nil];
             
             
-            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"1,0,0,1",
-                                                                                                  [NSNumber numberWithBool:YES],
-                                                                                                  @"5",[NSNumber numberWithInt:SQUAREBORDER],nil] forKeys:[NSArray arrayWithObjects:@"borderColor",@"hideShadow",@"radius",@"style",nil]],
-                                    [NSDictionary dictionaryWithObject:@"1" forKey:@"style"],
+            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithBool:YES],@"5",nil]
+                                                                                         forKeys:[NSArray arrayWithObjects:@"hideShadow",@"radius",nil]],
+                                    [NSDictionary dictionaryWithObject:@"5" forKey:@"radius"],
                                     [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"hideShadow"], nil];
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
+            
+            //You can also set anchorTypeArray to assign TYPE of anchors.
+
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 40, myTableView.frame.size.width - 20.0, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
-            mLineGraph.xTitleStyle=X_TITLES_STYLE2;
+
+            
+            
+            mLineGraph.titleLabel.text=@"Example 11: User-defined Properties(radius,shadow) for Anchors.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
+            
+    
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
-            //All with some default colors
+
             
         }
             break;
         case 11:
         {
+            
             horizontalLinesProperties=nil;
-            anchorPropertiesArray=nil;
+            verticalLinesProperties=nil;
+
             
-            [self createDataForLongMultipleLines];
-            
-            yValuesArray=[NSArray arrayWithArray:dataArrayFromCSV];
-            xValuesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
-            xTitlesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
-            
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
-            mLineGraph.delegate=self;
-            mLineGraph.tag=10+indexPath.row;
-            [mLineGraph drawMIMLineGraph];
-            [cell.contentView addSubview:mLineGraph];
-            
-        }
-            break;
-        case 12:
-        {
-            horizontalLinesProperties=nil;
-            anchorPropertiesArray=nil;
-            
-            NSArray *array1=[NSArray arrayWithObjects:@"-40",@"-30",@"-20",@"-10", @"0",@"20",@"23" ,@"25",@"28" ,@"30",@"25",@"40",nil];
-            yValuesArray=[[NSArray alloc]initWithObjects:array1,nil];
+
+            yValuesArray=[[NSArray alloc]initWithObjects:@"-40",@"-30",@"-20",@"-10", @"0",@"20",@"23" ,@"25",@"28" ,@"30",@"25",@"40",nil];
             
             xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
                           @"Feb",
@@ -917,14 +986,60 @@
             
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-70, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 40, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
-            mLineGraph.xTitleStyle=X_TITLES_STYLE1;
+            
+    
+            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"0,0,255",
+                                                                                                  [NSNumber numberWithBool:YES],
+                                                                                                  @"6",@"255,0,0",nil]
+                                                                                         forKeys:[NSArray arrayWithObjects:@"borderColor",
+                                                                                                  @"hideShadow",@"radius",@"fillColor",nil]], nil];
+            
+            
+            //Here border color is different than fill color AND fill color is different than line color.
+            mLineGraph.anchorTypeArray=[NSArray arrayWithObjects:[NSNumber numberWithInt:CIRCLEBORDER], nil];
+            
+            
+            mLineGraph.titleLabel.text=@"Example 12: Negative Values & User-defined Properties(radius,fillColor & borderColor) for Anchors.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
+            
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
-            //All WIthout Anchors
+            
+        }
+            break;
+        case 12:
+        {
+            
+            horizontalLinesProperties=nil;
+            anchorPropertiesArray=nil;
+            verticalLinesProperties=nil;
+            
+            [self createDataForLongMultipleLines];
+            
+            yValuesArray=[NSArray arrayWithArray:dataArrayFromCSV];
+            xValuesArray=[NSArray arrayWithArray:xDataArrayFromCSV];
+            xTitlesArray=[NSArray arrayWithArray:[xDataArrayFromCSV objectAtIndex:0]];
+            
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 40, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph.delegate=self;
+            mLineGraph.tag=10+indexPath.row;
+            
+            
+            mLineGraph.titleLabel.text=@"Example 13: Long Line Graph with X Labels in Style 2.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
+            
+            mLineGraph.xTitleStyle=XTitleStyle1;
+
+            
+            [mLineGraph drawMIMLineGraph];
+            [cell.contentView addSubview:mLineGraph];
+            
             
         }
             break;
@@ -932,6 +1047,7 @@
         case 13:
         {
             horizontalLinesProperties=nil;
+            verticalLinesProperties=nil;
             anchorPropertiesArray=nil;
             
             NSArray *array1=[NSArray arrayWithObjects:@"-40",@"-30",@"-20",@"-10", @"0",@"20",@"23" ,@"25",@"28" ,@"30",@"25",@"40",nil];
@@ -965,14 +1081,22 @@
                           @"Dec", nil];
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 40, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
-            mLineGraph.xTitleStyle=X_TITLES_STYLE2;
+
+            
+            anchorPropertiesArray= [NSArray arrayWithObjects:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"touchenabled"],[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"touchenabled"], nil];
+
+            
+            mLineGraph.titleLabel.text=@"Example 14: Touch Enabled Anchors.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
+            
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
-            //All with their own anchor styles
+
             
         }
             break;
@@ -980,6 +1104,7 @@
         case 14:
         {
             horizontalLinesProperties=nil;
+            verticalLinesProperties=nil;
             anchorPropertiesArray=nil;
             
             NSArray *array1=[NSArray arrayWithObjects:@"-40",@"-30",@"-20",@"-10", @"10",@"20",@"23" ,@"25",@"28" ,@"30",@"25",@"40",nil];
@@ -1001,32 +1126,35 @@
                           @"Nov",
                           @"Dec", nil];
             
-            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
-                          @"Feb",
-                          @"Mar",
-                          @"Apr",
-                          @"May",
-                          @"Jun",
-                          @"Jul",
-                          @"Aug",
-                          @"Sep",
-                          @"Oct",
-                          @"Nov",
-                          @"Dec", nil];
+            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan\n 2012",
+                          @"Feb\n 2012",
+                          @"Mar\n 2012",
+                          @"Apr\n 2012",
+                          @"May\n 2012",
+                          @"Jun\n 2012",
+                          @"Jul\n 2012",
+                          @"Aug\n 2012",
+                          @"Sep\n 2012",
+                          @"Oct\n 2012",
+                          @"Nov\n 2012",
+                          @"Dec\n 2012", nil];
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 40, myTableView.frame.size.width-20, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
-            mLineGraph.xTitleStyle=X_TITLES_STYLE2;
             
-            mLineGraph.topMargin=40;
-            mLineGraph.leftMargin=20;
+            mLineGraph.xTitleStyle=XTitleStyle1;
+            
+            mLineGraph.titleLabel.text=@"Example 15:Multiline X-Label  with style XTitleStyle1.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
+            
             
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
-            //All with some default colors
+
             
         }
             break;
@@ -1034,55 +1162,47 @@
         {
             horizontalLinesProperties=nil;
             anchorPropertiesArray=nil;
+            verticalLinesProperties=nil;
+
+            //If you want to display only single value, you need to add 0 as first element of the value array
+            //I will add it on the line graph code, so that user doesnt have to add 0.
+            //But for now this is how it is done.
             
-            NSArray *array1=[NSArray arrayWithObjects:@"-40",@"-30",@"-20",@"-10", @"10",@"20",@"23" ,@"25",@"28" ,@"30",@"25",@"40",nil];
-            NSArray *array2=[NSArray arrayWithObjects:@"-140",@"-135",@"-120",@"-130", @"10",@"120",@"123" ,@"50",@"58" ,@"40",@"125",@"120",nil];
-            yValuesArray=[[NSArray alloc]initWithObjects:array1,array2,nil];
+
             
+            yValuesArray=[[NSArray alloc]initWithObjects:@"0",@"47",nil];
             
-            xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
-                          @"Feb",
-                          @"Mar",
-                          @"Apr",
-                          @"May",
-                          @"Jun",
-                          @"Jul",
-                          @"Aug",
-                          @"Sep",
-                          @"Oct",
-                          @"Nov",
-                          @"Dec", nil];
+            //Also add an empty string for x labels.
             
-            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
-                          @"Feb",
-                          @"Mar",
-                          @"Apr",
-                          @"May",
-                          @"Jun",
-                          @"Jul",
-                          @"Aug",
-                          @"Sep",
-                          @"Oct",
-                          @"Nov",
-                          @"Dec", nil];
+            xValuesArray=[[NSArray alloc]initWithObjects:@" ",@"2012", nil];
+            xTitlesArray=[[NSArray alloc]initWithObjects:@" ",@"2012", nil];
             
             
-            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
+            mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 40, myTableView.frame.size.width-40, myTableView.frame.size.width * 0.5)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
-            mLineGraph.xTitleStyle=X_TITLES_STYLE2;
+
+            //If for some reason, you need margins.
+            mLineGraph.margin=MIMMarginMake(50.0, 50.0, 100.0, 100.0);
+            
+                               
+            
+            mLineGraph.titleLabel.text=@"Example 16:Handle single value display on line graph & Set Margins.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+            
             
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
-            //All with some default colors
+
             
         }
             break;
         case 16:
         {
             horizontalLinesProperties=[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"20", nil] forKeys:[NSArray arrayWithObjects:@"gap", nil]];
-            
+            verticalLinesProperties=[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:10.0] forKey:@"gap"];
+
             [self createDataForLongNegativeLines];
             
             yValuesArray=[NSArray arrayWithArray:dataArrayFromCSV];
@@ -1094,10 +1214,17 @@
             mLineGraph=[[MIMLineGraph alloc]initWithFrame:CGRectMake(5, 20, myTableView.frame.size.width*0.5, myTableView.frame.size.width * 0.3)];
             mLineGraph.delegate=self;
             mLineGraph.tag=10+indexPath.row;
+            
+            mLineGraph.titleLabel.text=@"Example 17:X-Axis Labels with Style 2.";
+            mLineGraph.titleLabel.frame=CGRectMake(0, -30, myTableView.frame.size.width, 30);
+
+            
             [mLineGraph drawMIMLineGraph];
             [cell.contentView addSubview:mLineGraph];
             
-
+            
+            
+           
             
         }
             break;

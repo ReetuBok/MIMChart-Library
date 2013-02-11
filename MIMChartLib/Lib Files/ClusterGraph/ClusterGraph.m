@@ -164,7 +164,7 @@
     
     
     _scalingX=_tileWidth/pixelPerTile;
-    NSLog(@"_scalingX=%f",_scalingX);
+    //NSLog(@"_scalingX=%f",_scalingX);
 }
 
 

@@ -24,7 +24,7 @@
 //
 
 #import "DoughtNutFragmentTitle.h"
-#import "2DFragmentedDoughNut.h"
+#import "MIMFragmentedDoughNut.h"
 
 @implementation DoughtNutFragmentTitle
 @synthesize  title;

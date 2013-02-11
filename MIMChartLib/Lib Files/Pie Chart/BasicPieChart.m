@@ -89,6 +89,11 @@
 
 -(void)initAndWarnings
 {
+    //reMove everythng which is there
+    for (UIView *view in self.subviews) {
+        [view removeFromSuperview];
+    }
+    
     
     selectedPie=-99;
 
@@ -125,7 +130,9 @@
     }
     
     pie.enableBubbleBox=showPercentBubbles;
+    pie.showAllBubbles=self.showAllBubbles;
     
+
     [pie setUserTouchEnabled:self.userTouchAllowed];
     
     
@@ -155,7 +162,7 @@
     
     
     //SET PIE CHART VALUES
-    pie.valueArray_=[NSMutableArray arrayWithArray:[delegate valuesForPie:self]];
+    pie.valueArray_=[[NSMutableArray alloc]initWithArray:[delegate valuesForPie:self]];
     
     
     
@@ -458,9 +465,9 @@
     //Fill pieOriginalFrame
     pieOriginalFrame=pie.frame;
     
-//    sumOfValues=[pie getSum];
-    NSLog(@"MsumOfValues=%f",sumOfValues);
+    sumOfValues=[pie getSum];
 
+    
     
     
     
@@ -496,9 +503,7 @@
 {
     [pie refreshPie];
     [self addSubview:pie];
-    
 
-    //[self performSelector:@selector(_showBubbleAtIndices) withObject:nil afterDelay:2.0];
 
 }
 
@@ -920,20 +925,32 @@
 
 #pragma mark - BUBBLES
 
+-(float)returnSum
+{
+    float sum=0.0;
+    
+    for(int i=0;i<[pie.valueArray_ count];i++)
+        sum+=[[pie.valueArray_ objectAtIndex:i] floatValue];
+    
+    return sum;
+    
+}
 -(void)showBubbleAtPoint:(CGPoint)point AtIndex:(int)index inQuadrant:(int)quadrant
 {
+
     
     //If the info box already exists at that index,Remove  it.
     [[self viewWithTag:800+index] removeFromSuperview];        
     
     
-    
+    sumOfValues=[self  returnSum];
 
     NSString *myPercentString=[NSString stringWithFormat:@"%.1f%@",[[pie.valueArray_ objectAtIndex:index] floatValue]*100/sumOfValues,@"%"];
     
     switch (bubbleStyle) 
     {
         case mPIE_BUBBLE_STYLE1:
+        case mPIE_BUBBLE_STYLE2:
         {
             PieBubble *bubble;
             float w=50;
@@ -942,18 +959,13 @@
             else if(quadrant==1)
                 bubble=[[PieBubble alloc]initWithFrame:CGRectMake(point.x, point.y, w, w)];
             else if(quadrant==2)
-                bubble=[[PieBubble alloc]initWithFrame:CGRectMake(point.x-w, point.y, w, w)];
+                bubble=[[PieBubble alloc]initWithFrame:CGRectMake(point.x-w/2, point.y, w, w)];
             else if(quadrant==3)
-                bubble=[[PieBubble alloc]initWithFrame:CGRectMake(point.x-w, point.y-w, w, w)];
+                bubble=[[PieBubble alloc]initWithFrame:CGRectMake(point.x-w/2, point.y-w, w, w)];
             
             bubble.tag=800+index;
-            [bubble DrawBubbleWithStyle:mPIE_BUBBLE_STYLE1 withText:myPercentString inQuadrant:quadrant];
+            [bubble DrawBubbleWithStyle:bubbleStyle withText:myPercentString inQuadrant:quadrant];
             [self addSubview:bubble];
-        }
-        break;
-        case mPIE_BUBBLE_STYLE2:
-        {
-            
         }
         break;
         case mPIE_BUBBLE_STYLE3:
@@ -1009,9 +1021,88 @@
     for (int i=0; i<[showBubbleOnIndices count]; i++) 
     {
         int index=[[showBubbleOnIndices objectAtIndex:i] intValue];
+        NSLog(@"index=%i",index);
         int quadrant=[pie getQuadrantAtIndex:index];
         CGPoint point=[pie getPointAtIndex:index];
         
+        [self showBubbleAtPoint:point AtIndex:index inQuadrant:quadrant];
+    }
+}
+
+-(CGPoint)getPointAtIndex:(int)index
+{
+    //Just Find the point on circle's circumference.
+    float range1=[[pie.angleArrays_ objectAtIndex:2*index] floatValue];
+    float range2=[[pie.angleArrays_ objectAtIndex:2*index+1] floatValue];;
+    
+    float theta=range1+range2;
+    
+    
+
+    if(index==0)
+        theta=0;
+    else
+    {
+        theta=theta/2;
+    }
+    
+    return CGPointMake((pie.radius-10)*cosf(theta), (pie.radius-10)*sinf(theta));
+ 
+    
+}
+
+
+-(int)getQuandrantAtIndex:(int)index
+{
+    float range1=[[pie.angleArrays_ objectAtIndex:2*index] floatValue];
+    float range2=[[pie.angleArrays_ objectAtIndex:2*index+1] floatValue];;
+    
+    float theta=range1+range2;
+    int quadrant=1;
+    if(index==0)
+        theta=0;
+    else
+    {
+        theta=theta/2;
+        
+        if((theta>0)&&(theta<1.57))
+            quadrant=1;
+        else if((theta>=1.57)&&(theta<3.14))
+            quadrant=2;
+        else if((theta>=3.14)&&(theta<4.71))
+            quadrant=3;
+        else if((theta>=4.71)&&(theta<6.28))
+            quadrant=4;
+        
+    }
+    return quadrant;
+
+}
+
+-(void)showBubbleAtAllIndices
+{
+    
+
+    
+    //return;
+    
+    //remove all the existing info boxes on those indices.
+    for (int i=0; i<[pie.valueArray_ count]; i++)
+    {
+        int index=[[showBubbleOnIndices objectAtIndex:i] intValue];
+        [[self viewWithTag:800+index] removeFromSuperview];
+        
+    }
+    
+    
+    for (int i=0; i<[pie.valueArray_ count]; i++)
+    {
+        
+        int index=i;
+        int quadrant=[self getQuandrantAtIndex:index];
+        CGPoint point=[self getPointAtIndex:index];
+        
+
         [self showBubbleAtPoint:point AtIndex:index inQuadrant:quadrant];
     }
 }

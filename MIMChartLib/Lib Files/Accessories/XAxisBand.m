@@ -30,7 +30,7 @@
 @synthesize xElements,scalingFactor,style,lineChart,xIsString;
 @synthesize barChart,gapDistance,lineColor,lineWidth;
 @synthesize properties,groupTitles,groupTitleOffset;
-
+@synthesize fontSize;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -38,9 +38,9 @@
     if (self) {
         // Initialization code
         self.backgroundColor=[UIColor clearColor];
-        _tileWidth=50;
-        _gridWidth=self.frame.size.width-20;
-        groupTitleOffset=50;
+        //_tileWidth=50;
+        //_gridWidth=self.frame.size.width-20;
+        //groupTitleOffset=50;
 
     }
     return self;
@@ -57,8 +57,9 @@
     
     //LineColor
     MIMColorClass *c=[MIMColorClass colorWithRed:0.7 Green:0.7 Blue:0.7 Alpha:1.0];
-    if([properties valueForKey:@"color"]) 
+    if([[properties allKeys] containsObject:@"color"])
         c=[MIMColorClass colorWithComponent:[properties valueForKey:@"color"]];
+    
     lineColor=[UIColor colorWithRed:c.red green:c.green blue:c.blue alpha:c.alpha];
     
     
@@ -77,13 +78,16 @@
     
     //Width
     lineWidth=0.1;
-    if([properties valueForKey:@"width"]) 
-        lineWidth=[[properties valueForKey:@"width"] floatValue];
+    if([properties valueForKey:@"linewidth"]) 
+        lineWidth=[[properties valueForKey:@"linewidth"] floatValue];
     if(lineWidth==0) NSLog(@"WARNING: Line width of horizontal line is 0.");
     
+    xAxisHeight=30;//
+    if([properties valueForKey:@"xheight"])
+        xAxisHeight=[[properties valueForKey:@"xheight"] floatValue];
     
     
-    style=X_TITLES_STYLE1;
+    style=XTitleStyle1;
     if([properties valueForKey:@"style"]) 
         style=[[properties valueForKey:@"style"] intValue];
     
@@ -98,12 +102,19 @@
     if([properties valueForKey:@"barchart"]) 
         barChart=[[properties valueForKey:@"barchart"] boolValue];
     
+    fontSize=11.0;
+    if([properties valueForKey:@"fontSize"])
+        fontSize=[[properties valueForKey:@"fontSize"] intValue];
+    
     xIsString=TRUE;
     if([properties valueForKey:@"xisstring"]) 
         xIsString=[[properties valueForKey:@"xisstring"] boolValue];
     
     if([properties valueForKey:@"xscaling"]) 
         scalingFactor=[[properties valueForKey:@"xscaling"] floatValue];
+    
+    if([properties valueForKey:@"xoffset"])
+        xoffset=[[properties valueForKey:@"xoffset"] floatValue];
     
     if([properties valueForKey:@"gapBetweenBars"]) 
         gapDistance=[[properties valueForKey:@"gapBetweenBars"] floatValue];
@@ -120,6 +131,9 @@
     if([properties valueForKey:@"stackedBars"]) 
         stackedBarChart=[[properties valueForKey:@"stackedBars"] boolValue];
     
+    hideSticks=FALSE;
+    if([properties valueForKey:@"hideSticks"])
+        hideSticks=[[properties valueForKey:@"hideSticks"] boolValue];
 }
 
 
@@ -133,7 +147,7 @@
     
     [self setVariables];
     
-
+    //NSLog(@"fontSize=%f",fontSize);
     
     // Drawing code
     CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -171,24 +185,29 @@
     //Draw the sticks down
     if(lineChart)
     {
-        CGContextSetBlendMode(ctx, kCGBlendModeNormal);
-        CGContextSetLineWidth(ctx, lineWidth);
-        CGContextSetStrokeColorWithColor(ctx, lineColor.CGColor);
-        for (int i=0; i<[xElements count]; i++) {
-            
-            if(xIsString)
-            {
-                CGContextMoveToPoint(ctx,i*scalingFactor,self.frame.size.height);
-                CGContextAddLineToPoint(ctx,i*scalingFactor, self.frame.size.height-5);
+        if(!hideSticks)
+        {
+            CGContextSetBlendMode(ctx, kCGBlendModeNormal);
+            CGContextSetLineWidth(ctx, lineWidth);
+            CGContextSetStrokeColorWithColor(ctx, lineColor.CGColor);
+            for (int i=0; i<[xElements count]; i++) {
+                
+                if(xIsString)
+                {
+                    CGContextMoveToPoint(ctx,xoffset+ i*scalingFactor,self.frame.size.height);
+                    CGContextAddLineToPoint(ctx,xoffset+i*scalingFactor, self.frame.size.height-2);
+                }
+                else
+                {
+                    CGContextMoveToPoint(ctx,xoffset+[[xElements objectAtIndex:i]intValue]*scalingFactor,self.frame.size.height);
+                    CGContextAddLineToPoint(ctx,xoffset+[[xElements objectAtIndex:i]intValue]*scalingFactor, self.frame.size.height-2);
+                }
+                
             }
-            else
-            {
-                CGContextMoveToPoint(ctx,[[xElements objectAtIndex:i]intValue]*scalingFactor,self.frame.size.height);
-                CGContextAddLineToPoint(ctx,[[xElements objectAtIndex:i]intValue]*scalingFactor, self.frame.size.height-5);
-            }
-           
+            CGContextDrawPath(ctx, kCGPathStroke);
+        
         }
-        CGContextDrawPath(ctx, kCGPathStroke);
+        
     
     }
     else if(barChart)
@@ -199,13 +218,17 @@
     }
     else
     {
-        CGContextSetLineWidth(ctx, lineWidth);
-        for (int i=0; i<[xElements count]; i++) {
-            
-            CGContextMoveToPoint(ctx,i*scalingFactor+ (scalingFactor * 0.8)/2,self.frame.size.height);
-            CGContextAddLineToPoint(ctx,i*scalingFactor + (scalingFactor* 0.8)/2, self.frame.size.height-5);
+        if(!hideSticks)
+        {
+            CGContextSetLineWidth(ctx, lineWidth);
+            for (int i=0; i<[xElements count]; i++) {
+                
+                CGContextMoveToPoint(ctx,i*scalingFactor+ (scalingFactor * 0.8)/2,self.frame.size.height);
+                CGContextAddLineToPoint(ctx,i*scalingFactor + (scalingFactor* 0.8)/2, self.frame.size.height-2);
+            }
+            CGContextDrawPath(ctx, kCGPathStroke);
         }
-        CGContextDrawPath(ctx, kCGPathStroke);
+        
     
     
     }
@@ -254,7 +277,7 @@
                 
                 label.lineChart=lineChart;
                 label.text=[NSString stringWithFormat:@"%@",[[xElements objectAtIndex:i] objectAtIndex:j]];
-                
+                label.fontSize=fontSize;
                 [label drawTitleWithColor:lineColor];
                 [self addSubview:label];
             }
@@ -311,7 +334,7 @@
                 
                 label.lineChart=lineChart;
                 label.text=[NSString stringWithFormat:@"%@",[xElements objectAtIndex:i]];
-                
+                label.fontSize=fontSize;
                 [label drawTitleWithColor:lineColor];
                 [self addSubview:label];
             
@@ -341,7 +364,9 @@
         float offset=(scalingFactor * 0.8)/2;
         
         if(lineChart)
-            offset=0;
+        {
+            offset=xoffset;
+        }
         else if(barChart)
             offset=0;
         else
@@ -349,6 +374,7 @@
          
         if(barChart)
         {
+           // NSLog(@"scalingFactor+gapDistance=%f",scalingFactor+gapDistance);
             switch (style) 
             {
                 case 1:
@@ -360,7 +386,7 @@
                     label.style=self.style;
                     break;
                 case 3:
-                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake((v*scalingFactor) +  ((v+1) *gapDistance), 10, scalingFactor+gapDistance, 15.0)];
+                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake((v*scalingFactor) +  ((v+1) *gapDistance - gapDistance/2), 5, scalingFactor+gapDistance, 30)];
                     label.style=5;
                     break;
                     
@@ -369,6 +395,58 @@
                     label.style=self.style;
                     break;
             }
+            label.width=scalingFactor+gapDistance;
+        }
+        else if(lineChart)
+        {
+            
+            
+
+            CGFloat maxWidth  = 200.0f;
+            CGFloat maxHeight = 10000.0f;
+            CGSize constraint = CGSizeMake(maxWidth, maxHeight);
+            
+            
+            CGSize labelSize=CGSizeMake(scalingFactor, xAxisHeight);
+            
+            if([[xElements objectAtIndex:i] isKindOfClass:[NSString class]])
+            labelSize= [[xElements objectAtIndex:i] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+
+            
+            //In case of case 1: its width should be equal to constraint width
+            
+            switch (style) {
+                case 1:
+                {
+                    if(labelSize.width>scalingFactor)
+                        label=[[XAxisLabel alloc]initWithFrame:CGRectMake(v*scalingFactor+ offset, 0, labelSize.width, xAxisHeight)];
+                    else
+                        label=[[XAxisLabel alloc]initWithFrame:CGRectMake(v*scalingFactor+ offset, 0, scalingFactor, xAxisHeight)];
+                }
+                    break;
+                case 2:
+                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake(v*scalingFactor, 0, scalingFactor, xAxisHeight)];
+                    break;
+                case 3:
+                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake(v*scalingFactor+ offset -(scalingFactor/2), 5, scalingFactor, xAxisHeight)];
+                    break;
+                    
+                case 4:
+                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake(v*scalingFactor+ (scalingFactor * 0.8)/2, 5, scalingFactor, xAxisHeight)];
+                    break;
+            }
+            
+            label.style=self.style;
+            
+            
+            if(scalingFactor<labelSize.width)
+                label.width=labelSize.width;
+            else
+                label.width=scalingFactor;
+                
+            label.height=xAxisHeight;
+            label.offset=offset;
+        
         }
         else
         {
@@ -380,7 +458,7 @@
                     label=[[XAxisLabel alloc]initWithFrame:CGRectMake(v*scalingFactor, 0, scalingFactor, 15.0)];
                     break;
                 case 3:
-                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake(v*scalingFactor-10+ offset, 10, scalingFactor, 15.0)];
+                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake(v*scalingFactor+ offset -(scalingFactor/2), 5, scalingFactor, 30)];
                     break;
                     
                 case 4:
@@ -389,13 +467,16 @@
             }
             
             label.style=self.style;
+            label.width=scalingFactor;
+
         }
         
         
         label.lineChart=lineChart;
         label.text=[NSString stringWithFormat:@"%@",[xElements objectAtIndex:i]];
 
-        label.width=scalingFactor;
+        
+        label.fontSize=fontSize;
         [label drawTitleWithColor:lineColor];
         [self addSubview:label];
         
@@ -434,6 +515,7 @@
         label.mBackgroundColor=groupTitleBgColor;
         
         label.text=[NSString stringWithFormat:@"%@",[groupTitles objectAtIndex:i]];
+        label.fontSize=fontSize;
         [label drawTitleWithColor:groupTitleColor];
         
         [self addSubview:label];
@@ -450,8 +532,9 @@
 
 -(void)drawXAxis:(CGContextRef)ctx
 {
+    //NSLog(@"xaxis width=%f",self.frame.size.width);
     
-    if(lineWidth<1) lineWidth=1;
+    if(lineWidth<1)lineWidth=1;
     
     CGContextBeginPath(ctx);
     CGContextSetStrokeColorWithColor(ctx, lineColor.CGColor);

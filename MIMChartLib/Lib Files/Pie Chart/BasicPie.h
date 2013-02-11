@@ -48,6 +48,7 @@
     BOOL enableDoubleTap;//This is needed when user wants detail popup as well as info box
     BOOL enableShowDetailBox;
     BOOL enableBubbleBox;//Display bubbles
+    BOOL showAllBubbles;
     
 @private
     float lastRotation_;
@@ -80,7 +81,7 @@
 @property(nonatomic,assign)BOOL enableShowDetailBox;
 @property(nonatomic,assign)int afterTappingWhichDirectionToRotate;
 @property(nonatomic,assign)BOOL enableBubbleBox;
-
+@property (nonatomic,assign)BOOL showAllBubbles;
 
 -(void)initPie;
 

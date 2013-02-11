@@ -28,7 +28,7 @@
 
 
 @implementation BarView
-@synthesize color,borderColor,lColor,dColor,isGradient,gradientStyle,glossStyle,negativeBar;
+@synthesize color,borderColor,lColor,dColor,gradientStyle,glossStyle,negativeBar;
 @synthesize delegate;
 - (id)initWithFrame:(CGRect)frame
 {
@@ -54,7 +54,7 @@
  
     
     
-    if (isGradient) 
+    if (gradientStyle !=0)
     {
         
         Dred=[[dColor valueForKey:@"red"] floatValue];

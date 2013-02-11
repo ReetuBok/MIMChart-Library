@@ -130,14 +130,14 @@
     }
     else if([title isEqualToString:@"Animated Line Charts"])
     {
-        TestLineClass2 *level3=[[TestLineClass2 alloc]initWithNibName:@"TestLineClass2" bundle:nil];
-        [self.navigationController pushViewController:level3 animated:YES];
+//        TestLineClass2 *level3=[[TestLineClass2 alloc]initWithNibName:@"TestLineClass2" bundle:nil];
+//        [self.navigationController pushViewController:level3 animated:YES];
     }
     
     
     
     /***************************FRAGMENTED DOUGHNUT CHART****************************/
-    else if([title isEqualToString:@"Basic Fragmented Doughnut Charts"])
+    else if([title isEqualToString:@"Basic Doughnut Charts"])
     {
         TestClassFragmented *level3=[[TestClassFragmented alloc]initWithNibName:@"TestClassFragmented" bundle:nil];
         [self.navigationController pushViewController:level3 animated:YES];
@@ -175,8 +175,8 @@
     }
     else if([title isEqualToString:@"Basic Bar Views Management"])
     {
-        MultipleBarViews *level3=[[MultipleBarViews alloc]initWithNibName:@"MultipleBarViews" bundle:nil];
-        [self.navigationController pushViewController:level3 animated:YES];
+//        MultipleBarViews *level3=[[MultipleBarViews alloc]initWithNibName:@"MultipleBarViews" bundle:nil];
+//        [self.navigationController pushViewController:level3 animated:YES];
     }
     
     
@@ -189,6 +189,13 @@
     }
     
     
+    
+    ///***************************RANGE GRAPHS****************************/
+    else if([title isEqualToString:@"Range Graphs"])
+    {
+        RangeGraphTestClass *level3=[[RangeGraphTestClass alloc]init];
+        [self.navigationController pushViewController:level3 animated:YES];
+    }
     
 }
 
@@ -324,6 +331,14 @@
     {
         featureListCellArray=[[NSArray alloc]initWithObjects:@"Gauge Graphs", nil];
     }
+    
+    
+    ///***************************RANGE GRAPHS****************************/
+    else if([titleString isEqualToString:@"Overview of Range Graphs"])
+    {
+        featureListCellArray=[[NSArray alloc]initWithObjects:@"Range Graphs", nil];
+    }
+    
     
     [myTableView reloadData];
     [super viewDidLoad];

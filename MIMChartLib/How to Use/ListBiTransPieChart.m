@@ -155,7 +155,8 @@
 #pragma mark - DELEGATE METHOD FOR PIE
 -(MIMColorClass *)colorForBackground:(id)pieChart
 {
-    MIMColorClass *bgColor;
+    MIMColorClass *bgColor=[MIMColorClass colorWithComponent:@"1.0,1.0,1.0,0.0"];
+
     
     if(pieChart==myPieChart)
         bgColor=[MIMColorClass colorWithComponent:@"0,0,0,0"];

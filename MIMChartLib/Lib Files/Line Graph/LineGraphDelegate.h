@@ -24,15 +24,26 @@
 -(NSDictionary *)verticalLinesProperties:(id)graph;
 -(NSDictionary *)xAxisProperties:(id)graph;//hide,color,width,linewidth,style
 -(NSDictionary *)yAxisProperties:(id)graph;//hide,color,width,linewidth,style
+
 -(NSDictionary *)chartTitleProperties:(id)graph;//hide,color,frame,font
-
--(UIView *)backgroundViewForLineChart:(id)graph;
-
 -(NSArray *)ColorsForLineChart:(id)graph;
-
 -(NSArray *)AnchorProperties:(id)graph; 
 //NSArray of NSDictionary with keys style,radius,shadowRadius,touchenabled,color,bordercolor,border width.
 
+-(NSDictionary *)infoWindowProperties:(id)graph; // Font name, font size , single line/multiple line
+-(NSArray *)lineGraphProperties:(id)graph;
+/*Array contains one dictionary for each line graph;
+//Each Dictionary can have following values:
+delay
+animationDuration
+line style
+glow effect
+glow radius
+*/
+
+
+
+-(UIView *)backgroundViewForLineChart:(id)graph;
 @end
 
 #endif

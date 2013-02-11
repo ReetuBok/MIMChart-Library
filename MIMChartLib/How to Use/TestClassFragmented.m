@@ -89,7 +89,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return  1;
+    return  4;
     
 }
 
@@ -106,12 +106,15 @@
     {
         case 0:
         {
+            valuesArray=[NSArray arrayWithObjects:@"23",@"45",@"89",@"123",@"21",@"144",@"77", nil];
+            titlesArray=[NSArray arrayWithObjects:@"U.P.",@"Bihar",@"Delhi",@"Punjab",@"Haryana",@"Rajasthan",@"Orrisa", nil];
+            innerRadius=150;
+            outerRadius=200;
+            colorsArray=nil;
             
-            
-            
-            _DFragmentedDoughNut *detailedDoughNut=[[_DFragmentedDoughNut alloc]initWithFrame:CGRectMake(0, 0, 500, 500)];
+            MIMFragmentedDoughNut *detailedDoughNut=[[MIMFragmentedDoughNut alloc]initWithFrame:CGRectMake(0, 0, 500, 500)];
             detailedDoughNut.delegate=self;
-            detailedDoughNut.tint=GREENTINT;// Available Tints: GREENTINT,REDTINT,BEIGETINT
+            detailedDoughNut.tint=GREENTINT;
             detailedDoughNut.isShadow=YES;
             [detailedDoughNut drawDoughNut];
             [cell.contentView addSubview:detailedDoughNut];
@@ -121,22 +124,106 @@
             
         case 1:
         {
+            valuesArray=[NSArray arrayWithObjects:@"23",@"45",@"89",@"123",@"21",@"144",@"77", nil];
+            titlesArray=[NSArray arrayWithObjects:@"U.P.",@"Bihar",@"Delhi",@"Punjab",@"Haryana",@"Rajasthan",@"Orrisa", nil];
+            innerRadius=150;
+            outerRadius=170;
+            colorsArray=nil;
             
-            
+            MIMFragmentedDoughNut *detailedDoughNut=[[MIMFragmentedDoughNut alloc]initWithFrame:CGRectMake(0, 0, 500, 500)];
+            detailedDoughNut.delegate=self;
+            detailedDoughNut.tint=REDTINT;
+            detailedDoughNut.isShadow=YES;
+            [detailedDoughNut drawDoughNut];
+            [cell.contentView addSubview:detailedDoughNut];
             
         }
             break;
         case 2:
         {
+            valuesArray=[NSArray arrayWithObjects:@"23",@"45",@"89",@"123",@"21",@"144",@"77", nil];
+            titlesArray=[NSArray arrayWithObjects:@"U.P.",@"Bihar",@"Delhi",@"Punjab",@"Haryana",@"Rajasthan",@"Orrisa", nil];
+            innerRadius=150;
+            outerRadius=220;
+            colorsArray=nil;
             
-            
+            MIMFragmentedDoughNut *detailedDoughNut=[[MIMFragmentedDoughNut alloc]initWithFrame:CGRectMake(0, 0, 500, 500)];
+            detailedDoughNut.delegate=self;
+            detailedDoughNut.tint=BEIGETINT;
+            detailedDoughNut.isShadow=NO;
+            [detailedDoughNut drawDoughNut];
+            [cell.contentView addSubview:detailedDoughNut];
             
         }
             break;
         case 3:
         {
+            //User Defined Colors
+            
+            colorsArray=[[NSArray alloc] initWithObjects:[MIMColorClass colorWithComponent:@"57,114,73"],
+                          [MIMColorClass colorWithComponent:@"98,139,97"],
+                          [MIMColorClass colorWithComponent:@"156,183,112"],
+                          [MIMColorClass colorWithComponent:@"199,225,186"],
+                          [MIMColorClass colorWithComponent:@"243,213,189"],
+                          [MIMColorClass colorWithComponent:@"246,228,204"],
+                          [MIMColorClass colorWithComponent:@"204,182,71"],
+                          [MIMColorClass colorWithComponent:@"214,222,228"],
+                          [MIMColorClass colorWithComponent:@"206,120,152"],
+                          [MIMColorClass colorWithComponent:@"152,197,171"],
+                          [MIMColorClass colorWithComponent:@"225,152,178"],
+                          [MIMColorClass colorWithComponent:@"254,254,232"],
+                          [MIMColorClass colorWithComponent:@"97,61,45"],
+                          [MIMColorClass colorWithComponent:@"1,120,144"],
+                          [MIMColorClass colorWithComponent:@"233,93,34"],
+                          [MIMColorClass colorWithComponent:@"223,119,130"],
+                          [MIMColorClass colorWithComponent:@"217,204,185"],
+                          [MIMColorClass colorWithComponent:@"173,116,96"],nil];
             
             
+            titlesArray=[[NSArray alloc] initWithObjects:@"USA",
+                         @"India",
+                         @"Brazil",
+                         @"Italy",
+                         @"France",
+                         @"Spain",
+                         @"South Korea",
+                         @"Mexico",
+                         @"Greece",
+                         @"Taiwan",
+                         @"Japan",
+                         @"China",
+                         @"Paraguay",
+                         @"South Africa",
+                         @"Australia",
+                         @"Sweden",
+                         @"Denmark",
+                         @"United Kingdom",nil];
+            
+            
+            valuesArray=[[NSArray alloc] initWithObjects:@"45",
+                         @"5",
+                         @"2",
+                         @"23",
+                         @"34",
+                         @"11",
+                         @"10",
+                         @"5",
+                         @"8",
+                         @"19",
+                         @"27",
+                         @"34",
+                         @"9",
+                         @"19",
+                         @"28",
+                         @"36",
+                         @"42",
+                         @"40",nil];
+            
+            
+            MIMFragmentedDoughNut *detailedDoughNut=[[MIMFragmentedDoughNut alloc]initWithFrame:CGRectMake(0, 0, 500, 500)];
+            detailedDoughNut.delegate=self;
+            [detailedDoughNut drawDoughNut];
+            [cell.contentView addSubview:detailedDoughNut];
             
             
         }
@@ -198,18 +285,23 @@
 #pragma mark - DOUGHNUT DELEGATE METHODS
 -(float)innerRadiusForDoughNut:(id)doughnut
 {
-    return 150;
+    return innerRadius;
 }
 -(float)outerRadiusForDoughNut:(id)doughnut
 {
-    return 200;
+    return outerRadius;
 }
 -(NSArray *)valuesForDoughNut:(id)doughnut
 {
-    return [NSArray arrayWithObjects:@"23",@"45",@"89",@"123",@"21",@"144",@"77", nil];
+    return valuesArray;
 }
 -(NSArray *)titlesForDoughNut:(id)doughnut
 {
-    return [NSArray arrayWithObjects:@"U.P.",@"Bihar",@"Delhi",@"Punjab",@"Haryana",@"Rajasthan",@"Orrisa", nil];
+    return titlesArray;
+}
+-(NSArray *)colorsForDoughNut:(id)doughnut
+{
+    return colorsArray;
+    
 }
 @end

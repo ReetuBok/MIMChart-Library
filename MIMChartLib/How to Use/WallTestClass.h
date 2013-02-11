@@ -27,6 +27,8 @@
 #import <UIKit/UIKit.h>
 #import "MIMColor.h"
 #import "MIMWallGraph.h"
+#import "DataManager.h" /*Needed only because I am fetching the sample data to be drawn on Wallgraph*/
+
 
 @interface WallTestClass : UIViewController<UITableViewDelegate,UITableViewDataSource,WallGraphDelegate> 
 {
@@ -42,12 +44,16 @@
     NSArray *yValuesArray;
     NSArray *xValuesArray;
     NSArray *xTitlesArray;
+    NSArray *wallPropertiesArray;
     
     NSDictionary *xProperty;
     NSDictionary *yProperty;
     
     NSDictionary *horizontalLinesProperties;
     NSDictionary *verticalLinesProperties;
+    
+    
+    DataManager *dataManager_;
 }
 
 @end

@@ -89,15 +89,12 @@
 
             myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
-            myBarChart.stackedBars=YES;
+            myBarChart.barGraphStyle=BAR_GRAPH_STYLE_STACKED;
             myBarChart.tag=10+indexPath.row;
             myBarChart.glossStyle=GLOSS_STYLE_1;
+            myBarChart.margin=MIMMarginMake(50, 40, 0, 50);
             
-            myBarChart.rightMargin=50;
-            myBarChart.topMargin=50;
-            myBarChart.bottomMargin=40;
-            
-            myBarChart.xTitleStyle=X_TITLES_STYLE3;
+            myBarChart.xTitleStyle=XTitleStyle2;
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
             
@@ -118,14 +115,13 @@
             myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
-            myBarChart.stackedBars=YES;
-            myBarChart.isGradient=YES;
+            myBarChart.barGraphStyle=BAR_GRAPH_STYLE_STACKED;
             myBarChart.gradientStyle=HORIZONTAL_GRADIENT_STYLE;
-            myBarChart.xTitleStyle=X_TITLES_STYLE2;
+            myBarChart.xTitleStyle=XTitleStyle2;
             myBarChart.glossStyle=GLOSS_STYLE_1;
             
-            myBarChart.rightMargin=30;
-            myBarChart.topMargin=50;
+           
+            myBarChart.margin=MIMMarginMake(50, 0, 0, 30);
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
             
@@ -147,10 +143,9 @@
             myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
-            myBarChart.stackedBars=YES;
-            myBarChart.isGradient=YES;
+            myBarChart.barGraphStyle=BAR_GRAPH_STYLE_STACKED;
             myBarChart.gradientStyle=HORIZONTAL_GRADIENT_STYLE;
-            myBarChart.xTitleStyle=X_TITLES_STYLE2;
+            myBarChart.xTitleStyle=XTitleStyle2;
 
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];

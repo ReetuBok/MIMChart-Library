@@ -36,7 +36,7 @@
         // Custom initialization
         self.title=@"MIM Chart Library iPad Index";
         
-        chartTypeSectionArray=[[NSArray alloc]initWithObjects:@"Pie Chart",@"Doughnut Chart",@"Line Chart",@"Wall Graph",@"Bar Chart",@"Gauge Graph",nil];
+        chartTypeSectionArray=[[NSArray alloc]initWithObjects:@"Pie Chart",@"Doughnut Chart",@"Line Chart",@"Wall Graph",@"Bar Chart",@"Gauge Graph",@"Range Chart",nil];
         
         
         featureListCellArray=[[NSArray alloc]initWithObjects:
@@ -45,7 +45,8 @@
                               [[NSArray alloc]initWithObjects:@"Overview of all Line Charts",@"Complex Line Charts", nil],
                               [[NSArray alloc]initWithObjects:@"Overview of all Wall Graphs", nil],
                               [[NSArray alloc]initWithObjects:@"Overview of all Bar Charts",@"Multiple Bar Views Management", nil],
-                              [[NSArray alloc]initWithObjects:@"Overview of Gauge Graphs", nil],nil];
+                              [[NSArray alloc]initWithObjects:@"Overview of Gauge Graphs", nil],
+                              [[NSArray alloc]initWithObjects:@"Overview of Range Graphs", nil],nil];
         
     }
     return self;
@@ -95,22 +96,25 @@
     
    
     
-    UITableViewCell *cell;// = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    //if (cell == nil) 
-    //{
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if (cell == nil) 
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
-    UILabel *title=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, 300, 44)];
-    [title setBackgroundColor:[UIColor clearColor]];
-    [title setFont:[UIFont fontWithName:@"Helvetica" size:12]];
-    [title setMinimumFontSize:9];
-    title.text=[[featureListCellArray objectAtIndex:[indexPath section]]objectAtIndex:indexPath.row];
-    title.textColor=[UIColor blackColor];
-    [cell.contentView addSubview:title];
+        UILabel *title=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, 300, 44)];
+        title.tag=1;
+        [title setBackgroundColor:[UIColor clearColor]];
+        [title setFont:[UIFont fontWithName:@"Helvetica" size:12]];
+        [title setMinimumFontSize:9];
+        title.text=[[featureListCellArray objectAtIndex:[indexPath section]]objectAtIndex:indexPath.row];
+        title.textColor=[UIColor blackColor];
+        [cell.contentView addSubview:title];
         
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    }
     
+    [(UILabel *)[cell viewWithTag:1]setText:[[featureListCellArray objectAtIndex:[indexPath section]]objectAtIndex:indexPath.row]];
     return cell;
     
     

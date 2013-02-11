@@ -45,12 +45,19 @@
     
     BOOL xIsString;
     float lineWidth;
+    float xAxisHeight;
+    
     UIColor *lineColor;
     NSDictionary *properties;
     NSArray *groupTitles;
     float groupTitleOffset;
     UIColor *groupTitleColor;
     UIColor *groupTitleBgColor;
+    BOOL hideSticks;
+    
+    float fontSize;
+    float xoffset;
+    
 }
 @property(nonatomic,retain)NSArray *xElements;
 @property(nonatomic,assign)float scalingFactor;
@@ -64,6 +71,9 @@
 @property(nonatomic,retain)NSDictionary *properties;
 @property(nonatomic,retain)NSArray *groupTitles;
 @property(nonatomic,assign)float groupTitleOffset;
+@property(nonatomic,assign) float fontSize;
+
+
 -(void)drawXAxis:(CGContextRef)ctx;
 
 

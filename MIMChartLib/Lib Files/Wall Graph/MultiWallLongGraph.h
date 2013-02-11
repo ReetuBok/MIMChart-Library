@@ -16,6 +16,7 @@
 #import "XAxisBand.h"
 #import "MIM_MathClass.h"
 #import "Constant.h"
+#import "MIMProperties.h"
 
 
 @interface MultiWallLongGraph : UIView<AnchorDelegate>
@@ -28,7 +29,9 @@
     float scalingY;
     BOOL xIsString;
     BOOL isGradient;
-
+    float xOffset;
+    float minimumOnY;
+    
     NSArray *wallBezierPath;
     NSArray *wallEdgeBezierPath;
 
@@ -43,21 +46,30 @@
     NSArray *wallGradientArray;
     NSArray *orderArray;//Needed for Anchors
     NSArray *maxValuesArray;
+    NSArray *aPropertiesArray;
+    NSArray *anchorTypeArray;
+    
+    
     float METERLINEHEIGHT;
 
     float rightMargin;
     float topMargin;
     float leftMargin;
     float bottomMargin;
+    
+    float barOffset; //something to do graph overlaying bars
+    
 }
 
 
-@property(nonatomic,assign)float gridHeight;  
+@property(nonatomic,assign)float gridHeight;
 
 @property(nonatomic,assign)float scalingX;
 @property(nonatomic,assign)float scalingY;
 @property(nonatomic,assign)BOOL xIsString;
 @property(nonatomic,assign)BOOL isGradient;
+@property(nonatomic,assign)float xOffset;
+@property(nonatomic,assign)float minimumOnY;
 
 @property(nonatomic,retain)NSArray *wallBezierPath;
 @property(nonatomic,retain)NSArray *wallEdgeBezierPath;
@@ -65,6 +77,8 @@
 @property(nonatomic,retain)NSMutableArray *xValElements;
 @property(nonatomic,retain)NSMutableArray *yValElements;
 
+@property(nonatomic,retain)NSArray *aPropertiesArray;
+@property(nonatomic,retain)NSArray *anchorTypeArray;
 
 @property(nonatomic,retain)NSArray *wallColorArray;
 @property(nonatomic,retain)NSArray *edgeColorArray;
@@ -77,4 +91,6 @@
 @property(nonatomic,assign)float topMargin;
 @property(nonatomic,assign)float leftMargin;
 @property(nonatomic,assign)float bottomMargin;
+
+@property(nonatomic,assign)float barOffset;
 @end

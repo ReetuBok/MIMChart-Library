@@ -41,6 +41,8 @@
 #import "MultipleBarViews.h"
 
 #import "GaugeGraphTestClass.h"
+#import "RangeGraphTestClass.h"
+
 
 @interface Level2iPadController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {

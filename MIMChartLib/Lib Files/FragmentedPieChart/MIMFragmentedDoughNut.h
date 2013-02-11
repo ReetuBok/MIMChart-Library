@@ -29,7 +29,7 @@
 #import "FragmentedDoughNutDelegate.h"
 #import "Constant.h"
 
-@interface _DFragmentedDoughNut : UIView {
+@interface MIMFragmentedDoughNut : UIView {
     
     
     NSMutableArray *colorArray;
@@ -41,8 +41,8 @@
     id<FragmentedDoughNutDelegate>delegate;
     
     @private
-    NSArray *valuesArray;
-    NSArray *titleArray;
+
+    
     float innerRadius;
     float outerRadius;
 }

@@ -32,9 +32,10 @@
 
 
     NSDictionary *properties;
+    NSArray *yTitles;
 
 }
 @property(nonatomic,retain)NSDictionary *properties;
-
+@property(nonatomic,retain)NSArray *yTitles;
 
 @end

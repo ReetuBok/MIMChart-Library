@@ -431,7 +431,7 @@
         
         
         
-        NSArray *g=[NSArray arrayWithObjects:(__bridge id)gradient1,gradient2,gradient3,gradient4,gradient5,nil];
+        NSArray *g=[NSArray arrayWithObjects:(id)gradient1,gradient2,gradient3,gradient4,gradient5,nil];
         
         return g;
         
@@ -443,7 +443,7 @@
 
 -(MIMColorClass *)colorForBackground:(id)pieChart
 {
-    MIMColorClass *bgColor;
+    MIMColorClass *bgColor=[MIMColorClass colorWithComponent:@"1.0,1.0,1.0,0.0"];
     
     if(pieChart==myPieChart1)
         bgColor=[MIMColorClass colorWithComponent:@"1.0,1.0,1.0"];

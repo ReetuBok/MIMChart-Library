@@ -24,67 +24,66 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MIMMargin.h"
+
 #import "BarGraphDelegate.h"
 #import "Constant.h"
 #import "BarView.h"
 #import "LineInfoBox.h"
+#import "MultiLineLongGraph.h"
 
-
-@interface MIMBarGraph : UIView<BarViewDelegate> {
+@interface MIMBarGraph : UIView<BarViewDelegate,AnchorDelegate> {
     
     id<BarGraphDelegate>delegate;
-    X_TITLES_STYLE xTitleStyle;//Default is X_TITLES_STYLE1 
-    BOOL groupedBars;
-    BOOL stackedBars;
+    XTitleStyle xTitleStyle;//Default is XTitleStyle1
+    BAR_GRAPH_STYLE barGraphStyle;//BOOL groupedBars BOOL stackedBars;
     MIMColorClass *mbackgroundcolor;
-    NSMutableArray *barcolorArray;
     
     
-    BOOL isGradient;
-    GRADIENT_STYLE gradientStyle;//Default is VERTICAL_GRADIENT_STYLE
+    
+    GRADIENT_STYLE gradientStyle;//Default is VERTICAL_GRADIENT_STYLE //    BOOL isGradient;
     GLOSS_STYLE glossStyle;
-    BOOL minimumLabelOnYIsZero;
     BAR_LABEL_STYLE barLabelStyle;
+    MIMMargin margin;
+    
+    BOOL minimumLabelOnYIsZero;
     UILabel *titleLabel;
     
-    float rightMargin;
-    float topMargin;
-    float leftMargin;
-    float bottomMargin;
     
-    int style;//Optional, incase user wants to choose a particular color from MIMCOlorClass
+    
+    NSMutableArray *barcolorArray;
+
+    
+    int style;//Optional, incase user wants to choose a particular color from MIMColorClass //---- need to remove this
     float groupTitlesOffset;
     
     MIMFloatingView *floatingView;
 }
 
 @property(nonatomic,retain)id<BarGraphDelegate>delegate;
-@property(nonatomic,assign)X_TITLES_STYLE xTitleStyle;
-@property(nonatomic,assign)BOOL groupedBars;
-@property(nonatomic,assign)BOOL stackedBars;
+@property(nonatomic,assign)XTitleStyle xTitleStyle;
+@property(nonatomic,assign)BAR_GRAPH_STYLE barGraphStyle;
 @property(nonatomic,retain)MIMColorClass *mbackgroundcolor;
 @property(nonatomic,retain)NSMutableArray *barcolorArray;
 
-@property(nonatomic,assign)BOOL isGradient;
 @property(nonatomic,assign)GRADIENT_STYLE gradientStyle;
 @property(nonatomic,assign)GLOSS_STYLE glossStyle;
-@property(nonatomic,assign)BOOL minimumLabelOnYIsZero;
 @property(nonatomic,assign)BAR_LABEL_STYLE barLabelStyle;
+@property(nonatomic,assign)MIMMargin margin;
+
+@property(nonatomic,assign)BOOL minimumLabelOnYIsZero;
 @property(nonatomic,retain)UILabel *titleLabel;
 
 @property(nonatomic,assign)int style;
 @property(nonatomic,assign)float groupTitlesOffset;
 
-@property(nonatomic,assign)float rightMargin;
-@property(nonatomic,assign)float topMargin;
-@property(nonatomic,assign)float leftMargin;
-@property(nonatomic,assign)float bottomMargin;
+
 
 
 @property(nonatomic,retain)MIMFloatingView *floatingView;
 -(void)drawBarChart;
 -(void)reloadBarChartWithAnimation;
 
-
-
+-(void)drawLines:(NSArray *)pathArray;
+-(void)removeLines;
 @end

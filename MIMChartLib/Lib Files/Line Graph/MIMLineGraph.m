@@ -7,6 +7,7 @@
 //
 
 #import "MIMLineGraph.h"
+
 @interface  MIMLineGraph()
 {
     
@@ -16,14 +17,14 @@
     NSArray *_xTitles;
     
     
-    
+    float _contentWidth;
     float _gridWidth;
-    float _gridHeight;
+    float _gridHeight;///==float _contentHeight;
     float _scalingX;
     float _scalingY;
     float _tileWidth;
     float _tileHeight;
-    
+    BOOL _tileWidthDefinedByUser;
     
     BOOL xIsString;
     BOOL _isLongGraph;
@@ -32,7 +33,7 @@
     int numOfHLines;
     float minimumOnY;
     NSMutableArray *lineColorA;
-    
+    int itemCountOnXAxis;
     
     NSMutableArray *aPropertiesArray;
     NSMutableDictionary *hlProperties;
@@ -46,6 +47,12 @@
     float yAxisWidth;
     float xAxisHeight;
     
+    float offsetXLabelOnLongGraph;
+    
+    float rightMargin;
+    float topMargin;
+    float leftMargin;
+    float bottomMargin;
 }
 -(BOOL)initAndWarnings;
 -(void)_drawAnchorPoints;
@@ -70,9 +77,10 @@
 @synthesize lineColorArray;
 @synthesize minimumLabelOnYIsZero;
 @synthesize titleLabel;
-@synthesize rightMargin,topMargin,leftMargin,bottomMargin;
 
 
+#pragma mark -
+#pragma mark - INIT
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -96,14 +104,31 @@
     return self;
 }
 
+-(void)removeAllExistingSubViews
+{
+    
+
+
+}
+
 
 -(void)drawMIMLineGraph
 {
+    //Get the margins
+    rightMargin=margin.rightMargin;
+    topMargin=margin.topMargin;
+    leftMargin=margin.leftMargin;
+    bottomMargin=margin.bottomMargin;
+    
+    
+    
+    offsetXLabelOnLongGraph=0;
     BOOL multipleLines=[self initAndWarnings];
     
     
     BOOL addRandomAnchorType=TRUE;
-    if (self.anchorTypeArray) addRandomAnchorType=FALSE;
+    if ([self.anchorTypeArray count]!=0)
+        addRandomAnchorType=FALSE;
     
     
     
@@ -113,6 +138,7 @@
     if(_isLongGraph)
     {
         _leftMargin=0;
+        _bottomMargin=0;
     }
     
     
@@ -140,13 +166,30 @@
                 else valueX=[[_xValElements objectAtIndex:l] floatValue];
                 
                 
-                if(l==0) [myPath moveToPoint:CGPointMake(valueX*_scalingX +_leftMargin , valueY*_scalingY + _bottomMargin)];
-                else [myPath addLineToPoint:CGPointMake(valueX*_scalingX +_leftMargin , valueY*_scalingY+ _bottomMargin)];
+                float mX=valueX*_scalingX +_leftMargin;
+                float mY=valueY*_scalingY+ _bottomMargin;
+                
+                if (_isLongGraph) {
+                    
+                    mX+=offsetXLabelOnLongGraph;
+                    mY+=xAxisHeight;
+                }
+                
+                
+
+                
+                if(l==0)
+                    [myPath moveToPoint:CGPointMake(mX,mY)];
+                else
+                    [myPath addLineToPoint:CGPointMake(mX,mY)];
+                
                 
             }
             
             [myPathArray addObject:myPath];
-            if (addRandomAnchorType) [anchorTypeArray addObject:[NSNumber numberWithInt:rand()%7+1]];
+            
+            if (addRandomAnchorType)
+                [anchorTypeArray addObject:[NSNumber numberWithInt:CIRCLEFILLED]];
         }
     }
     else
@@ -168,6 +211,17 @@
             
             float mX=valueX*_scalingX +_leftMargin;
             float mY=valueY*_scalingY+ _bottomMargin;
+            
+            if (_isLongGraph) {
+                
+                mX+=offsetXLabelOnLongGraph;
+                mY+=xAxisHeight;
+                
+                NSLog(@"line y=%f",mY);
+
+            }
+            
+            
             if(l==0)
                 [lineBezierPath moveToPoint:CGPointMake(mX,mY)];
             else
@@ -177,13 +231,15 @@
         
         
         [myPathArray addObject:lineBezierPath];
-        if (addRandomAnchorType) [anchorTypeArray addObject:[NSNumber numberWithInt:rand()%7+1]];
+        
+        if (addRandomAnchorType)
+            [anchorTypeArray addObject:[NSNumber numberWithInt:CIRCLEFILLED]];
         
     }
     
     
    
-    titleLabel.frame=CGRectMake(leftMargin, topMargin+_gridHeight+xAxisHeight+5, CGRectGetWidth(self.frame)-leftMargin-rightMargin, 20);
+    //titleLabel.frame=CGRectMake(leftMargin, topMargin+_gridHeight+xAxisHeight+5, CGRectGetWidth(self.frame)-leftMargin-rightMargin, 20);
     
     [self createLineColorArray];//Get colors for the line
     [self setNeedsDisplay];
@@ -199,20 +255,25 @@
 
 -(void)initVars
 {
+    offsetXLabelOnLongGraph=0;
+    
     anchorTypeArray=[[NSMutableArray alloc]init];
-    xTitleStyle=X_TITLES_STYLE1;
+    xTitleStyle=XTitleStyle3;
     mbackgroundColor=nil;
+    _isLongGraph=FALSE;
+    
     
     rightMargin=0;
     topMargin=0;
     leftMargin=0;
     bottomMargin=0;
     
+    
     yAxisWidth=50;
     xAxisHeight=70;
     
     
-    titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
+    titleLabel=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, _gridWidth, 20)];
     [titleLabel setBackgroundColor:[UIColor clearColor]];
     [titleLabel setFont:[UIFont fontWithName:@"Helvetica" size:12]];
     [titleLabel setTextColor:[UIColor blackColor]];
@@ -223,232 +284,14 @@
 
 }
 
-
--(void)CalculateGridDimensions
-{
-    
-    int count=0;
-    if([[_xValElements objectAtIndex:0] isKindOfClass:[NSString class]])
-    {
-        count=[_xValElements count];
-    }
-    else
-    {
-        count=[[_xValElements objectAtIndex:0]count];
-    }
-    
-    
-    _gridWidth=self.frame.size.width;
-    _gridWidth-=leftMargin;
-    _gridWidth-=rightMargin;
-    _gridWidth-=yAxisWidth;
-    
-    _tileWidth=_gridWidth/count;
-    _tileHeight=_tileWidth;
-    
-    if(fitsToScreenWidth)
-    {
-        
-    }
-    else
-    {
-        int perPixel=_gridWidth/count;
-        if(perPixel < 10)
-        {
-            //Increase the gridwidth
-            _isLongGraph=TRUE;
-            _gridWidth=5*count;
-            _tileHeight=50;
-        }
-        
-    }
-    
-    
-    _gridHeight=self.frame.size.height;  
-    _gridHeight-=bottomMargin;
-    _gridHeight-=topMargin;
-    _gridHeight-=xAxisHeight;    
-    
-
-    
-    
-}   
-
-
--(void)FindTileWidthAndHeight
-{
-    
-    //Check if Tilewidth is defined by user
-
-    if([vlProperties valueForKey:@"gap"]) 
-        _tileWidth=[[vlProperties valueForKey:@"gap"] floatValue];
-    
-    if(_tileWidth==0)
-    {
-        _tileWidth=10;
-        NSLog(@"WARNING: Minimum gap between vertical lines is 10.");
-    }
-    
-    //HEIGHT
-
-    if([hlProperties valueForKey:@"gap"]) 
-        _tileHeight=[[hlProperties valueForKey:@"gap"] floatValue];
-    
-    if(_tileHeight==0)
-    {
-        _tileHeight=10;
-        NSLog(@"WARNING: Minimum gap between horizontal lines is 10.");
-    }
-    
-    
-    if(_tileHeight+10 > _gridHeight)
-    {
-        NSLog(@"ERROR: frame too small to draw.!!");
-        
-    }
-
-    
-    
-    
-}
-
-
-
--(void)ScalingFactor
-{
-    
-    [self _findScaleForYTile];
-    [self _findScaleForXTile];
-}
-
-
-
--(void)_findScaleForYTile
-{
-    int HorLines=_gridHeight/_tileHeight;
-    numOfHLines=HorLines;
-    
-    float maxOfY;
-    float minOfY;
-    if([[_yValElements objectAtIndex:0] isKindOfClass:[NSString class]])
-    {
-        maxOfY=[MIM_MathClass getMaxFloatValue:_yValElements];
-        minOfY=[MIM_MathClass getMinFloatValue:_yValElements];
-        
-        
-    }
-    else
-    {
-        maxOfY=[MIM_MathClass getMaxFloatValue:[_yValElements objectAtIndex:0]];
-        for (int i=1; i<[_yValElements count]; i++) 
-        {
-            float maxOfY1=[MIM_MathClass getMaxFloatValue:[_yValElements objectAtIndex:i]];
-            if(maxOfY1>maxOfY)
-                maxOfY=maxOfY1;
-        }
-        
-        
-        
-        minOfY=[MIM_MathClass getMinFloatValue:[_yValElements objectAtIndex:0]];
-        for (int i=1; i<[_yValElements count]; i++) 
-        {
-            float minOfY1=[MIM_MathClass getMinFloatValue:[_yValElements objectAtIndex:i]];
-            if(minOfY1<minOfY)
-                minOfY=minOfY1;
-        }
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    float pixelPerTile=(maxOfY-minOfY)/(HorLines-1);
-    if(HorLines-1 ==0) pixelPerTile=(maxOfY-minOfY)/(HorLines);
-    
-    
-    int countDigits=[[NSString stringWithFormat:@"%.0f",pixelPerTile] length];
-    
-    //New Pixel per tile swould be
-    pixelPerTile=pixelPerTile/pow(10, countDigits-1);
-    pixelPerTile=ceilf(pixelPerTile);
-    pixelPerTile=pixelPerTile*pow(10, countDigits-1);
-    
-    pixelsPerTile=pixelPerTile;
-    
-    _scalingY=_tileHeight/pixelPerTile;
-    
-    
-    countDigits=[[NSString stringWithFormat:@"%.0f",fabs(minOfY)] length];
-    minimumOnY=minOfY/pow(10, countDigits-1);
-    minimumOnY=floorf(minimumOnY);
-    minimumOnY=minimumOnY*pow(10, countDigits-1);
-    
-    
-    
-}
-
-
-
--(void)_findScaleForXTile
-{
-    int count=0;
-    if([[_xValElements objectAtIndex:0] isKindOfClass:[NSString class]])
-    {
-        count=[_xValElements count];
-        
-    }
-    else
-    {
-        count=[[_xValElements objectAtIndex:0] count];
-    }
-    
-    
-    
-    if(xIsString)
-    {
-        
-        _scalingX=_gridWidth/count;
-        
-        if(_isLongGraph)
-        {
-            NSLog(@"Since graph is too long, it auto resizes the tilewidth to 5.");
-            _scalingX=5;
-        }
-        
-        return;
-    }
-    
-    
-    
-    int VerLines=_gridWidth/_tileWidth;
-    float maxX=[MIM_MathClass getMaxFloatValue:_xValElements];
-    float minX=[MIM_MathClass getMinFloatValue:_xValElements];
-    
-    float pixelPerTile=(maxX-minX)/(VerLines-1);
-    
-    int countDigits=[[NSString stringWithFormat:@"%.0f",pixelPerTile] length];
-    
-    //New Pixel per tile swould be
-    pixelPerTile=pixelPerTile/pow(10, countDigits-1);
-    pixelPerTile=ceilf(pixelPerTile);
-    pixelPerTile=pixelPerTile*pow(10, countDigits-1);
-    
-    
-    _scalingX=_tileWidth/pixelPerTile;
-    
-}
-
-
-
-
 -(BOOL)initAndWarnings
 {
+    //reMove everythng which is there
+    for (UIView *view in self.subviews)
+    if(![view isEqual:titleLabel]){
+        
+        [view removeFromSuperview];
+    }
     
     
     srand(time(NULL));
@@ -457,8 +300,6 @@
     
     [MIMColor InitFragmentedBarColors];
     
-    _yValElements=[[NSMutableArray alloc]init];
-    _xValElements=[[NSMutableArray alloc]init];
     
     
     
@@ -474,7 +315,7 @@
             
             if([valueArray_ count]>0)
             {
-                _xValElements=[NSMutableArray arrayWithArray:valueArray_];
+                _xValElements=[[NSMutableArray alloc]initWithArray:valueArray_];
             }
             
             if([[_xValElements objectAtIndex:0] isKindOfClass:[NSString class]])
@@ -505,9 +346,9 @@
         //See if the its an array or array or just one array
         if([valueArray_ count]>0)
         {
-            if([[valueArray_ objectAtIndex:0] isKindOfClass:[NSString class]]) {}
+            if([[valueArray_ objectAtIndex:0] isKindOfClass:[NSString class]]||[[valueArray_ objectAtIndex:0] isKindOfClass:[NSNumber class]]) {}
             else multipleLines=TRUE;
-            _yValElements=[NSMutableArray arrayWithArray:valueArray_];
+            _yValElements=[[NSMutableArray alloc]initWithArray:valueArray_];
         }
         
         
@@ -560,6 +401,11 @@
     else
         vlProperties=[[NSMutableDictionary alloc]init];
     
+    _tileWidthDefinedByUser=FALSE;
+    if([[vlProperties allKeys] containsObject:@"gap"])
+        _tileWidthDefinedByUser=TRUE;
+    
+    
     
     //X-AXis
     if([delegate respondsToSelector:@selector(xAxisProperties:)])
@@ -582,11 +428,72 @@
 
     
     //[self drawLineInfoBox];
-    [self CalculateGridDimensions];
+    //[self CalculateGridDimensions];
+    _gridWidth=self.frame.size.width;
+    _gridWidth=[MIMProperties CalculateGridWidth:_gridWidth leftMargin:leftMargin rightMargin:rightMargin yAxisSpace:yAxisWidth];
+    
+    _gridHeight=self.frame.size.height;
+    _gridHeight=[MIMProperties CalculateGridHeight:_gridHeight bottomMargin:bottomMargin topMargin:topMargin xAxisSpace:xAxisHeight];
+    //NSLog(@"on line graph _gridHeight=%f",_gridHeight);
+    
+    itemCountOnXAxis=[MIMProperties countXValuesInArray:_xValElements];
+
+    
+    
+    //[self FindTileWidthAndHeight];
+    _tileHeight=[MIMProperties FindTileHeight:hlProperties GridHeight:_gridHeight];
+    _tileWidth=[MIMProperties FindTileWidth:vlProperties GridWidth:_gridWidth xItemsCount:itemCountOnXAxis];
+    
+    //WE need to figure out if tileHeight*numOfHLines + 10 >=_gridHeight
+    //If not, then try reducing numOfHLines
+    numOfHLines=_gridHeight/_tileHeight;
+    
+    if(numOfHLines < 3)
+        _tileHeight=[MIMProperties fixTileHeight:_gridHeight];
+    
+    
+    _isLongGraph=[MIMProperties findIfItIsALongGraph:_tileWidth TotalItemsOnXAxis:itemCountOnXAxis GridWidth:_gridWidth];
+    
+    
+    
+
+    float minOfY=0;
+    float maxOfY=[MIMProperties findGlobalMaximum:_yValElements];
+    
+    if(!minimumLabelOnYIsZero)
+        minOfY=[MIMProperties findGlobalMinimum:_yValElements];
+
+    minimumOnY=minOfY;
+    
+    if(!minimumLabelOnYIsZero)
+        minimumOnY=[MIMProperties findMinimumOnY:minOfY];
+    
+    
+    _scalingY=[MIMProperties findScaleForYTile:_yValElements gridHeight:_gridHeight tileHeight:_tileHeight :numOfHLines Min:minOfY Max:maxOfY];
+    pixelsPerTile=_tileHeight/_scalingY;
+    _scalingX=[MIMProperties findScaleForXTile:_xValElements XValuesAreString:xIsString LongGraph:_isLongGraph TileWidth:_tileWidth TileWidthDefinedByUser:_tileWidthDefinedByUser];
+    _contentWidth=[MIMProperties returnLongGraphContentWidth:_scalingX TotalItemsOnXAxis:itemCountOnXAxis];
+    
+    
+    if(_contentWidth < _gridWidth)
+    {
+        _isLongGraph=NO;
+        _scalingX=[MIMProperties findScaleForXTile:_xValElements XValuesAreString:xIsString LongGraph:_isLongGraph TileWidth:_tileWidth TileWidthDefinedByUser:_tileWidthDefinedByUser];
+
+    }
+    
+    if (_isLongGraph) {
+        
+        offsetXLabelOnLongGraph=_scalingX/4;
+        if(offsetXLabelOnLongGraph<20)offsetXLabelOnLongGraph=20;
+    }
+
+    
+    
     [self createLongLineGraphScrollView];
-    [self FindTileWidthAndHeight];
-    [self ScalingFactor];
-    //    [self addSetterButton];
+    //[self addSetterButton];
+    
+    NSLog(@" for line graph _scalingY=%f",_scalingY);
     
     return multipleLines;
     
@@ -596,11 +503,11 @@
 {
     if(_isLongGraph)
     {
-
+        float contentHeight=self.frame.size.height-bottomMargin-topMargin;
         
-        lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(leftMargin+yAxisWidth, 0, CGRectGetWidth(self.frame)-leftMargin-rightMargin-yAxisWidth -10, self.frame.size.height)];
+        lineGScrollView=[[LineScrollView alloc]initWithFrame:CGRectMake(leftMargin+yAxisWidth, topMargin, _gridWidth -5, contentHeight)];
         [lineGScrollView setBackgroundColor:[UIColor clearColor]];
-        lineGScrollView.contentSize=CGSizeMake(_gridWidth, self.frame.size.height);
+        lineGScrollView.contentSize=CGSizeMake(_contentWidth, contentHeight);
         
         [lineGScrollView setShowsHorizontalScrollIndicator:NO];
         [lineGScrollView setShowsVerticalScrollIndicator:NO];
@@ -673,6 +580,9 @@
     if(_xValElements==nil)
         return;
     
+    if(_yValElements==nil)return;
+
+    if([_yValElements count]==0)return;
     
     // Drawing code
     CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -692,42 +602,51 @@
     
     
     
-    [MIMProperties drawBgPattern:ctx color:mbackgroundColor gridWidth:(CGRectGetWidth(self.frame)-yAxisWidth-leftMargin-rightMargin) gridHeight:_gridHeight leftMargin:leftMargin+yAxisWidth topMargin:topMargin];
-    
-    
-    [MIMProperties drawHorizontalBgLines:ctx withProperties:hlProperties gridHeight:_gridHeight tileHeight:_tileHeight gridWidth:(CGRectGetWidth(self.frame)-yAxisWidth-leftMargin-rightMargin) leftMargin:leftMargin+yAxisWidth topMargin:topMargin];
-    
-    
-
     
     if(_isLongGraph)
     {
         
         for (UIView *view in lineGScrollView.subviews) 
-            if([view isKindOfClass:[MultiLineLongGraph class]])
-            {
-                [view removeFromSuperview];
-            }
+        if([view isKindOfClass:[MultiLineLongGraph class]])
+        {
+            [view removeFromSuperview];
+        }
         
         
+        [MIMProperties drawBgPattern:ctx color:mbackgroundColor gridWidth:_gridWidth gridHeight:_gridHeight leftMargin:leftMargin+yAxisWidth topMargin:topMargin];
+        [MIMProperties drawHorizontalBgLines:ctx withProperties:hlProperties gridHeight:_gridHeight tileHeight:_tileHeight gridWidth:_gridWidth leftMargin:leftMargin+yAxisWidth topMargin:topMargin];
         
-        MultiLineLongGraph *graph=[[MultiLineLongGraph alloc]initWithFrame:CGRectMake(0, 0, _gridWidth, self.frame.size.height)];
+        float contentHeight=self.frame.size.height-bottomMargin-topMargin;
+        
+        MultiLineLongGraph *graph=[[MultiLineLongGraph alloc]initWithFrame:CGRectMake(0, 0, _contentWidth, contentHeight)];
         graph.gridHeight=_gridHeight;
         graph.scalingX=_scalingX;
         graph.scalingY=_scalingY;
         graph.xIsString=xIsString;
+        graph.xOffset=offsetXLabelOnLongGraph;
         graph.lineColorArray=lineColorA;
         graph.lineBezierPath=myPathArray;
-        graph.aPropertiesArray=[NSMutableArray arrayWithArray:aPropertiesArray];
+        graph.aPropertiesArray=aPropertiesArray;
         graph.xValElements=[[NSMutableArray alloc]initWithArray:_xValElements];
         graph.yValElements=[[NSMutableArray alloc]initWithArray:_yValElements];
+        graph.anchorTypeArray=anchorTypeArray;//contains just type.
+        graph.minimumOnY=minimumOnY;
         graph.leftMargin=leftMargin;
         graph.bottomMargin=bottomMargin;
-        
+        graph.xAxisHeight=xAxisHeight;
         [lineGScrollView addSubview:graph];
+        
+      
         
         return;
         
+    }
+    else{
+    
+
+        [MIMProperties drawBgPattern:ctx color:mbackgroundColor gridWidth:_gridWidth gridHeight:_gridHeight leftMargin:leftMargin+yAxisWidth topMargin:topMargin];
+        [MIMProperties drawHorizontalBgLines:ctx withProperties:hlProperties gridHeight:_gridHeight tileHeight:_tileHeight gridWidth:_gridWidth leftMargin:leftMargin+yAxisWidth topMargin:topMargin];
+    
     }
     
     
@@ -752,11 +671,14 @@
         
     }
     
+    UIGraphicsPopContext();
+
+    
     [self _drawAnchorPoints];
     
     
     
-    
+
     
     
     
@@ -782,13 +704,20 @@
     
     
     
+    if([anchorTypeArray count] !=[myPathArray count])
+    {
+        NSLog(@"%i,%i",[anchorTypeArray count],[myPathArray count]);
+        NSLog(@"WARNING:Not enough values in anchorTypeArray");
+    }
     
-    for (int index=0; index<[myPathArray count]; index++) 
+    for (int index=0; index<[myPathArray count]; index++)
     {
         NSMutableDictionary *aProperties;
+        
         if ([aPropertiesArray count]>index)
             aProperties=[[NSMutableDictionary alloc] initWithDictionary:[aPropertiesArray objectAtIndex:index]];
-        else aProperties=[[NSMutableDictionary alloc] init];
+        else
+            aProperties=[[NSMutableDictionary alloc] init];
         
         
         
@@ -797,27 +726,26 @@
                 return;
         
         
-        
-        
-        
-        MIMColorClass *c=[lineColorA objectAtIndex:index];
-        float red=c.red;
-        float green=c.green;
-        float blue=c.blue;
-        float alpha=c.alpha;
-        
-        
-        
+        //If fill color is not defined by user, it is same as line color
         if(![aProperties valueForKey:@"fillColor"])
+        {
+            MIMColorClass *c=[lineColorA objectAtIndex:index];
+            float red=c.red;
+            float green=c.green;
+            float blue=c.blue;
+            float alpha=c.alpha;
+            
             [aProperties setValue:[NSString stringWithFormat:@"%f,%f,%f,%f",red,green,blue,alpha] forKey:@"fillColor"];
+        }
         
-        if([anchorTypeArray count] !=[_yValElements count])
-            NSLog(@"WARNING:Not enough values in anchorTypeArray");
+
+        
         
         if ([anchorTypeArray count]>index)
             [aProperties setValue:[anchorTypeArray objectAtIndex:index] forKey:@"style"];
         
-        if([[_yValElements objectAtIndex:index] isKindOfClass:[NSString class]])
+        
+        if([[_yValElements objectAtIndex:index] isKindOfClass:[NSString class]]||[[_yValElements objectAtIndex:index] isKindOfClass:[NSNumber class]])
         {
             for (int l=0; l<[_yValElements count]; l++) 
             {   
@@ -828,6 +756,7 @@
                 else
                     valueX=[[_xValElements objectAtIndex:l] floatValue];
                 
+                //NSLog(@"_scalingX=%f,%f",_scalingX,_scalingY);
                 float mX=valueX*_scalingX+ leftMargin+yAxisWidth;
                 float mY=valueY*_scalingY;
                 mY=_gridHeight-mY;
@@ -920,7 +849,7 @@
     
     float anchorY=[[[_yValElements objectAtIndex:index] objectAtIndex:tagID] floatValue];
     NSString *xS;
-    if([[_xValElements objectAtIndex:0] isKindOfClass:[NSString class]])
+    if([[_xValElements objectAtIndex:0] isKindOfClass:[NSString class]]||[[_xValElements objectAtIndex:0] isKindOfClass:[NSNumber class]])
     {
         xS=[_xValElements objectAtIndex:tagID];
     }
@@ -954,24 +883,29 @@
     if([[xLProperties allKeys] count]==0)
         xLProperties=[[NSMutableDictionary alloc] init];
     
-    if(![xLProperties valueForKey:@"style"]) [xLProperties setValue:[NSNumber numberWithInt:xTitleStyle] forKey:@"style"];
+    if(![xLProperties valueForKey:@"style"])
+        [xLProperties setValue:[NSNumber numberWithInt:xTitleStyle] forKey:@"style"];
+    
     [xLProperties setValue:[NSNumber numberWithBool:xIsString] forKey:@"xisstring"];
     [xLProperties setValue:[NSNumber numberWithBool:YES] forKey:@"linechart"];
     [xLProperties setValue:[NSNumber numberWithFloat:_scalingX] forKey:@"xscaling"];
-    
+    [xLProperties setValue:[NSNumber numberWithFloat:offsetXLabelOnLongGraph] forKey:@"xoffset"];
+    [xLProperties setValue:[NSNumber numberWithFloat:xAxisHeight] forKey:@"xheight"];
+
+
     
     XAxisBand *_xBand;
     if(_isLongGraph)
-        _xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,_gridHeight+topMargin, _gridWidth, xAxisHeight)];
+        _xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(0,_gridHeight, _contentWidth+offsetXLabelOnLongGraph,xAxisHeight)];//
     else 
         _xBand=[[XAxisBand alloc]initWithFrame:CGRectMake(leftMargin+yAxisWidth,_gridHeight+topMargin, _gridWidth, xAxisHeight)];
-    
- 
-    
+
     
 
+    
     _xBand.properties=xLProperties;
     _xBand.xElements=[[NSArray alloc]initWithArray:_xTitles];
+    
     if(_isLongGraph) [lineGScrollView addSubview:_xBand];
     else [self addSubview:_xBand];
     
@@ -981,6 +915,7 @@
 
 -(void)_displayYAxisLabels
 {
+    
     BOOL yLabelsVisible=FALSE;
     if([yLProperties valueForKey:@"hide"]) 
         yLabelsVisible=[[yLProperties valueForKey:@"hide"] boolValue];
@@ -996,7 +931,7 @@
     [yLProperties setValue:[NSNumber numberWithFloat:minimumOnY] forKey:@"minY"];
     [yLProperties setValue:[NSNumber numberWithFloat:_tileHeight] forKey:@"tileHeight"];
     
-    YAxisBand *_yBand=[[YAxisBand alloc]initWithFrame:CGRectMake(leftMargin,topMargin, yAxisWidth, _gridHeight+10)];
+    YAxisBand *_yBand=[[YAxisBand alloc]initWithFrame:CGRectMake(leftMargin,topMargin-10, yAxisWidth, _gridHeight+20)];
     _yBand.properties=yLProperties;
     [self addSubview:_yBand];
     

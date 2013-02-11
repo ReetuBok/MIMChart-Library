@@ -86,7 +86,7 @@
     //-------------------Bubbles-------------------
     BOOL showPercentBubbles;
     PIE_BUBBLE_STYLE bubbleStyle;
-    
+    BOOL showAllBubbles;
     
     @private
     
@@ -145,14 +145,14 @@
 //Bubbles
 @property (nonatomic,assign)BOOL showPercentBubbles;
 @property (nonatomic,assign)PIE_BUBBLE_STYLE bubbleStyle;
-
+@property (nonatomic,assign)BOOL showAllBubbles;
 
 
 -(void)drawPieChart;
 -(void)hideThePopOver;
 -(void)displayThePopOver:(int)indexTapped;
 -(BOOL)getAnimationValue;
-
+-(void)showBubbleAtAllIndices;
 
 
 -(void)setAnimationWithDelay:(NSInteger)time;

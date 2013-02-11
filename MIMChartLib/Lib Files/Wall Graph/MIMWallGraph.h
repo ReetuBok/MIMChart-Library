@@ -10,6 +10,7 @@
 #import "WallGraphDelegate.h"
 #import "Constant.h"
 #import "MultiWallLongGraph.h"
+#import "MIMMargin.h"
 
 @interface MIMWallGraph : UIView<AnchorDelegate,MIMMeterDelegate>
 {
@@ -18,7 +19,7 @@
     BOOL displayMeterline;
     float meterLineYOffset;
     
-    X_TITLES_STYLE xTitleStyle;
+    XTitleStyle xTitleStyle;
     MIMColorClass *mbackgroundColor;
     
     id<WallGraphDelegate>delegate;
@@ -30,10 +31,8 @@
     BOOL minimumLabelOnYIsZero;
     UILabel *titleLabel;
 
-    float rightMargin;
-    float topMargin;
-    float leftMargin;
-    float bottomMargin;
+    MIMMargin margin;
+        
     MIMFloatingView *floatingView;
 
 }
@@ -44,7 +43,7 @@
 @property(nonatomic,assign)BOOL displayMeterline;
 @property(nonatomic,assign)float meterLineYOffset;
 
-@property(nonatomic,assign)X_TITLES_STYLE xTitleStyle;
+@property(nonatomic,assign)XTitleStyle xTitleStyle;
 @property(nonatomic,retain)MIMColorClass *mbackgroundColor;
 
 @property(nonatomic,retain)NSArray *anchorTypeArray;   
@@ -53,11 +52,8 @@
 @property(nonatomic,assign)BOOL minimumLabelOnYIsZero;
 @property(nonatomic,retain)UILabel *titleLabel;
 
+@property(nonatomic,assign)MIMMargin margin;
 
-@property(nonatomic,assign)float rightMargin;
-@property(nonatomic,assign)float topMargin;
-@property(nonatomic,assign)float leftMargin;
-@property(nonatomic,assign)float bottomMargin;
 -(void)drawMIMWallGraph;
 
 @end

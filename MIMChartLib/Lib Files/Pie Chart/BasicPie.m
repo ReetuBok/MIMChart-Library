@@ -11,7 +11,8 @@
  NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
  NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
  CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
- ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 //
 //  BasicPie.m
 //  MIMChartLib
@@ -53,7 +54,7 @@
 @synthesize enableShowDetailBox;
 @synthesize afterTappingWhichDirectionToRotate;
 @synthesize enableBubbleBox;
-
+@synthesize showAllBubbles;
 
 #pragma mark - INIT
 float pi=3.1415;
@@ -283,10 +284,14 @@ float pi=3.1415;
     return maxP;
     
 }
+#pragma mark - DRAW
 
 
 - (void)drawRect:(CGRect)rect
 {
+    if([self.valueArray_ count]<=0)return;
+    
+    
     if(self.animation==TRUE)
         [self StartTimerForAnimatingPieEasingIn];
     else
@@ -333,7 +338,7 @@ float pi=3.1415;
 
     
     float sum=[self returnSum:self.valueArray_];
-    
+    Msum=sum;
     //Update the sum of superview
     [(BasicPieChart*)self.superview setSumOfValues:sum];
     
@@ -676,7 +681,14 @@ float pi=3.1415;
         
     }
     
-    
+
+    if(showAllBubbles)
+    {
+        for (int i=0; i<[self.valueArray_ count]; i++)
+        {
+            [self displayBubbleAtIndex:i];
+        }
+    }
     
     UIGraphicsPopContext();
 }
@@ -691,6 +703,37 @@ float pi=3.1415;
 
 
 #pragma mark - GESTURE METHODS
+#pragma mark bubble
+-(void)displayBubbleAtIndex:(int)index
+{
+    
+    //Just Find the point on circle's circumference.
+    float range1=[[self.angleArrays_ objectAtIndex:2*index] floatValue];
+    float range2=[[self.angleArrays_ objectAtIndex:2*index+1] floatValue];;
+    
+    float theta=range1+range2;
+    int quadrant=1;
+    if(index==0)
+        theta=0;
+    else
+    {
+        theta=theta/2;
+        
+        if((theta>0)&&(theta<1.57))
+            quadrant=1;
+        else if((theta>=1.57)&&(theta<3.14))
+            quadrant=2;
+        else if((theta>=3.14)&&(theta<4.71))
+            quadrant=3;
+        else if((theta>=4.71)&&(theta<6.28))
+            quadrant=4;
+        
+    }
+    
+    [(BasicPieChart *)self.superview showBubbleAtPoint:CGPointMake(center.x+(radius-55)*cosf(theta), center.y+(radius-55)*sinf(theta)) AtIndex:index inQuadrant:quadrant];
+    
+}
+#pragma mark gesture
 
 
 /******************************************************************************************************************/
@@ -764,39 +807,12 @@ float pi=3.1415;
     }
     
 
+  
     if(enableBubbleBox)
     {
-        //Just Find the point on circle's circumference.
-        float range1=[[self.angleArrays_ objectAtIndex:2*indexTapped] floatValue];
-        float range2=[[self.angleArrays_ objectAtIndex:2*indexTapped+1] floatValue];;
-        
-        float theta=range1+range2;
-        int quadrant=1;
-        if(indexTapped==0)
-            theta=0;
-        else
-        {
-            theta=theta/2;
-            
-            if((theta>0)&&(theta<1.57))
-                quadrant=1;
-            else if((theta>=1.57)&&(theta<3.14))
-                quadrant=2;
-            else if((theta>=3.14)&&(theta<4.71))
-                quadrant=3;
-            else if((theta>=4.71)&&(theta<6.28))
-                quadrant=4;
-            
-        }
-        
-
-        
-        
-        [(BasicPieChart *)self.superview showBubbleAtPoint:CGPointMake(center.x+radius*cosf(theta), center.y+radius*sinf(theta)) AtIndex:indexTapped inQuadrant:quadrant];
+        [self displayBubbleAtIndex:indexTapped];
         return;
     }
-
-    
     
     if(enableDoubleTap)
     {
@@ -848,6 +864,12 @@ float pi=3.1415;
     }
   
     
+}
+
+-(void)createBubbleForIndex
+{
+
+
 }
 
 
@@ -1043,6 +1065,7 @@ float pi=3.1415;
     else
         theta=theta/2;
       
+    NSLog(@"center %f,%f",center.x,center.y);
     return CGPointMake(center.x+radius*cosf(theta), center.y+radius*sinf(theta));
     
 }

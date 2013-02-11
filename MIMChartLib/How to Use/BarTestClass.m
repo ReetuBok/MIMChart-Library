@@ -95,7 +95,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return  5;
+    return  6;
     
 }
 
@@ -119,11 +119,9 @@
             myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.3)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
-            myBarChart.xTitleStyle=X_TITLES_STYLE3;
-            
-            myBarChart.rightMargin=50;
-            myBarChart.topMargin=50;
-            myBarChart.bottomMargin=40;
+            myBarChart.xTitleStyle=XTitleStyle2;
+            myBarChart.margin=MIMMarginMake(30, 40, 0, 50);
+            myBarChart.gradientStyle=VERTICAL_GRADIENT_STYLE;
             
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
@@ -140,11 +138,10 @@
             myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
-            myBarChart.isGradient=YES;
             myBarChart.barLabelStyle=BAR_LABEL_STYLE1;
             myBarChart.barcolorArray=[NSArray arrayWithObjects:[MIMColorClass colorWithComponent:@"0,255,0,1"], nil];
             myBarChart.mbackgroundcolor=[MIMColorClass colorWithComponent:@"0,0,0,0"];
-            myBarChart.xTitleStyle=X_TITLES_STYLE2;
+            myBarChart.xTitleStyle=XTitleStyle2;
             myBarChart.gradientStyle=VERTICAL_GRADIENT_STYLE;
             myBarChart.glossStyle=GLOSS_STYLE_2;
             [myBarChart drawBarChart];
@@ -158,14 +155,12 @@
             myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
-            myBarChart.isGradient=YES;
-            myBarChart.xTitleStyle=X_TITLES_STYLE1;
+            myBarChart.xTitleStyle=XTitleStyle1;
             
             myBarChart.barcolorArray=[NSArray arrayWithObjects:[MIMColorClass colorWithComponent:@"255,0,0,1"], nil];
             myBarChart.gradientStyle=VERTICAL_GRADIENT_STYLE_2;
             myBarChart.glossStyle=GLOSS_STYLE_2;
-            myBarChart.topMargin=50;
-            myBarChart.rightMargin=50;
+            myBarChart.margin=MIMMarginMake(50, 0, 0, 50);
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
             
@@ -174,15 +169,13 @@
         case 3:
         {
             
-            yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
-            
+           
             myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             //myBarChart1.barcolorArray=[NSArray arrayWithObjects:[MIMColorClass colorWithComponent:@"0,0,255,1"], nil];
 
-            myBarChart.isGradient=YES;
-            myBarChart.xTitleStyle=X_TITLES_STYLE1;
+            myBarChart.xTitleStyle=XTitleStyle1;
             myBarChart.gradientStyle=HORIZONTAL_GRADIENT_STYLE;
             myBarChart.glossStyle=GLOSS_STYLE_1;
 
@@ -195,44 +188,8 @@
             
         case 4:
         {
-            xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
-                          @"Feb",
-                          @"Mar",
-                          @"Apr",
-                          @"May",
-                          @"Jun",
-                          @"Jul",
-                          @"Aug",
-                          @"Sep",
-                          @"Oct",
-                          @"Nov",
-                          @"Dec",
-                          @"Jan",
-                          @"Feb",
-                          @"Mar",
-                          @"Apr",
-                          @"May",
-                          @"Jun",
-                          @"Jul",
-                          @"Aug",
-                          @"Sep",
-                          @"Oct",
-                          @"Nov",
-                          @"Dec",
-                          @"Jan",
-                          @"Feb",
-                          @"Mar",
-                          @"Apr",
-                          @"May",
-                          @"Jun",
-                          @"Jul",
-                          @"Aug",
-                          @"Sep",
-                          @"Oct",
-                          @"Nov",
-                          @"Dec", nil];
-            
-            yValuesArray=[[NSArray alloc]initWithObjects:@"-10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",@"10000",@"-21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"-4000",@"10000",@"17000",@"15000",@"11000",@"10000",@"21000",@"24000",@"11000",@"5000",@"-2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
+
+           
             
             
             myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
@@ -240,19 +197,39 @@
             myBarChart.tag=10+indexPath.row;
            // myBarChart1.barcolorArray=[NSArray arrayWithObjects:[MIMColorClass colorWithComponent:@"0,0,255,1"], nil];
 
-            myBarChart.isGradient=YES;
             myBarChart.gradientStyle=HORIZONTAL_GRADIENT_STYLE_2;
             myBarChart.glossStyle=GLOSS_STYLE_2;
-            myBarChart.xTitleStyle=X_TITLES_STYLE1;
-            myBarChart.topMargin=50;
-            myBarChart.rightMargin=50;
+            myBarChart.xTitleStyle=XTitleStyle1;
+            myBarChart.margin=MIMMarginMake(50, 0, 0, 50);
+      
             
             [myBarChart drawBarChart];
             [cell.contentView addSubview:myBarChart];
             
         }
             break;
+        case 5:
+        {
             
+            
+            
+            
+            myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
+            myBarChart.delegate=self;
+            myBarChart.tag=10+indexPath.row;
+            myBarChart.barcolorArray=[NSArray arrayWithObjects:[MIMColorClass colorWithComponent:@"123,0,255,1"], nil];
+            
+            myBarChart.gradientStyle=HORIZONTAL_GRADIENT_STYLE_2;
+            myBarChart.glossStyle=GLOSS_STYLE_2;
+            myBarChart.xTitleStyle=XTitleStyle1;
+            myBarChart.margin=MIMMarginMake(50, 0, 0, 50);
+            
+            
+            [myBarChart drawBarChart];
+            [cell.contentView addSubview:myBarChart];
+            
+        }
+            break;
     }
     
     
@@ -275,11 +252,24 @@
         yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
     }
     
-    if([(MIMBarGraph *)graph tag]==12)
+    else if([(MIMBarGraph *)graph tag]==12)
     {
         yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
     }
-    
+    else if([(MIMBarGraph *)graph tag]==13)
+    {
+        yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
+        
+    }
+    else if([(MIMBarGraph *)graph tag]==14)
+    {
+        yValuesArray=[[NSArray alloc]initWithObjects:@"-10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",@"10000",@"-21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"-4000",@"10000",@"17000",@"15000",@"11000",@"10000",@"21000",@"24000",@"11000",@"5000",@"-2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
+    }
+    else if([(MIMBarGraph *)graph tag]==15)
+    {
+        yValuesArray=[[NSArray alloc]initWithObjects:@"125",@"126",@"127",@"128",@"150",
+                      @"130",@"185",@"175",@"165",@"166",@"183",@"180",nil];
+    }
     
  
     
@@ -333,6 +323,46 @@
                       @"Oct",
                       @"Nov",
                       @"Dec", nil];
+    else if([(MIMBarGraph *)graph tag]==14)
+    {
+        xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                      @"Feb",
+                      @"Mar",
+                      @"Apr",
+                      @"May",
+                      @"Jun",
+                      @"Jul",
+                      @"Aug",
+                      @"Sep",
+                      @"Oct",
+                      @"Nov",
+                      @"Dec",
+                      @"Jan",
+                      @"Feb",
+                      @"Mar",
+                      @"Apr",
+                      @"May",
+                      @"Jun",
+                      @"Jul",
+                      @"Aug",
+                      @"Sep",
+                      @"Oct",
+                      @"Nov",
+                      @"Dec",
+                      @"Jan",
+                      @"Feb",
+                      @"Mar",
+                      @"Apr",
+                      @"May",
+                      @"Jun",
+                      @"Jul",
+                      @"Aug",
+                      @"Sep",
+                      @"Oct",
+                      @"Nov",
+                      @"Dec", nil];
+        
+    }
     else
         xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
                       @"Feb",
@@ -359,7 +389,7 @@
 {
 
     
-    if([(MIMBarGraph *)graph tag]>=10 && [(MIMBarGraph *)graph tag]<=13)
+    if([(MIMBarGraph *)graph tag]==10 || [(MIMBarGraph *)graph tag]==11  || [(MIMBarGraph *)graph tag]==13 || [(MIMBarGraph *)graph tag]==15 )
         xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
                       @"Feb",
                       @"Mar",
@@ -375,7 +405,7 @@
                       @"Dec", nil];
     
     
-    if([(MIMBarGraph *)graph tag]==12)
+    else if([(MIMBarGraph *)graph tag]==12)
         xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
                       @"Feb",
                       @"Mar",
@@ -413,7 +443,46 @@
                       @"Nov",
                       @"Dec", nil];
     
-    
+    else if([(MIMBarGraph *)graph tag]==14)
+    {
+        xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
+                      @"Feb",
+                      @"Mar",
+                      @"Apr",
+                      @"May",
+                      @"Jun",
+                      @"Jul",
+                      @"Aug",
+                      @"Sep",
+                      @"Oct",
+                      @"Nov",
+                      @"Dec",
+                      @"Jan",
+                      @"Feb",
+                      @"Mar",
+                      @"Apr",
+                      @"May",
+                      @"Jun",
+                      @"Jul",
+                      @"Aug",
+                      @"Sep",
+                      @"Oct",
+                      @"Nov",
+                      @"Dec",
+                      @"Jan",
+                      @"Feb",
+                      @"Mar",
+                      @"Apr",
+                      @"May",
+                      @"Jun",
+                      @"Jul",
+                      @"Aug",
+                      @"Sep",
+                      @"Oct",
+                      @"Nov",
+                      @"Dec", nil];
+        
+    }
     return xTitlesArray;
     
 }

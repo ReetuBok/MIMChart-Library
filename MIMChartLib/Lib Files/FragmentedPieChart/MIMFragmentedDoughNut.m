@@ -23,13 +23,21 @@
 //  Copyright (c) 2012 __MIM 2D__. All rights reserved.
 //
 
-#import "2DFragmentedDoughNut.h"
+#import "MIMFragmentedDoughNut.h"
 
-@interface _DFragmentedDoughNut () 
+@interface MIMFragmentedDoughNut () 
+{
+    NSArray *valuesArray;
+    NSArray *titleArray;
+    NSArray *colorsArray;
+    BOOL colorsDefinedByUser;
+    
+}
+
 -(void)setOutRadius:(float)ORadius AndInnerRadius:(float)IRadius;
 @end
 
-@implementation _DFragmentedDoughNut
+@implementation MIMFragmentedDoughNut
 @synthesize tint,center,isShadow;
 @synthesize delegate;
 
@@ -62,7 +70,8 @@
     else
     {
         NSLog(@"Warning:Set Inner Radius.Use delegate Method innerRadiusForDoughNut: ");
-        return;
+      
+        
     }
     
     
@@ -75,7 +84,8 @@
     else
     {
         NSLog(@"Warning:Set Outer Radius.Use delegate Method outerRadiusForDoughNut: ");
-        return;
+       
+        
     }
     
     
@@ -88,7 +98,7 @@
     else
     {
         NSLog(@"Warning:No Values to draw DoughNut.Use delegate Method valuesForDoughNut: ");
-        return;
+
     }
     
     
@@ -100,7 +110,21 @@
     else
     {
         NSLog(@"Warning:No Values for titles in DoughNut.Use delegate Method titlesForDoughNut: ");
-        return;
+
+    }
+    
+    if([delegate respondsToSelector:@selector(colorsForDoughNut:)])
+    {
+        
+        colorsArray=[delegate colorsForDoughNut:self];
+        if(colorsArray)colorsDefinedByUser=TRUE;
+        else colorsDefinedByUser=FALSE;
+    }
+    else
+    {
+        colorsDefinedByUser=FALSE;
+        NSLog(@"Warning:No Values for colors in DoughNut.Use delegate Method titlesForDoughNut: Or define Tint");
+
     }
     
     
@@ -181,15 +205,22 @@
 
         
         
-    int totalColors=[MIMColor sizeOfColorArray];
     
+    int totalColors;
     int tintOffset;
-    if(tint==REDTINT)
-        tintOffset=17;
-    if(tint==GREENTINT)
-        tintOffset=0;
-    if(tint==BEIGETINT)
-        tintOffset=30;
+    
+    if(!colorsDefinedByUser)
+    {
+        totalColors=[MIMColor sizeOfColorArray];
+        
+        if(tint==REDTINT)
+            tintOffset=17;
+        if(tint==GREENTINT)
+            tintOffset=0;
+        if(tint==BEIGETINT)
+            tintOffset=30;
+    }
+    
     
     for(int i=0;i<[valuesArray count];i++)
     {
@@ -201,15 +232,30 @@
         CGContextAddArc(context, center.x,center.y, outerRadius,offset,offset+angleArray[i], 0);
         offset+=angleArray[i];
         
+        if(!colorsDefinedByUser)
+        {
+            NSDictionary *colorDic=[MIMColor GetColorAtIndex:(i+tintOffset)%totalColors];    
+            float red=[[colorDic valueForKey:@"red"] floatValue];
+            float green=[[colorDic valueForKey:@"green"] floatValue];
+            float blue=[[colorDic valueForKey:@"blue"] floatValue];
+            UIColor *color=[[UIColor alloc]initWithRed:red green:green blue:blue alpha:0.8];    
+            
+            
+            CGContextSetFillColorWithColor(context, color.CGColor);
+        }
+        else
+        {
+            MIMColorClass *c=[colorsArray objectAtIndex:i];
+            float red=c.red;
+            float green=c.green;
+            float blue=c.blue;
+            UIColor *color=[[UIColor alloc]initWithRed:red green:green blue:blue alpha:1.0];    
+            
+            
+            CGContextSetFillColorWithColor(context, color.CGColor);
+            
+        }
         
-        NSDictionary *colorDic=[MIMColor GetColorAtIndex:(i+tintOffset)%totalColors];    
-        float red=[[colorDic valueForKey:@"red"] floatValue];
-        float green=[[colorDic valueForKey:@"green"] floatValue];
-        float blue=[[colorDic valueForKey:@"blue"] floatValue];
-        UIColor *color=[[UIColor alloc]initWithRed:red green:green blue:blue alpha:0.8];    
-        
-        
-        CGContextSetFillColorWithColor(context, color.CGColor);
 
         CGContextClosePath(context); 
         CGContextFillPath(context);

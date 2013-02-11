@@ -29,6 +29,7 @@
 -(NSArray *)colorsForBarChart:(id)graph;
 -(NSDictionary *)barProperties:(id)graph; //barwidth,shadow,horGradient,verticalGradient,gapBetweenGroup,gapBetweenBars
 -(NSDictionary *)animationOnBars:(id)graph; //animationDelay,animationDelay,type
+-(NSArray *)AnchorProperties:(id)graph;
 
 -(void)externalViewHandler:(id)graph withValues:(NSDictionary *)dict;//when you touch a bar, you want effect of that on external views,use this one.
 

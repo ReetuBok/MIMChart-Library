@@ -40,11 +40,9 @@
     
     
     mBarChart.delegate=self;
-    mBarChart.xTitleStyle=X_TITLES_STYLE3;
-    
-    mBarChart.rightMargin=50;
-    mBarChart.topMargin=20;
-    //mBarChart.bottomMargin=40;
+    mBarChart.xTitleStyle=XTitleStyle2;
+    mBarChart.margin=MIMMarginMake(20, 0, 0, 50);
+
     
     [mBarChart drawBarChart];
 
@@ -55,10 +53,10 @@
     
     //Group Chart
     mGroupBarChart.delegate=self;
-    mGroupBarChart.xTitleStyle=X_TITLES_STYLE3;
-    mGroupBarChart.groupedBars=YES;
-    mGroupBarChart.rightMargin=50;
-    mGroupBarChart.topMargin=20;
+    mGroupBarChart.xTitleStyle=XTitleStyle2;
+    mGroupBarChart.barGraphStyle=BAR_GRAPH_STYLE_GROUPED;
+    mGroupBarChart.margin=MIMMarginMake(20, 0, 0, 50);
+
     
     [mGroupBarChart drawBarChart];
     
@@ -68,11 +66,11 @@
     
     //Stacked Chart
     mStackBarChart.delegate=self;
-    mStackBarChart.xTitleStyle=X_TITLES_STYLE3;
-    mStackBarChart.stackedBars=YES;
-    mStackBarChart.rightMargin=50;
-    mStackBarChart.topMargin=20;
-    mStackBarChart.bottomMargin=30;
+    mStackBarChart.xTitleStyle=XTitleStyle2;
+    mStackBarChart.barGraphStyle=BAR_GRAPH_STYLE_STACKED;
+    mStackBarChart.margin=MIMMarginMake(20, 30, 0, 50);
+    
+  
     [mStackBarChart drawBarChart];
   
 

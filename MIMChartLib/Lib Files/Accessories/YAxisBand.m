@@ -44,6 +44,8 @@
 @implementation YAxisBand
 
 @synthesize properties;
+@synthesize yTitles;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -120,14 +122,25 @@
         
         [self drawYAxis:context];
         
+        int countYLabels=HorLines+1;
+        if([yTitles count]>0)
+        {
+            countYLabels=[yTitles count];
+        }
         
-        for (int i=0; i<=HorLines; i++)
+        
+        for (int i=0; i<countYLabels; i++)
         {
             
             
             
             //This is the string we want to write on our screen and we also need to get the string length
             NSString *test =[NSString stringWithFormat:@"%.0f",minStart];
+            if([yTitles count]>0)
+            {
+                test =[NSString stringWithFormat:@"%@",[yTitles objectAtIndex:i]];
+            }
+            
             NSInteger _stringLength=[test length];
             
             //NSLog(@"pixelPerYTile=%@",test);
@@ -159,12 +172,16 @@
             CFAttributedStringSetAttribute(attrString, CFRangeMake(0, _stringLength), kCTParagraphStyleAttributeName, paragraphStyle);
             
             
+            float initY=tileHeight* i + 5;
+            if([yTitles count]>0)
+                initY=tileHeight* i + 5+tileHeight;
             
             
+
             
             // Initialize a rectangular path.
             CGMutablePathRef path = CGPathCreateMutable();
-            CGRect bounds = CGRectMake(0.0, tileHeight* i + 5, CGRectGetWidth(rect)-4, 15.0);
+            CGRect bounds = CGRectMake(0.0, initY, CGRectGetWidth(rect)-4, 15.0);
             CGPathAddRect(path, NULL, bounds);
             
             // Create the framesetter with the attributed string.

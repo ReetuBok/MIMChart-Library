@@ -22,4 +22,23 @@
 
 
 +(void)createGloss:(CGContextRef)context  OnRect:(CGRect)rect withStyle:(int)glossStyle;
+
+
++(BOOL)findIfItIsALongGraph:(int)tileWidth TotalItemsOnXAxis:(int)totalItemsOnX GridWidth:(float)gridWidth;
++(float)returnLongGraphContentWidth:(int)tileWidth TotalItemsOnXAxis:(int)totalItemsOnX;
++(int)countXValuesInArray:(NSMutableArray *)xValElements;
+
++(float)CalculateGridWidth:(float)gwidth leftMargin:(float)lMargin rightMargin:(float)rMargin yAxisSpace:(float)ySpace;
++(float)CalculateGridHeight:(float)gheight bottomMargin:(float)bMargin topMargin:(float)tMargin xAxisSpace:(float)xSpace;
+
++(float)FindTileWidth:(NSMutableDictionary *)vlProperties GridWidth:(float)gridWidth xItemsCount:(int)xCount;
++(float)FindTileHeight:(NSMutableDictionary *)hlProperties GridHeight:(float)gridHeight;
+//+(float)findScaleForYTile:(NSMutableArray *)yValElements gridHeight:(float)gridHeight tileHeight:(float)tileHeight :(int)countHLines;
++(float)findMinimumOnY:(float)minOfY;
++(float)findScaleForXTile:(NSMutableArray *)xValElements XValuesAreString:(BOOL)xIsString LongGraph:(BOOL)isLongGraph TileWidth:(float)tileWidth TileWidthDefinedByUser:(BOOL)tileWidthDefinedByUser;
++(float)findScaleForYTile:(NSMutableArray *)yValElements gridHeight:(float)gridHeight tileHeight:(float)tileHeight :(int)countHLines Min:(float)minOfY Max:(float)maxOfY;
+
++(float)fixTileHeight:(float)gridHeight;
++(float)findGlobalMinimum:(NSMutableArray *)yValElements;
++(float)findGlobalMaximum:(NSMutableArray *)yValElements;
 @end

@@ -24,7 +24,7 @@
 		23197EEB154BA3830023521F /* ClusterGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197E9D154BA3830023521F /* ClusterGraph.m */; };
 		23197EEC154BA3830023521F /* MIMColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EA0154BA3830023521F /* MIMColor.m */; };
 		23197EED154BA3830023521F /* MIMColorClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EA2154BA3830023521F /* MIMColorClass.m */; };
-		23197EF0154BA3830023521F /* 2DFragmentedDoughNut.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EAA154BA3830023521F /* 2DFragmentedDoughNut.m */; };
+		23197EF0154BA3830023521F /* MIMFragmentedDoughNut.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EAA154BA3830023521F /* MIMFragmentedDoughNut.m */; };
 		23197EF1154BA3830023521F /* DoughtNutFragmentTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EAC154BA3830023521F /* DoughtNutFragmentTitle.m */; };
 		23197EF3154BA3830023521F /* LineInfoBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 23197EB1154BA3830023521F /* LineInfoBox.m */; };
 		23197EF4154BA3830023521F /* lines.png in Resources */ = {isa = PBXBuildFile; fileRef = 23197EB2154BA3830023521F /* lines.png */; };
@@ -149,12 +149,21 @@
 		23F9D33D1565A6D300A6FAE0 /* PermanentScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F9D33C1565A6D300A6FAE0 /* PermanentScroller.m */; };
 		23F9D3401565B48600A6FAE0 /* ScrollViewSubClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F9D33F1565B48500A6FAE0 /* ScrollViewSubClass.m */; };
 		23F9D3471566D3C200A6FAE0 /* PieBubble.m in Sources */ = {isa = PBXBuildFile; fileRef = 23F9D3461566D3C100A6FAE0 /* PieBubble.m */; };
+		F54D45D316812E9C000CDF8E /* MIMMargin.m in Sources */ = {isa = PBXBuildFile; fileRef = F54D45D216812E9C000CDF8E /* MIMMargin.m */; };
+		F5A80449167CF4BE00F37950 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A80448167CF4BE00F37950 /* DataManager.m */; };
+		F5B3581F1642B9CE000E3EC4 /* MIMRangeGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B3581E1642B9CE000E3EC4 /* MIMRangeGraph.m */; };
+		F5B358221642B9EC000E3EC4 /* MIMLongRangeGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B358211642B9EC000E3EC4 /* MIMLongRangeGraph.m */; };
+		F5B358271642C025000E3EC4 /* RangeGraphTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B358251642C024000E3EC4 /* RangeGraphTestClass.m */; };
+		F5B358281642C025000E3EC4 /* RangeGraphTestClass.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B358261642C025000E3EC4 /* RangeGraphTestClass.xib */; };
+		F5ECA3961640661E001CCC92 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ECA3931640661E001CCC92 /* Icon-72.png */; };
+		F5ECA3971640661E001CCC92 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ECA3941640661E001CCC92 /* Icon.png */; };
+		F5ECA3981640661E001CCC92 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F5ECA3951640661E001CCC92 /* Icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		046098D515C2309600D3F29E /* MIMFloatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMFloatingView.h; sourceTree = "<group>"; };
 		046098D615C2309600D3F29E /* MIMFloatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMFloatingView.m; sourceTree = "<group>"; };
-		2308011915A3ED3800544123 /* MIMLineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMLineGraph.h; sourceTree = "<group>"; };
+		2308011915A3ED3800544123 /* MIMLineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MIMLineGraph.h; path = "Lib Files/Line Graph/MIMLineGraph.h"; sourceTree = "<group>"; };
 		2308011A15A3ED3800544123 /* MIMLineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMLineGraph.m; sourceTree = "<group>"; };
 		2308011C15A3FAD100544123 /* MultiLineLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiLineLongGraph.h; sourceTree = "<group>"; };
 		2308011D15A3FAD100544123 /* MultiLineLongGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiLineLongGraph.m; sourceTree = "<group>"; };
@@ -187,8 +196,8 @@
 		23197EA0154BA3830023521F /* MIMColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMColor.m; sourceTree = "<group>"; };
 		23197EA1154BA3830023521F /* MIMColorClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMColorClass.h; sourceTree = "<group>"; };
 		23197EA2154BA3830023521F /* MIMColorClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMColorClass.m; sourceTree = "<group>"; };
-		23197EA9154BA3830023521F /* 2DFragmentedDoughNut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 2DFragmentedDoughNut.h; sourceTree = "<group>"; };
-		23197EAA154BA3830023521F /* 2DFragmentedDoughNut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = 2DFragmentedDoughNut.m; sourceTree = "<group>"; };
+		23197EA9154BA3830023521F /* MIMFragmentedDoughNut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMFragmentedDoughNut.h; sourceTree = "<group>"; };
+		23197EAA154BA3830023521F /* MIMFragmentedDoughNut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMFragmentedDoughNut.m; sourceTree = "<group>"; };
 		23197EAB154BA3830023521F /* DoughtNutFragmentTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoughtNutFragmentTitle.h; sourceTree = "<group>"; };
 		23197EAC154BA3830023521F /* DoughtNutFragmentTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoughtNutFragmentTitle.m; sourceTree = "<group>"; };
 		23197EB0154BA3830023521F /* LineInfoBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineInfoBox.h; sourceTree = "<group>"; };
@@ -246,7 +255,7 @@
 		23197F53154E46710023521F /* ListBevelPieCharts.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListBevelPieCharts.xib; sourceTree = "<group>"; };
 		23197F5C154EFB310023521F /* TestLineClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLineClass.h; sourceTree = "<group>"; };
 		23197F5D154EFB310023521F /* TestLineClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLineClass.m; sourceTree = "<group>"; };
-		23197F60154F161F0023521F /* LineGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineGraphDelegate.h; sourceTree = "<group>"; };
+		23197F60154F161F0023521F /* LineGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LineGraphDelegate.h; path = "Lib Files/Line Graph/LineGraphDelegate.h"; sourceTree = "<group>"; };
 		23197F61154F25850023521F /* TestLineClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestLineClass.xib; sourceTree = "<group>"; };
 		23197F6B154F79470023521F /* BarTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarTestClass.h; sourceTree = "<group>"; };
 		23197F6C154F79470023521F /* BarTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarTestClass.m; sourceTree = "<group>"; };
@@ -296,7 +305,6 @@
 		2384DAED1573EBA100F9F126 /* StackedBarTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StackedBarTestClass.h; sourceTree = "<group>"; };
 		2384DAEE1573EBA100F9F126 /* StackedBarTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StackedBarTestClass.m; sourceTree = "<group>"; };
 		2384DAEF1573EBA100F9F126 /* StackedBarTestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StackedBarTestClass.xib; sourceTree = "<group>"; };
-		2384DAF81573F4AA00F9F126 /* MultiWallLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiWallLongGraph.h; sourceTree = "<group>"; };
 		2384DAF91573F4AA00F9F126 /* MultiWallLongGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiWallLongGraph.m; sourceTree = "<group>"; };
 		238C0C5B15BF57D700AF1382 /* MultipleBarViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleBarViews.h; sourceTree = "<group>"; };
 		238C0C5C15BF57D700AF1382 /* MultipleBarViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleBarViews.m; sourceTree = "<group>"; };
@@ -374,6 +382,22 @@
 		23F9D33F1565B48500A6FAE0 /* ScrollViewSubClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewSubClass.m; sourceTree = "<group>"; };
 		23F9D3451566D3C100A6FAE0 /* PieBubble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieBubble.h; sourceTree = "<group>"; };
 		23F9D3461566D3C100A6FAE0 /* PieBubble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieBubble.m; sourceTree = "<group>"; };
+		F54D45CC168122E3000CDF8E /* MIMMargin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MIMMargin.h; path = Accessories/MIMMargin.h; sourceTree = "<group>"; };
+		F54D45D216812E9C000CDF8E /* MIMMargin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MIMMargin.m; path = Accessories/MIMMargin.m; sourceTree = "<group>"; };
+		F5A80446167CDCFB00F37950 /* MultiWallLongGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiWallLongGraph.h; sourceTree = "<group>"; };
+		F5A80447167CF4BD00F37950 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		F5A80448167CF4BE00F37950 /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		F5B3581D1642B9CE000E3EC4 /* MIMRangeGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MIMRangeGraph.h; path = "Range Chart/MIMRangeGraph.h"; sourceTree = "<group>"; };
+		F5B3581E1642B9CE000E3EC4 /* MIMRangeGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MIMRangeGraph.m; path = "Range Chart/MIMRangeGraph.m"; sourceTree = "<group>"; };
+		F5B358201642B9EC000E3EC4 /* MIMLongRangeGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MIMLongRangeGraph.h; path = "Range Chart/MIMLongRangeGraph.h"; sourceTree = "<group>"; };
+		F5B358211642B9EC000E3EC4 /* MIMLongRangeGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MIMLongRangeGraph.m; path = "Range Chart/MIMLongRangeGraph.m"; sourceTree = "<group>"; };
+		F5B358231642BA17000E3EC4 /* RangeGraphDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RangeGraphDelegate.h; path = "Range Chart/RangeGraphDelegate.h"; sourceTree = "<group>"; };
+		F5B358241642C024000E3EC4 /* RangeGraphTestClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangeGraphTestClass.h; sourceTree = "<group>"; };
+		F5B358251642C024000E3EC4 /* RangeGraphTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangeGraphTestClass.m; sourceTree = "<group>"; };
+		F5B358261642C025000E3EC4 /* RangeGraphTestClass.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RangeGraphTestClass.xib; sourceTree = "<group>"; };
+		F5ECA3931640661E001CCC92 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		F5ECA3941640661E001CCC92 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		F5ECA3951640661E001CCC92 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -465,8 +489,8 @@
 		23197EA8154BA3830023521F /* FragmentedDoughnutChart */ = {
 			isa = PBXGroup;
 			children = (
-				23197EA9154BA3830023521F /* 2DFragmentedDoughNut.h */,
-				23197EAA154BA3830023521F /* 2DFragmentedDoughNut.m */,
+				23197EA9154BA3830023521F /* MIMFragmentedDoughNut.h */,
+				23197EAA154BA3830023521F /* MIMFragmentedDoughNut.m */,
 				23197EAB154BA3830023521F /* DoughtNutFragmentTitle.h */,
 				23197EAC154BA3830023521F /* DoughtNutFragmentTitle.m */,
 				23197F80154F7FB50023521F /* FragmentedDoughNutDelegate.h */,
@@ -480,8 +504,6 @@
 			children = (
 				2308011C15A3FAD100544123 /* MultiLineLongGraph.h */,
 				2308011D15A3FAD100544123 /* MultiLineLongGraph.m */,
-				23197F60154F161F0023521F /* LineGraphDelegate.h */,
-				2308011915A3ED3800544123 /* MIMLineGraph.h */,
 				2308011A15A3ED3800544123 /* MIMLineGraph.m */,
 				23197EB0154BA3830023521F /* LineInfoBox.h */,
 				23197EB1154BA3830023521F /* LineInfoBox.m */,
@@ -538,7 +560,7 @@
 			isa = PBXGroup;
 			children = (
 				23197F85154F92020023521F /* WallGraphDelegate.h */,
-				2384DAF81573F4AA00F9F126 /* MultiWallLongGraph.h */,
+				F5A80446167CDCFB00F37950 /* MultiWallLongGraph.h */,
 				2384DAF91573F4AA00F9F126 /* MultiWallLongGraph.m */,
 				2308011F15A3FBEF00544123 /* MIMWallGraph.h */,
 				2308012015A3FBEF00544123 /* MIMWallGraph.m */,
@@ -614,6 +636,9 @@
 		235C23E91548BBAD00919081 = {
 			isa = PBXGroup;
 			children = (
+				F5ECA3931640661E001CCC92 /* Icon-72.png */,
+				F5ECA3941640661E001CCC92 /* Icon.png */,
+				F5ECA3951640661E001CCC92 /* Icon@2x.png */,
 				235C23FE1548BBAD00919081 /* MIMChartLib */,
 				235C23F71548BBAD00919081 /* Frameworks */,
 				235C23F51548BBAD00919081 /* Products */,
@@ -643,6 +668,7 @@
 		235C23FE1548BBAD00919081 /* MIMChartLib */ = {
 			isa = PBXGroup;
 			children = (
+				F54D45CA168112F7000CDF8E /* Header Files */,
 				235C242E1548D1E000919081 /* How to Use */,
 				235C24311548D1E000919081 /* Lib Files */,
 				235C24361548D24C00919081 /* Level2iPadController.h */,
@@ -672,6 +698,8 @@
 		235C242E1548D1E000919081 /* How to Use */ = {
 			isa = PBXGroup;
 			children = (
+				F5A80447167CF4BD00F37950 /* DataManager.h */,
+				F5A80448167CF4BE00F37950 /* DataManager.m */,
 				23197F7F154F7EE30023521F /* Fragmented Doughnut Chart Sample */,
 				23197F78154F79530023521F /* Bar Chart Samples */,
 				23197F7B154F799E0023521F /* Wall Graph Sample */,
@@ -679,6 +707,9 @@
 				23197F5A154EFA370023521F /* Pie Chart Sample Files */,
 				23E59BBC15A38E46008FFDF0 /* GaugeGraphTestClass.h */,
 				23E59BBD15A38E47008FFDF0 /* GaugeGraphTestClass.m */,
+				F5B358241642C024000E3EC4 /* RangeGraphTestClass.h */,
+				F5B358251642C024000E3EC4 /* RangeGraphTestClass.m */,
+				F5B358261642C025000E3EC4 /* RangeGraphTestClass.xib */,
 			);
 			path = "How to Use";
 			sourceTree = "<group>";
@@ -686,6 +717,8 @@
 		235C24311548D1E000919081 /* Lib Files */ = {
 			isa = PBXGroup;
 			children = (
+				F54D45CB1681226D000CDF8E /* Data Models */,
+				F5B3581B1642B98E000E3EC4 /* Range Chart */,
 				23E59BB815A38B76008FFDF0 /* GaugeMeter */,
 				23197E84154BA3830023521F /* Accessories */,
 				23197E94154BA3830023521F /* Bar Chart */,
@@ -845,6 +878,36 @@
 			name = Bubbles;
 			sourceTree = "<group>";
 		};
+		F54D45CA168112F7000CDF8E /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				23197F60154F161F0023521F /* LineGraphDelegate.h */,
+				2308011915A3ED3800544123 /* MIMLineGraph.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		F54D45CB1681226D000CDF8E /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				F54D45D216812E9C000CDF8E /* MIMMargin.m */,
+				F54D45CC168122E3000CDF8E /* MIMMargin.h */,
+			);
+			name = "Data Models";
+			sourceTree = "<group>";
+		};
+		F5B3581B1642B98E000E3EC4 /* Range Chart */ = {
+			isa = PBXGroup;
+			children = (
+				F5B3581D1642B9CE000E3EC4 /* MIMRangeGraph.h */,
+				F5B3581E1642B9CE000E3EC4 /* MIMRangeGraph.m */,
+				F5B358201642B9EC000E3EC4 /* MIMLongRangeGraph.h */,
+				F5B358211642B9EC000E3EC4 /* MIMLongRangeGraph.m */,
+				F5B358231642BA17000E3EC4 /* RangeGraphDelegate.h */,
+			);
+			name = "Range Chart";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -962,6 +1025,10 @@
 				2384DAF11573EBA100F9F126 /* StackedBarTestClass.xib in Resources */,
 				238C0C5F15BF57D700AF1382 /* MultipleBarViews.xib in Resources */,
 				238C0C6515BF8FED00AF1382 /* TestLineClass2.xib in Resources */,
+				F5ECA3961640661E001CCC92 /* Icon-72.png in Resources */,
+				F5ECA3971640661E001CCC92 /* Icon.png in Resources */,
+				F5ECA3981640661E001CCC92 /* Icon@2x.png in Resources */,
+				F5B358281642C025000E3EC4 /* RangeGraphTestClass.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -989,7 +1056,7 @@
 				23197EEB154BA3830023521F /* ClusterGraph.m in Sources */,
 				23197EEC154BA3830023521F /* MIMColor.m in Sources */,
 				23197EED154BA3830023521F /* MIMColorClass.m in Sources */,
-				23197EF0154BA3830023521F /* 2DFragmentedDoughNut.m in Sources */,
+				23197EF0154BA3830023521F /* MIMFragmentedDoughNut.m in Sources */,
 				23197EF1154BA3830023521F /* DoughtNutFragmentTitle.m in Sources */,
 				23197EF3154BA3830023521F /* LineInfoBox.m in Sources */,
 				23197EF6154BA3830023521F /* BasicPie.m in Sources */,
@@ -1042,6 +1109,11 @@
 				238C0C5E15BF57D700AF1382 /* MultipleBarViews.m in Sources */,
 				238C0C6415BF8FED00AF1382 /* TestLineClass2.m in Sources */,
 				046098D715C2309700D3F29E /* MIMFloatingView.m in Sources */,
+				F5B3581F1642B9CE000E3EC4 /* MIMRangeGraph.m in Sources */,
+				F5B358221642B9EC000E3EC4 /* MIMLongRangeGraph.m in Sources */,
+				F5B358271642C025000E3EC4 /* RangeGraphTestClass.m in Sources */,
+				F5A80449167CF4BE00F37950 /* DataManager.m in Sources */,
+				F54D45D316812E9C000CDF8E /* MIMMargin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1064,7 +1136,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
@@ -1091,7 +1163,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Bok";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Bok";
 				COPY_PHASE_STRIP = YES;
@@ -1139,7 +1211,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Bok";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Bok";
 				COPY_PHASE_STRIP = YES;
