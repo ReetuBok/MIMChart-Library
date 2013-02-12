@@ -668,7 +668,6 @@
 		235C23FE1548BBAD00919081 /* MIMChartLib */ = {
 			isa = PBXGroup;
 			children = (
-				F54D45CA168112F7000CDF8E /* Header Files */,
 				235C242E1548D1E000919081 /* How to Use */,
 				235C24311548D1E000919081 /* Lib Files */,
 				235C24361548D24C00919081 /* Level2iPadController.h */,
@@ -717,6 +716,7 @@
 		235C24311548D1E000919081 /* Lib Files */ = {
 			isa = PBXGroup;
 			children = (
+				F54D45CA168112F7000CDF8E /* Header Files */,
 				F54D45CB1681226D000CDF8E /* Data Models */,
 				F5B3581B1642B98E000E3EC4 /* Range Chart */,
 				23E59BB815A38B76008FFDF0 /* GaugeMeter */,
@@ -885,6 +885,7 @@
 				2308011915A3ED3800544123 /* MIMLineGraph.h */,
 			);
 			name = "Header Files";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F54D45CB1681226D000CDF8E /* Data Models */ = {

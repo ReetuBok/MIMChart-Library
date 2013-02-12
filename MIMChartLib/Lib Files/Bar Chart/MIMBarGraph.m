@@ -137,7 +137,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     barGraphStyle=BAR_GRAPH_STYLE_DEFAULT;
     gradientStyle=NONE_GRADIENT_STYLE;
     glossStyle=GLOSS_NONE;//Default there is no gloss
-    xTitleStyle=XTitleStyle1;
+    xTitleStyle=XTitleStyle3;
     barYOffsetForNegativeGraphs=0;
     animationType=0;
     [self setBackgroundColor:[UIColor clearColor]];
@@ -796,8 +796,8 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     _scalingY=[MIMProperties findScaleForYTile:_yValElements gridHeight:_gridHeight tileHeight:_tileHeight :numOfHLines Min:minOfY Max:maxOfY];
     pixelsPerTile=_tileHeight/_scalingY;
     
-    if(barGraphStyle==BAR_GRAPH_STYLE_GROUPED || barGraphStyle==BAR_GRAPH_STYLE_STACKED)
-         barYOffsetForNegativeGraphs=fabsf(minimumOnY)*_scalingY;
+    //if(barGraphStyle==BAR_GRAPH_STYLE_GROUPED || barGraphStyle==BAR_GRAPH_STYLE_STACKED)
+    barYOffsetForNegativeGraphs=fabsf(minimumOnY)*_scalingY;
     
 
     return;
@@ -1200,6 +1200,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+
     
     int totalColors=[MIMColor sizeOfColorArray];
     style=rand()%totalColors;
@@ -1475,12 +1476,18 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
             if(_height<0)originY=_gridHeight-barYOffsetForNegativeGraphs;
             else originY=_gridHeight-_height-barYOffsetForNegativeGraphs;
             
+            
+         
+            
+            
+            
             if(_height<0)isNegativeBar=TRUE;
             if(_height<0)_height=-_height;
             
             int heightInt=(int)_height;
             
             int originYNew=originY+topMargin;
+            
             if(isLongGraph_)
                 originYNew=originY;
             
@@ -1579,7 +1586,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     } 
 
     
-    
+    /*
     if(drawLineNow)
     {
         
@@ -1696,7 +1703,7 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
         
         
     }
-    
+    */
    
     
     
@@ -2117,7 +2124,9 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     else if(barGraphStyle==BAR_GRAPH_STYLE_STACKED)[xLProperties setValue:[NSNumber numberWithInt:spaceBetweenSameGroupBar] forKey:@"gapBetweenBars"];
     else [xLProperties setValue:[NSNumber numberWithInt:spaceBetweenSameGroupBar] forKey:@"gapBetweenBars"];
     
-    if(barGraphStyle==BAR_GRAPH_STYLE_GROUPED || barGraphStyle==BAR_GRAPH_STYLE_STACKED)[xLProperties setValue:[NSNumber numberWithFloat:gapBetweenBarsDifferentGroup] forKey:@"gapBetweenGroup"];
+    if(barGraphStyle==BAR_GRAPH_STYLE_GROUPED || barGraphStyle==BAR_GRAPH_STYLE_STACKED)
+        [xLProperties setValue:[NSNumber numberWithFloat:gapBetweenBarsDifferentGroup] forKey:@"gapBetweenGroup"];
+    
     if(barGraphStyle==BAR_GRAPH_STYLE_GROUPED)[xLProperties setValue:[NSNumber numberWithBool:YES] forKey:@"groupedBars"];
     if(barGraphStyle==BAR_GRAPH_STYLE_STACKED)[xLProperties setValue:[NSNumber numberWithBool:YES] forKey:@"stackedBars"];
     

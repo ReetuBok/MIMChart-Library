@@ -119,7 +119,7 @@
             myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.3)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
-            myBarChart.xTitleStyle=XTitleStyle2;
+            myBarChart.xTitleStyle=XTitleStyle3;
             myBarChart.margin=MIMMarginMake(30, 40, 0, 50);
             myBarChart.gradientStyle=VERTICAL_GRADIENT_STYLE;
             
@@ -221,7 +221,7 @@
             
             myBarChart.gradientStyle=HORIZONTAL_GRADIENT_STYLE_2;
             myBarChart.glossStyle=GLOSS_STYLE_2;
-            myBarChart.xTitleStyle=XTitleStyle1;
+            myBarChart.xTitleStyle=XTitleStyle3;
             myBarChart.margin=MIMMarginMake(50, 0, 0, 50);
             
             
@@ -395,7 +395,6 @@
                       @"Mar",
                       @"Apr",
                       @"May",
-      
                       @"Jun",
                       @"Jul",
                       @"Aug",
@@ -512,7 +511,11 @@
     
     return nil;
 }
-
+//-(NSDictionary *)barProperties:(id)graph
+//{
+//    return [[NSDictionary alloc]initWithObjectsAndKeys:@"70",@"barwidth",nil];
+//
+//}
 
 -(NSDictionary *)xAxisProperties:(id)graph
 {

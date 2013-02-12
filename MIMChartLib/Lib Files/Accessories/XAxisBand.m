@@ -60,6 +60,8 @@
     if([[properties allKeys] containsObject:@"color"])
         c=[MIMColorClass colorWithComponent:[properties valueForKey:@"color"]];
     
+    NSLog(@"lineColor=%f,%f,%f,%f",c.red,c.green,c.blue,c.alpha);
+    
     lineColor=[UIColor colorWithRed:c.red green:c.green blue:c.blue alpha:c.alpha];
     
     
@@ -355,6 +357,7 @@
         XAxisLabel *label;
         int v;
         
+        //NSLog(@"[xElements objectAtIndex:i]=%@",[xElements objectAtIndex:i]);
         
         if(xIsString) v=i;
         else v=[[xElements objectAtIndex:i]intValue];
@@ -374,6 +377,7 @@
          
         if(barChart)
         {
+            /*
            // NSLog(@"scalingFactor+gapDistance=%f",scalingFactor+gapDistance);
             switch (style) 
             {
@@ -396,6 +400,53 @@
                     break;
             }
             label.width=scalingFactor+gapDistance;
+            
+            */
+            
+            CGFloat maxWidth  = 200.0f;
+            CGFloat maxHeight = 10000.0f;
+            CGSize constraint = CGSizeMake(maxWidth, maxHeight);
+            
+            
+            CGSize labelSize=CGSizeMake(scalingFactor, xAxisHeight);
+            
+            if([[xElements objectAtIndex:i] isKindOfClass:[NSString class]])
+                labelSize= [[xElements objectAtIndex:i] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+            
+            
+            switch (style) {
+                case 1:
+                {
+                    if(labelSize.width>scalingFactor)
+                        label=[[XAxisLabel alloc]initWithFrame:CGRectMake(v*scalingFactor+ scalingFactor/2+  ((v+1) *gapDistance), 0, labelSize.width, xAxisHeight)];
+                    else
+                        label=[[XAxisLabel alloc]initWithFrame:CGRectMake(v*scalingFactor+ scalingFactor/2+  ((v+1) *gapDistance), 0, scalingFactor, xAxisHeight)];
+                }
+                    break;
+                case 2:
+                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake(v*scalingFactor+  ((v+1) *gapDistance), 0, scalingFactor, xAxisHeight)];
+                    break;
+                case 3:
+                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake(v*scalingFactor+  ((v+1) *gapDistance), 5, scalingFactor, xAxisHeight)];
+                    break;
+                    
+                case 4:
+                    label=[[XAxisLabel alloc]initWithFrame:CGRectMake(v*scalingFactor+ (scalingFactor * 0.8)/2+  ((v+1) *gapDistance), 5, scalingFactor, xAxisHeight)];
+                    break;
+            }
+            
+            label.style=self.style;
+            
+            if(scalingFactor<labelSize.width)
+                label.width=labelSize.width;
+            else
+                label.width=scalingFactor;
+            
+            label.height=xAxisHeight;
+            label.offset=offset;
+            
+            
+            
         }
         else if(lineChart)
         {
