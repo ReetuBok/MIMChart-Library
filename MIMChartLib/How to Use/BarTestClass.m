@@ -114,13 +114,14 @@
     switch (indexPath.row) 
     {
         case 0:
+            
         {
             
             myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.3)];
             myBarChart.delegate=self;
             myBarChart.tag=10+indexPath.row;
             myBarChart.xTitleStyle=XTitleStyle3;
-            myBarChart.margin=MIMMarginMake(30, 40, 0, 50);
+            //myBarChart.margin=MIMMarginMake(30, 40, 0, 50);
             myBarChart.gradientStyle=VERTICAL_GRADIENT_STYLE;
             
             [myBarChart drawBarChart];
@@ -133,6 +134,7 @@
             break;
             
         case 1:
+      
         {
             
             myBarChart=[[MIMBarGraph alloc]initWithFrame:CGRectMake(50, 20, myTableView.frame.size.width-50, myTableView.frame.size.width * 0.5)];
@@ -222,7 +224,7 @@
             myBarChart.gradientStyle=HORIZONTAL_GRADIENT_STYLE_2;
             myBarChart.glossStyle=GLOSS_STYLE_2;
             myBarChart.xTitleStyle=XTitleStyle3;
-            myBarChart.margin=MIMMarginMake(50, 0, 0, 50);
+            myBarChart.margin=MIMMarginMake(80, 0, 0, 50);
             
             
             [myBarChart drawBarChart];
@@ -246,12 +248,11 @@
 -(NSArray *)valuesForGraph:(id)graph
 {
     
-    
-    if(([(MIMBarGraph *)graph tag]>=10 && [(MIMBarGraph *)graph tag]<=11))
+
+    if([(MIMBarGraph *)graph tag]==10 && [(MIMBarGraph *)graph tag]<=11)
     {
         yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
     }
-    
     else if([(MIMBarGraph *)graph tag]==12)
     {
         yValuesArray=[[NSArray alloc]initWithObjects:@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",@"10000",@"21000",@"24000",@"11000",@"5000",@"2000",@"9000",@"4000",@"10000",@"17000",@"15000",@"11000",nil];
@@ -267,8 +268,8 @@
     }
     else if([(MIMBarGraph *)graph tag]==15)
     {
-        yValuesArray=[[NSArray alloc]initWithObjects:@"125",@"126",@"127",@"128",@"150",
-                      @"130",@"185",@"175",@"165",@"166",@"183",@"180",nil];
+        yValuesArray=[[NSArray alloc]initWithObjects:@"125",@"-126",@"127",@"128",@"150",
+                      @"130",@"185",@"-175",@"165",@"166",@"183",@"-180",nil];
     }
     
  
@@ -364,6 +365,7 @@
         
     }
     else
+
         xValuesArray=[[NSArray alloc]initWithObjects:@"Jan",
                       @"Feb",
                       @"Mar",
@@ -403,7 +405,7 @@
                       @"Nov",
                       @"Dec", nil];
     
-    
+ 
     else if([(MIMBarGraph *)graph tag]==12)
         xTitlesArray=[[NSArray alloc]initWithObjects:@"Jan",
                       @"Feb",
@@ -482,6 +484,7 @@
                       @"Dec", nil];
         
     }
+    
     return xTitlesArray;
     
 }

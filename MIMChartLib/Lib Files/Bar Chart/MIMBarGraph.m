@@ -791,10 +791,21 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     float maxOfYLine=[MIM_MathClass getMaxFloatValue:yLineValueArray];
     if(maxOfYLine>maxOfY)maxOfY=maxOfYLine;
     
-    
-    minimumOnY=[MIMProperties findMinimumOnY:minOfY];
     _scalingY=[MIMProperties findScaleForYTile:_yValElements gridHeight:_gridHeight tileHeight:_tileHeight :numOfHLines Min:minOfY Max:maxOfY];
     pixelsPerTile=_tileHeight/_scalingY;
+    
+    if(minOfY>=0)
+    {
+        minimumOnY=[MIMProperties findMinimumOnY:minOfY];
+    }
+    else
+        minimumOnY=[MIMProperties findMinimumOnYForHandlingNegative:minOfY withPPT:pixelsPerTile];
+    
+    //minimumOnY=[MIMProperties findMinimumOnY:minOfY];
+    
+
+    
+    
     
     //if(barGraphStyle==BAR_GRAPH_STYLE_GROUPED || barGraphStyle==BAR_GRAPH_STYLE_STACKED)
     barYOffsetForNegativeGraphs=fabsf(minimumOnY)*_scalingY;
@@ -1453,43 +1464,36 @@ static NSInteger firstNumSort(id str1, id str2, void *context) {
     else
     {
         
-        NSLog(@"on bar graph _gridHeight=%f",_gridHeight);
-        //NSLog(@"minimumOnY=%f",minimumOnY);
      
-
-        //if (pickLibColors) 
-           
-        //NSLog(@"Style of view with tag %i is %i , %i",self.tag,style,[_yValElements count]);
         float xOrigin=spaceBetweenSameGroupBar;
-        //NSLog(@"minimumOnY=%f",minimumOnY);
-        
         for (int i=0; i<[_yValElements count]; i++)
         { 
             BOOL isNegativeBar=FALSE;
             
   
-            int _height=[[_yValElements objectAtIndex:i] intValue]-minimumOnY;
+            int _height=[[_yValElements objectAtIndex:i] intValue];
             _height=_height*_scalingY;
-            
+    
 
             float originY;
             if(_height<0)originY=_gridHeight-barYOffsetForNegativeGraphs;
             else originY=_gridHeight-_height-barYOffsetForNegativeGraphs;
             
-            
-         
-            
-            
-            
-            if(_height<0)isNegativeBar=TRUE;
-            if(_height<0)_height=-_height;
-            
+
+            if(_height<0)
+            {
+                isNegativeBar=TRUE;
+                _height=-_height;
+            }
+             
             int heightInt=(int)_height;
             
             int originYNew=originY+topMargin;
             
             if(isLongGraph_)
                 originYNew=originY;
+            
+    
             
             BarView *view=[[BarView alloc]initWithFrame:CGRectMake((i* barWidth) + spaceBetweenSameGroupBar*(i+1) +_leftMargin,originYNew,barWidth,heightInt)];
             view.alpha=0.7;

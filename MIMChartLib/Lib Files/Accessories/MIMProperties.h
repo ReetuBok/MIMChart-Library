@@ -35,6 +35,10 @@
 +(float)FindTileHeight:(NSMutableDictionary *)hlProperties GridHeight:(float)gridHeight;
 //+(float)findScaleForYTile:(NSMutableArray *)yValElements gridHeight:(float)gridHeight tileHeight:(float)tileHeight :(int)countHLines;
 +(float)findMinimumOnY:(float)minOfY;
++(float)findMinimumOnYForHandlingNegative:(float)minOfY withPPT:(float)scalingY;
+
+
+
 +(float)findScaleForXTile:(NSMutableArray *)xValElements XValuesAreString:(BOOL)xIsString LongGraph:(BOOL)isLongGraph TileWidth:(float)tileWidth TileWidthDefinedByUser:(BOOL)tileWidthDefinedByUser;
 +(float)findScaleForYTile:(NSMutableArray *)yValElements gridHeight:(float)gridHeight tileHeight:(float)tileHeight :(int)countHLines Min:(float)minOfY Max:(float)maxOfY;
 

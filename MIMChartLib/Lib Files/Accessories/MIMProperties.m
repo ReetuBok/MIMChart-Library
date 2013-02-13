@@ -664,6 +664,19 @@
 }
 
 
+
++(float)findMinimumOnYForHandlingNegative:(float)minOfY withPPT:(float)ppt
+{
+    //scalingy * i < minof y< scalingy * i+1
+    int i=(int)(-minOfY/ppt);
+    i+=1;
+    i=-i;
+    
+    float minimumLabelOnY=ppt*i;
+    return minimumLabelOnY;
+        
+}
+
 //Scaling on X axis exists only for string values. Right now you can give numbers on x-axis, if numbers then give in form on string.
 //No scaling will happen on numeric value
 +(float)findScaleForXTile:(NSMutableArray *)xValElements XValuesAreString:(BOOL)xIsString LongGraph:(BOOL)isLongGraph TileWidth:(float)tileWidth TileWidthDefinedByUser:(BOOL)tileWidthDefinedByUser
